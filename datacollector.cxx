@@ -1,7 +1,13 @@
 #include "datacollector.hxx"
 
+#include <QMessageBox>
+#include <QSqlDatabase>
+#include <QSqlError>
+
 #include "actionenabledifconnectedtodatabase.hxx"
 #include "actionenabledifnotconnectedtodatabase.hxx"
+#include "databaseconnectiondatadialog.hxx"
+#include "databaseerror.hxx"
 
 DataCollector *DataCollector::get()
 {
@@ -16,22 +22,98 @@ DataCollector::DataCollector(int &argc, char **argv)
 
 DataCollector::~DataCollector()
 {
+    closeDatabase();
+}
 
+QSqlQuery DataCollector::prepareAndPerformQuery(const QString &sql)
+{
+    auto qry = prepareQuery(sql);
+    performQuery(qry);
+    return qry;
+}
+
+QSqlQuery DataCollector::prepareQuery(const QString &sql)
+{
+    QSqlQuery qry(QSqlDatabase::database(databaseConnectionName));
+
+    if (!qry.prepare(sql)) {
+        throw DatabaseError(qry.lastError());
+    }
+
+    return qry;
+}
+
+void DataCollector::performQuery(QSqlQuery &qry)
+{
+    if (!qry.exec()) {
+        throw DatabaseError(qry.lastError());
+    }
 }
 
 void DataCollector::openDatabase()
 {
+    auto dlg = new DatabaseConnectionDataDialog(activeWindow());
 
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    if (QSqlDatabase::contains(databaseConnectionName)) {
+        closeDatabase();
+    }
+
+    auto db = QSqlDatabase::addDatabase("QPSQL", databaseConnectionName);
+    db.setHostName(dlg->connectionData().host());
+    db.setPort(dlg->connectionData().port());
+    db.setDatabaseName(dlg->connectionData().database());
+    db.setUserName(dlg->connectionData().userName());
+    db.setPassword(dlg->connectionData().password());
+
+    if (db.open()) {
+        emit databaseAvailable();
+        return;
+    }
+
+    emit databaseUnavailable();
+
+    QMessageBox::critical(activeWindow(),
+                          tr("Failed to connect to database"),
+                          tr("<p><b>Failed to connect to database:</b>/<p><p>%1</p>")
+                          .arg(db.lastError().text()));
 }
 
 void DataCollector::closeDatabase()
 {
+    if (QSqlDatabase::contains(databaseConnectionName)) {
+        QSqlDatabase::removeDatabase(databaseConnectionName);
+    }
 
+    emit databaseUnavailable();
 }
 
 void DataCollector::pingDatabase()
 {
+    try {
+        auto qry = prepareAndPerformQuery("select current_timestamp::text;");
 
+        if (!qry.next()) {
+            QMessageBox::critical(activeWindow(),
+                                  tr("Ping Failed"),
+                                  tr("Ping failed: no rows returned."));
+            qry.clear();
+            return;
+        }
+
+        QMessageBox::information(activeWindow(),
+                                 tr("Pink OK"),
+                                 tr("<p>Server Timestamp: %1</p>").arg(qry.value(0).toString()));
+    }
+    catch(DatabaseError& e) {
+        QMessageBox::critical(activeWindow(),
+                              tr("Failed to ping database"),
+                              tr("<p><b>Failed to ping database:</b></p><p>Server Timestamp: %1</p>")
+                              .arg(e.error().text()));
+    }
 }
 
 void DataCollector::aboutProgram()
@@ -49,7 +131,7 @@ void DataCollector::initActions()
     connect(m_openDatabase, &QAction::triggered, this, &DataCollector::openDatabase);
 
     m_closeDatabase = new ActionEnabledIfConnectedToDatabase(tr("C&lose"), this, QKeySequence::Close);
-    connect(m_closeDatabase, &QAction::triggered, this, &DataCollector::closeDatabaseAction);
+    connect(m_closeDatabase, &QAction::triggered, this, &DataCollector::closeDatabase);
 
     m_pingDatabase = new ActionEnabledIfConnectedToDatabase(tr("&Ping"), this);
     connect(m_pingDatabase, &QAction::triggered, this, &DataCollector::pingDatabase);

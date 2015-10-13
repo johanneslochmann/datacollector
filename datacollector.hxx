@@ -2,6 +2,10 @@
 
 #include <QApplication>
 
+#include <QSqlQuery>
+
+const QString databaseConnectionName { "dbconn" };
+
 class QAction;
 
 class DataCollector : public QApplication
@@ -19,6 +23,10 @@ public:
     QAction* pingDatabaseAction() const { return m_pingDatabase; }
     QAction* aboutProgramAction() const { return m_aboutProgram; }
     QAction* aboutQtAction() const { return m_aboutQt; }
+
+    QSqlQuery prepareAndPerformQuery(const QString& sql);
+    QSqlQuery prepareQuery(const QString& sql);
+    void performQuery(QSqlQuery& qry);
 
 signals:
     void databaseAvailable();
