@@ -4,6 +4,7 @@
 
 class DateEditDelegate: public QItemDelegate
 {
+    Q_OBJECT
 public:
     explicit DateEditDelegate(QWidget *parent = 0);
 

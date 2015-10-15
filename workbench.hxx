@@ -24,6 +24,7 @@ public slots:
     void manageCampaigns();
     void manageProbands();
     void manageDrugs();
+    void managePrescribeableDrugs();
 
 private:
     TableManagementWidget* m_channelIntoPatient;
@@ -36,4 +37,5 @@ private:
     TableManagementWidget* m_campaigns;
     TableManagementWidget* m_probands;
     TableManagementWidget* m_drugs;
+    TableManagementWidget* m_prescribeableDrugs;
 };

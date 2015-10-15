@@ -61,6 +61,7 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageMoleculeClassesAction());
     coreData->addAction(app->manageMoleculesAction());
     coreData->addAction(app->manageDrugsAction());
+    coreData->addAction(app->managePrescribeableDrugsAction());
     coreData->addSeparator();
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
