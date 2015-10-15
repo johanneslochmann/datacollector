@@ -37,7 +37,8 @@ SOURCES += main.cxx\
     prescribeabledrugcompositionmanagementwidget.cxx \
     prescriptiontypemanagementwidget.cxx \
     surveymanagementwidget.cxx \
-    organizationunitmanagementwidget.cxx
+    organizationunitmanagementwidget.cxx \
+    icd10diagnosismanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -68,7 +69,8 @@ HEADERS  += mainwindow.hxx \
     prescribeabledrugcompositionmanagementwidget.hxx \
     prescriptiontypemanagementwidget.hxx \
     surveymanagementwidget.hxx \
-    organizationunitmanagementwidget.hxx
+    organizationunitmanagementwidget.hxx \
+    icd10diagnosismanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui

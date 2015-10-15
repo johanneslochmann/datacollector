@@ -38,6 +38,7 @@ public:
     QAction* managePrescriptionTypesAction() const { return m_managePrescriptionTypes; }
     QAction* manageSurveysAction() const { return m_manageSurveys; }
     QAction* manageOrganizationUnitsAction() const { return m_manageOrganizationUnits; }
+    QAction* manageIcd10DiagnosisAction() const { return m_manageIcd10Diagnosis; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql);
     QSqlQuery prepareQuery(const QString& sql);
@@ -64,6 +65,7 @@ signals:
     void managePrescriptionTypes();
     void manageSurveys();
     void manageOrganizationUnits();
+    void manageIcd10Diagnosis();
 
 public slots:
     void openDatabase();
@@ -95,4 +97,5 @@ private:
     QAction* m_managePrescriptionTypes;
     QAction* m_manageSurveys;
     QAction* m_manageOrganizationUnits;
+    QAction* m_manageIcd10Diagnosis;
 };

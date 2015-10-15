@@ -29,6 +29,7 @@ public slots:
     void managePrescriptionTypes();
     void manageSurveys();
     void manageOrganizationUnits();
+    void manageIcd10Diagnosis();
 
 private:
     TableManagementWidget* m_channelIntoPatient;
@@ -46,4 +47,5 @@ private:
     TableManagementWidget* m_prescriptionTypes;
     TableManagementWidget* m_surveys;
     TableManagementWidget* m_organizationUnits;
+    TableManagementWidget* m_icd10Diagnosis;
 };

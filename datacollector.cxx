@@ -193,4 +193,7 @@ void DataCollector::initActions()
 
     m_manageOrganizationUnits = new ActionEnabledIfConnectedToDatabase(tr("Organization Units"), this);
     connect(m_manageOrganizationUnits, &QAction::triggered, this, &DataCollector::manageOrganizationUnits);
+
+    m_manageIcd10Diagnosis = new ActionEnabledIfConnectedToDatabase(tr("ICD 10 Diagnosis"), this);
+    connect(m_manageIcd10Diagnosis, &QAction::triggered, this, &DataCollector::manageIcd10Diagnosis);
 }
