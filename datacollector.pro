@@ -28,7 +28,8 @@ SOURCES += main.cxx\
     moleculemanagementwidget.cxx \
     sexmanagementwidget.cxx \
     unitmanagementwidget.cxx \
-    projectmanagementwidget.cxx
+    projectmanagementwidget.cxx \
+    campaignmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -50,7 +51,8 @@ HEADERS  += mainwindow.hxx \
     moleculemanagementwidget.hxx \
     sexmanagementwidget.hxx \
     unitmanagementwidget.hxx \
-    projectmanagementwidget.hxx
+    projectmanagementwidget.hxx \
+    campaignmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui
