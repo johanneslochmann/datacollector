@@ -1,6 +1,5 @@
 #include "drugadministrationmethodmanagementwidget.hxx"
 
-#include <QDebug>
 #include <QSqlRelationalDelegate>
 
 #include "tableview.hxx"
@@ -11,7 +10,6 @@ DrugAdministrationMethodManagementWidget::DrugAdministrationMethodManagementWidg
 {
     setWindowTitle(tr("Drug Administration Methods"));
 
-    qDebug() << "idx of channel_into_patient_id: " << model()->fieldIndex("channel_into_patient_id");
     model()->setRelation(model()->fieldIndex("channel_into_patient_id"),
                          QSqlRelation("core.channel_into_patient", "id", "name"));
 

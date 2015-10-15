@@ -157,4 +157,7 @@ void DataCollector::initActions()
 
     m_manageMoleculeClasses = new ActionEnabledIfConnectedToDatabase(tr("Molecule Classes..."), this);
     connect(m_manageMoleculeClasses, &QAction::triggered, this, &DataCollector::manageMoleculeClasses);
+
+    m_manageMolecules = new ActionEnabledIfConnectedToDatabase(tr("Molecules"), this);
+    connect(m_manageMolecules, &QAction::triggered, this, &DataCollector::manageMolecules);
 }

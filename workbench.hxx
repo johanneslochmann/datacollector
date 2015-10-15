@@ -17,9 +17,11 @@ public slots:
     void manageChannelsIntoPatient();
     void manageDrugAdministrationMethods();
     void manageMoleculeClasses();
+    void manageMolecules();
 
 private:
     TableManagementWidget* m_channelIntoPatient { nullptr };
     TableManagementWidget* m_drugAdministrationMethod { nullptr };
     TableManagementWidget* m_moleculeClass { nullptr };
+    TableManagementWidget* m_molecules { nullptr };
 };

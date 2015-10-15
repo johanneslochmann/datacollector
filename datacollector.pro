@@ -24,7 +24,8 @@ SOURCES += main.cxx\
     tableview.cxx \
     channelintopatientmanagementwidget.cxx \
     drugadministrationmethodmanagementwidget.cxx \
-    moleculeclassmanagementwidget.cxx
+    moleculeclassmanagementwidget.cxx \
+    moleculemanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.hxx \
     tableview.hxx \
     channelintopatientmanagementwidget.hxx \
     drugadministrationmethodmanagementwidget.hxx \
-    moleculeclassmanagementwidget.hxx
+    moleculeclassmanagementwidget.hxx \
+    moleculemanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui

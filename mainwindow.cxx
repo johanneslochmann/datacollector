@@ -53,6 +53,7 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageChannelsIntoPatientAction());
     coreData->addAction(app->manageDrugAdministrationMethodsAction());
     coreData->addAction(app->manageMoleculeClassesAction());
+    coreData->addAction(app->manageMoleculesAction());
 
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());
