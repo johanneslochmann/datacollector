@@ -190,4 +190,7 @@ void DataCollector::initActions()
 
     m_manageSurveys = new ActionEnabledIfConnectedToDatabase(tr("Surveys"), this);
     connect(m_manageSurveys, &QAction::triggered, this, &DataCollector::manageSurveys);
+
+    m_manageOrganizationUnits = new ActionEnabledIfConnectedToDatabase(tr("Organization Units"), this);
+    connect(m_manageOrganizationUnits, &QAction::triggered, this, &DataCollector::manageOrganizationUnits);
 }

@@ -55,6 +55,8 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageProjectsAction());
     coreData->addAction(app->manageCampaignsAction());
     coreData->addSeparator();
+    coreData->addAction(app->manageOrganizationUnitsAction());
+    coreData->addSeparator();
     coreData->addAction(app->managePrescriptionTypesAction());
     coreData->addAction(app->manageChannelsIntoPatientAction());
     coreData->addAction(app->manageDrugAdministrationMethodsAction());

@@ -28,6 +28,7 @@ public slots:
     void managePrescribeableDrugsComposition();
     void managePrescriptionTypes();
     void manageSurveys();
+    void manageOrganizationUnits();
 
 private:
     TableManagementWidget* m_channelIntoPatient;
@@ -44,4 +45,5 @@ private:
     TableManagementWidget* m_prescribeableDrugsComposition;
     TableManagementWidget* m_prescriptionTypes;
     TableManagementWidget* m_surveys;
+    TableManagementWidget* m_organizationUnits;
 };
