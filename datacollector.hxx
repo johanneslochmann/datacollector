@@ -35,6 +35,7 @@ public:
     QAction* manageDrugsAction() const { return m_manageDrugs; }
     QAction* managePrescribeableDrugsAction() const { return m_managePrescribeableDrugs; }
     QAction* managePrescribeableDrugsCompositionAction() const { return m_managePrescribeableDrugsComposition; }
+    QAction* managePrescriptionTypesAction() const { return m_managePrescriptionTypes; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql);
     QSqlQuery prepareQuery(const QString& sql);
@@ -58,6 +59,7 @@ signals:
     void manageDrugs();
     void managePrescribeableDrugs();
     void managePrescribeableDrugsComposition();
+    void managePrescriptionTypes();
 
 public slots:
     void openDatabase();
@@ -86,4 +88,5 @@ private:
     QAction* m_manageDrugs;
     QAction* m_managePrescribeableDrugs;
     QAction* m_managePrescribeableDrugsComposition;
+    QAction* m_managePrescriptionTypes;
 };
