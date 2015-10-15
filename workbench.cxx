@@ -7,6 +7,7 @@
 #include "moleculeclassmanagementwidget.hxx"
 #include "moleculemanagementwidget.hxx"
 #include "sexmanagementwidget.hxx"
+#include "unitmanagementwidget.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -18,18 +19,21 @@ Workbench::Workbench(QWidget *parent)
     m_moleculeClass = new MoleculeClassManagementWidget(this);
     m_molecules = new MoleculeManagementWidget(this);
     m_sexes = new SexManagementWidget(this);
+    m_units = new UnitManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
     addWidget(m_moleculeClass);
     addWidget(m_molecules);
     addWidget(m_sexes);
+    addWidget(m_units);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
     connect(app, &DataCollector::manageDrugAdministrationMethods, this, &Workbench::manageDrugAdministrationMethods);
     connect(app, &DataCollector::manageMoleculeClasses, this, &Workbench::manageMoleculeClasses);
     connect(app, &DataCollector::manageMolecules, this, &Workbench::manageMolecules);
     connect(app, &DataCollector::manageSexes, this, &Workbench::manageSexes);
+    connect(app, &DataCollector::manageUnits, this, &Workbench::manageUnits);
 }
 
 void Workbench::manageChannelsIntoPatient()
@@ -54,4 +58,9 @@ void Workbench::manageMolecules() {
 void Workbench::manageSexes()
 {
     setCurrentWidget(m_sexes);
+}
+
+void Workbench::manageUnits()
+{
+    setCurrentWidget(m_units);
 }

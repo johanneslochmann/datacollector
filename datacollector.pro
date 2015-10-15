@@ -26,7 +26,8 @@ SOURCES += main.cxx\
     drugadministrationmethodmanagementwidget.cxx \
     moleculeclassmanagementwidget.cxx \
     moleculemanagementwidget.cxx \
-    sexmanagementwidget.cxx
+    sexmanagementwidget.cxx \
+    unitmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.hxx \
     drugadministrationmethodmanagementwidget.hxx \
     moleculeclassmanagementwidget.hxx \
     moleculemanagementwidget.hxx \
-    sexmanagementwidget.hxx
+    sexmanagementwidget.hxx \
+    unitmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui

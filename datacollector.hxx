@@ -28,6 +28,7 @@ public:
     QAction* manageMoleculeClassesAction() const { return m_manageMoleculeClasses; }
     QAction* manageMoleculesAction() const { return m_manageMolecules; }
     QAction* manageSexesAction() const { return m_manageSexes; }
+    QAction* manageUnitsAction() const { return m_manageUnits; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql);
     QSqlQuery prepareQuery(const QString& sql);
@@ -44,6 +45,7 @@ signals:
     void manageMoleculeClasses();
     void manageMolecules();
     void manageSexes();
+    void manageUnits();
 
 public slots:
     void openDatabase();
@@ -65,4 +67,5 @@ private:
     QAction* m_manageMoleculeClasses;
     QAction* m_manageMolecules;
     QAction* m_manageSexes;
+    QAction* m_manageUnits;
 };

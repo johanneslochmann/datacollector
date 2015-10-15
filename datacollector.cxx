@@ -163,4 +163,7 @@ void DataCollector::initActions()
 
     m_manageSexes = new ActionEnabledIfConnectedToDatabase(tr("Sexes"), this);
     connect(m_manageSexes, &QAction::triggered, this, &DataCollector::manageSexes);
+
+    m_manageUnits = new ActionEnabledIfConnectedToDatabase(tr("Units"), this);
+    connect(m_manageUnits, &QAction::triggered, this, &DataCollector::manageUnits);
 }
