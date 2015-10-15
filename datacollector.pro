@@ -29,7 +29,9 @@ SOURCES += main.cxx\
     sexmanagementwidget.cxx \
     unitmanagementwidget.cxx \
     projectmanagementwidget.cxx \
-    campaignmanagementwidget.cxx
+    campaignmanagementwidget.cxx \
+    probandmanagementwidget.cxx \
+    dateeditdelegate.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -52,7 +54,9 @@ HEADERS  += mainwindow.hxx \
     sexmanagementwidget.hxx \
     unitmanagementwidget.hxx \
     projectmanagementwidget.hxx \
-    campaignmanagementwidget.hxx
+    campaignmanagementwidget.hxx \
+    probandmanagementwidget.hxx \
+    dateeditdelegate.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui

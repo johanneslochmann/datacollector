@@ -172,4 +172,7 @@ void DataCollector::initActions()
 
     m_manageCampaigns = new ActionEnabledIfConnectedToDatabase(tr("Campaigns"), this);
     connect(m_manageCampaigns, &QAction::triggered, this, &DataCollector::manageCampaigns);
+
+    m_manageProbands = new ActionEnabledIfConnectedToDatabase(tr("Probands"), this);
+    connect(m_manageProbands, &QAction::triggered, this, &DataCollector::manageProbands);
 }

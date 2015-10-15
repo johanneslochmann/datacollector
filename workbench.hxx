@@ -22,6 +22,7 @@ public slots:
     void manageUnits();
     void manageProjects();
     void manageCampaigns();
+    void manageProbands();
 
 private:
     TableManagementWidget* m_channelIntoPatient;
@@ -32,4 +33,5 @@ private:
     TableManagementWidget* m_units;
     TableManagementWidget* m_projects;
     TableManagementWidget* m_campaigns;
+    TableManagementWidget* m_probands;
 };

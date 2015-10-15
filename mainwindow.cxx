@@ -50,14 +50,18 @@ void MainWindow::initMenues()
     db->addAction(app->pingDatabaseAction());
 
     QMenu* coreData = new QMenu(tr("&Core Data"), this);
+
+    coreData->addAction(app->manageProbandsAction());
+    coreData->addSeparator();
+    coreData->addAction(app->manageProjectsAction());
+    coreData->addAction(app->manageCampaignsAction());
+    coreData->addSeparator();
     coreData->addAction(app->manageChannelsIntoPatientAction());
     coreData->addAction(app->manageDrugAdministrationMethodsAction());
     coreData->addAction(app->manageMoleculeClassesAction());
     coreData->addAction(app->manageMoleculesAction());
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
-    coreData->addAction(app->manageProjectsAction());
-    coreData->addAction(app->manageCampaignsAction());
 
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());
