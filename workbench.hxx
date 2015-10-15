@@ -16,8 +16,10 @@ signals:
 public slots:
     void manageChannelsIntoPatient();
     void manageDrugAdministrationMethods();
+    void manageMoleculeClasses();
 
 private:
     TableManagementWidget* m_channelIntoPatient { nullptr };
     TableManagementWidget* m_drugAdministrationMethod { nullptr };
+    TableManagementWidget* m_moleculeClass { nullptr };
 };

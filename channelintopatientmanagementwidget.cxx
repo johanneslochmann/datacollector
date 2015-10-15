@@ -7,5 +7,6 @@ ChannelIntoPatientManagementWidget::ChannelIntoPatientManagementWidget(QWidget *
     : TableManagementWidget(p, "core.channel_into_patient", QObject::tr("Channels Into Patient"))
 {
     view()->hideColumn(model()->fieldIndex("id")); // hide id column
+    model()->select();
 }
 

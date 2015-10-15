@@ -51,7 +51,8 @@ void MainWindow::initMenues()
 
     QMenu* coreData = new QMenu(tr("&Core Data"), this);
     coreData->addAction(app->manageChannelsIntoPatientAction());
-    coreData->addAction(app->manageDrugAdministrationMethodAction());
+    coreData->addAction(app->manageDrugAdministrationMethodsAction());
+    coreData->addAction(app->manageMoleculeClassesAction());
 
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());

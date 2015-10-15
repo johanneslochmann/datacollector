@@ -152,6 +152,9 @@ void DataCollector::initActions()
     m_manageChannelsIntoPatient = new ActionEnabledIfConnectedToDatabase(tr("Channels Into Patient..."), this);
     connect(m_manageChannelsIntoPatient, &QAction::triggered, this, &DataCollector::manageChannelsIntoPatient);
 
-    m_manageDrugAdministrationMethod = new ActionEnabledIfConnectedToDatabase(tr("Drug Administration Methods..."), this);
-    connect(m_manageDrugAdministrationMethod, &QAction::triggered, this, &DataCollector::manageDrugAdministrationMethods);
+    m_manageDrugAdministrationMethods = new ActionEnabledIfConnectedToDatabase(tr("Drug Administration Methods..."), this);
+    connect(m_manageDrugAdministrationMethods, &QAction::triggered, this, &DataCollector::manageDrugAdministrationMethods);
+
+    m_manageMoleculeClasses = new ActionEnabledIfConnectedToDatabase(tr("Molecule Classes..."), this);
+    connect(m_manageMoleculeClasses, &QAction::triggered, this, &DataCollector::manageMoleculeClasses);
 }
