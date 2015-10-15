@@ -11,6 +11,7 @@
 #include "projectmanagementwidget.hxx"
 #include "campaignmanagementwidget.hxx"
 #include "probandmanagementwidget.hxx"
+#include "drugmanagementwidget.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -26,6 +27,7 @@ Workbench::Workbench(QWidget *parent)
     m_projects = new ProjectManagementWidget(this);
     m_campaigns = new CampaignManagementWidget(this);
     m_probands = new ProbandManagementWidget(this);
+    m_drugs = new DrugManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -36,6 +38,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_projects);
     addWidget(m_campaigns);
     addWidget(m_probands);
+    addWidget(m_drugs);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
     connect(app, &DataCollector::manageDrugAdministrationMethods, this, &Workbench::manageDrugAdministrationMethods);
@@ -46,6 +49,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageProjects, this, &Workbench::manageProjects);
     connect(app, &DataCollector::manageCampaigns, this, &Workbench::manageCampaigns);
     connect(app, &DataCollector::manageProbands, this, &Workbench::manageProbands);
+    connect(app, &DataCollector::manageDrugs, this, &Workbench::manageDrugs);
 }
 
 void Workbench::manageChannelsIntoPatient()
@@ -89,4 +93,9 @@ void Workbench::manageCampaigns()
 
 void Workbench::manageProbands() {
     setCurrentWidget(m_probands);
+}
+
+void Workbench::manageDrugs()
+{
+    setCurrentWidget(m_drugs);
 }

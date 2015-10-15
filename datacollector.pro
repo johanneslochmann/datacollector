@@ -31,7 +31,8 @@ SOURCES += main.cxx\
     projectmanagementwidget.cxx \
     campaignmanagementwidget.cxx \
     probandmanagementwidget.cxx \
-    dateeditdelegate.cxx
+    dateeditdelegate.cxx \
+    drugmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -56,7 +57,8 @@ HEADERS  += mainwindow.hxx \
     projectmanagementwidget.hxx \
     campaignmanagementwidget.hxx \
     probandmanagementwidget.hxx \
-    dateeditdelegate.hxx
+    dateeditdelegate.hxx \
+    drugmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui

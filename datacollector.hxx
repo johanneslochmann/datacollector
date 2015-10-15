@@ -32,6 +32,7 @@ public:
     QAction* manageProjectsAction() const { return m_manageProjects; }
     QAction* manageCampaignsAction() const { return m_manageCampaigns; }
     QAction* manageProbandsAction() const { return m_manageProbands; }
+    QAction* manageDrugsAction() const { return m_manageDrugs; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql);
     QSqlQuery prepareQuery(const QString& sql);
@@ -52,6 +53,7 @@ signals:
     void manageProjects();
     void manageCampaigns();
     void manageProbands();
+    void manageDrugs();
 
 public slots:
     void openDatabase();
@@ -77,4 +79,5 @@ private:
     QAction* m_manageProjects;
     QAction* m_manageCampaigns;
     QAction* m_manageProbands;
+    QAction* m_manageDrugs;
 };
