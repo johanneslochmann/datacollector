@@ -13,6 +13,7 @@
 #include "probandmanagementwidget.hxx"
 #include "drugmanagementwidget.hxx"
 #include "prescribeabledrugmanagmentwidget.hxx"
+#include "prescribeabledrugcompositionmanagementwidget.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -30,6 +31,7 @@ Workbench::Workbench(QWidget *parent)
     m_probands = new ProbandManagementWidget(this);
     m_drugs = new DrugManagementWidget(this);
     m_prescribeableDrugs = new PrescribeableDrugManagmentWidget(this);
+    m_prescribeableDrugsComposition = new PrescribeableDrugCompositionManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -42,6 +44,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_probands);
     addWidget(m_drugs);
     addWidget(m_prescribeableDrugs);
+    addWidget(m_prescribeableDrugsComposition);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
     connect(app, &DataCollector::manageDrugAdministrationMethods, this, &Workbench::manageDrugAdministrationMethods);
@@ -54,6 +57,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageProbands, this, &Workbench::manageProbands);
     connect(app, &DataCollector::manageDrugs, this, &Workbench::manageDrugs);
     connect(app, &DataCollector::managePrescribeableDrugs, this, &Workbench::managePrescribeableDrugs);
+    connect(app, &DataCollector::managePrescribeableDrugsComposition, this, &Workbench::managePrescribeableDrugsComposition);
 }
 
 void Workbench::manageChannelsIntoPatient()
@@ -107,4 +111,9 @@ void Workbench::manageDrugs()
 void Workbench::managePrescribeableDrugs()
 {
     setCurrentWidget(m_prescribeableDrugs);
+}
+
+void Workbench::managePrescribeableDrugsComposition()
+{
+    setCurrentWidget(m_prescribeableDrugsComposition);
 }

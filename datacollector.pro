@@ -33,7 +33,8 @@ SOURCES += main.cxx\
     probandmanagementwidget.cxx \
     dateeditdelegate.cxx \
     drugmanagementwidget.cxx \
-    prescribeabledrugmanagmentwidget.cxx
+    prescribeabledrugmanagmentwidget.cxx \
+    prescribeabledrugcompositionmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -60,7 +61,8 @@ HEADERS  += mainwindow.hxx \
     probandmanagementwidget.hxx \
     dateeditdelegate.hxx \
     drugmanagementwidget.hxx \
-    prescribeabledrugmanagmentwidget.hxx
+    prescribeabledrugmanagmentwidget.hxx \
+    prescribeabledrugcompositionmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui
