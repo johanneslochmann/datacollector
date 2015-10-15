@@ -20,6 +20,7 @@ public slots:
     void manageMolecules();
     void manageSexes();
     void manageUnits();
+    void manageProjects();
 
 private:
     TableManagementWidget* m_channelIntoPatient;
@@ -28,4 +29,5 @@ private:
     TableManagementWidget* m_molecules;
     TableManagementWidget* m_sexes;
     TableManagementWidget* m_units;
+    TableManagementWidget* m_projects;
 };

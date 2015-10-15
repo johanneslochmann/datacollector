@@ -56,6 +56,7 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageMoleculesAction());
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
+    coreData->addAction(app->manageProjectsAction());
 
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());

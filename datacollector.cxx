@@ -166,4 +166,7 @@ void DataCollector::initActions()
 
     m_manageUnits = new ActionEnabledIfConnectedToDatabase(tr("Units"), this);
     connect(m_manageUnits, &QAction::triggered, this, &DataCollector::manageUnits);
+
+    m_manageProjects = new ActionEnabledIfConnectedToDatabase(tr("Projects"), this);
+    connect(m_manageProjects, &QAction::triggered, this, &DataCollector::manageProjects);
 }

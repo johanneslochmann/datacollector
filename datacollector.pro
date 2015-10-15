@@ -27,7 +27,8 @@ SOURCES += main.cxx\
     moleculeclassmanagementwidget.cxx \
     moleculemanagementwidget.cxx \
     sexmanagementwidget.cxx \
-    unitmanagementwidget.cxx
+    unitmanagementwidget.cxx \
+    projectmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -48,7 +49,8 @@ HEADERS  += mainwindow.hxx \
     moleculeclassmanagementwidget.hxx \
     moleculemanagementwidget.hxx \
     sexmanagementwidget.hxx \
-    unitmanagementwidget.hxx
+    unitmanagementwidget.hxx \
+    projectmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui
