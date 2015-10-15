@@ -50,7 +50,6 @@ void MainWindow::initMenues()
     db->addAction(app->pingDatabaseAction());
 
     QMenu* coreData = new QMenu(tr("&Core Data"), this);
-
     coreData->addAction(app->manageProbandsAction());
     coreData->addSeparator();
     coreData->addAction(app->manageProjectsAction());
@@ -68,6 +67,9 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
 
+    QMenu* dataEntry = new QMenu(tr("Data &Entry"), this);
+    dataEntry->addAction(app->manageSurveysAction());
+
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());
     help->addSeparator();
@@ -76,6 +78,7 @@ void MainWindow::initMenues()
     menuBar()->addMenu(file);
     menuBar()->addMenu(db);
     menuBar()->addMenu(coreData);
+    menuBar()->addMenu(dataEntry);
     menuBar()->addSeparator();
     menuBar()->addMenu(help);
 }

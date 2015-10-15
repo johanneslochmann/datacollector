@@ -187,4 +187,7 @@ void DataCollector::initActions()
 
     m_managePrescriptionTypes = new ActionEnabledIfConnectedToDatabase(tr("Prescription Types"), this);
     connect(m_managePrescriptionTypes, &QAction::triggered, this, &DataCollector::managePrescriptionTypes);
+
+    m_manageSurveys = new ActionEnabledIfConnectedToDatabase(tr("Surveys"), this);
+    connect(m_manageSurveys, &QAction::triggered, this, &DataCollector::manageSurveys);
 }

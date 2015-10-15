@@ -35,7 +35,8 @@ SOURCES += main.cxx\
     drugmanagementwidget.cxx \
     prescribeabledrugmanagmentwidget.cxx \
     prescribeabledrugcompositionmanagementwidget.cxx \
-    prescriptiontypemanagementwidget.cxx
+    prescriptiontypemanagementwidget.cxx \
+    surveymanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -64,7 +65,8 @@ HEADERS  += mainwindow.hxx \
     drugmanagementwidget.hxx \
     prescribeabledrugmanagmentwidget.hxx \
     prescribeabledrugcompositionmanagementwidget.hxx \
-    prescriptiontypemanagementwidget.hxx
+    prescriptiontypemanagementwidget.hxx \
+    surveymanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui
