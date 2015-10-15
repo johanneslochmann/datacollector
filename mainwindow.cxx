@@ -6,16 +6,34 @@
 
 #include "datacollector.hxx"
 #include "databaseconnectionstatuslabel.hxx"
+#include "workbench.hxx"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     initMenues();
     initStatusBar();
+
+    auto app = DataCollector::get();
+
+    connect(app, &DataCollector::databaseAvailable, this, &MainWindow::databaseAvailable);
+    connect(app, &DataCollector::databaseUnavailable, this, &MainWindow::databaseUnavailable);
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::databaseAvailable()
+{
+    m_wb = new Workbench(this);
+    setCentralWidget(m_wb);
+    m_wb->showMaximized();
+}
+
+void MainWindow::databaseUnavailable()
+{
+    delete m_wb;
 }
 
 void MainWindow::initMenues()
@@ -31,6 +49,10 @@ void MainWindow::initMenues()
     db->addSeparator();
     db->addAction(app->pingDatabaseAction());
 
+    QMenu* coreData = new QMenu(tr("&Core Data"), this);
+    coreData->addAction(app->manageChannelsIntoPatientAction());
+    coreData->addAction(app->manageDrugAdministrationMethodAction());
+
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());
     help->addSeparator();
@@ -38,6 +60,7 @@ void MainWindow::initMenues()
 
     menuBar()->addMenu(file);
     menuBar()->addMenu(db);
+    menuBar()->addMenu(coreData);
     menuBar()->addSeparator();
     menuBar()->addMenu(help);
 }

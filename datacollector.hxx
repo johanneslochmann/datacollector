@@ -23,14 +23,21 @@ public:
     QAction* pingDatabaseAction() const { return m_pingDatabase; }
     QAction* aboutProgramAction() const { return m_aboutProgram; }
     QAction* aboutQtAction() const { return m_aboutQt; }
+    QAction* manageChannelsIntoPatientAction() const { return m_manageChannelsIntoPatient; }
+    QAction* manageDrugAdministrationMethodAction() const { return m_manageDrugAdministrationMethod; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql);
     QSqlQuery prepareQuery(const QString& sql);
     void performQuery(QSqlQuery& qry);
 
+    QSqlDatabase database();
+
 signals:
     void databaseAvailable();
     void databaseUnavailable();
+
+    void manageChannelsIntoPatient();
+    void manageDrugAdministrationMethods();
 
 public slots:
     void openDatabase();
@@ -47,4 +54,6 @@ private:
     QAction* m_pingDatabase;
     QAction* m_aboutProgram;
     QAction* m_aboutQt;
+    QAction* m_manageChannelsIntoPatient;
+    QAction* m_manageDrugAdministrationMethod;
 };

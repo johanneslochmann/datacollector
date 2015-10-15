@@ -17,7 +17,13 @@ SOURCES += main.cxx\
     databaseconnectiondatadialog.cxx \
     databaseconnectiondata.cxx \
     settings.cxx \
-    databaseerror.cxx
+    databaseerror.cxx \
+    workbench.cxx \
+    sqltablemodel.cxx \
+    tablemanagementwidget.cxx \
+    tableview.cxx \
+    channelintopatientmanagementwidget.cxx \
+    drugadministrationmethodmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -28,7 +34,13 @@ HEADERS  += mainwindow.hxx \
     databaseconnectiondatadialog.hxx \
     databaseconnectiondata.hxx \
     settings.hxx \
-    databaseerror.hxx
+    databaseerror.hxx \
+    workbench.hxx \
+    sqltablemodel.hxx \
+    tablemanagementwidget.hxx \
+    tableview.hxx \
+    channelintopatientmanagementwidget.hxx \
+    drugadministrationmethodmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui

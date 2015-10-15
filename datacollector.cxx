@@ -50,8 +50,15 @@ void DataCollector::performQuery(QSqlQuery &qry)
     }
 }
 
+QSqlDatabase DataCollector::database()
+{
+    return QSqlDatabase::database(databaseConnectionName);
+}
+
 void DataCollector::openDatabase()
 {
+    emit databaseUnavailable();
+
     auto dlg = new DatabaseConnectionDataDialog(activeWindow());
 
     if (QDialog::Accepted != dlg->exec()) {
@@ -141,4 +148,10 @@ void DataCollector::initActions()
 
     m_aboutQt = new QAction(tr("&About Qt..."), this);
     connect(m_aboutQt, &QAction::triggered, this, &DataCollector::aboutQt);
+
+    m_manageChannelsIntoPatient = new ActionEnabledIfConnectedToDatabase(tr("Channels Into Patient..."), this);
+    connect(m_manageChannelsIntoPatient, &QAction::triggered, this, &DataCollector::manageChannelsIntoPatient);
+
+    m_manageDrugAdministrationMethod = new ActionEnabledIfConnectedToDatabase(tr("Drug Administration Methods..."), this);
+    connect(m_manageDrugAdministrationMethod, &QAction::triggered, this, &DataCollector::manageDrugAdministrationMethods);
 }
