@@ -72,6 +72,10 @@ void MainWindow::initMenues()
 
     QMenu* dataEntry = new QMenu(tr("Data &Entry"), this);
     dataEntry->addAction(app->manageSurveysAction());
+    dataEntry->addSeparator();
+    dataEntry->addAction(app->manageAgateDataAction());
+    dataEntry->addAction(app->manageAgatePrescriptionsAction());
+    dataEntry->addAction(app->manageIcd10DiagnosisInSurveryAction());
 
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());

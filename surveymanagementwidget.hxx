@@ -11,4 +11,7 @@ public:
 signals:
 
 public slots:
+
+protected:
+    const QString nameColumnName() const override { return "id"; }
 };

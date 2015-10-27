@@ -50,6 +50,17 @@ void DataCollector::performQuery(QSqlQuery &qry)
     }
 }
 
+bool DataCollector::performQueryWithExpectedSize(QSqlQuery &qry, int expectedSize)
+{
+    performQuery(qry);
+
+    if (expectedSize != qry.size()) {
+        return false;
+    }
+
+    return true;
+}
+
 QSqlDatabase DataCollector::database()
 {
     return QSqlDatabase::database(databaseConnectionName);
@@ -196,4 +207,13 @@ void DataCollector::initActions()
 
     m_manageIcd10Diagnosis = new ActionEnabledIfConnectedToDatabase(tr("ICD 10 Diagnosis"), this);
     connect(m_manageIcd10Diagnosis, &QAction::triggered, this, &DataCollector::manageIcd10Diagnosis);
+
+    m_manageAgatePrescriptions = new ActionEnabledIfConnectedToDatabase(tr("Agate Prescriptions"), this);
+    connect(m_manageAgatePrescriptions, &QAction::triggered, this, &DataCollector::manageAgatePrescriptions);
+
+    m_manageIcd10DiagnosisInSurvery = new ActionEnabledIfConnectedToDatabase(tr("ICD10 Diagnosis in Survey"), this);
+    connect(m_manageIcd10DiagnosisInSurvery, &QAction::triggered, this, &DataCollector::manageIcd10DiagnosisInSurvery);
+
+    m_manageAgateData = new ActionEnabledIfConnectedToDatabase(tr("Manage AGATE Data"), this);
+    connect(m_manageAgateData, &QAction::triggered, this, &DataCollector::manageAgateData);
 }

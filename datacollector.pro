@@ -38,7 +38,11 @@ SOURCES += main.cxx\
     prescriptiontypemanagementwidget.cxx \
     surveymanagementwidget.cxx \
     organizationunitmanagementwidget.cxx \
-    icd10diagnosismanagementwidget.cxx
+    icd10diagnosismanagementwidget.cxx \
+    agateprescriptionmanagementwidget.cxx \
+    diagnosisinsurveymanagementwidget.cxx \
+    icd10diagnosisinsurveymanagementwidget.cxx \
+    agateform.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -70,7 +74,12 @@ HEADERS  += mainwindow.hxx \
     prescriptiontypemanagementwidget.hxx \
     surveymanagementwidget.hxx \
     organizationunitmanagementwidget.hxx \
-    icd10diagnosismanagementwidget.hxx
+    icd10diagnosismanagementwidget.hxx \
+    agateprescriptionmanagementwidget.hxx \
+    diagnosisinsurveymanagementwidget.hxx \
+    icd10diagnosisinsurveymanagementwidget.hxx \
+    agateform.hxx
 
 FORMS += \
-    databaseconnectiondatadialog.ui
+    databaseconnectiondatadialog.ui \
+    agateform.ui

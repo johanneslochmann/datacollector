@@ -11,10 +11,10 @@ SurveyManagementWidget::SurveyManagementWidget(QWidget *p)
 {
     model()->setRelation(model()->fieldIndex("proband_id"), QSqlRelation("core.proband", "id", "external_id"));
     model()->setRelation(model()->fieldIndex("campaign_id"), QSqlRelation("core.campaign", "id", "name"));
+    model()->setRelation(model()->fieldIndex("organization_unit_id"), QSqlRelation("core.organization_unit", "id", "name"));
 
     view()->setItemDelegate(new QSqlRelationalDelegate(view()));
     view()->setItemDelegateForColumn(model()->fieldIndex("survey_date"), new DateEditDelegate(view()));
 
-    view()->hideColumn(model()->fieldIndex("id")); // hide id column
     model()->select();
 }

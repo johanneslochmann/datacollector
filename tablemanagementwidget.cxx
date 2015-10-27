@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include <QDebug>
 #include <QLabel>
+#include <QDataWidgetMapper>
 
 #include "sqltablemodel.hxx"
 #include "tableview.hxx"
@@ -22,6 +23,9 @@ TableManagementWidget::TableManagementWidget(QWidget *parent, const QString &tab
     m_view->setModel(m_model);
     m_view->setSelectionMode(QAbstractItemView::SingleSelection);
     m_view->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    m_mapper = new QDataWidgetMapper(this);
+    m_mapper->setModel(m_model);
 
     layout()->addWidget(m_view);
 

@@ -8,6 +8,7 @@ class SqlTableModel;
 class TableView;
 
 class QPushButton;
+class QDataWidgetMapper;
 
 class TableManagementWidget : public QGroupBox
 {
@@ -35,6 +36,7 @@ protected:
 private:
     SqlTableModel* m_model;
     TableView* m_view;
+    QDataWidgetMapper* m_mapper;
 
     QPushButton* m_create;
     QPushButton* m_delete;
