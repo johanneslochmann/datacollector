@@ -66,6 +66,13 @@ QSqlDatabase DataCollector::database()
     return QSqlDatabase::database(databaseConnectionName);
 }
 
+void DataCollector::showDatabaseError(const DatabaseError &err, const QString &info, QWidget *parent)
+{
+    QMessageBox::critical((parent ? parent : activeWindow()),
+                          (info.isEmpty() ? tr("Database Error") : info),
+                          err.error().text());
+}
+
 void DataCollector::openDatabase()
 {
     emit databaseUnavailable();

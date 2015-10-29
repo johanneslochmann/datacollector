@@ -4,6 +4,8 @@
 
 #include <QSqlQuery>
 
+#include "databaseerror.hxx"
+
 const QString databaseConnectionName { "dbconn" };
 
 class QAction;
@@ -49,6 +51,8 @@ public:
     bool performQueryWithExpectedSize(QSqlQuery& qry, int expectedSize);
 
     QSqlDatabase database();
+
+    void showDatabaseError(const DatabaseError& err, const QString& info = QObject::tr("Database Error"), QWidget* parent=nullptr);
 
 signals:
     void databaseAvailable();

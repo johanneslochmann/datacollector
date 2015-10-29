@@ -42,7 +42,17 @@ SOURCES += main.cxx\
     agateprescriptionmanagementwidget.cxx \
     diagnosisinsurveymanagementwidget.cxx \
     icd10diagnosisinsurveymanagementwidget.cxx \
-    agateform.cxx
+    agateform.cxx \
+    surveydialog.cxx \
+    storable.cxx \
+    survey.cxx \
+    project.cxx \
+    abstractdatagateway.cxx \
+    projectdatagateway.cxx \
+    campaigndatagateway.cxx \
+    campaign.cxx \
+    proband.cxx \
+    probanddatagateway.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -78,8 +88,20 @@ HEADERS  += mainwindow.hxx \
     agateprescriptionmanagementwidget.hxx \
     diagnosisinsurveymanagementwidget.hxx \
     icd10diagnosisinsurveymanagementwidget.hxx \
-    agateform.hxx
+    agateform.hxx \
+    surveydialog.hxx \
+    storable.hxx \
+    survey.hxx \
+    project.hxx \
+    abstractdatagateway.hxx \
+    datagateway.h \
+    projectdatagateway.hxx \
+    campaigndatagateway.hxx \
+    campaign.hxx \
+    proband.hxx \
+    probanddatagateway.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
-    agateform.ui
+    agateform.ui \
+    surveydialog.ui

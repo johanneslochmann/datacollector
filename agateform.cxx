@@ -6,11 +6,13 @@
 #include <QTableView>
 #include <QMessageBox>
 #include <QSqlError>
+#include <QPushButton>
 
 #include "ui_agateform.h"
 
 #include "datacollector.hxx"
 #include "databaseerror.hxx"
+#include "surveydialog.hxx"
 
 AgateForm::AgateForm(QWidget *parent) :
     QWidget(parent),
@@ -24,6 +26,9 @@ AgateForm::AgateForm(QWidget *parent) :
     connect(ui->projects, &QComboBox::currentTextChanged, this, &AgateForm::onCurrentProjectChanged);
     connect(ui->campaigns, &QComboBox::currentTextChanged, this, &AgateForm::onCurrentCampaignChanged);
     connect(ui->surveys, &QTableView::activated, this, &AgateForm::onCurrentSurveyChanged);
+
+    connect(ui->reloadSurveysW, &QPushButton::clicked, this, &AgateForm::reloadSurveys);
+    connect(ui->createSurveyW, &QPushButton::clicked, this, &AgateForm::createSurvey);
 
     connect(this, &AgateForm::projectFilterChanged, this, &AgateForm::onProjectFilterChanged);
     connect(this, &AgateForm::campaignFilterChanged, this, &AgateForm::onCampaignFilterChanged);
@@ -118,12 +123,7 @@ void AgateForm::onCampaignFilterChanged(int campaignId)
         return;
     }
 
-    m_surveysQry.bindValue(":campaign_id", campaignId);
-    DataCollector::get()->performQuery(m_surveysQry);
-    m_surveysModel->setQuery(m_surveysQry);
-    ui->surveys->setModel(m_surveysModel);
-
-    ui->surveys->setEnabled(true);
+    reloadSurveys();
 }
 
 void AgateForm::onSurveyFilterChanged(int surveyId)
@@ -174,6 +174,25 @@ void AgateForm::reload()
     DataCollector::get()->performQuery(m_projectsQry);
     m_projectsModel->setQuery(m_projectsQry);
     ui->projects->setModel(m_projectsModel);
+}
+
+void AgateForm::reloadSurveys()
+{
+    m_surveysQry.bindValue(":campaign_id", m_currentCampaignId);
+    DataCollector::get()->performQuery(m_surveysQry);
+    m_surveysModel->setQuery(m_surveysQry);
+    ui->surveys->setModel(m_surveysModel);
+
+    ui->surveys->setEnabled(true);
+}
+
+void AgateForm::createSurvey()
+{
+    auto dlg = new SurveyDialog(this, m_currentProjectId, m_currentCampaignId);
+
+    if (QDialog::Accepted == dlg->exec()) {
+        reloadSurveys();
+    }
 }
 
 void AgateForm::prepareQueries()

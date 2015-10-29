@@ -35,6 +35,9 @@ public slots:
 
     void reload();
 
+    void reloadSurveys();
+    void createSurvey();
+
 protected:
     void prepareQueries();
     void setupModels();
