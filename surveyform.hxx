@@ -77,7 +77,6 @@ private:
     QSqlQuery m_ipOnDemandQry;
     QSqlQuery m_ipReqularQry;
     QSqlQuery m_ipPlasmaticLevelQry;
-    QSqlQuery m_agateQry;
 
     QSqlQuery m_getProjectIdQry;
     QSqlQuery m_getCampaignIdQry;
@@ -89,7 +88,6 @@ private:
     QSqlQueryModel* m_ipOnDemandModel;
     QSqlQueryModel* m_ipReqularModel;
     QSqlQueryModel* m_ipPlasmaticLevelModel;
-    QSqlQueryModel* m_agateModel;
 
     int m_currentProjectId { 0 };
     int m_currentCampaignId { 0 };

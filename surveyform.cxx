@@ -71,7 +71,6 @@ void SurveyForm::onDatabaseAboutToClose()
     m_ipOnDemandModel->setQuery(QSqlQuery());
     m_ipReqularModel->setQuery(QSqlQuery());
     m_ipPlasmaticLevelModel->setQuery(QSqlQuery());
-    m_agateModel->setQuery(QSqlQuery());
 
     m_projectsQry.clear();
     m_campaignsQry.clear();
@@ -82,7 +81,6 @@ void SurveyForm::onDatabaseAboutToClose()
     m_ipOnDemandQry.clear();
     m_ipReqularQry.clear();
     m_ipPlasmaticLevelQry.clear();
-    m_agateQry.clear();
 }
 
 void SurveyForm::onDatabaseAvailable()
@@ -191,7 +189,6 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
         ui->onDemandView->setEnabled(false);
         ui->ipRegularView->setEnabled(false);
         ui->ipPlasmaticLevelsView->setEnabled(false);
-        ui->agateView->setEnabled(false);
         return;
     }
 
@@ -200,20 +197,11 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
     reloadIpRegularDrugs();
     reloadPlasmaticLevels();
 
-    m_agateQry.bindValue(":survey_id", surveyId);
-
-    DataCollector::get()->performQuery(m_agateQry, false);
-
-    m_agateModel->setQuery(m_agateQry);
-
-    ui->agateView->setModel(m_agateModel);
-
     ui->tab->setEnabled(true);
     ui->icd10View->setEnabled(true);
     ui->onDemandView->setEnabled(true);
     ui->ipRegularView->setEnabled(true);
     ui->ipPlasmaticLevelsView->setEnabled(true);
-    ui->agateView->setEnabled(true);
 }
 
 void SurveyForm::reload()
@@ -566,26 +554,6 @@ void SurveyForm::prepareQueries()
                                                                    "join core.unit u on nm.unit_id = u.id "
                                                                    "where s.id = :survey_id "
                                                                    "order by molecule asc");
-
-        m_agateQry = DataCollector::get()->prepareQuery("select "
-                                                        "pt.name as prescription_type, "
-                                                        "pd.name as prescribeable_drug, "
-                                                        "nm.morning_dosage as morning, "
-                                                        "nm.lunch_dosage as lunch, "
-                                                        "nm.evening_dosage as evening, "
-                                                        "nm.night_dosage as night, "
-                                                        "u.name as dosage_unit, "
-                                                        "nm.last_depot_injection_date, "
-                                                        "nm.depot_injection_interval_in_days, "
-                                                        "nm.description "
-                                                        "from core.prescribeable_drug pd "
-                                                        "join core.agate_prescription nm on pd.id = nm.prescribeable_drug_id "
-                                                        "join core.survey s on nm.survey_id = s.id "
-                                                        "join core.prescription_type pt on nm.prescription_type_id = pt.id "
-                                                        "join core.unit u on nm.dosage_unit_id = u.id "
-                                                        "where s.id = :survey_id "
-                                                        "order by prescription_type asc, prescribeable_drug asc;");
-
     } catch(DatabaseError e) {
         showError(e);
     }
@@ -600,7 +568,6 @@ void SurveyForm::setupModels()
     m_ipOnDemandModel = new QSqlQueryModel(this);
     m_ipReqularModel = new QSqlQueryModel(this);
     m_ipPlasmaticLevelModel = new QSqlQueryModel(this);
-    m_agateModel = new QSqlQueryModel(this);
 
     ui->projects->setModel(m_projectsModel);
     ui->campaigns->setModel(m_campaignsModel);
@@ -609,7 +576,6 @@ void SurveyForm::setupModels()
     ui->onDemandView->setModel(m_ipOnDemandModel);
     ui->ipRegularView->setModel(m_ipReqularModel);
     ui->ipPlasmaticLevelsView->setModel(m_ipPlasmaticLevelModel);
-    ui->agateView->setModel(m_agateModel);
 
     ui->surveys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);

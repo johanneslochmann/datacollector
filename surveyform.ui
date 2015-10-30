@@ -147,7 +147,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tabDiagnostics">
        <attribute name="title">
@@ -197,9 +197,9 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="ipOptionalPrescriptions">
+      <widget class="QWidget" name="onDemandPrescriptions">
        <attribute name="title">
-        <string>IP On Demand Drugs</string>
+        <string>On &amp;Demand Drugs</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
@@ -247,7 +247,7 @@
       </widget>
       <widget class="QWidget" name="ipRegularDrugs">
        <attribute name="title">
-        <string>IP Regular Drugs</string>
+        <string>&amp;Regular Drugs</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
@@ -295,7 +295,7 @@
       </widget>
       <widget class="QWidget" name="ipPlasmaticLevels">
        <attribute name="title">
-        <string>IP Plasmatic Levels</string>
+        <string>Plasmatic &amp;Levels</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
@@ -338,16 +338,6 @@
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="agatePrescriptions">
-       <attribute name="title">
-        <string>AGATE Prescriptions</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
-        <item>
-         <widget class="QTableView" name="agateView"/>
         </item>
        </layout>
       </widget>
