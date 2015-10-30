@@ -7,16 +7,16 @@
 #include <memory>
 
 namespace Ui {
-class DrugSelectionDialog;
+class OnDemandDrugDialog;
 }
 
-class DrugSelectionDialog : public QDialog
+class OnDemandDrugDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DrugSelectionDialog(QWidget *parent = 0);
-    ~DrugSelectionDialog();
+    explicit OnDemandDrugDialog(QWidget *parent = 0);
+    ~OnDemandDrugDialog();
 
     int currentId() const { return m_selectedId; }
 
@@ -24,7 +24,7 @@ public slots:
     void onIndexActivated(const QModelIndex& idx);
 
 private:
-    std::unique_ptr<Ui::DrugSelectionDialog> ui;
+    std::unique_ptr<Ui::OnDemandDrugDialog> ui;
 
     QSqlQuery m_q;
     QSqlQueryModel* m_m;

@@ -12,7 +12,7 @@
 #include "databaseerror.hxx"
 #include "surveydialog.hxx"
 #include "icd10diagnosisselectiondialog.hxx"
-#include "drugselectiondialog.hxx"
+#include "ondemanddrugdialog.hxx"
 #include "prescribeabledrugselectiondialog.hxx"
 #include "surveygateway.hxx"
 #include "plasmaticleveldialog.hxx"
@@ -313,7 +313,7 @@ void SurveyForm::reloadOnDemandDrugs()
 
 void SurveyForm::addOnDemandDrug()
 {
-    auto dlg = new DrugSelectionDialog(this);
+    auto dlg = new OnDemandDrugDialog(this);
 
     if (QDialog::Accepted != dlg->exec()) {
         return;

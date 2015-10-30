@@ -1,15 +1,15 @@
-#include "drugselectiondialog.hxx"
+#include "ondemanddrugdialog.hxx"
 
 #include <QPushButton>
 #include <QDialogButtonBox>
 
-#include "ui_drugselectiondialog.h"
+#include "ui_ondemanddrugdialog.h"
 
 #include "datacollector.hxx"
 
-DrugSelectionDialog::DrugSelectionDialog(QWidget *parent) :
+OnDemandDrugDialog::OnDemandDrugDialog(QWidget *parent) :
     QDialog(parent),
-    ui(std::unique_ptr<Ui::DrugSelectionDialog>(new Ui::DrugSelectionDialog))
+    ui(std::unique_ptr<Ui::OnDemandDrugDialog>(new Ui::OnDemandDrugDialog))
 {
     ui->setupUi(this);
 
@@ -29,16 +29,16 @@ DrugSelectionDialog::DrugSelectionDialog(QWidget *parent) :
         DataCollector::get()->showDatabaseError(e, tr("Failed to load Drug list."), this);
     }
 
-    connect(ui->m_data, &QTableView::activated, this, &DrugSelectionDialog::onIndexActivated);
+    connect(ui->m_data, &QTableView::activated, this, &OnDemandDrugDialog::onIndexActivated);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
 
-DrugSelectionDialog::~DrugSelectionDialog()
+OnDemandDrugDialog::~OnDemandDrugDialog()
 {
 }
 
-void DrugSelectionDialog::onIndexActivated(const QModelIndex &idx)
+void OnDemandDrugDialog::onIndexActivated(const QModelIndex &idx)
 {
     auto idIdx = ui->m_data->model()->index(idx.row(), 1);
 
