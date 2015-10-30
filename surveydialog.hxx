@@ -10,6 +10,8 @@
 #include "proband.hxx"
 #include "organization.hxx"
 
+#include <memory>
+
 class QSqlQueryModel;
 
 namespace Ui {
@@ -39,7 +41,7 @@ protected:
     virtual void loadOrganizations();
 
 private:
-    Ui::SurveyDialog *ui;
+    std::unique_ptr<Ui::SurveyDialog> ui;
 
     SurveySPtr m_data;
 

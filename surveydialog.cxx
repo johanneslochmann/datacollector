@@ -19,7 +19,7 @@
 
 SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCampaignId) :
     QDialog(parent),
-    ui(new Ui::SurveyDialog),
+    ui(std::unique_ptr<Ui::SurveyDialog>(new Ui::SurveyDialog)),
     m_defaultProjectId(defaultProjectId),
     m_defaultCampaignId(defaultCampaignId)
 {
@@ -64,7 +64,6 @@ SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCam
 
 SurveyDialog::~SurveyDialog()
 {
-    delete ui;
 }
 
 void SurveyDialog::accept()
