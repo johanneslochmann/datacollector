@@ -16,6 +16,7 @@
 #include "regulardrugdialog.hxx"
 #include "surveygateway.hxx"
 #include "plasmaticleveldialog.hxx"
+#include "depotdrugdialog.hxx"
 
 #include "ui_surveyform.h"
 
@@ -50,6 +51,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->reloadPlasmaticLevels, &QPushButton::clicked, this, &SurveyForm::reloadPlasmaticLevels);
     connect(ui->addPlasmaticLevel, &QPushButton::clicked, this, &SurveyForm::addPlasmaticLevel);
     connect(ui->removePlasmaticLevel, &QPushButton::clicked, this, &SurveyForm::removePlasmaticLevel);
+    connect(ui->reloadDepotDrugs, &QPushButton::clicked, this, &SurveyForm::reloadDepotDrugs);
+    connect(ui->addDepotDrug, &QPushButton::clicked, this, &SurveyForm::addDepotDrug);
+    connect(ui->removeDepotDrug, &QPushButton::clicked, this, &SurveyForm::removeDepotDrug);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -503,17 +507,65 @@ void SurveyForm::reloadDepotDrugs()
     m_depotDrugsModel->setQuery(m_depotDrugsQry);
 
     ui->depotDrugsView->setModel(m_depotDrugsModel);
-    ui->depotDrugsView->hideColumn(5);
+    //ui->depotDrugsView->hideColumn(5);
 }
 
 void SurveyForm::addDepotDrug()
 {
+    auto dlg = new DepotDrugDialog(this);
 
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addDepotDrugToSurvey(dlg->currentId(),
+                                             dlg->dosage(),
+                                             dlg->lastInjectionDate(),
+                                             dlg->interval(),
+                                             m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadDepotDrugs();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add Depot Drug Prescription to current survey."), this);
+        DataCollector::get()->rollback();
+    }
 }
 
 void SurveyForm::removeDepotDrug()
 {
+    auto selectedIndexes = ui->depotDrugsView->selectionModel()->selectedIndexes();
 
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->depotDrugsView->model()->index(idx.row(), 5);
+
+    auto selectedId = ui->depotDrugsView->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove Prescription?"),
+                              tr("Remove Prescription <b>%1</b> (%2)?")
+                              .arg(ui->depotDrugsView->model()->data(idx).toString())
+                              .arg(selectedId),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removeDepotDrugFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadDepotDrugs();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove Drug from current survey."), this);
+        DataCollector::get()->rollback();
+    }
 }
 
 void SurveyForm::prepareQueries()
@@ -587,7 +639,7 @@ void SurveyForm::prepareQueries()
                                                              "dp.dosage, "
                                                              "dp.injection_interval_in_days, "
                                                              "dp.description, "
-                                                             "pd.id as id "
+                                                             "dp.id as id "
                                                              "from core.survey s "
                                                              "join core.depot_prescription dp on s.id = dp.survey_id "
                                                              "join core.prescribeable_drug pd on dp.prescribeable_drug_id = pd.id "

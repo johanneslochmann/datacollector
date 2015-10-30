@@ -56,7 +56,8 @@ SOURCES += main.cxx\
     icd10diagnosisselectiondialog.cxx \
     plasmaticleveldialog.cxx \
     ondemanddrugdialog.cxx \
-    regulardrugdialog.cxx
+    regulardrugdialog.cxx \
+    depotdrugdialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -107,7 +108,8 @@ HEADERS  += mainwindow.hxx \
     icd10diagnosisselectiondialog.hxx \
     plasmaticleveldialog.hxx \
     ondemanddrugdialog.hxx \
-    regulardrugdialog.hxx
+    regulardrugdialog.hxx \
+    depotdrugdialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
@@ -116,4 +118,5 @@ FORMS += \
     icd10diagnosisselectiondialog.ui \
     plasmaticleveldialog.ui \
     ondemanddrugdialog.ui \
-    regulardrugdialog.ui
+    regulardrugdialog.ui \
+    depotdrugdialog.ui

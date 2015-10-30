@@ -15,11 +15,13 @@ public:
     void addOnDemandDrugToSurvey(int drugId, int surveyId);
     void addRegularDrugToSurvey(int prescribeableDrugId, double morning, double lunch, double noon, double night, int surveyId);
     void addPlasmaticLevelToSurvey(int moleculeId, double value, const QString& unitName, int surveyId);
+    void addDepotDrugToSurvey(int prescribeableDrugId, double dosage, const QDate& lastInjection, int interval, int surveyId);
 
     void removeIcd10DiagnosisFromSurvey(int recordId);
     void removeOnDemandDrugFromSurvey(int recordId);
     void removeRegularDrugFromSurvey(int recordId);
     void removePlasmaticLevelFromSurvey(int recordId);
+    void removeDepotDrugFromSurvey(int recordId);
 
 protected:
     QString loadAllQueryText() const override;
