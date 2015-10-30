@@ -44,6 +44,10 @@ public slots:
     void reloadSurveys();
     void createSurvey();
 
+    void reloadIcd10Diagnosis();
+    void addIcd10Diagnosis();
+    void removeIcd10Diagnosis();
+
 protected:
     void prepareQueries();
     void setupModels();
@@ -77,5 +81,6 @@ private:
 
     int m_currentProjectId { 0 };
     int m_currentCampaignId { 0 };
+    int m_currentSurveyId { 0 };
 };
 

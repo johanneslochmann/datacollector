@@ -11,6 +11,8 @@
 #include "datacollector.hxx"
 #include "databaseerror.hxx"
 #include "surveydialog.hxx"
+#include "icd10diagnosisselectiondialog.hxx"
+#include "surveygateway.hxx"
 
 #include "ui_surveyform.h"
 
@@ -33,6 +35,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
 
     connect(ui->reloadSurveysW, &QPushButton::clicked, this, &SurveyForm::reloadSurveys);
     connect(ui->createSurveyW, &QPushButton::clicked, this, &SurveyForm::createSurvey);
+    connect(ui->reloadIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::reloadIcd10Diagnosis);
+    connect(ui->addIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::addIcd10Diagnosis);
+    connect(ui->removeIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::removeIcd10Diagnosis);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -132,7 +137,9 @@ void SurveyForm::onCurrentSurveyChanged(const QModelIndex &idx)
 
     auto idIdx = ui->surveys->model()->index(idx.row(), 4);
 
-    emit surveyFilterChanged(ui->surveys->model()->data(idIdx).toInt());
+    m_currentSurveyId = ui->surveys->model()->data(idIdx).toInt();
+
+    emit surveyFilterChanged(m_currentSurveyId);
 }
 
 void SurveyForm::onProjectFilterChanged(int projectId)
@@ -176,25 +183,23 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
         return;
     }
 
-    m_icd10Qry.bindValue(":survey_id", surveyId);
+    reloadIcd10Diagnosis();
+
     m_ipOnDemandQry.bindValue(":survey_id", surveyId);
     m_ipReqularQry.bindValue(":survey_id", surveyId);
     m_ipPlasmaticLevelQry.bindValue(":survey_id", surveyId);
     m_agateQry.bindValue(":survey_id", surveyId);
 
-    DataCollector::get()->performQuery(m_icd10Qry, false);
     DataCollector::get()->performQuery(m_ipOnDemandQry, false);
     DataCollector::get()->performQuery(m_ipReqularQry, false);
     DataCollector::get()->performQuery(m_ipPlasmaticLevelQry, false);
     DataCollector::get()->performQuery(m_agateQry, false);
 
-    m_icd10Model->setQuery(m_icd10Qry);
     m_ipOnDemandModel->setQuery(m_ipOnDemandQry);;
     m_ipReqularModel->setQuery(m_ipReqularQry);
     m_ipPlasmaticLevelModel->setQuery(m_ipPlasmaticLevelQry);
     m_agateModel->setQuery(m_agateQry);
 
-    ui->icd10View->setModel(m_icd10Model);
     ui->ipOnDemandView->setModel(m_ipOnDemandModel);
     ui->ipRegularView->setModel(m_ipReqularModel);
     ui->ipPlasmaticLevelsView->setModel(m_ipPlasmaticLevelModel);
@@ -236,6 +241,41 @@ void SurveyForm::createSurvey()
     }
 }
 
+void SurveyForm::reloadIcd10Diagnosis()
+{
+    m_icd10Qry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_icd10Qry, false);
+    m_icd10Model->setQuery(m_icd10Qry);
+
+    ui->icd10View->setModel(m_icd10Model);
+}
+
+void SurveyForm::addIcd10Diagnosis()
+{
+    auto dlg = new Icd10DiagnosisSelectionDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addIcd10DiagnosisToSurvey(dlg->currentId(), m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadIcd10Diagnosis();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add ICD10 Diagnosis to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeIcd10Diagnosis()
+{
+
+}
+
 void SurveyForm::prepareQueries()
 {
     try {
@@ -259,7 +299,7 @@ void SurveyForm::prepareQueries()
                                                         "icd10.name as diagnosis "
                                                         "from core.icd10_diagnosis icd10 "
                                                         "join core.icd10_survey nm on icd10.id = nm.icd10_diagnosis_id "
-                                                        "join core.survey s on nm.survey_id = nm.survey_id "
+                                                        "join core.survey s on nm.survey_id = s.id "
                                                         "where s.id = :survey_id "
                                                         "order by diagnosis asc;");
         m_ipOnDemandQry = DataCollector::get()->prepareQuery("select "

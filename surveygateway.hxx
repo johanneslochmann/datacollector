@@ -11,6 +11,8 @@ public:
 
     void save(SurveySPtr s);
 
+    void addIcd10DiagnosisToSurvey(int icd10DiagnosisId, int surveyId);
+
 protected:
     QString loadAllQueryText() const override;
     void parse(SurveySPtr t, const QSqlRecord &rec) override;

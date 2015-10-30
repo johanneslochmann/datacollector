@@ -11,6 +11,16 @@ void SurveyGateway::save(SurveySPtr s)
     }
 }
 
+void SurveyGateway::addIcd10DiagnosisToSurvey(int icd10DiagnosisId, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into core.icd10_survey(icd10_diagnosis_id, survey_id) "
+                                                "values (:icd10_diagnosis_id, :survey_id) "
+                                                "returning id;");
+    q.bindValue(":icd10_diagnosis_id", icd10DiagnosisId);
+    q.bindValue(":survey_id", surveyId);
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
 QString SurveyGateway::loadAllQueryText() const
 {
     return "select proband_id, campaign_id, organization_unit_id, survey_date, id, description "

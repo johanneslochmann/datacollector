@@ -53,7 +53,8 @@ SOURCES += main.cxx\
     surveygateway.cxx \
     organization.cxx \
     organizationgateway.cxx \
-    surveyform.cxx
+    surveyform.cxx \
+    icd10diagnosisselectiondialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -101,9 +102,11 @@ HEADERS  += mainwindow.hxx \
     surveygateway.hxx \
     organization.hxx \
     organizationgateway.hxx \
-    surveyform.hxx
+    surveyform.hxx \
+    icd10diagnosisselectiondialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
     surveydialog.ui \
-    surveyform.ui
+    surveyform.ui \
+    icd10diagnosisselectiondialog.ui
