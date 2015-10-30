@@ -13,6 +13,7 @@
 #include "surveydialog.hxx"
 #include "icd10diagnosisselectiondialog.hxx"
 #include "drugselectiondialog.hxx"
+#include "prescribeabledrugselectiondialog.hxx"
 #include "surveygateway.hxx"
 
 #include "ui_surveyform.h"
@@ -42,6 +43,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->reloadIpOnDemandDrugsW, &QPushButton::clicked, this, &SurveyForm::reloadIpOptionalDrugs);
     connect(ui->addIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::addIpOptionalDrug);
     connect(ui->removeIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::removeIpOptionalDrug);
+    connect(ui->reloadIpRegularDrugs, &QPushButton::clicked, this, &SurveyForm::reloadIpRegularDrugs);
+    connect(ui->addIpRegularDrug, &QPushButton::clicked, this, &SurveyForm::addIpRegularDrug);
+    connect(ui->removeIpRegularDrug, &QPushButton::clicked, this, &SurveyForm::removeIpRegularDrug);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -371,6 +375,74 @@ void SurveyForm::removeIpOptionalDrug()
     }
 }
 
+void SurveyForm::reloadIpRegularDrugs()
+{
+    m_ipReqularQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_ipReqularQry, false);
+    m_ipReqularModel->setQuery(m_ipReqularQry);
+
+    ui->ipRegularView->setModel(m_ipReqularModel);
+    ui->ipRegularView->hideColumn(7);
+}
+
+void SurveyForm::addIpRegularDrug()
+{
+    auto dlg = new PrescribeableDrugSelectionDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addRegularDrugToSurvey(dlg->currentId(),
+                                               dlg->morningDosage(),
+                                               dlg->lunchDosage(),
+                                               dlg->noonDosage(),
+                                               dlg->nightDosage(),
+                                               m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadIpRegularDrugs();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add Regular Drug Prescription to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeIpRegularDrug()
+{
+    auto selectedIndexes = ui->ipRegularView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    if (QMessageBox::question(this, tr("Remove Prescription?"),
+                              tr("Remove Prescription <b>%1</b>?").arg(ui->ipOnDemandView->model()->data(idx).toString()),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    auto idIdx = ui->ipRegularView->model()->index(idx.row(), 7);
+
+    auto selectedId = ui->ipRegularView->model()->data(idIdx).toInt();
+
+    try {
+        SurveyGateway().removeRegularDrugFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadIpRegularDrugs();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove Drug from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
 void SurveyForm::prepareQueries()
 {
     try {
@@ -412,11 +484,16 @@ void SurveyForm::prepareQueries()
                                                             ", nm.lunch_dosage "
                                                             ", nm.noon_dosage "
                                                             ", nm.night_dosage "
+                                                            ", am.name as administration_method_name "
+                                                            ", u.name as unit_name"
+                                                            ", nm.id as id "
                                                             "from core.prescribeable_drug pd "
                                                             "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
                                                             "join core.survey s on nm.survey_id = s.id "
+                                                            "join core.unit u on pd.dosage_unit_id = u.id "
+                                                            "join core.administration_method am on pd.administration_method_id = am.id "
                                                             "where s.id = :survey_id "
-                                                            "order by drug asc");
+                                                            "order by drug asc;");
 
         m_ipPlasmaticLevelQry = DataCollector::get()->prepareQuery("select "
                                                                    "m.name as molecule "
@@ -474,6 +551,12 @@ void SurveyForm::setupModels()
 
     ui->surveys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->icd10View->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->icd10View->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->ipOnDemandView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->ipOnDemandView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->ipRegularView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->ipRegularView->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 void SurveyForm::showError(QSqlError err, const QString &msg)

@@ -17,7 +17,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Select Drug</string>
+      <string>Interventi Precoci Optional Prescription</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>

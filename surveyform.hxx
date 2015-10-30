@@ -52,6 +52,10 @@ public slots:
     void addIpOptionalDrug();
     void removeIpOptionalDrug();
 
+    void reloadIpRegularDrugs();
+    void addIpRegularDrug();
+    void removeIpRegularDrug();
+
 protected:
     void prepareQueries();
     void setupModels();

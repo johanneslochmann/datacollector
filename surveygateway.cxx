@@ -32,6 +32,21 @@ void SurveyGateway::addOptionalDrugToSurvey(int drugId, int surveyId)
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
+void SurveyGateway::addRegularDrugToSurvey(int prescribeableDrugId, double morning, double lunch, double noon, double night, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into "
+                                                "core.regular_prescription(prescribeable_drug_id, survey_id, morning_dosage, lunch_dosage, noon_dosage, night_dosage) "
+                                                "values (:prescribable_drug_id, :survey_id, :morning, :lunch, :noon, :night) "
+                                                "returning id;");
+    q.bindValue(":prescribable_drug_id", prescribeableDrugId);
+    q.bindValue(":survey_id", surveyId);
+    q.bindValue(":morning", morning);
+    q.bindValue(":lunch", lunch);
+    q.bindValue(":noon", noon);
+    q.bindValue(":night", night);
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
 void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where id = :id;");
@@ -44,6 +59,15 @@ void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
 void SurveyGateway::removeOptionalDrugFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.optional_prescription where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
+void SurveyGateway::removeRegularDrugFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.regular_prescription where id = :id;");
 
     q.bindValue(":id", recordId);
 
