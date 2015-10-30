@@ -60,6 +60,10 @@ public slots:
     void addPlasmaticLevel();
     void removePlasmaticLevel();
 
+    void reloadDepotDrugs();
+    void addDepotDrug();
+    void removeDepotDrug();
+
 protected:
     void prepareQueries();
     void setupModels();
@@ -77,6 +81,7 @@ private:
     QSqlQuery m_onDemandDrugsQry;
     QSqlQuery m_reqularDrugsQry;
     QSqlQuery m_plasmaticLevelsQry;
+    QSqlQuery m_depotDrugsQry;
 
     QSqlQuery m_getProjectIdQry;
     QSqlQuery m_getCampaignIdQry;
@@ -88,6 +93,7 @@ private:
     QSqlQueryModel* m_onDemandDrugsModel;
     QSqlQueryModel* m_reqularDrugsModel;
     QSqlQueryModel* m_plasmaticLevelsModel;
+    QSqlQueryModel* m_depotDrugsModel;
 
     int m_currentProjectId { 0 };
     int m_currentCampaignId { 0 };

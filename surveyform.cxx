@@ -71,6 +71,7 @@ void SurveyForm::onDatabaseAboutToClose()
     m_onDemandDrugsModel->setQuery(QSqlQuery());
     m_reqularDrugsModel->setQuery(QSqlQuery());
     m_plasmaticLevelsModel->setQuery(QSqlQuery());
+    m_depotDrugsModel->setQuery(QSqlQuery());
 
     m_projectsQry.clear();
     m_campaignsQry.clear();
@@ -81,6 +82,7 @@ void SurveyForm::onDatabaseAboutToClose()
     m_onDemandDrugsQry.clear();
     m_reqularDrugsQry.clear();
     m_plasmaticLevelsQry.clear();
+    m_depotDrugsQry.clear();
 }
 
 void SurveyForm::onDatabaseAvailable()
@@ -189,6 +191,7 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
         ui->onDemandDrugsView->setEnabled(false);
         ui->regularDrugsView->setEnabled(false);
         ui->plasmaticLevelsView->setEnabled(false);
+        ui->depotDrugsView->setEnabled(false);
         return;
     }
 
@@ -196,12 +199,14 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
     reloadOnDemandDrugs();
     reloadRegularDrugs();
     reloadPlasmaticLevels();
+    reloadDepotDrugs();
 
     ui->tab->setEnabled(true);
     ui->icd10View->setEnabled(true);
     ui->onDemandDrugsView->setEnabled(true);
     ui->regularDrugsView->setEnabled(true);
     ui->plasmaticLevelsView->setEnabled(true);
+    ui->depotDrugsView->setEnabled(true);
 }
 
 void SurveyForm::reload()
@@ -490,6 +495,27 @@ void SurveyForm::removePlasmaticLevel()
     }
 }
 
+void SurveyForm::reloadDepotDrugs()
+{
+    m_depotDrugsQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_depotDrugsQry, false);
+    m_depotDrugsModel->setQuery(m_depotDrugsQry);
+
+    ui->depotDrugsView->setModel(m_depotDrugsModel);
+    ui->depotDrugsView->hideColumn(5);
+}
+
+void SurveyForm::addDepotDrug()
+{
+
+}
+
+void SurveyForm::removeDepotDrug()
+{
+
+}
+
 void SurveyForm::prepareQueries()
 {
     try {
@@ -518,42 +544,55 @@ void SurveyForm::prepareQueries()
                                                         "where s.id = :survey_id "
                                                         "order by diagnosis asc;");
         m_onDemandDrugsQry = DataCollector::get()->prepareQuery("select "
-                                                             "d.name as drug "
-                                                             "from core.drug d "
-                                                             "join core.optional_prescription nm on d.id = nm.drug_id "
-                                                             "join core.survey s on nm.survey_id = s.id "
-                                                             "where s.id = :survey_id "
-                                                             "order by drug asc;");
+                                                                "d.name as drug "
+                                                                "from core.drug d "
+                                                                "join core.optional_prescription nm on d.id = nm.drug_id "
+                                                                "join core.survey s on nm.survey_id = s.id "
+                                                                "where s.id = :survey_id "
+                                                                "order by drug asc;");
 
         m_reqularDrugsQry = DataCollector::get()->prepareQuery("select "
-                                                            "pd.name as drug "
-                                                            ", nm.morning_dosage "
-                                                            ", nm.lunch_dosage "
-                                                            ", nm.noon_dosage "
-                                                            ", nm.night_dosage "
-                                                            ", am.name as administration_method_name "
-                                                            ", u.name as unit_name"
-                                                            ", nm.id as id "
-                                                            "from core.prescribeable_drug pd "
-                                                            "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
-                                                            "join core.survey s on nm.survey_id = s.id "
-                                                            "join core.unit u on pd.dosage_unit_id = u.id "
-                                                            "join core.administration_method am on pd.administration_method_id = am.id "
-                                                            "where s.id = :survey_id "
-                                                            "order by drug asc;");
+                                                               "pd.name as drug "
+                                                               ", nm.morning_dosage "
+                                                               ", nm.lunch_dosage "
+                                                               ", nm.noon_dosage "
+                                                               ", nm.night_dosage "
+                                                               ", am.name as administration_method_name "
+                                                               ", u.name as unit_name"
+                                                               ", nm.id as id "
+                                                               "from core.prescribeable_drug pd "
+                                                               "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
+                                                               "join core.survey s on nm.survey_id = s.id "
+                                                               "join core.unit u on pd.dosage_unit_id = u.id "
+                                                               "join core.administration_method am on pd.administration_method_id = am.id "
+                                                               "where s.id = :survey_id "
+                                                               "order by drug asc;");
 
         m_plasmaticLevelsQry = DataCollector::get()->prepareQuery("select "
-                                                                   "m.name as molecule "
-                                                                   ", nm.concentration_value as measurement_value "
-                                                                   ", u.name as measurement_unit "
-                                                                   ", nm.description as description "
-                                                                   ", nm.id as id "
-                                                                   "from core.molecule m "
-                                                                   "join core.plasmatic_level nm on m.id = nm.molecule_id "
-                                                                   "join core.survey s on nm.survey_id = s.id "
-                                                                   "join core.unit u on nm.unit_id = u.id "
-                                                                   "where s.id = :survey_id "
-                                                                   "order by molecule asc");
+                                                                  "m.name as molecule "
+                                                                  ", nm.concentration_value as measurement_value "
+                                                                  ", u.name as measurement_unit "
+                                                                  ", nm.description as description "
+                                                                  ", nm.id as id "
+                                                                  "from core.molecule m "
+                                                                  "join core.plasmatic_level nm on m.id = nm.molecule_id "
+                                                                  "join core.survey s on nm.survey_id = s.id "
+                                                                  "join core.unit u on nm.unit_id = u.id "
+                                                                  "where s.id = :survey_id "
+                                                                  "order by molecule asc");
+
+        m_depotDrugsQry = DataCollector::get()->prepareQuery("select "
+                                                             "pd.name as prescribeable_drug, "
+                                                             "dp.last_injection_on, "
+                                                             "dp.dosage, "
+                                                             "dp.injection_interval_in_days, "
+                                                             "dp.description, "
+                                                             "pd.id as id "
+                                                             "from core.survey s "
+                                                             "join core.depot_prescription dp on s.id = dp.survey_id "
+                                                             "join core.prescribeable_drug pd on dp.prescribeable_drug_id = pd.id "
+                                                             "where s.id = :survey_id "
+                                                             "order by prescribeable_drug asc, last_injection_on desc;");
     } catch(DatabaseError e) {
         showError(e);
     }
@@ -568,6 +607,7 @@ void SurveyForm::setupModels()
     m_onDemandDrugsModel = new QSqlQueryModel(this);
     m_reqularDrugsModel = new QSqlQueryModel(this);
     m_plasmaticLevelsModel = new QSqlQueryModel(this);
+    m_depotDrugsModel = new QSqlQueryModel(this);
 
     ui->projects->setModel(m_projectsModel);
     ui->campaigns->setModel(m_campaignsModel);
@@ -576,6 +616,7 @@ void SurveyForm::setupModels()
     ui->onDemandDrugsView->setModel(m_onDemandDrugsModel);
     ui->regularDrugsView->setModel(m_reqularDrugsModel);
     ui->plasmaticLevelsView->setModel(m_plasmaticLevelsModel);
+    ui->depotDrugsView->setModel(m_depotDrugsModel);
 
     ui->surveys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -587,6 +628,8 @@ void SurveyForm::setupModels()
     ui->regularDrugsView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->plasmaticLevelsView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->plasmaticLevelsView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->depotDrugsView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->depotDrugsView->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 void SurveyForm::showError(QSqlError err, const QString &msg)
