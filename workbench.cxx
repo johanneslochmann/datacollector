@@ -14,7 +14,6 @@
 #include "drugmanagementwidget.hxx"
 #include "prescribeabledrugmanagmentwidget.hxx"
 #include "prescribeabledrugcompositionmanagementwidget.hxx"
-#include "prescriptiontypemanagementwidget.hxx"
 #include "surveymanagementwidget.hxx"
 #include "organizationunitmanagementwidget.hxx"
 #include "icd10diagnosismanagementwidget.hxx"
@@ -37,7 +36,6 @@ Workbench::Workbench(QWidget *parent)
     m_drugs = new DrugManagementWidget(this);
     m_prescribeableDrugs = new PrescribeableDrugManagmentWidget(this);
     m_prescribeableDrugsComposition = new PrescribeableDrugCompositionManagementWidget(this);
-    m_prescriptionTypes = new PrescriptionTypeManagementWidget(this);
     m_surveys = new SurveyManagementWidget(this);
     m_organizationUnits = new OrganizationUnitManagementWidget(this);
     m_icd10Diagnosis = new Icd10DiagnosisManagementWidget(this);
@@ -55,7 +53,6 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_drugs);
     addWidget(m_prescribeableDrugs);
     addWidget(m_prescribeableDrugsComposition);
-    addWidget(m_prescriptionTypes);
     addWidget(m_surveys);
     addWidget(m_organizationUnits);
     addWidget(m_icd10Diagnosis);
@@ -73,7 +70,6 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageDrugs, this, &Workbench::manageDrugs);
     connect(app, &DataCollector::managePrescribeableDrugs, this, &Workbench::managePrescribeableDrugs);
     connect(app, &DataCollector::managePrescribeableDrugsComposition, this, &Workbench::managePrescribeableDrugsComposition);
-    connect(app, &DataCollector::managePrescriptionTypes, this, &Workbench::managePrescriptionTypes);
     connect(app, &DataCollector::manageSurveys, this, &Workbench::manageSurveys);
     connect(app, &DataCollector::manageOrganizationUnits, this, &Workbench::manageOrganizationUnits);
     connect(app, &DataCollector::manageIcd10Diagnosis, this, &Workbench::manageIcd10Diagnosis);
@@ -138,11 +134,6 @@ void Workbench::managePrescribeableDrugs()
 void Workbench::managePrescribeableDrugsComposition()
 {
     setCurrentWidget(m_prescribeableDrugsComposition);
-}
-
-void Workbench::managePrescriptionTypes()
-{
-    setCurrentWidget(m_prescriptionTypes);
 }
 
 void Workbench::manageSurveys()

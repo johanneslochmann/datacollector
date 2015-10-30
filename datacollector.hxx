@@ -37,7 +37,6 @@ public:
     QAction* manageDrugsAction() const { return m_manageDrugs; }
     QAction* managePrescribeableDrugsAction() const { return m_managePrescribeableDrugs; }
     QAction* managePrescribeableDrugsCompositionAction() const { return m_managePrescribeableDrugsComposition; }
-    QAction* managePrescriptionTypesAction() const { return m_managePrescriptionTypes; }
     QAction* manageSurveysAction() const { return m_manageSurveys; }
     QAction* manageOrganizationUnitsAction() const { return m_manageOrganizationUnits; }
     QAction* manageIcd10DiagnosisAction() const { return m_manageIcd10Diagnosis; }
@@ -73,7 +72,6 @@ signals:
     void manageDrugs();
     void managePrescribeableDrugs();
     void managePrescribeableDrugsComposition();
-    void managePrescriptionTypes();
     void manageSurveys();
     void manageOrganizationUnits();
     void manageIcd10Diagnosis();
@@ -106,7 +104,6 @@ private:
     QAction* m_manageDrugs;
     QAction* m_managePrescribeableDrugs;
     QAction* m_managePrescribeableDrugsComposition;
-    QAction* m_managePrescriptionTypes;
     QAction* m_manageSurveys;
     QAction* m_manageOrganizationUnits;
     QAction* m_manageIcd10Diagnosis;

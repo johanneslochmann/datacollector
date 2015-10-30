@@ -26,7 +26,6 @@ public slots:
     void manageDrugs();
     void managePrescribeableDrugs();
     void managePrescribeableDrugsComposition();
-    void managePrescriptionTypes();
     void manageSurveys();
     void manageOrganizationUnits();
     void manageIcd10Diagnosis();
@@ -45,7 +44,6 @@ private:
     TableManagementWidget* m_drugs;
     TableManagementWidget* m_prescribeableDrugs;
     TableManagementWidget* m_prescribeableDrugsComposition;
-    TableManagementWidget* m_prescriptionTypes;
     TableManagementWidget* m_surveys;
     TableManagementWidget* m_organizationUnits;
     TableManagementWidget* m_icd10Diagnosis;

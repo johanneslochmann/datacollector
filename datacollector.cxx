@@ -253,9 +253,6 @@ void DataCollector::initActions()
     m_managePrescribeableDrugsComposition = new ActionEnabledIfConnectedToDatabase(tr("Prescribeable Drugs Composition"), this);
     connect(m_managePrescribeableDrugsComposition, &QAction::triggered, this, &DataCollector::managePrescribeableDrugsComposition);
 
-    m_managePrescriptionTypes = new ActionEnabledIfConnectedToDatabase(tr("Prescription Types"), this);
-    connect(m_managePrescriptionTypes, &QAction::triggered, this, &DataCollector::managePrescriptionTypes);
-
     m_manageSurveys = new ActionEnabledIfConnectedToDatabase(tr("All Surveys"), this);
     connect(m_manageSurveys, &QAction::triggered, this, &DataCollector::manageSurveys);
 

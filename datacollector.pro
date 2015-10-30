@@ -35,7 +35,6 @@ SOURCES += main.cxx\
     drugmanagementwidget.cxx \
     prescribeabledrugmanagmentwidget.cxx \
     prescribeabledrugcompositionmanagementwidget.cxx \
-    prescriptiontypemanagementwidget.cxx \
     surveymanagementwidget.cxx \
     organizationunitmanagementwidget.cxx \
     icd10diagnosismanagementwidget.cxx \
@@ -86,7 +85,6 @@ HEADERS  += mainwindow.hxx \
     drugmanagementwidget.hxx \
     prescribeabledrugmanagmentwidget.hxx \
     prescribeabledrugcompositionmanagementwidget.hxx \
-    prescriptiontypemanagementwidget.hxx \
     surveymanagementwidget.hxx \
     organizationunitmanagementwidget.hxx \
     icd10diagnosismanagementwidget.hxx \

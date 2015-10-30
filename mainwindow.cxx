@@ -66,7 +66,6 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageOrganizationUnitsAction());
     coreData->addAction(app->manageIcd10DiagnosisAction());
     coreData->addSeparator();
-    coreData->addAction(app->managePrescriptionTypesAction());
     coreData->addAction(app->manageChannelsIntoPatientAction());
     coreData->addAction(app->manageDrugAdministrationMethodsAction());
     coreData->addAction(app->manageMoleculeClassesAction());
