@@ -3,6 +3,7 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QStatusBar>
+#include <QTimer>
 
 #include "datacollector.hxx"
 #include "databaseconnectionstatuslabel.hxx"
@@ -19,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(app, &DataCollector::databaseAboutToClose, this, &MainWindow::databaseAboutToClose);
     connect(app, &DataCollector::databaseAvailable, this, &MainWindow::databaseAvailable);
     connect(app, &DataCollector::databaseUnavailable, this, &MainWindow::databaseUnavailable);
+
+    QTimer::singleShot(0, app->openDatabaseAction(), &QAction::trigger);
 }
 
 MainWindow::~MainWindow()
