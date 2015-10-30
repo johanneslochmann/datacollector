@@ -52,9 +52,9 @@ public slots:
     void addOnDemandDrug();
     void removeOnDemandDrug();
 
-    void reloadIpRegularDrugs();
-    void addIpRegularDrug();
-    void removeIpRegularDrug();
+    void reloadRegularDrugs();
+    void addRegularDrug();
+    void removeRegularDrug();
 
     void reloadPlasmaticLevels();
     void addPlasmaticLevel();
@@ -74,9 +74,9 @@ private:
     QSqlQuery m_campaignsQry;
     QSqlQuery m_surveysQry;
     QSqlQuery m_icd10Qry;
-    QSqlQuery m_ipOnDemandQry;
-    QSqlQuery m_ipReqularQry;
-    QSqlQuery m_ipPlasmaticLevelQry;
+    QSqlQuery m_onDemandDrugsQry;
+    QSqlQuery m_reqularDrugsQry;
+    QSqlQuery m_plasmaticLevelsQry;
 
     QSqlQuery m_getProjectIdQry;
     QSqlQuery m_getCampaignIdQry;
@@ -85,9 +85,9 @@ private:
     QSqlQueryModel* m_campaignsModel;
     QSqlQueryModel* m_surveysModel;
     QSqlQueryModel* m_icd10Model;
-    QSqlQueryModel* m_ipOnDemandModel;
-    QSqlQueryModel* m_ipReqularModel;
-    QSqlQueryModel* m_ipPlasmaticLevelModel;
+    QSqlQueryModel* m_onDemandDrugsModel;
+    QSqlQueryModel* m_reqularDrugsModel;
+    QSqlQueryModel* m_plasmaticLevelsModel;
 
     int m_currentProjectId { 0 };
     int m_currentCampaignId { 0 };
