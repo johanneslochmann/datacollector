@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AgateForm</class>
- <widget class="QWidget" name="AgateForm">
+ <class>SurveyForm</class>
+ <widget class="QWidget" name="SurveyForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,7 +19,7 @@
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QGroupBox" name="groupBox">
@@ -203,15 +203,6 @@
     </widget>
    </item>
   </layout>
-  <zorder>splitter</zorder>
-  <zorder>reloadSurveysW</zorder>
-  <zorder>createSurveyW</zorder>
-  <zorder>editSurveyW</zorder>
-  <zorder>deleteSurveyW</zorder>
-  <zorder>verticalSpacer_2</zorder>
-  <zorder>verticalSpacer_3</zorder>
-  <zorder>groupBox_2</zorder>
-  <zorder>surveys</zorder>
  </widget>
  <resources/>
  <connections/>

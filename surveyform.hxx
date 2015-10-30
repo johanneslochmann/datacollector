@@ -10,16 +10,16 @@
 class QSqlQueryModel;
 
 namespace Ui {
-class AgateForm;
+class SurveyForm;
 }
 
-class AgateForm : public QWidget
+class SurveyForm : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit AgateForm(QWidget *parent = 0);
-    ~AgateForm();
+    explicit SurveyForm(QWidget *parent = 0);
+    ~SurveyForm();
 
 signals:
     void projectFilterChanged(int projectId);
@@ -52,7 +52,7 @@ protected:
     void showError(DatabaseError err);
 
 private:
-    std::unique_ptr<Ui::AgateForm> ui;
+    std::unique_ptr<Ui::SurveyForm> ui;
 
     QSqlQuery m_projectsQry;
     QSqlQuery m_campaignsQry;

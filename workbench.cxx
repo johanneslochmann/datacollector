@@ -20,7 +20,7 @@
 #include "icd10diagnosismanagementwidget.hxx"
 #include "agateprescriptionmanagementwidget.hxx"
 #include "icd10diagnosisinsurveymanagementwidget.hxx"
-#include "agateform.hxx"
+#include "surveyform.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -45,7 +45,7 @@ Workbench::Workbench(QWidget *parent)
     m_icd10Diagnosis = new Icd10DiagnosisManagementWidget(this);
     m_agatePrescriptions = new AgatePrescriptionManagementWidget(this);
     m_icd10DiagnosisInSurvey = new Icd10DiagnosisInSurveyManagementWidget(this);
-    m_agateData = new AgateForm(this);
+    m_agateData = new SurveyForm(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);

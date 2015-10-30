@@ -1,4 +1,4 @@
-#include "agateform.hxx"
+#include "surveyform.hxx"
 
 #include <QSqlQueryModel>
 #include <QComboBox>
@@ -8,44 +8,44 @@
 #include <QSqlError>
 #include <QPushButton>
 
-#include "ui_agateform.h"
-
 #include "datacollector.hxx"
 #include "databaseerror.hxx"
 #include "surveydialog.hxx"
 
-AgateForm::AgateForm(QWidget *parent) :
+#include "ui_surveyform.h"
+
+SurveyForm::SurveyForm(QWidget *parent) :
     QWidget(parent),
-    ui(std::unique_ptr<Ui::AgateForm>(new Ui::AgateForm))
+    ui(std::unique_ptr<Ui::SurveyForm>(new Ui::SurveyForm))
 {
     ui->setupUi(this);
 
     prepareQueries();
     setupModels();
 
-    connect(DataCollector::get(), &DataCollector::databaseAboutToClose, this, &AgateForm::onDatabaseAboutToClose);
-    connect(DataCollector::get(), &DataCollector::databaseAvailable, this, &AgateForm::onDatabaseAvailable);
-    connect(DataCollector::get(), &DataCollector::databaseUnavailable, this, &AgateForm::onDatabaseUnavailable);
+    connect(DataCollector::get(), &DataCollector::databaseAboutToClose, this, &SurveyForm::onDatabaseAboutToClose);
+    connect(DataCollector::get(), &DataCollector::databaseAvailable, this, &SurveyForm::onDatabaseAvailable);
+    connect(DataCollector::get(), &DataCollector::databaseUnavailable, this, &SurveyForm::onDatabaseUnavailable);
 
-    connect(ui->projects, &QComboBox::currentTextChanged, this, &AgateForm::onCurrentProjectChanged);
-    connect(ui->campaigns, &QComboBox::currentTextChanged, this, &AgateForm::onCurrentCampaignChanged);
-    connect(ui->surveys, &QTableView::activated, this, &AgateForm::onCurrentSurveyChanged);
+    connect(ui->projects, &QComboBox::currentTextChanged, this, &SurveyForm::onCurrentProjectChanged);
+    connect(ui->campaigns, &QComboBox::currentTextChanged, this, &SurveyForm::onCurrentCampaignChanged);
+    connect(ui->surveys, &QTableView::activated, this, &SurveyForm::onCurrentSurveyChanged);
 
-    connect(ui->reloadSurveysW, &QPushButton::clicked, this, &AgateForm::reloadSurveys);
-    connect(ui->createSurveyW, &QPushButton::clicked, this, &AgateForm::createSurvey);
+    connect(ui->reloadSurveysW, &QPushButton::clicked, this, &SurveyForm::reloadSurveys);
+    connect(ui->createSurveyW, &QPushButton::clicked, this, &SurveyForm::createSurvey);
 
-    connect(this, &AgateForm::projectFilterChanged, this, &AgateForm::onProjectFilterChanged);
-    connect(this, &AgateForm::campaignFilterChanged, this, &AgateForm::onCampaignFilterChanged);
-    connect(this, &AgateForm::surveyFilterChanged, this, &AgateForm::onSurveyFilterChanged);
+    connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
+    connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
+    connect(this, &SurveyForm::surveyFilterChanged, this, &SurveyForm::onSurveyFilterChanged);
 
     reload();
 }
 
-AgateForm::~AgateForm()
+SurveyForm::~SurveyForm()
 {
 }
 
-void AgateForm::onDatabaseAboutToClose()
+void SurveyForm::onDatabaseAboutToClose()
 {
     m_projectsModel->setQuery(QSqlQuery());
     m_campaignsModel->setQuery(QSqlQuery());
@@ -68,7 +68,7 @@ void AgateForm::onDatabaseAboutToClose()
     m_agateQry.clear();
 }
 
-void AgateForm::onDatabaseAvailable()
+void SurveyForm::onDatabaseAvailable()
 {
     prepareQueries();
     setupModels();
@@ -76,12 +76,12 @@ void AgateForm::onDatabaseAvailable()
     setEnabled(true);
 }
 
-void AgateForm::onDatabaseUnavailable()
+void SurveyForm::onDatabaseUnavailable()
 {
     setEnabled(false);
 }
 
-void AgateForm::onCurrentProjectChanged(const QString &name)
+void SurveyForm::onCurrentProjectChanged(const QString &name)
 {
     emit projectFilterChanged(0);
 
@@ -103,7 +103,7 @@ void AgateForm::onCurrentProjectChanged(const QString &name)
     emit projectFilterChanged(m_currentProjectId);
 }
 
-void AgateForm::onCurrentCampaignChanged(const QString &name)
+void SurveyForm::onCurrentCampaignChanged(const QString &name)
 {
     emit campaignFilterChanged(0);
 
@@ -126,7 +126,7 @@ void AgateForm::onCurrentCampaignChanged(const QString &name)
     emit campaignFilterChanged(m_currentCampaignId);
 }
 
-void AgateForm::onCurrentSurveyChanged(const QModelIndex &idx)
+void SurveyForm::onCurrentSurveyChanged(const QModelIndex &idx)
 {
     emit surveyFilterChanged(0);
 
@@ -135,7 +135,7 @@ void AgateForm::onCurrentSurveyChanged(const QModelIndex &idx)
     emit surveyFilterChanged(ui->surveys->model()->data(idIdx).toInt());
 }
 
-void AgateForm::onProjectFilterChanged(int projectId)
+void SurveyForm::onProjectFilterChanged(int projectId)
 {
     if (projectId < 1) {
         ui->campaigns->setEnabled(false);
@@ -153,7 +153,7 @@ void AgateForm::onProjectFilterChanged(int projectId)
     ui->campaigns->setEnabled(true);
 }
 
-void AgateForm::onCampaignFilterChanged(int campaignId)
+void SurveyForm::onCampaignFilterChanged(int campaignId)
 {
     if (campaignId < 1) {
         ui->surveys->setEnabled(false);
@@ -165,7 +165,7 @@ void AgateForm::onCampaignFilterChanged(int campaignId)
     reloadSurveys();
 }
 
-void AgateForm::onSurveyFilterChanged(int surveyId)
+void SurveyForm::onSurveyFilterChanged(int surveyId)
 {
     if (surveyId < 1) {
         ui->icd10View->setEnabled(false);
@@ -208,14 +208,14 @@ void AgateForm::onSurveyFilterChanged(int surveyId)
     ui->agateView->setEnabled(true);
 }
 
-void AgateForm::reload()
+void SurveyForm::reload()
 {
     DataCollector::get()->performQuery(m_projectsQry, false);
     m_projectsModel->setQuery(m_projectsQry);
     ui->projects->setModel(m_projectsModel);
 }
 
-void AgateForm::reloadSurveys()
+void SurveyForm::reloadSurveys()
 {
     m_surveysQry.bindValue(":campaign_id", m_currentCampaignId);
     DataCollector::get()->performQuery(m_surveysQry, false);
@@ -227,7 +227,7 @@ void AgateForm::reloadSurveys()
     qDebug() << "reloaded surveys for campaign: " << m_currentCampaignId;
 }
 
-void AgateForm::createSurvey()
+void SurveyForm::createSurvey()
 {
     auto dlg = new SurveyDialog(this, m_currentProjectId, m_currentCampaignId);
 
@@ -236,7 +236,7 @@ void AgateForm::createSurvey()
     }
 }
 
-void AgateForm::prepareQueries()
+void SurveyForm::prepareQueries()
 {
     try {
         m_projectsQry = DataCollector::get()->prepareQuery("select name from core.project order by name asc;");
@@ -316,7 +316,7 @@ void AgateForm::prepareQueries()
     }
 }
 
-void AgateForm::setupModels()
+void SurveyForm::setupModels()
 {
     m_projectsModel = new QSqlQueryModel(this);
     m_campaignsModel = new QSqlQueryModel(this);
@@ -340,13 +340,13 @@ void AgateForm::setupModels()
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
-void AgateForm::showError(QSqlError err, const QString &msg)
+void SurveyForm::showError(QSqlError err, const QString &msg)
 {
     QMessageBox::critical(this, tr("Database Error"),
                           QString("<p><b>%1</b></p><p>%2</p>").arg(msg).arg(err.text()));
 }
 
-void AgateForm::showError(DatabaseError err)
+void SurveyForm::showError(DatabaseError err)
 {
     showError(err.error(), tr("Database Error"));
 }
