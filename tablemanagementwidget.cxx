@@ -35,13 +35,13 @@ TableManagementWidget::TableManagementWidget(QWidget *parent, const QString &tab
     layout()->addWidget(buttons);
 
     m_reload = new QPushButton(tr("&Reload"), buttons);
-    m_abort = new QPushButton(tr("&Abort Changes"), buttons);
+    m_discardChanges = new QPushButton(tr("&Discard Changes"), buttons);
     m_save = new QPushButton(tr("&Save"), buttons);
     m_create = new QPushButton(tr("&Create"), buttons);
     m_delete = new QPushButton(tr("&Delete"), buttons);
 
     bl->addWidget(m_reload);
-    bl->addWidget(m_abort);
+    bl->addWidget(m_discardChanges);
     bl->addStretch();
     bl->addWidget(m_create);
     bl->addWidget(m_save);
@@ -50,7 +50,7 @@ TableManagementWidget::TableManagementWidget(QWidget *parent, const QString &tab
 
     connect(m_save, &QPushButton::clicked, this, &TableManagementWidget::save);
     connect(m_reload, &QPushButton::clicked, this, &TableManagementWidget::reload);
-    connect(m_abort, &QPushButton::clicked, this, &TableManagementWidget::abort);
+    connect(m_discardChanges, &QPushButton::clicked, this, &TableManagementWidget::discardChanges);
     connect(m_create, &QPushButton::clicked, this, &TableManagementWidget::create);
     connect(m_delete, &QPushButton::clicked, this, &TableManagementWidget::remove);
 
@@ -84,7 +84,7 @@ void TableManagementWidget::create()
     m_model->insertRows(m_model->rowCount(), 1);
 }
 
-void TableManagementWidget::abort()
+void TableManagementWidget::discardChanges()
 {
     m_model->revertAll();
 }

@@ -21,7 +21,7 @@ signals:
 public slots:
     void reload(bool askUser=false);
     void create();
-    void abort();
+    void discardChanges();
     void remove();
     void save();
 
@@ -43,6 +43,6 @@ private:
 
     QPushButton* m_reload;
     QPushButton* m_save;
-    QPushButton* m_abort;
+    QPushButton* m_discardChanges;
 };
 
