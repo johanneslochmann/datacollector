@@ -48,6 +48,10 @@ public slots:
     void addIcd10Diagnosis();
     void removeIcd10Diagnosis();
 
+    void reloadIpOptionalDrugs();
+    void addIpOptionalDrug();
+    void removeIpOptionalDrug();
+
 protected:
     void prepareQueries();
     void setupModels();

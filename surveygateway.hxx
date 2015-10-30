@@ -12,7 +12,10 @@ public:
     void save(SurveySPtr s);
 
     void addIcd10DiagnosisToSurvey(int icd10DiagnosisId, int surveyId);
+    void addOptionalDrugToSurvey(int drugId, int surveyId);
+
     void removeIcd10DiagnosisFromSurvey(int recordId);
+    void removeOptionalDrugFromSurvey(int recordId);
 
 protected:
     QString loadAllQueryText() const override;

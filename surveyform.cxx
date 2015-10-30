@@ -12,6 +12,7 @@
 #include "databaseerror.hxx"
 #include "surveydialog.hxx"
 #include "icd10diagnosisselectiondialog.hxx"
+#include "drugselectiondialog.hxx"
 #include "surveygateway.hxx"
 
 #include "ui_surveyform.h"
@@ -38,6 +39,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->reloadIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::reloadIcd10Diagnosis);
     connect(ui->addIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::addIcd10Diagnosis);
     connect(ui->removeIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::removeIcd10Diagnosis);
+    connect(ui->reloadIpOnDemandDrugsW, &QPushButton::clicked, this, &SurveyForm::reloadIpOptionalDrugs);
+    connect(ui->addIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::addIpOptionalDrug);
+    connect(ui->removeIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::removeIpOptionalDrug);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -300,6 +304,69 @@ void SurveyForm::removeIcd10Diagnosis()
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, tr("Failed to remove ICD10 Diagnosis from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::reloadIpOptionalDrugs()
+{
+    m_ipOnDemandQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_ipOnDemandQry, false);
+    m_ipOnDemandModel->setQuery(m_ipOnDemandQry);
+
+    ui->ipOnDemandView->setModel(m_ipOnDemandModel);
+    ui->ipOnDemandView->hideColumn(1);
+}
+
+void SurveyForm::addIpOptionalDrug()
+{
+    auto dlg = new DrugSelectionDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addOptionalDrugToSurvey(dlg->currentId(), m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadIpOptionalDrugs();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add Optional Drug Prescription to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeIpOptionalDrug()
+{
+    auto selectedIndexes = ui->ipOnDemandView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    if (QMessageBox::question(this, tr("Remove Drug?"),
+                              tr("Remove Drug <b>%1</b>?").arg(ui->ipOnDemandView->model()->data(idx).toString()),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    auto idIdx = ui->ipOnDemandView->model()->index(idx.row(), 1);
+
+    auto selectedId = ui->ipOnDemandView->model()->data(idIdx).toInt();
+
+    try {
+        SurveyGateway().removeOptionalDrugFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadIpOptionalDrugs();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove Drug from current survey."), this);
         DataCollector::get()->rollback();
     }
 }
