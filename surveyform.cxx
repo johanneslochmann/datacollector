@@ -249,6 +249,7 @@ void SurveyForm::reloadIcd10Diagnosis()
     m_icd10Model->setQuery(m_icd10Qry);
 
     ui->icd10View->setModel(m_icd10Model);
+    ui->icd10View->hideColumn(1);
 }
 
 void SurveyForm::addIcd10Diagnosis()
@@ -273,7 +274,34 @@ void SurveyForm::addIcd10Diagnosis()
 
 void SurveyForm::removeIcd10Diagnosis()
 {
+    auto selectedIndexes = ui->icd10View->selectionModel()->selectedIndexes();
 
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    if (QMessageBox::question(this, tr("Remove ICD10 Diagnosis?"),
+                              tr("Remove Diagnosis <b>%1</b>?").arg(ui->icd10View->model()->data(idx).toString()),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    auto idIdx = ui->icd10View->model()->index(idx.row(), 1);
+
+    auto selectedId = ui->icd10View->model()->data(idIdx).toInt();
+
+    try {
+        SurveyGateway().removeIcd10DiagnosisFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadIcd10Diagnosis();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove ICD10 Diagnosis from current survey."), this);
+        DataCollector::get()->rollback();
+    }
 }
 
 void SurveyForm::prepareQueries()
@@ -296,7 +324,8 @@ void SurveyForm::prepareQueries()
         m_getCampaignIdQry = DataCollector::get()->prepareQuery("select id from core.campaign where project_id = :project_id and name = :campaign_name");
         m_getProjectIdQry = DataCollector::get()->prepareQuery("select id from core.project where name = :projectName;");
         m_icd10Qry = DataCollector::get()->prepareQuery("select "
-                                                        "icd10.name as diagnosis "
+                                                        "icd10.name as diagnosis, "
+                                                        "nm.id as id "
                                                         "from core.icd10_diagnosis icd10 "
                                                         "join core.icd10_survey nm on icd10.id = nm.icd10_diagnosis_id "
                                                         "join core.survey s on nm.survey_id = s.id "

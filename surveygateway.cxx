@@ -21,6 +21,15 @@ void SurveyGateway::addIcd10DiagnosisToSurvey(int icd10DiagnosisId, int surveyId
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
+void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
 QString SurveyGateway::loadAllQueryText() const
 {
     return "select proband_id, campaign_id, organization_unit_id, survey_date, id, description "
