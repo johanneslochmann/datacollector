@@ -48,9 +48,9 @@ public slots:
     void addIcd10Diagnosis();
     void removeIcd10Diagnosis();
 
-    void reloadIpOptionalDrugs();
-    void addIpOptionalDrug();
-    void removeIpOptionalDrug();
+    void reloadOnDemandDrugs();
+    void addOnDemandDrug();
+    void removeOnDemandDrug();
 
     void reloadIpRegularDrugs();
     void addIpRegularDrug();

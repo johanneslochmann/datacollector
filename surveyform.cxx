@@ -41,9 +41,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->reloadIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::reloadIcd10Diagnosis);
     connect(ui->addIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::addIcd10Diagnosis);
     connect(ui->removeIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::removeIcd10Diagnosis);
-    connect(ui->reloadIpOnDemandDrugsW, &QPushButton::clicked, this, &SurveyForm::reloadIpOptionalDrugs);
-    connect(ui->addIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::addIpOptionalDrug);
-    connect(ui->removeIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::removeIpOptionalDrug);
+    connect(ui->reloadIpOnDemandDrugsW, &QPushButton::clicked, this, &SurveyForm::reloadOnDemandDrugs);
+    connect(ui->addIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::addOnDemandDrug);
+    connect(ui->removeIpOnDemandDrug, &QPushButton::clicked, this, &SurveyForm::removeOnDemandDrug);
     connect(ui->reloadIpRegularDrugs, &QPushButton::clicked, this, &SurveyForm::reloadIpRegularDrugs);
     connect(ui->addIpRegularDrug, &QPushButton::clicked, this, &SurveyForm::addIpRegularDrug);
     connect(ui->removeIpRegularDrug, &QPushButton::clicked, this, &SurveyForm::removeIpRegularDrug);
@@ -188,7 +188,7 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
 {
     if (surveyId < 1) {
         ui->icd10View->setEnabled(false);
-        ui->ipOnDemandView->setEnabled(false);
+        ui->onDemandView->setEnabled(false);
         ui->ipRegularView->setEnabled(false);
         ui->ipPlasmaticLevelsView->setEnabled(false);
         ui->agateView->setEnabled(false);
@@ -196,7 +196,7 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
     }
 
     reloadIcd10Diagnosis();
-    reloadIpOptionalDrugs();
+    reloadOnDemandDrugs();
     reloadIpRegularDrugs();
     reloadPlasmaticLevels();
 
@@ -210,7 +210,7 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
 
     ui->tab->setEnabled(true);
     ui->icd10View->setEnabled(true);
-    ui->ipOnDemandView->setEnabled(true);
+    ui->onDemandView->setEnabled(true);
     ui->ipRegularView->setEnabled(true);
     ui->ipPlasmaticLevelsView->setEnabled(true);
     ui->agateView->setEnabled(true);
@@ -307,18 +307,18 @@ void SurveyForm::removeIcd10Diagnosis()
     }
 }
 
-void SurveyForm::reloadIpOptionalDrugs()
+void SurveyForm::reloadOnDemandDrugs()
 {
     m_ipOnDemandQry.bindValue(":survey_id", m_currentSurveyId);
 
     DataCollector::get()->performQuery(m_ipOnDemandQry, false);
     m_ipOnDemandModel->setQuery(m_ipOnDemandQry);
 
-    ui->ipOnDemandView->setModel(m_ipOnDemandModel);
-    ui->ipOnDemandView->hideColumn(1);
+    ui->onDemandView->setModel(m_ipOnDemandModel);
+    ui->onDemandView->hideColumn(1);
 }
 
-void SurveyForm::addIpOptionalDrug()
+void SurveyForm::addOnDemandDrug()
 {
     auto dlg = new DrugSelectionDialog(this);
 
@@ -327,20 +327,20 @@ void SurveyForm::addIpOptionalDrug()
     }
 
     try {
-        SurveyGateway().addOptionalDrugToSurvey(dlg->currentId(), m_currentSurveyId);
+        SurveyGateway().addOnDemandDrugToSurvey(dlg->currentId(), m_currentSurveyId);
         DataCollector::get()->commit();
 
-        reloadIpOptionalDrugs();
+        reloadOnDemandDrugs();
     }
     catch(DatabaseError e) {
-        DataCollector::get()->showDatabaseError(e, tr("Failed to add Optional Drug Prescription to current survey."), this);
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add On Demand Drug to current survey."), this);
         DataCollector::get()->rollback();
     }
 }
 
-void SurveyForm::removeIpOptionalDrug()
+void SurveyForm::removeOnDemandDrug()
 {
-    auto selectedIndexes = ui->ipOnDemandView->selectionModel()->selectedIndexes();
+    auto selectedIndexes = ui->onDemandView->selectionModel()->selectedIndexes();
 
     if (selectedIndexes.isEmpty()) {
         return;
@@ -349,23 +349,23 @@ void SurveyForm::removeIpOptionalDrug()
     auto idx = selectedIndexes.first();
 
     if (QMessageBox::question(this, tr("Remove Drug?"),
-                              tr("Remove Drug <b>%1</b>?").arg(ui->ipOnDemandView->model()->data(idx).toString()),
+                              tr("Remove Drug <b>%1</b>?").arg(ui->onDemandView->model()->data(idx).toString()),
                               QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
         return;
     }
 
-    auto idIdx = ui->ipOnDemandView->model()->index(idx.row(), 1);
+    auto idIdx = ui->onDemandView->model()->index(idx.row(), 1);
 
-    auto selectedId = ui->ipOnDemandView->model()->data(idIdx).toInt();
+    auto selectedId = ui->onDemandView->model()->data(idIdx).toInt();
 
     try {
-        SurveyGateway().removeOptionalDrugFromSurvey(selectedId);
+        SurveyGateway().removeOnDemandDrugFromSurvey(selectedId);
         DataCollector::get()->commit();
 
-        reloadIpOptionalDrugs();
+        reloadOnDemandDrugs();
     }
     catch(DatabaseError e) {
-        DataCollector::get()->showDatabaseError(e, tr("Failed to remove Drug from current survey."), this);
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove On Demand Drug from current survey."), this);
         DataCollector::get()->rollback();
     }
 }
@@ -417,7 +417,7 @@ void SurveyForm::removeIpRegularDrug()
     auto idx = selectedIndexes.first();
 
     if (QMessageBox::question(this, tr("Remove Prescription?"),
-                              tr("Remove Prescription <b>%1</b>?").arg(ui->ipOnDemandView->model()->data(idx).toString()),
+                              tr("Remove Prescription <b>%1</b>?").arg(ui->onDemandView->model()->data(idx).toString()),
                               QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
         return;
     }
@@ -606,7 +606,7 @@ void SurveyForm::setupModels()
     ui->campaigns->setModel(m_campaignsModel);
     ui->surveys->setModel(m_surveysModel);
     ui->icd10View->setModel(m_icd10Model);
-    ui->ipOnDemandView->setModel(m_ipOnDemandModel);
+    ui->onDemandView->setModel(m_ipOnDemandModel);
     ui->ipRegularView->setModel(m_ipReqularModel);
     ui->ipPlasmaticLevelsView->setModel(m_ipPlasmaticLevelModel);
     ui->agateView->setModel(m_agateModel);
@@ -615,8 +615,8 @@ void SurveyForm::setupModels()
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->icd10View->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->icd10View->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->ipOnDemandView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->ipOnDemandView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->onDemandView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->onDemandView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->ipRegularView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->ipRegularView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->ipPlasmaticLevelsView->setSelectionBehavior(QAbstractItemView::SelectRows);

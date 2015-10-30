@@ -21,7 +21,7 @@ void SurveyGateway::addIcd10DiagnosisToSurvey(int icd10DiagnosisId, int surveyId
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
-void SurveyGateway::addOptionalDrugToSurvey(int drugId, int surveyId)
+void SurveyGateway::addOnDemandDrugToSurvey(int drugId, int surveyId)
 {
 
     auto q = DataCollector::get()->prepareQuery("insert into core.optional_prescription(drug_id, survey_id) "
@@ -69,7 +69,7 @@ void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
     DataCollector::get()->performQuery(q, true);
 }
 
-void SurveyGateway::removeOptionalDrugFromSurvey(int recordId)
+void SurveyGateway::removeOnDemandDrugFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.optional_prescription where id = :id;");
 
