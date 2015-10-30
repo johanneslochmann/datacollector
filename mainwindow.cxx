@@ -74,10 +74,10 @@ void MainWindow::initMenues()
     coreData->addSeparator();
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
+    coreData->addSeparator();
+    coreData->addAction(app->manageSurveysAction());
 
     QMenu* dataEntry = new QMenu(tr("&Surveys"), this);
-    dataEntry->addAction(app->manageSurveysAction());
-    dataEntry->addSeparator();
     dataEntry->addAction(app->manageSurveyDataAction());
 
     QMenu* help = new QMenu(tr("&Help"), this);
