@@ -3,6 +3,8 @@
 #include <QSqlRecord>
 #include <QDebug>
 
+
+
 QString ProjectDataGateway::loadAllQueryText() const
 {
     return "select name, id from core.project order by name asc;";

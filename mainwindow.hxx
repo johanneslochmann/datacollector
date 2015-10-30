@@ -12,6 +12,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void databaseAboutToClose();
     void databaseAvailable();
     void databaseUnavailable();
 

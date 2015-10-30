@@ -16,12 +16,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     auto app = DataCollector::get();
 
+    connect(app, &DataCollector::databaseAboutToClose, this, &MainWindow::databaseAboutToClose);
     connect(app, &DataCollector::databaseAvailable, this, &MainWindow::databaseAvailable);
     connect(app, &DataCollector::databaseUnavailable, this, &MainWindow::databaseUnavailable);
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::databaseAboutToClose()
+{
+    delete m_wb;
 }
 
 void MainWindow::databaseAvailable()
@@ -33,7 +39,6 @@ void MainWindow::databaseAvailable()
 
 void MainWindow::databaseUnavailable()
 {
-    delete m_wb;
 }
 
 void MainWindow::initMenues()

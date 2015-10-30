@@ -5,12 +5,17 @@
 #include <QComboBox>
 #include <QSqlQueryModel>
 #include <QDebug>
+#include <QDateEdit>
+#include <QTextEdit>
 
 #include "databaseerror.hxx"
 
 #include "datacollector.hxx"
 #include "projectdatagateway.hxx"
 #include "campaigndatagateway.hxx"
+#include "probanddatagateway.hxx"
+#include "surveygateway.hxx"
+#include "organizationgateway.hxx"
 
 SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCampaignId) :
     QDialog(parent),
@@ -18,12 +23,43 @@ SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCam
     m_defaultProjectId(defaultProjectId),
     m_defaultCampaignId(defaultCampaignId)
 {
+    m_data = std::make_shared<Survey>();
+
     ui->setupUi(this);
 
+    ui->date->setDisplayFormat("dd.MM.yyyy");
+    ui->date->setDate(QDate::currentDate());
+    ui->date->setCalendarPopup(true);
+
+    loadProbands();
+    loadOrganizations();
     loadProjects();
+
+    if (m_defaultProjectId > 0) {
+        for (auto p : m_projects) {
+            if (p->id() == m_defaultProjectId) {
+                ui->project->setCurrentText(p->name());
+            }
+        }
+    }
+
+    if (m_defaultCampaignId) {
+        onCurrentProjectChanged(ui->project->currentText());
+        QCoreApplication::processEvents(); // load campaigns
+
+        for (auto c : m_campaigns) {
+            if (c->id() == m_defaultCampaignId) {
+                ui->campaign->setCurrentText(c->name());
+                m_data->setCampaignId(c->id());
+            }
+        }
+    }
 
     connect(ui->project, SIGNAL(activated(QString)), this, SLOT(onCurrentProjectChanged(QString)));
     connect(ui->campaign, SIGNAL(activated(QString)), this, SLOT(onCurrentCampaignChanged(QString)));
+    connect(ui->proband, SIGNAL(activated(QString)), this, SLOT(onCurrentProbandChanged(QString)));
+    connect(ui->organization, SIGNAL(activated(QString)), this, SLOT(onCurrentOrganizationChanged(QString)));
+    connect(ui->comment, SIGNAL(textChanged()), this, SLOT(onDescriptionChanged()));
 }
 
 SurveyDialog::~SurveyDialog()
@@ -34,16 +70,20 @@ SurveyDialog::~SurveyDialog()
 void SurveyDialog::accept()
 {
     try {
-        save();
+        SurveyGateway().save(m_data);
         done(QDialog::Accepted);
+        DataCollector::get()->commit();
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, tr("Failed to save survey"), this);
+        DataCollector::get()->rollback();
     }
 }
 
 void SurveyDialog::onCurrentProjectChanged(const QString &projectName)
 {
+    m_data->setCampaignId(0);
+
     for (auto p : m_projects) {
         if (p->name() == projectName) {
             m_defaultProjectId = p->id();
@@ -60,7 +100,7 @@ void SurveyDialog::onCurrentProjectChanged(const QString &projectName)
             ui->campaign->addItem(c->name(), c->id());
         }
 
-        ui->project->setCurrentText("");
+        ui->campaign->setCurrentText("");
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, tr("Failed to load Campaigns in Project"), this);
@@ -69,7 +109,40 @@ void SurveyDialog::onCurrentProjectChanged(const QString &projectName)
 
 void SurveyDialog::onCurrentCampaignChanged(const QString &campaignName)
 {
+    m_data->setCampaignId(0);
 
+    for (auto c : m_campaigns) {
+        if (campaignName == c->name()) {
+            m_data->setCampaignId(c->id());
+        }
+    }
+}
+
+void SurveyDialog::onCurrentProbandChanged(const QString &label)
+{
+    m_data->setProbandId(0);
+
+    for (auto p : m_probands) {
+        if (label == p->label()) {
+            m_data->setProbandId(p->id());
+        }
+    }
+}
+
+void SurveyDialog::onCurrentOrganizationChanged(const QString &name)
+{
+    m_data->setOrganizationUnitId(0);
+
+    for (auto o : m_organizations) {
+        if (o->name() == name) {
+            m_data->setOrganizationUnitId(o->id());
+        }
+    }
+}
+
+void SurveyDialog::onDescriptionChanged()
+{
+    m_data->setDescription(ui->comment->toPlainText());
 }
 
 void SurveyDialog::loadProjects()
@@ -91,13 +164,39 @@ void SurveyDialog::loadProjects()
     }
 }
 
-void SurveyDialog::save()
+void SurveyDialog::loadProbands()
 {
-    if (m_data.hasId()) {
-        // update
-        return;
-    }
+    try {
+        m_probands = ProbandDataGateway().loadAll();
+        m_probands.push_back(std::make_shared<Proband>());
 
-    // insert
+        ui->proband->clear();
+        for (auto p : m_probands) {
+            ui->proband->addItem(p->label(), p->id());
+        }
+
+        ui->proband->setCurrentText("");
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to load probands."), this);
+    }
+}
+
+void SurveyDialog::loadOrganizations()
+{
+    try {
+        m_organizations = OrganizationGateway().loadAll();
+        m_organizations.push_back(std::make_shared<Organization>());
+
+        ui->organization->clear();
+        for (auto p : m_organizations) {
+            ui->organization->addItem(p->name(), p->id());
+        }
+
+        ui->organization->setCurrentText("");
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to load organizations."), this);
+    }
 }
 

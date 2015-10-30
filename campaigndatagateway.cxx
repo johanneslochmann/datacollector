@@ -13,7 +13,7 @@ CampaignSPtrVector CampaignDataGateway::campaignsInProject(int projectId)
                                                 "order by c.name asc;");
     q.bindValue(":project_id", projectId);
 
-    DataCollector::get()->performQuery(q);
+    DataCollector::get()->performQuery(q, false);
 
     CampaignSPtrVector buf;
 

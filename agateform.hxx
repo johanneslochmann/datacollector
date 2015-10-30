@@ -5,6 +5,8 @@
 
 #include "databaseerror.hxx"
 
+#include <memory>
+
 class QSqlQueryModel;
 
 namespace Ui {
@@ -25,6 +27,10 @@ signals:
     void surveyFilterChanged(int surveyId);
 
 public slots:
+    void onDatabaseAboutToClose();
+    void onDatabaseAvailable();
+    void onDatabaseUnavailable();
+
     void onCurrentProjectChanged(const QString& name);
     void onCurrentCampaignChanged(const QString& name);
     void onCurrentSurveyChanged(const QModelIndex& idx);
@@ -46,7 +52,7 @@ protected:
     void showError(DatabaseError err);
 
 private:
-    Ui::AgateForm *ui;
+    std::unique_ptr<Ui::AgateForm> ui;
 
     QSqlQuery m_projectsQry;
     QSqlQuery m_campaignsQry;

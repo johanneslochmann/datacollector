@@ -26,7 +26,7 @@ public:
 
     void setExternalId(const QString &externalId);
     void setBirthday(const QDate &birthday);
-    void setHeightInCm(const int &heightInCm);
+    void setHeightInCm(int heightInCm);
     void setSex(const QString &sex);
     void setSexId(int sexId);
     void setDescription(const QString &description);

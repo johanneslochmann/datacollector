@@ -45,16 +45,21 @@ public:
     QAction* manageIcd10DiagnosisInSurveryAction() const { return m_manageIcd10DiagnosisInSurvery; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
 
-    QSqlQuery prepareAndPerformQuery(const QString& sql);
+    QSqlQuery prepareAndPerformQuery(const QString& sql, bool createTransaction);
     QSqlQuery prepareQuery(const QString& sql);
-    void performQuery(QSqlQuery& qry);
-    bool performQueryWithExpectedSize(QSqlQuery& qry, int expectedSize);
+    void begin();
+    void commit();
+    void rollback();
+
+    void performQuery(QSqlQuery& qry, bool createTransaction);
+    bool performQueryWithExpectedSize(QSqlQuery& qry, int expectedSize, bool createTransaction);
 
     QSqlDatabase database();
 
     void showDatabaseError(const DatabaseError& err, const QString& info = QObject::tr("Database Error"), QWidget* parent=nullptr);
 
 signals:
+    void databaseAboutToClose();
     void databaseAvailable();
     void databaseUnavailable();
 

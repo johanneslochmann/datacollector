@@ -16,12 +16,16 @@
 
 AgateForm::AgateForm(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::AgateForm)
+    ui(std::unique_ptr<Ui::AgateForm>(new Ui::AgateForm))
 {
     ui->setupUi(this);
 
     prepareQueries();
     setupModels();
+
+    connect(DataCollector::get(), &DataCollector::databaseAboutToClose, this, &AgateForm::onDatabaseAboutToClose);
+    connect(DataCollector::get(), &DataCollector::databaseAvailable, this, &AgateForm::onDatabaseAvailable);
+    connect(DataCollector::get(), &DataCollector::databaseUnavailable, this, &AgateForm::onDatabaseUnavailable);
 
     connect(ui->projects, &QComboBox::currentTextChanged, this, &AgateForm::onCurrentProjectChanged);
     connect(ui->campaigns, &QComboBox::currentTextChanged, this, &AgateForm::onCurrentCampaignChanged);
@@ -39,7 +43,42 @@ AgateForm::AgateForm(QWidget *parent) :
 
 AgateForm::~AgateForm()
 {
-    delete ui;
+}
+
+void AgateForm::onDatabaseAboutToClose()
+{
+    m_projectsModel->setQuery(QSqlQuery());
+    m_campaignsModel->setQuery(QSqlQuery());
+    m_surveysModel->setQuery(QSqlQuery());
+    m_icd10Model->setQuery(QSqlQuery());
+    m_ipOnDemandModel->setQuery(QSqlQuery());
+    m_ipReqularModel->setQuery(QSqlQuery());
+    m_ipPlasmaticLevelModel->setQuery(QSqlQuery());
+    m_agateModel->setQuery(QSqlQuery());
+
+    m_projectsQry.clear();
+    m_campaignsQry.clear();
+    m_surveysQry.clear();
+    m_getCampaignIdQry.clear();
+    m_getProjectIdQry.clear();
+    m_icd10Qry.clear();
+    m_ipOnDemandQry.clear();
+    m_ipReqularQry.clear();
+    m_ipPlasmaticLevelQry.clear();
+    m_agateQry.clear();
+}
+
+void AgateForm::onDatabaseAvailable()
+{
+    prepareQueries();
+    setupModels();
+
+    setEnabled(true);
+}
+
+void AgateForm::onDatabaseUnavailable()
+{
+    setEnabled(false);
 }
 
 void AgateForm::onCurrentProjectChanged(const QString &name)
@@ -52,7 +91,7 @@ void AgateForm::onCurrentProjectChanged(const QString &name)
 
     m_getProjectIdQry.bindValue(":projectName", name);
 
-    if (!DataCollector::get()->performQueryWithExpectedSize(m_getProjectIdQry, 1)) {
+    if (!DataCollector::get()->performQueryWithExpectedSize(m_getProjectIdQry, 1, false)) {
         showError(m_getProjectIdQry.lastError(), tr("Failed to load Project"));
         return;
     }
@@ -75,7 +114,7 @@ void AgateForm::onCurrentCampaignChanged(const QString &name)
     m_getCampaignIdQry.bindValue(":project_id", m_currentProjectId);
     m_getCampaignIdQry.bindValue(":campaign_name", name);
 
-    if (!DataCollector::get()->performQueryWithExpectedSize(m_getCampaignIdQry, 1)) {
+    if (!DataCollector::get()->performQueryWithExpectedSize(m_getCampaignIdQry, 1, false)) {
         showError(m_getCampaignIdQry.lastError(),
                   tr("Failed to load campaign with name '%1' in project '%2'.").arg(name).arg(ui->projects->currentText()));
         return;
@@ -106,7 +145,7 @@ void AgateForm::onProjectFilterChanged(int projectId)
     }
 
     m_campaignsQry.bindValue(":project_id", projectId);
-    DataCollector::get()->performQuery(m_campaignsQry);
+    DataCollector::get()->performQuery(m_campaignsQry, false);
 
     m_campaignsModel->setQuery(m_campaignsQry);
 
@@ -143,11 +182,11 @@ void AgateForm::onSurveyFilterChanged(int surveyId)
     m_ipPlasmaticLevelQry.bindValue(":survey_id", surveyId);
     m_agateQry.bindValue(":survey_id", surveyId);
 
-    DataCollector::get()->performQuery(m_icd10Qry);
-    DataCollector::get()->performQuery(m_ipOnDemandQry);
-    DataCollector::get()->performQuery(m_ipReqularQry);
-    DataCollector::get()->performQuery(m_ipPlasmaticLevelQry);
-    DataCollector::get()->performQuery(m_agateQry);
+    DataCollector::get()->performQuery(m_icd10Qry, false);
+    DataCollector::get()->performQuery(m_ipOnDemandQry, false);
+    DataCollector::get()->performQuery(m_ipReqularQry, false);
+    DataCollector::get()->performQuery(m_ipPlasmaticLevelQry, false);
+    DataCollector::get()->performQuery(m_agateQry, false);
 
     m_icd10Model->setQuery(m_icd10Qry);
     m_ipOnDemandModel->setQuery(m_ipOnDemandQry);;
@@ -171,7 +210,7 @@ void AgateForm::onSurveyFilterChanged(int surveyId)
 
 void AgateForm::reload()
 {
-    DataCollector::get()->performQuery(m_projectsQry);
+    DataCollector::get()->performQuery(m_projectsQry, false);
     m_projectsModel->setQuery(m_projectsQry);
     ui->projects->setModel(m_projectsModel);
 }
@@ -179,11 +218,13 @@ void AgateForm::reload()
 void AgateForm::reloadSurveys()
 {
     m_surveysQry.bindValue(":campaign_id", m_currentCampaignId);
-    DataCollector::get()->performQuery(m_surveysQry);
+    DataCollector::get()->performQuery(m_surveysQry, false);
     m_surveysModel->setQuery(m_surveysQry);
     ui->surveys->setModel(m_surveysModel);
 
     ui->surveys->setEnabled(true);
+
+    qDebug() << "reloaded surveys for campaign: " << m_currentCampaignId;
 }
 
 void AgateForm::createSurvey()
@@ -207,7 +248,7 @@ void AgateForm::prepareQueries()
                                                           ", surv.description as comment "
                                                           ", surv.id as id "
                                                           "from core.proband prob "
-                                                          "join core.survey surv on prob.id = surv.id "
+                                                          "join core.survey surv on prob.id = surv.proband_id "
                                                           "join core.organization_unit org on surv.organization_unit_id = org.id "
                                                           "where surv.campaign_id = :campaign_id "
                                                           "order by proband asc;");

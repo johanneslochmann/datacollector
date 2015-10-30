@@ -21,7 +21,7 @@ public:
     ContainerT loadAll() {
         ContainerT buf;
 
-        auto qry = DataCollector::get()->prepareAndPerformQuery(loadAllQueryText());
+        auto qry = DataCollector::get()->prepareAndPerformQuery(loadAllQueryText(), false);
 
         while(qry.next()) {
             auto t = std::make_shared<DataType>();

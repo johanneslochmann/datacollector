@@ -52,7 +52,10 @@ SOURCES += main.cxx\
     campaigndatagateway.cxx \
     campaign.cxx \
     proband.cxx \
-    probanddatagateway.cxx
+    probanddatagateway.cxx \
+    surveygateway.cxx \
+    organization.cxx \
+    organizationgateway.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -99,7 +102,10 @@ HEADERS  += mainwindow.hxx \
     campaigndatagateway.hxx \
     campaign.hxx \
     proband.hxx \
-    probanddatagateway.hxx
+    probanddatagateway.hxx \
+    surveygateway.hxx \
+    organization.hxx \
+    organizationgateway.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

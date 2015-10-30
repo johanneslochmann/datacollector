@@ -16,12 +16,12 @@ QString Proband::label() const
         buf.append(firstName());
     }
 
-    if (birthday().isValid()) {
-        buf.append(birthday().toString(Qt::ISODate));
-    }
-
     if (!externalId().isEmpty()) {
         buf.append(externalId());
+    }
+
+    if (birthday().isValid()) {
+        buf.append(birthday().toString(Qt::ISODate));
     }
 
     return buf.join(", ");
@@ -52,7 +52,7 @@ int Proband::heightInCm() const
     return m_heightInCm;
 }
 
-void Proband::setHeightInCm(const int &heightInCm)
+void Proband::setHeightInCm(int heightInCm)
 {
     m_heightInCm = heightInCm;
 }

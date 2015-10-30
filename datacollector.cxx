@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlError>
+#include <QDebug>
 
 #include "actionenabledifconnectedtodatabase.hxx"
 #include "actionenabledifnotconnectedtodatabase.hxx"
@@ -25,10 +26,10 @@ DataCollector::~DataCollector()
     closeDatabase();
 }
 
-QSqlQuery DataCollector::prepareAndPerformQuery(const QString &sql)
+QSqlQuery DataCollector::prepareAndPerformQuery(const QString &sql, bool createTransaction)
 {
     auto qry = prepareQuery(sql);
-    performQuery(qry);
+    performQuery(qry, createTransaction);
     return qry;
 }
 
@@ -43,16 +44,61 @@ QSqlQuery DataCollector::prepareQuery(const QString &sql)
     return qry;
 }
 
-void DataCollector::performQuery(QSqlQuery &qry)
+void DataCollector::begin()
 {
-    if (!qry.exec()) {
-        throw DatabaseError(qry.lastError());
+    qDebug() << "begin...";
+    if (!QSqlDatabase::database(databaseConnectionName).transaction()) {
+        throw DatabaseError(QSqlDatabase::database(databaseConnectionName).lastError());
     }
+    qDebug() << "in transaction";
 }
 
-bool DataCollector::performQueryWithExpectedSize(QSqlQuery &qry, int expectedSize)
+void DataCollector::commit()
 {
-    performQuery(qry);
+    qDebug() << "commit...";
+    if (!QSqlDatabase::database(databaseConnectionName).commit()) {
+        throw DatabaseError(QSqlDatabase::database(databaseConnectionName).lastError());
+    }
+    qDebug() << "transaction commited";
+}
+
+void DataCollector::rollback()
+{
+    qDebug() << "rollback...";
+    if (!QSqlDatabase::database(databaseConnectionName).rollback()) {
+        showDatabaseError(DatabaseError(QSqlDatabase::database(databaseConnectionName).lastError()),
+                          tr("Failed to rollback database transaction. Program will terminate."),
+                          activeWindow());
+        quit();
+    }
+    qDebug() << "rolled back";
+}
+
+void DataCollector::performQuery(QSqlQuery &qry, bool createTransaction)
+{
+    if (createTransaction) {
+        begin();
+    }
+
+    qDebug() << "performing query: " << qry.lastQuery();
+
+    QMapIterator<QString, QVariant> i(qry.boundValues());
+    while (i.hasNext()) {
+        i.next();
+        qDebug() << "\t" << i.key() << ": " << i.value().toString();
+    }
+
+    if (!qry.exec()) {
+        qDebug() << "failed: " << qry.lastError().text();
+        throw DatabaseError(qry.lastError());
+    }
+
+    qDebug() << "OK";
+}
+
+bool DataCollector::performQueryWithExpectedSize(QSqlQuery &qry, int expectedSize, bool createTransaction)
+{
+    performQuery(qry, createTransaction);
 
     if (expectedSize != qry.size()) {
         return false;
@@ -109,6 +155,10 @@ void DataCollector::openDatabase()
 
 void DataCollector::closeDatabase()
 {
+    emit databaseAboutToClose();
+
+    processEvents();
+
     if (QSqlDatabase::contains(databaseConnectionName)) {
         QSqlDatabase::removeDatabase(databaseConnectionName);
     }
@@ -119,7 +169,7 @@ void DataCollector::closeDatabase()
 void DataCollector::pingDatabase()
 {
     try {
-        auto qry = prepareAndPerformQuery("select current_timestamp::text;");
+        auto qry = prepareAndPerformQuery("select current_timestamp::text;", false);
 
         if (!qry.next()) {
             QMessageBox::critical(activeWindow(),

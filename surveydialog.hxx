@@ -7,6 +7,8 @@
 #include "project.hxx"
 #include "campaign.hxx"
 #include "survey.hxx"
+#include "proband.hxx"
+#include "organization.hxx"
 
 class QSqlQueryModel;
 
@@ -27,19 +29,25 @@ public slots:
 
     virtual void onCurrentProjectChanged(const QString& projectName);
     virtual void onCurrentCampaignChanged(const QString& campaignName);
+    virtual void onCurrentProbandChanged(const QString& label);
+    virtual void onCurrentOrganizationChanged(const QString& name);
+    virtual void onDescriptionChanged();
 
 protected:
     virtual void loadProjects();
-    virtual void save();
+    virtual void loadProbands();
+    virtual void loadOrganizations();
 
 private:
     Ui::SurveyDialog *ui;
 
-    Survey m_data;
+    SurveySPtr m_data;
 
     int m_defaultProjectId;
     int m_defaultCampaignId;
 
+    OrganizationSPtrVector m_organizations;
+    ProbandSPtrVector m_probands;
     ProjectSPtrVector m_projects;
     CampaignSPtrVector m_campaigns;
 };

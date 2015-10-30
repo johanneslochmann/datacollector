@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>546</width>
+    <height>506</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,6 +20,32 @@
       <string>Survey</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Pro&amp;ject</string>
+        </property>
+        <property name="buddy">
+         <cstring>project</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="project"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Ca&amp;mpaign</string>
+        </property>
+        <property name="buddy">
+         <cstring>campaign</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="campaign"/>
+      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
@@ -30,10 +56,36 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="campaign"/>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="proband"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Organi&amp;zation</string>
+        </property>
+        <property name="buddy">
+         <cstring>organization</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="organization"/>
       </item>
       <item row="4" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>&amp;Date</string>
+        </property>
+        <property name="buddy">
+         <cstring>date</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDateEdit" name="date"/>
+      </item>
+      <item row="5" column="0">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="label_5">
@@ -60,49 +112,22 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Ca&amp;mpaign</string>
-        </property>
-        <property name="buddy">
-         <cstring>campaign</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="proband"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>&amp;Date</string>
-        </property>
-        <property name="buddy">
-         <cstring>date</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QDateEdit" name="date"/>
-      </item>
-      <item row="4" column="1">
+      <item row="5" column="1">
        <widget class="QTextEdit" name="comment"/>
       </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="project"/>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Pro&amp;ject</string>
-        </property>
-        <property name="buddy">
-         <cstring>project</cstring>
-        </property>
-       </widget>
-      </item>
      </layout>
+     <zorder>label_3</zorder>
+     <zorder>campaign</zorder>
+     <zorder>label_2</zorder>
+     <zorder>proband</zorder>
+     <zorder>label_4</zorder>
+     <zorder>date</zorder>
+     <zorder>comment</zorder>
+     <zorder>project</zorder>
+     <zorder>label</zorder>
+     <zorder>label_5</zorder>
+     <zorder>organization</zorder>
+     <zorder>label_6</zorder>
     </widget>
    </item>
    <item>
