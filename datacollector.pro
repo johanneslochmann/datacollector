@@ -39,9 +39,7 @@ SOURCES += main.cxx\
     surveymanagementwidget.cxx \
     organizationunitmanagementwidget.cxx \
     icd10diagnosismanagementwidget.cxx \
-    agateprescriptionmanagementwidget.cxx \
     diagnosisinsurveymanagementwidget.cxx \
-    icd10diagnosisinsurveymanagementwidget.cxx \
     surveydialog.cxx \
     storable.cxx \
     survey.cxx \
@@ -88,9 +86,7 @@ HEADERS  += mainwindow.hxx \
     surveymanagementwidget.hxx \
     organizationunitmanagementwidget.hxx \
     icd10diagnosismanagementwidget.hxx \
-    agateprescriptionmanagementwidget.hxx \
     diagnosisinsurveymanagementwidget.hxx \
-    icd10diagnosisinsurveymanagementwidget.hxx \
     surveydialog.hxx \
     storable.hxx \
     survey.hxx \

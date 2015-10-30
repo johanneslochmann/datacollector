@@ -41,9 +41,7 @@ public:
     QAction* manageSurveysAction() const { return m_manageSurveys; }
     QAction* manageOrganizationUnitsAction() const { return m_manageOrganizationUnits; }
     QAction* manageIcd10DiagnosisAction() const { return m_manageIcd10Diagnosis; }
-    QAction* manageAgatePrescriptionsAction() const { return m_manageAgatePrescriptions; }
-    QAction* manageIcd10DiagnosisInSurveryAction() const { return m_manageIcd10DiagnosisInSurvery; }
-    QAction* manageAgateDataAction() const { return m_manageAgateData; }
+    QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql, bool createTransaction);
     QSqlQuery prepareQuery(const QString& sql);
@@ -79,9 +77,7 @@ signals:
     void manageSurveys();
     void manageOrganizationUnits();
     void manageIcd10Diagnosis();
-    void manageAgatePrescriptions();
-    void manageIcd10DiagnosisInSurvery();
-    void manageAgateData();
+    void manageSurveyData();
 
 public slots:
     void openDatabase();
@@ -114,7 +110,5 @@ private:
     QAction* m_manageSurveys;
     QAction* m_manageOrganizationUnits;
     QAction* m_manageIcd10Diagnosis;
-    QAction* m_manageAgatePrescriptions;
-    QAction* m_manageIcd10DiagnosisInSurvery;
-    QAction* m_manageAgateData;
+    QAction* m_manageSurveyData;
 };

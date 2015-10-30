@@ -30,9 +30,7 @@ public slots:
     void manageSurveys();
     void manageOrganizationUnits();
     void manageIcd10Diagnosis();
-    void manageAgatePrescriptions();
-    void manageIcd10DiagnosisInSurvey();
-    void manageAgateData();
+    void manageSurveyData();
 
 private:
     TableManagementWidget* m_channelIntoPatient;
@@ -51,7 +49,5 @@ private:
     TableManagementWidget* m_surveys;
     TableManagementWidget* m_organizationUnits;
     TableManagementWidget* m_icd10Diagnosis;
-    TableManagementWidget* m_agatePrescriptions;
-    TableManagementWidget* m_icd10DiagnosisInSurvey;
-    QWidget* m_agateData;
+    QWidget* m_surveyData;
 };

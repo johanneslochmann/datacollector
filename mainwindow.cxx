@@ -75,12 +75,10 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
 
-    QMenu* dataEntry = new QMenu(tr("Data &Entry"), this);
+    QMenu* dataEntry = new QMenu(tr("&Surveys"), this);
     dataEntry->addAction(app->manageSurveysAction());
     dataEntry->addSeparator();
-    dataEntry->addAction(app->manageAgateDataAction());
-    dataEntry->addAction(app->manageAgatePrescriptionsAction());
-    dataEntry->addAction(app->manageIcd10DiagnosisInSurveryAction());
+    dataEntry->addAction(app->manageSurveyDataAction());
 
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());

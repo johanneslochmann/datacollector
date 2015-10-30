@@ -18,8 +18,6 @@
 #include "surveymanagementwidget.hxx"
 #include "organizationunitmanagementwidget.hxx"
 #include "icd10diagnosismanagementwidget.hxx"
-#include "agateprescriptionmanagementwidget.hxx"
-#include "icd10diagnosisinsurveymanagementwidget.hxx"
 #include "surveyform.hxx"
 
 Workbench::Workbench(QWidget *parent)
@@ -43,9 +41,7 @@ Workbench::Workbench(QWidget *parent)
     m_surveys = new SurveyManagementWidget(this);
     m_organizationUnits = new OrganizationUnitManagementWidget(this);
     m_icd10Diagnosis = new Icd10DiagnosisManagementWidget(this);
-    m_agatePrescriptions = new AgatePrescriptionManagementWidget(this);
-    m_icd10DiagnosisInSurvey = new Icd10DiagnosisInSurveyManagementWidget(this);
-    m_agateData = new SurveyForm(this);
+    m_surveyData = new SurveyForm(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -63,9 +59,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_surveys);
     addWidget(m_organizationUnits);
     addWidget(m_icd10Diagnosis);
-    addWidget(m_agatePrescriptions);
-    addWidget(m_icd10DiagnosisInSurvey);
-    addWidget(m_agateData);
+    addWidget(m_surveyData);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
     connect(app, &DataCollector::manageDrugAdministrationMethods, this, &Workbench::manageDrugAdministrationMethods);
@@ -83,9 +77,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageSurveys, this, &Workbench::manageSurveys);
     connect(app, &DataCollector::manageOrganizationUnits, this, &Workbench::manageOrganizationUnits);
     connect(app, &DataCollector::manageIcd10Diagnosis, this, &Workbench::manageIcd10Diagnosis);
-    connect(app, &DataCollector::manageAgatePrescriptions, this, &Workbench::manageAgatePrescriptions);
-    connect(app, &DataCollector::manageIcd10DiagnosisInSurvery, this, &Workbench::manageIcd10DiagnosisInSurvey);
-    connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
+    connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
 }
 
 void Workbench::manageChannelsIntoPatient()
@@ -166,16 +158,6 @@ void Workbench::manageIcd10Diagnosis()
     setCurrentWidget(m_icd10Diagnosis);
 }
 
-void Workbench::manageAgatePrescriptions()
-{
-    setCurrentWidget(m_agatePrescriptions);
-}
-
-void Workbench::manageIcd10DiagnosisInSurvey()
-{
-    setCurrentWidget(m_icd10DiagnosisInSurvey);
-}
-
-void Workbench::manageAgateData() {
-    setCurrentWidget(m_agateData);
+void Workbench::manageSurveyData() {
+    setCurrentWidget(m_surveyData);
 }
