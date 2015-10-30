@@ -9,7 +9,7 @@
 
 DatabaseConnectionDataDialog::DatabaseConnectionDataDialog(QWidget *parent) :
     QDialog(parent),
-    m_ui(new Ui::DatabaseConnectionDataDialog)
+    m_ui(std::unique_ptr<Ui::DatabaseConnectionDataDialog>(new Ui::DatabaseConnectionDataDialog))
 {
     m_ui->setupUi(this);
     m_ui->m_port->setValidator(new QIntValidator(this));
@@ -26,7 +26,6 @@ DatabaseConnectionDataDialog::DatabaseConnectionDataDialog(QWidget *parent) :
 
 DatabaseConnectionDataDialog::~DatabaseConnectionDataDialog()
 {
-    delete m_ui;
 }
 
 void DatabaseConnectionDataDialog::hostChanged(const QString &txt)

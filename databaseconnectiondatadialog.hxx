@@ -2,6 +2,8 @@
 
 #include <QDialog>
 
+#include <memory>
+
 #include "databaseconnectiondata.hxx"
 
 namespace Ui {
@@ -32,7 +34,7 @@ private:
     void loadData();
     void saveData();
 
-    Ui::DatabaseConnectionDataDialog *m_ui;
+    std::unique_ptr<Ui::DatabaseConnectionDataDialog> m_ui;
 
     DatabaseConnectionData m_cd;
 };
