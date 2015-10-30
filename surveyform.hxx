@@ -56,6 +56,10 @@ public slots:
     void addIpRegularDrug();
     void removeIpRegularDrug();
 
+    void reloadPlasmaticLevels();
+    void addPlasmaticLevel();
+    void removePlasmaticLevel();
+
 protected:
     void prepareQueries();
     void setupModels();

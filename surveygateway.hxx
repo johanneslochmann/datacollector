@@ -14,10 +14,12 @@ public:
     void addIcd10DiagnosisToSurvey(int icd10DiagnosisId, int surveyId);
     void addOptionalDrugToSurvey(int drugId, int surveyId);
     void addRegularDrugToSurvey(int prescribeableDrugId, double morning, double lunch, double noon, double night, int surveyId);
+    void addPlasmaticLevelToSurvey(int moleculeId, double value, const QString& unitName, int surveyId);
 
     void removeIcd10DiagnosisFromSurvey(int recordId);
     void removeOptionalDrugFromSurvey(int recordId);
     void removeRegularDrugFromSurvey(int recordId);
+    void removePlasmaticLevelFromSurvey(int recordId);
 
 protected:
     QString loadAllQueryText() const override;

@@ -15,6 +15,7 @@
 #include "drugselectiondialog.hxx"
 #include "prescribeabledrugselectiondialog.hxx"
 #include "surveygateway.hxx"
+#include "plasmaticleveldialog.hxx"
 
 #include "ui_surveyform.h"
 
@@ -46,6 +47,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->reloadIpRegularDrugs, &QPushButton::clicked, this, &SurveyForm::reloadIpRegularDrugs);
     connect(ui->addIpRegularDrug, &QPushButton::clicked, this, &SurveyForm::addIpRegularDrug);
     connect(ui->removeIpRegularDrug, &QPushButton::clicked, this, &SurveyForm::removeIpRegularDrug);
+    connect(ui->reloadPlasmaticLevels, &QPushButton::clicked, this, &SurveyForm::reloadPlasmaticLevels);
+    connect(ui->addPlasmaticLevel, &QPushButton::clicked, this, &SurveyForm::addPlasmaticLevel);
+    connect(ui->removePlasmaticLevel, &QPushButton::clicked, this, &SurveyForm::removePlasmaticLevel);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -192,25 +196,16 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
     }
 
     reloadIcd10Diagnosis();
+    reloadIpOptionalDrugs();
+    reloadIpRegularDrugs();
+    reloadPlasmaticLevels();
 
-    m_ipOnDemandQry.bindValue(":survey_id", surveyId);
-    m_ipReqularQry.bindValue(":survey_id", surveyId);
-    m_ipPlasmaticLevelQry.bindValue(":survey_id", surveyId);
     m_agateQry.bindValue(":survey_id", surveyId);
 
-    DataCollector::get()->performQuery(m_ipOnDemandQry, false);
-    DataCollector::get()->performQuery(m_ipReqularQry, false);
-    DataCollector::get()->performQuery(m_ipPlasmaticLevelQry, false);
     DataCollector::get()->performQuery(m_agateQry, false);
 
-    m_ipOnDemandModel->setQuery(m_ipOnDemandQry);;
-    m_ipReqularModel->setQuery(m_ipReqularQry);
-    m_ipPlasmaticLevelModel->setQuery(m_ipPlasmaticLevelQry);
     m_agateModel->setQuery(m_agateQry);
 
-    ui->ipOnDemandView->setModel(m_ipOnDemandModel);
-    ui->ipRegularView->setModel(m_ipReqularModel);
-    ui->ipPlasmaticLevelsView->setModel(m_ipPlasmaticLevelModel);
     ui->agateView->setModel(m_agateModel);
 
     ui->tab->setEnabled(true);
@@ -443,6 +438,70 @@ void SurveyForm::removeIpRegularDrug()
     }
 }
 
+void SurveyForm::reloadPlasmaticLevels()
+{
+    m_ipPlasmaticLevelQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_ipPlasmaticLevelQry, false);
+    m_ipPlasmaticLevelModel->setQuery(m_ipPlasmaticLevelQry);
+
+    ui->ipPlasmaticLevelsView->setModel(m_ipPlasmaticLevelModel);
+    ui->ipPlasmaticLevelsView->hideColumn(4);
+}
+
+void SurveyForm::addPlasmaticLevel()
+{
+    auto dlg = new PlasmaticLevelDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addPlasmaticLevelToSurvey(dlg->currentId(), dlg->value(), dlg->unitName(), m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadPlasmaticLevels();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add Regular Drug Prescription to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removePlasmaticLevel()
+{
+    auto selectedIndexes = ui->ipPlasmaticLevelsView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->ipPlasmaticLevelsView->model()->index(idx.row(), 4);
+
+    auto selectedId = ui->ipPlasmaticLevelsView->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove Plasmatic Level?"),
+                              tr("Remove Plasmatic Level <b>%1</b>?")
+                              .arg(ui->ipPlasmaticLevelsView->model()->data(idx).toString()),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removePlasmaticLevelFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadPlasmaticLevels();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove Plasmatic Level from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
 void SurveyForm::prepareQueries()
 {
     try {
@@ -498,10 +557,13 @@ void SurveyForm::prepareQueries()
         m_ipPlasmaticLevelQry = DataCollector::get()->prepareQuery("select "
                                                                    "m.name as molecule "
                                                                    ", nm.concentration_value as measurement_value "
+                                                                   ", u.name as measurement_unit "
                                                                    ", nm.description as description "
+                                                                   ", nm.id as id "
                                                                    "from core.molecule m "
                                                                    "join core.plasmatic_level nm on m.id = nm.molecule_id "
                                                                    "join core.survey s on nm.survey_id = s.id "
+                                                                   "join core.unit u on nm.unit_id = u.id "
                                                                    "where s.id = :survey_id "
                                                                    "order by molecule asc");
 
@@ -557,6 +619,8 @@ void SurveyForm::setupModels()
     ui->ipOnDemandView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->ipRegularView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->ipRegularView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->ipPlasmaticLevelsView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->ipPlasmaticLevelsView->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 void SurveyForm::showError(QSqlError err, const QString &msg)

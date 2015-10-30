@@ -47,6 +47,19 @@ void SurveyGateway::addRegularDrugToSurvey(int prescribeableDrugId, double morni
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
+void SurveyGateway::addPlasmaticLevelToSurvey(int moleculeId, double value, const QString &unitName, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into "
+                                                "core.plasmatic_level(molecule_id, concentration_value, unit_id, survey_id) "
+                                                "values (:molecule_id, :value, (select id from core.unit where name = :unit_name), :survey_id) "
+                                                "returning id;");
+    q.bindValue(":molecule_id", moleculeId);
+    q.bindValue(":value", value);
+    q.bindValue(":unit_name", unitName);
+    q.bindValue(":survey_id", surveyId);
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
 void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where id = :id;");
@@ -68,6 +81,15 @@ void SurveyGateway::removeOptionalDrugFromSurvey(int recordId)
 void SurveyGateway::removeRegularDrugFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.regular_prescription where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
+void SurveyGateway::removePlasmaticLevelFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.plasmatic_level where id = :id;");
 
     q.bindValue(":id", recordId);
 
