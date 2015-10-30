@@ -78,6 +78,8 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageOrganizationUnits, this, &Workbench::manageOrganizationUnits);
     connect(app, &DataCollector::manageIcd10Diagnosis, this, &Workbench::manageIcd10Diagnosis);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
+
+    setCurrentWidget(m_surveyData);
 }
 
 void Workbench::manageChannelsIntoPatient()
