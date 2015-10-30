@@ -54,9 +54,9 @@ SOURCES += main.cxx\
     organizationgateway.cxx \
     surveyform.cxx \
     icd10diagnosisselectiondialog.cxx \
-    prescribeabledrugselectiondialog.cxx \
     plasmaticleveldialog.cxx \
-    ondemanddrugdialog.cxx
+    ondemanddrugdialog.cxx \
+    regulardrugdialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -105,15 +105,15 @@ HEADERS  += mainwindow.hxx \
     organizationgateway.hxx \
     surveyform.hxx \
     icd10diagnosisselectiondialog.hxx \
-    prescribeabledrugselectiondialog.hxx \
     plasmaticleveldialog.hxx \
-    ondemanddrugdialog.hxx
+    ondemanddrugdialog.hxx \
+    regulardrugdialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
     surveydialog.ui \
     surveyform.ui \
     icd10diagnosisselectiondialog.ui \
-    prescribeabledrugselectiondialog.ui \
     plasmaticleveldialog.ui \
-    ondemanddrugdialog.ui
+    ondemanddrugdialog.ui \
+    regulardrugdialog.ui

@@ -1,17 +1,17 @@
-#include "prescribeabledrugselectiondialog.hxx"
+#include "regulardrugdialog.hxx"
 
 #include <QPushButton>
 #include <QDialogButtonBox>
 #include <QLineEdit>
 #include <QDoubleValidator>
 
-#include "ui_prescribeabledrugselectiondialog.h"
+#include "ui_regulardrugdialog.h"
 
 #include "datacollector.hxx"
 
-PrescribeableDrugSelectionDialog::PrescribeableDrugSelectionDialog(QWidget *parent) :
+RegularDrugDialog::RegularDrugDialog(QWidget *parent) :
     QDialog(parent),
-    ui(std::unique_ptr<Ui::PrescribeableDrugSelectionDialog>(new Ui::PrescribeableDrugSelectionDialog))
+    ui(std::unique_ptr<Ui::RegularDrugDialog>(new Ui::RegularDrugDialog))
 {
     ui->setupUi(this);
 
@@ -23,10 +23,10 @@ PrescribeableDrugSelectionDialog::PrescribeableDrugSelectionDialog(QWidget *pare
     ui->noonW->setValidator(new QDoubleValidator(this));
     ui->nightW->setValidator(new QDoubleValidator(this));
 
-    connect(ui->morningW, &QLineEdit::textChanged, this, &PrescribeableDrugSelectionDialog::onMorningDosageChanged);
-    connect(ui->lunchW, &QLineEdit::textChanged, this, &PrescribeableDrugSelectionDialog::onLunchDosageChanged);
-    connect(ui->noonW, &QLineEdit::textChanged, this, &PrescribeableDrugSelectionDialog::onNoonDosageChanged);
-    connect(ui->nightW, &QLineEdit::textChanged, this, &PrescribeableDrugSelectionDialog::onNightDosageChanged);
+    connect(ui->morningW, &QLineEdit::textChanged, this, &RegularDrugDialog::onMorningDosageChanged);
+    connect(ui->lunchW, &QLineEdit::textChanged, this, &RegularDrugDialog::onLunchDosageChanged);
+    connect(ui->noonW, &QLineEdit::textChanged, this, &RegularDrugDialog::onNoonDosageChanged);
+    connect(ui->nightW, &QLineEdit::textChanged, this, &RegularDrugDialog::onNightDosageChanged);
 
     m_m = new QSqlQueryModel(this);
 
@@ -45,17 +45,17 @@ PrescribeableDrugSelectionDialog::PrescribeableDrugSelectionDialog(QWidget *pare
         DataCollector::get()->showDatabaseError(e, tr("Failed to load Prescribeable Drug list."), this);
     }
 
-    connect(ui->m_data, &QTableView::activated, this, &PrescribeableDrugSelectionDialog::onIndexActivated);
+    connect(ui->m_data, &QTableView::activated, this, &RegularDrugDialog::onIndexActivated);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
 
-PrescribeableDrugSelectionDialog::~PrescribeableDrugSelectionDialog()
+RegularDrugDialog::~RegularDrugDialog()
 {
 
 }
 
-void PrescribeableDrugSelectionDialog::onIndexActivated(const QModelIndex &idx)
+void RegularDrugDialog::onIndexActivated(const QModelIndex &idx)
 {
     auto idIdx = ui->m_data->model()->index(idx.row(), 3);
 
@@ -64,22 +64,22 @@ void PrescribeableDrugSelectionDialog::onIndexActivated(const QModelIndex &idx)
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(m_selectedId > 0);
 }
 
-void PrescribeableDrugSelectionDialog::onMorningDosageChanged(const QString &s)
+void RegularDrugDialog::onMorningDosageChanged(const QString &s)
 {
     m_morningDosage = s.toDouble();
 }
 
-void PrescribeableDrugSelectionDialog::onLunchDosageChanged(const QString &s)
+void RegularDrugDialog::onLunchDosageChanged(const QString &s)
 {
     m_lunchDosage = s.toDouble();
 }
 
-void PrescribeableDrugSelectionDialog::onNoonDosageChanged(const QString &s)
+void RegularDrugDialog::onNoonDosageChanged(const QString &s)
 {
     m_noonDosage = s.toDouble();
 }
 
-void PrescribeableDrugSelectionDialog::onNightDosageChanged(const QString &s)
+void RegularDrugDialog::onNightDosageChanged(const QString &s)
 {
     m_nightDosage = s.toDouble();
 }

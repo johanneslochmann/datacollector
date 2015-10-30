@@ -7,16 +7,16 @@
 #include <memory>
 
 namespace Ui {
-class PrescribeableDrugSelectionDialog;
+class RegularDrugDialog;
 }
 
-class PrescribeableDrugSelectionDialog : public QDialog
+class RegularDrugDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit PrescribeableDrugSelectionDialog(QWidget *parent = 0);
-    ~PrescribeableDrugSelectionDialog();
+    explicit RegularDrugDialog(QWidget *parent = 0);
+    ~RegularDrugDialog();
 
     int currentId() const { return m_selectedId; }
 
@@ -34,7 +34,7 @@ public slots:
     void onNightDosageChanged(const QString& s);
 
 private:
-    std::unique_ptr<Ui::PrescribeableDrugSelectionDialog> ui;
+    std::unique_ptr<Ui::RegularDrugDialog> ui;
 
     QSqlQuery m_q;
     QSqlQueryModel* m_m;

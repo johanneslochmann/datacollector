@@ -13,7 +13,7 @@
 #include "surveydialog.hxx"
 #include "icd10diagnosisselectiondialog.hxx"
 #include "ondemanddrugdialog.hxx"
-#include "prescribeabledrugselectiondialog.hxx"
+#include "regulardrugdialog.hxx"
 #include "surveygateway.hxx"
 #include "plasmaticleveldialog.hxx"
 
@@ -376,7 +376,7 @@ void SurveyForm::reloadRegularDrugs()
 
 void SurveyForm::addRegularDrug()
 {
-    auto dlg = new PrescribeableDrugSelectionDialog(this);
+    auto dlg = new RegularDrugDialog(this);
 
     if (QDialog::Accepted != dlg->exec()) {
         return;
