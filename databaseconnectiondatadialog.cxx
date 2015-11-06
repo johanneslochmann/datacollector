@@ -17,7 +17,7 @@ DatabaseConnectionDataDialog::DatabaseConnectionDataDialog(QWidget *parent) :
     connect(m_ui->m_host, &QLineEdit::textChanged, this, &DatabaseConnectionDataDialog::hostChanged);
     connect(m_ui->m_port, &QLineEdit::textChanged, this, &DatabaseConnectionDataDialog::portChanged);
     connect(m_ui->m_database, &QLineEdit::textChanged, this, &DatabaseConnectionDataDialog::databaseChanged);
-    connect(m_ui->m_host, &QLineEdit::textChanged, this, &DatabaseConnectionDataDialog::hostChanged);
+    connect(m_ui->m_user, &QLineEdit::textChanged, this, &DatabaseConnectionDataDialog::userChanged);
     connect(m_ui->m_password, &QLineEdit::textChanged, this, &DatabaseConnectionDataDialog::passwordChanged);
 
     loadData();
