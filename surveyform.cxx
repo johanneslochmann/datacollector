@@ -249,7 +249,6 @@ void SurveyForm::reloadIcd10Diagnosis()
     m_icd10Model->setQuery(m_icd10Qry);
 
     ui->icd10View->setModel(m_icd10Model);
-    ui->icd10View->hideColumn(2);
 }
 
 void SurveyForm::addIcd10Diagnosis()
@@ -312,7 +311,6 @@ void SurveyForm::reloadOnDemandDrugs()
     m_onDemandDrugsModel->setQuery(m_onDemandDrugsQry);
 
     ui->onDemandDrugsView->setModel(m_onDemandDrugsModel);
-    ui->onDemandDrugsView->hideColumn(2);
 }
 
 void SurveyForm::addOnDemandDrug()
@@ -375,7 +373,6 @@ void SurveyForm::reloadRegularDrugs()
     m_reqularDrugsModel->setQuery(m_reqularDrugsQry);
 
     ui->regularDrugsView->setModel(m_reqularDrugsModel);
-    ui->regularDrugsView->hideColumn(7);
 }
 
 void SurveyForm::addRegularDrug()
@@ -444,7 +441,6 @@ void SurveyForm::reloadPlasmaticLevels()
     m_plasmaticLevelsModel->setQuery(m_plasmaticLevelsQry);
 
     ui->plasmaticLevelsView->setModel(m_plasmaticLevelsModel);
-    ui->plasmaticLevelsView->hideColumn(4);
 }
 
 void SurveyForm::addPlasmaticLevel()
@@ -456,7 +452,7 @@ void SurveyForm::addPlasmaticLevel()
     }
 
     try {
-        SurveyGateway().addPlasmaticLevelToSurvey(dlg->currentId(), dlg->value(), dlg->unitName(), m_currentSurveyId);
+        SurveyGateway().addPlasmaticLevelToSurvey(dlg->currentId(), dlg->value(), dlg->unitName(), dlg->comment(), m_currentSurveyId);
         DataCollector::get()->commit();
 
         reloadPlasmaticLevels();
@@ -508,7 +504,6 @@ void SurveyForm::reloadDepotDrugs()
     m_depotDrugsModel->setQuery(m_depotDrugsQry);
 
     ui->depotDrugsView->setModel(m_depotDrugsModel);
-    //ui->depotDrugsView->hideColumn(5);
 }
 
 void SurveyForm::addDepotDrug()

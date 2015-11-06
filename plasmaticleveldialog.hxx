@@ -21,11 +21,13 @@ public:
     int currentId() const { return m_selectedId; }
     double value() const { return m_value; }
     QString unitName() const { return m_unitName; }
+    QString comment() const { return m_comment; }
 
 public slots:
     void onIndexActivated(const QModelIndex& idx);
     void onUnitActivated(const QString& txt);
     void onValueChanged(const QString& txt);
+    void onCommentChanged();
 
 private:
     std::unique_ptr<Ui::PlasmaticLevelDialog> ui;
@@ -33,6 +35,7 @@ private:
     double m_value { 0.0 };
     QString m_unitName { "ng/ml" };
     int m_selectedId { 0 };
+    QString m_comment { "" };
 
     QSqlQuery m_moleculeQry;
     QSqlQuery m_unitQry;

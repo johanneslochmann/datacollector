@@ -1,6 +1,7 @@
 #include "plasmaticleveldialog.hxx"
 
 #include <QComboBox>
+#include <QTextEdit>
 
 #include "ui_plasmaticleveldialog.h"
 
@@ -19,6 +20,7 @@ PlasmaticLevelDialog::PlasmaticLevelDialog(QWidget *parent) :
 
     connect(ui->concentration, &QLineEdit::textChanged, this, &PlasmaticLevelDialog::onValueChanged);
     connect(ui->units, SIGNAL(activated(QString)), this, SLOT(onUnitActivated(QString)));
+    connect(ui->comment, &QTextEdit::textChanged, this, &PlasmaticLevelDialog::onCommentChanged);
 
     m_moleculeModel = new QSqlQueryModel(this);
     m_unitModel = new QSqlQueryModel(this);
@@ -59,6 +61,11 @@ void PlasmaticLevelDialog::onUnitActivated(const QString &txt)
 void PlasmaticLevelDialog::onValueChanged(const QString &txt)
 {
     m_value = txt.toDouble();
+}
+
+void PlasmaticLevelDialog::onCommentChanged()
+{
+    m_comment = ui->comment->toPlainText();
 }
 
 void PlasmaticLevelDialog::onIndexActivated(const QModelIndex &idx)
