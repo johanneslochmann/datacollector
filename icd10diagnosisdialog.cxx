@@ -1,4 +1,4 @@
-#include "icd10diagnosisselectiondialog.hxx"
+#include "icd10diagnosisdialog.hxx"
 
 #include <QTableView>
 #include <QDebug>
@@ -10,7 +10,7 @@
 
 #include "datacollector.hxx"
 
-Icd10DiagnosisSelectionDialog::Icd10DiagnosisSelectionDialog(QWidget *parent) :
+Icd10DiagnosisDialog::Icd10DiagnosisDialog(QWidget *parent) :
     QDialog(parent),
     ui(std::unique_ptr<Ui::Icd10DiagnosisSelectionDialog>(new Ui::Icd10DiagnosisSelectionDialog))
 {
@@ -32,17 +32,17 @@ Icd10DiagnosisSelectionDialog::Icd10DiagnosisSelectionDialog(QWidget *parent) :
         DataCollector::get()->showDatabaseError(e, tr("Failed to load ICD10 diagnosis list."), this);
     }
 
-    connect(ui->m_data, &QTableView::activated, this, &Icd10DiagnosisSelectionDialog::onIndexActivated);
-    connect(ui->m_comment, &QTextEdit::textChanged, this, &Icd10DiagnosisSelectionDialog::onCommentChanged);
+    connect(ui->m_data, &QTableView::activated, this, &Icd10DiagnosisDialog::onIndexActivated);
+    connect(ui->m_comment, &QTextEdit::textChanged, this, &Icd10DiagnosisDialog::onCommentChanged);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
 
-Icd10DiagnosisSelectionDialog::~Icd10DiagnosisSelectionDialog()
+Icd10DiagnosisDialog::~Icd10DiagnosisDialog()
 {
 }
 
-void Icd10DiagnosisSelectionDialog::onIndexActivated(const QModelIndex &idx)
+void Icd10DiagnosisDialog::onIndexActivated(const QModelIndex &idx)
 {
     auto idIdx = ui->m_data->model()->index(idx.row(), 1);
 
@@ -51,7 +51,7 @@ void Icd10DiagnosisSelectionDialog::onIndexActivated(const QModelIndex &idx)
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(m_selectedId > 0);
 }
 
-void Icd10DiagnosisSelectionDialog::onCommentChanged()
+void Icd10DiagnosisDialog::onCommentChanged()
 {
     m_comment = ui->m_comment->toPlainText();
 }

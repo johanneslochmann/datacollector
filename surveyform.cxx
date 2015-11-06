@@ -11,7 +11,7 @@
 #include "datacollector.hxx"
 #include "databaseerror.hxx"
 #include "surveydialog.hxx"
-#include "icd10diagnosisselectiondialog.hxx"
+#include "icd10diagnosisdialog.hxx"
 #include "ondemanddrugdialog.hxx"
 #include "regulardrugdialog.hxx"
 #include "surveygateway.hxx"
@@ -253,7 +253,7 @@ void SurveyForm::reloadIcd10Diagnosis()
 
 void SurveyForm::addIcd10Diagnosis()
 {
-    auto dlg = new Icd10DiagnosisSelectionDialog(this);
+    auto dlg = new Icd10DiagnosisDialog(this);
 
     if (QDialog::Accepted != dlg->exec()) {
         return;

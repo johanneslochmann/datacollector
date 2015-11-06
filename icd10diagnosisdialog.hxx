@@ -11,13 +11,13 @@ namespace Ui {
 class Icd10DiagnosisSelectionDialog;
 }
 
-class Icd10DiagnosisSelectionDialog : public QDialog
+class Icd10DiagnosisDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Icd10DiagnosisSelectionDialog(QWidget *parent = 0);
-    ~Icd10DiagnosisSelectionDialog();
+    explicit Icd10DiagnosisDialog(QWidget *parent = 0);
+    ~Icd10DiagnosisDialog();
 
     int currentId() const { return m_selectedId; }
     QString comment() const { return m_comment; }
