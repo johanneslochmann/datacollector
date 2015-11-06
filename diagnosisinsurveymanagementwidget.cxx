@@ -14,5 +14,7 @@ DiagnosisInSurveyManagementWidget::DiagnosisInSurveyManagementWidget(QWidget* p)
 
     view()->hideColumn(model()->fieldIndex("id")); // hide id column
 
+    model()->setHeaderData(0, Qt::Horizontal, tr("ICD10 Diagnosis"));
+
     model()->select();
 }

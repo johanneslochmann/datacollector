@@ -21,7 +21,7 @@ Icd10DiagnosisSelectionDialog::Icd10DiagnosisSelectionDialog(QWidget *parent) :
     m_m = new QSqlQueryModel(this);
 
     try {
-        m_q = DataCollector::get()->prepareAndPerformQuery("select name, id from core.icd10_diagnosis order by name asc;", false);
+        m_q = DataCollector::get()->prepareAndPerformQuery(QStringLiteral("select name as \"%1\", id from core.icd10_diagnosis order by name asc;").arg(tr("Name")), false);
         m_m->setQuery(m_q);
 
         ui->m_data->setModel(m_m);

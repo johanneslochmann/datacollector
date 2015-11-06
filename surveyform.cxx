@@ -573,78 +573,105 @@ void SurveyForm::prepareQueries()
     try {
         m_projectsQry = DataCollector::get()->prepareQuery("select name from core.project order by name asc;");
         m_campaignsQry = DataCollector::get()->prepareQuery("select name from core.campaign where project_id = :project_id order by name asc;");
-        m_surveysQry = DataCollector::get()->prepareQuery("select "
-                                                          "prob.external_id::text || ' [' || coalesce(prob.surname, '') || ', ' || coalesce(prob.first_name, '') || ']' as proband "
-                                                          ", surv.survey_date as survey_date "
-                                                          ", org.name as organization "
-                                                          ", surv.description as comment "
-                                                          ", surv.id as id "
-                                                          "from core.proband prob "
-                                                          "join core.survey surv on prob.id = surv.proband_id "
-                                                          "join core.organization_unit org on surv.organization_unit_id = org.id "
-                                                          "where surv.campaign_id = :campaign_id "
-                                                          "order by proband asc;");
-
         m_getCampaignIdQry = DataCollector::get()->prepareQuery("select id from core.campaign where project_id = :project_id and name = :campaign_name");
         m_getProjectIdQry = DataCollector::get()->prepareQuery("select id from core.project where name = :projectName;");
-        m_icd10Qry = DataCollector::get()->prepareQuery("select "
-                                                        "icd10.name as diagnosis, "
-                                                        "nm.id as id "
-                                                        "from core.icd10_diagnosis icd10 "
-                                                        "join core.icd10_survey nm on icd10.id = nm.icd10_diagnosis_id "
-                                                        "join core.survey s on nm.survey_id = s.id "
-                                                        "where s.id = :survey_id "
-                                                        "order by diagnosis asc;");
-        m_onDemandDrugsQry = DataCollector::get()->prepareQuery("select "
-                                                                "d.name as drug "
-                                                                "from core.drug d "
-                                                                "join core.optional_prescription nm on d.id = nm.drug_id "
-                                                                "join core.survey s on nm.survey_id = s.id "
-                                                                "where s.id = :survey_id "
-                                                                "order by drug asc;");
 
-        m_reqularDrugsQry = DataCollector::get()->prepareQuery("select "
-                                                               "pd.name as drug "
-                                                               ", nm.morning_dosage "
-                                                               ", nm.lunch_dosage "
-                                                               ", nm.noon_dosage "
-                                                               ", nm.night_dosage "
-                                                               ", am.name as administration_method_name "
-                                                               ", u.name as unit_name"
-                                                               ", nm.id as id "
-                                                               "from core.prescribeable_drug pd "
-                                                               "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
-                                                               "join core.survey s on nm.survey_id = s.id "
-                                                               "join core.unit u on pd.dosage_unit_id = u.id "
-                                                               "join core.administration_method am on pd.administration_method_id = am.id "
-                                                               "where s.id = :survey_id "
-                                                               "order by drug asc;");
+        m_surveysQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
+                                                                         "prob.external_id::text || ' [' || coalesce(prob.surname, '') || ', ' || coalesce(prob.first_name, '') || ']' as \"%1\" "
+                                                                         ", surv.survey_date as \"%2\" "
+                                                                         ", org.name as \"%3\" "
+                                                                         ", surv.description as \"%4\" "
+                                                                         ", surv.id as \"%5\" "
+                                                                         "from core.proband prob "
+                                                                         "join core.survey surv on prob.id = surv.proband_id "
+                                                                         "join core.organization_unit org on surv.organization_unit_id = org.id "
+                                                                         "where surv.campaign_id = :campaign_id "
+                                                                         "order by 1, 2 asc;")
+                                                          .arg(tr("Proband"))
+                                                          .arg(tr("Survey Date"))
+                                                          .arg(tr("Organization"))
+                                                          .arg(tr("Description"))
+                                                          .arg(tr("Survey ID")));
 
-        m_plasmaticLevelsQry = DataCollector::get()->prepareQuery("select "
-                                                                  "m.name as molecule "
-                                                                  ", nm.concentration_value as measurement_value "
-                                                                  ", u.name as measurement_unit "
-                                                                  ", nm.description as description "
-                                                                  ", nm.id as id "
-                                                                  "from core.molecule m "
-                                                                  "join core.plasmatic_level nm on m.id = nm.molecule_id "
-                                                                  "join core.survey s on nm.survey_id = s.id "
-                                                                  "join core.unit u on nm.unit_id = u.id "
-                                                                  "where s.id = :survey_id "
-                                                                  "order by molecule asc");
+        m_icd10Qry = DataCollector::get()->prepareQuery(QStringLiteral("select "
+                                                                       "icd10.name as \"%1\", "
+                                                                       "nm.id as id "
+                                                                       "from core.icd10_diagnosis icd10 "
+                                                                       "join core.icd10_survey nm on icd10.id = nm.icd10_diagnosis_id "
+                                                                       "join core.survey s on nm.survey_id = s.id "
+                                                                       "where s.id = :survey_id "
+                                                                       "order by 1 asc;")
+                                                        .arg(tr("ICD10 Diagnosis")));
+        m_onDemandDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
+                                                                               "d.name as \"%1\" "
+                                                                               "from core.drug d "
+                                                                               "join core.optional_prescription nm on d.id = nm.drug_id "
+                                                                               "join core.survey s on nm.survey_id = s.id "
+                                                                               "where s.id = :survey_id "
+                                                                               "order by 1 asc;")
+                                                                .arg(tr("Drug")));
 
-        m_depotDrugsQry = DataCollector::get()->prepareQuery("select "
-                                                             "pd.name as prescribeable_drug, "
-                                                             "dp.last_injection_on, "
-                                                             "dp.dosage, "
-                                                             "dp.injection_interval_in_days, "
-                                                             "dp.description, "
-                                                             "dp.id as id "
-                                                             "from core.survey s "
-                                                             "join core.depot_prescription dp on s.id = dp.survey_id "
-                                                             "join core.prescribeable_drug pd on dp.prescribeable_drug_id = pd.id "
-                                                             "where s.id = :survey_id "
-                                                             "order by prescribeable_drug asc, last_injection_on desc;");
+        m_reqularDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
+                                                                              "pd.name as \"%1\" "
+                                                                              ", nm.morning_dosage as \"%2\" "
+                                                                              ", nm.lunch_dosage as \"%3\" "
+                                                                              ", nm.noon_dosage \"%4\" "
+                                                                              ", nm.night_dosage \"%5\" "
+                                                                              ", am.name as \"%6\" "
+                                                                              ", u.name as \"%7\" "
+                                                                              ", nm.id as \"%8\" "
+                                                                              "from core.prescribeable_drug pd "
+                                                                              "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
+                                                                              "join core.survey s on nm.survey_id = s.id "
+                                                                              "join core.unit u on pd.dosage_unit_id = u.id "
+                                                                              "join core.administration_method am on pd.administration_method_id = am.id "
+                                                                              "where s.id = :survey_id "
+                                                                              "order by 1 asc;")
+                                                               .arg(tr("Drug"))
+                                                               .arg(tr("Morning"))
+                                                               .arg(tr("Lunch"))
+                                                               .arg(tr("Noon"))
+                                                               .arg(tr("Night"))
+                                                               .arg(tr("Administration Method"))
+                                                               .arg(tr("Drug Dosage Unit"))
+                                                               .arg(tr("Prescription ID")));
+
+        m_plasmaticLevelsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
+                                                                                 "m.name as \"%1\" "
+                                                                                 ", nm.concentration_value as \"%2\" "
+                                                                                 ", u.name as \"%3\" "
+                                                                                 ", nm.description as \"%4\" "
+                                                                                 ", nm.id as \"%5\" "
+                                                                                 "from core.molecule m "
+                                                                                 "join core.plasmatic_level nm on m.id = nm.molecule_id "
+                                                                                 "join core.survey s on nm.survey_id = s.id "
+                                                                                 "join core.unit u on nm.unit_id = u.id "
+                                                                                 "where s.id = :survey_id "
+                                                                                 "order by 1 asc")
+                                                                  .arg(tr("Molecule"))
+                                                                  .arg(tr("Measurement"))
+                                                                  .arg(tr("Unit"))
+                                                                  .arg(tr("Comment"))
+                                                                  .arg(tr("Measurement ID")));
+
+        m_depotDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
+                                                                            "pd.name as \"%1\", "
+                                                                            "dp.last_injection_on as \"%2\", "
+                                                                            "dp.dosage as \"%3\", "
+                                                                            "dp.injection_interval_in_days as \"%4\", "
+                                                                            "dp.description as \"%5\", "
+                                                                            "dp.id as \"%6\" "
+                                                                            "from core.survey s "
+                                                                            "join core.depot_prescription dp on s.id = dp.survey_id "
+                                                                            "join core.prescribeable_drug pd on dp.prescribeable_drug_id = pd.id "
+                                                                            "where s.id = :survey_id "
+                                                                            "order by 1 asc, 2 desc;")
+                                                             .arg(tr("Prescribeable Drug"))
+                                                             .arg(tr("Last Injection"))
+                                                             .arg(tr("Dosage"))
+                                                             .arg(tr("Interval [days]"))
+                                                             .arg(tr("Comment"))
+                                                             .arg(tr("Prescription ID")));
     } catch(DatabaseError e) {
         showError(e);
     }
