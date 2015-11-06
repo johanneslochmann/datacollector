@@ -16,5 +16,12 @@ SurveyManagementWidget::SurveyManagementWidget(QWidget *p)
     view()->setItemDelegate(new QSqlRelationalDelegate(view()));
     view()->setItemDelegateForColumn(model()->fieldIndex("survey_date"), new DateEditDelegate(view()));
 
+    model()->setHeaderData(model()->fieldIndex("ID"), Qt::Horizontal, tr("Survey ID"));
+    model()->setHeaderData(1, Qt::Horizontal, tr("External Proband ID"));
+    model()->setHeaderData(2, Qt::Horizontal, tr("Campaign"));
+    model()->setHeaderData(model()->fieldIndex("description"), Qt::Horizontal, tr("Description"));
+    model()->setHeaderData(model()->fieldIndex("survey_date"), Qt::Horizontal, tr("Survey Date"));
+    model()->setHeaderData(5, Qt::Horizontal, tr("Organization Unit"));
+
     model()->select();
 }

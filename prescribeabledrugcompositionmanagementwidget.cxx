@@ -16,6 +16,11 @@ PrescribeableDrugCompositionManagementWidget::PrescribeableDrugCompositionManage
 
     view()->hideColumn(model()->fieldIndex("id")); // hide id column
 
+    model()->setHeaderData(1, Qt::Horizontal, tr("Prescribeable Drug"));
+    model()->setHeaderData(2, Qt::Horizontal, tr("Molecule"));
+    model()->setHeaderData(model()->fieldIndex("amount"), Qt::Horizontal, tr("Amount"));
+    model()->setHeaderData(4, Qt::Horizontal, tr("Amount Unit"));
+
     model()->select();
 }
 

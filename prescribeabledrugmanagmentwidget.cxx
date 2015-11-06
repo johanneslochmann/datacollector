@@ -16,5 +16,12 @@ PrescribeableDrugManagmentWidget::PrescribeableDrugManagmentWidget(QWidget *p)
 
     view()->hideColumn(model()->fieldIndex("id")); // hide id column
 
+    model()->setHeaderData(1, Qt::Horizontal, tr("Drug"));
+    model()->setHeaderData(model()->fieldIndex("name"), Qt::Horizontal, tr("Name"));
+    model()->setHeaderData(model()->fieldIndex("dosage"), Qt::Horizontal, tr("Dosage"));
+    model()->setHeaderData(4, Qt::Horizontal, tr("Dosage Unit"));
+    model()->setHeaderData(5, Qt::Horizontal, tr("Administration Method"));
+    model()->setHeaderData(model()->fieldIndex("description"), Qt::Horizontal, tr("Description"));
+
     model()->select();
 }
