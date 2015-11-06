@@ -82,6 +82,9 @@ void MainWindow::initMenues()
     QMenu* dataEntry = new QMenu(tr("&Surveys"), this);
     dataEntry->addAction(app->manageSurveyDataAction());
 
+    QMenu* stat = new QMenu(tr("&Statistics"), this);
+    stat->addAction(app->showCoreStatisticsAction());
+
     QMenu* help = new QMenu(tr("&Help"), this);
     help->addAction(app->aboutProgramAction());
     help->addSeparator();
@@ -91,6 +94,7 @@ void MainWindow::initMenues()
     menuBar()->addMenu(db);
     menuBar()->addMenu(coreData);
     menuBar()->addMenu(dataEntry);
+    menuBar()->addMenu(stat);
     menuBar()->addSeparator();
     menuBar()->addMenu(help);
 }

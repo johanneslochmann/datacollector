@@ -57,7 +57,8 @@ SOURCES += main.cxx\
     ondemanddrugdialog.cxx \
     regulardrugdialog.cxx \
     depotdrugdialog.cxx \
-    icd10diagnosisdialog.cxx
+    icd10diagnosisdialog.cxx \
+    corestatisticsform.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -109,7 +110,8 @@ HEADERS  += mainwindow.hxx \
     ondemanddrugdialog.hxx \
     regulardrugdialog.hxx \
     depotdrugdialog.hxx \
-    icd10diagnosisdialog.hxx
+    icd10diagnosisdialog.hxx \
+    corestatisticsform.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
@@ -119,4 +121,5 @@ FORMS += \
     ondemanddrugdialog.ui \
     regulardrugdialog.ui \
     depotdrugdialog.ui \
-    icd10diagnosisdialog.ui
+    icd10diagnosisdialog.ui \
+    corestatisticsform.ui

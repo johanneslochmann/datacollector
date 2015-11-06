@@ -18,6 +18,7 @@
 #include "organizationunitmanagementwidget.hxx"
 #include "icd10diagnosismanagementwidget.hxx"
 #include "surveyform.hxx"
+#include "corestatisticsform.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -40,6 +41,7 @@ Workbench::Workbench(QWidget *parent)
     m_organizationUnits = new OrganizationUnitManagementWidget(this);
     m_icd10Diagnosis = new Icd10DiagnosisManagementWidget(this);
     m_surveyData = new SurveyForm(this);
+    m_coreStatics = new CoreStatisticsForm(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -57,6 +59,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_organizationUnits);
     addWidget(m_icd10Diagnosis);
     addWidget(m_surveyData);
+    addWidget(m_coreStatics);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
     connect(app, &DataCollector::manageDrugAdministrationMethods, this, &Workbench::manageDrugAdministrationMethods);
@@ -74,6 +77,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageOrganizationUnits, this, &Workbench::manageOrganizationUnits);
     connect(app, &DataCollector::manageIcd10Diagnosis, this, &Workbench::manageIcd10Diagnosis);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
+    connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
 
     setCurrentWidget(m_surveyData);
 }
@@ -153,4 +157,9 @@ void Workbench::manageIcd10Diagnosis()
 
 void Workbench::manageSurveyData() {
     setCurrentWidget(m_surveyData);
+}
+
+void Workbench::showCoreStatistics()
+{
+    setCurrentWidget(m_coreStatics);
 }
