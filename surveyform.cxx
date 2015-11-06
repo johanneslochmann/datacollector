@@ -699,16 +699,27 @@ void SurveyForm::setupModels()
 
     ui->surveys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->surveys->setSortingEnabled(true);
+
     ui->icd10View->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->icd10View->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->icd10View->setSortingEnabled(true);
+
     ui->onDemandDrugsView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->onDemandDrugsView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->onDemandDrugsView->setSortingEnabled(true);
+
     ui->regularDrugsView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->regularDrugsView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->regularDrugsView->setSortingEnabled(true);
+
     ui->plasmaticLevelsView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->plasmaticLevelsView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->plasmaticLevelsView->setSortingEnabled(true);
+
     ui->depotDrugsView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->depotDrugsView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->depotDrugsView->setSortingEnabled(true);
 }
 
 void SurveyForm::showError(QSqlError err, const QString &msg)
