@@ -8,7 +8,7 @@
 #include <memory>
 
 namespace Ui {
-class Icd10DiagnosisSelectionDialog;
+class Icd10DiagnosisDialog;
 }
 
 class Icd10DiagnosisDialog : public QDialog
@@ -27,7 +27,7 @@ public slots:
     void onCommentChanged();
 
 private:
-    std::unique_ptr<Ui::Icd10DiagnosisSelectionDialog> ui;
+    std::unique_ptr<Ui::Icd10DiagnosisDialog> ui;
 
     QSqlQuery m_q;
     QSqlQueryModel* m_m;

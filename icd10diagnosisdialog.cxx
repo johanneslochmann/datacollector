@@ -6,13 +6,13 @@
 #include <QPushButton>
 #include <QTextEdit>
 
-#include "ui_icd10diagnosisselectiondialog.h"
+#include "ui_icd10diagnosisdialog.h"
 
 #include "datacollector.hxx"
 
 Icd10DiagnosisDialog::Icd10DiagnosisDialog(QWidget *parent) :
     QDialog(parent),
-    ui(std::unique_ptr<Ui::Icd10DiagnosisSelectionDialog>(new Ui::Icd10DiagnosisSelectionDialog))
+    ui(std::unique_ptr<Ui::Icd10DiagnosisDialog>(new Ui::Icd10DiagnosisDialog))
 {
     ui->setupUi(this);
 
