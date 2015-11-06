@@ -573,62 +573,62 @@ void SurveyForm::prepareQueries()
         m_getCampaignIdQry = DataCollector::get()->prepareQuery("select id from core.campaign where project_id = :project_id and name = :campaign_name");
         m_getProjectIdQry = DataCollector::get()->prepareQuery("select id from core.project where name = :projectName;");
 
-        m_surveysQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
-                                                                         "prob.external_id::text || ' [' || coalesce(prob.surname, '') || ', ' || coalesce(prob.first_name, '') || ']' as \"%1\" "
-                                                                         ", surv.survey_date as \"%2\" "
-                                                                         ", org.name as \"%3\" "
-                                                                         ", surv.description as \"%4\" "
-                                                                         ", surv.id as \"%5\" "
-                                                                         "from core.proband prob "
-                                                                         "join core.survey surv on prob.id = surv.proband_id "
-                                                                         "join core.organization_unit org on surv.organization_unit_id = org.id "
-                                                                         "where surv.campaign_id = :campaign_id "
-                                                                         "order by 1, 2 asc;")
+        m_surveysQry = DataCollector::get()->prepareQuery(QString("select "
+                                                                  "prob.external_id::text || ' [' || coalesce(prob.surname, '') || ', ' || coalesce(prob.first_name, '') || ']' as \"%1\" "
+                                                                  ", surv.survey_date as \"%2\" "
+                                                                  ", org.name as \"%3\" "
+                                                                  ", surv.description as \"%4\" "
+                                                                  ", surv.id as \"%5\" "
+                                                                  "from core.proband prob "
+                                                                  "join core.survey surv on prob.id = surv.proband_id "
+                                                                  "join core.organization_unit org on surv.organization_unit_id = org.id "
+                                                                  "where surv.campaign_id = :campaign_id "
+                                                                  "order by 1, 2 asc;")
                                                           .arg(tr("Proband"))
                                                           .arg(tr("Survey Date"))
                                                           .arg(tr("Organization"))
                                                           .arg(tr("Description"))
                                                           .arg(tr("Survey ID")));
 
-        m_icd10Qry = DataCollector::get()->prepareQuery(QStringLiteral("select "
-                                                                       "icd10.name as \"%1\" "
-                                                                       ", nm.description as \"%2\" "
-                                                                       ", nm.id as id "
-                                                                       "from core.icd10_diagnosis icd10 "
-                                                                       "join core.icd10_survey nm on icd10.id = nm.icd10_diagnosis_id "
-                                                                       "join core.survey s on nm.survey_id = s.id "
-                                                                       "where s.id = :survey_id "
-                                                                       "order by 1 asc;")
+        m_icd10Qry = DataCollector::get()->prepareQuery(QString("select "
+                                                                "icd10.name as \"%1\" "
+                                                                ", nm.description as \"%2\" "
+                                                                ", nm.id as id "
+                                                                "from core.icd10_diagnosis icd10 "
+                                                                "join core.icd10_survey nm on icd10.id = nm.icd10_diagnosis_id "
+                                                                "join core.survey s on nm.survey_id = s.id "
+                                                                "where s.id = :survey_id "
+                                                                "order by 1 asc;")
                                                         .arg(tr("ICD10 Diagnosis"))
                                                         .arg(tr("Description")));
-        m_onDemandDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
-                                                                               "d.name as \"%1\" "
-                                                                               ", nm.description as \"%2\" "
-                                                                               "from core.drug d "
-                                                                               "join core.optional_prescription nm on d.id = nm.drug_id "
-                                                                               "join core.survey s on nm.survey_id = s.id "
-                                                                               "where s.id = :survey_id "
-                                                                               "order by 1 asc;")
+        m_onDemandDrugsQry = DataCollector::get()->prepareQuery(QString("select "
+                                                                        "d.name as \"%1\" "
+                                                                        ", nm.description as \"%2\" "
+                                                                        "from core.drug d "
+                                                                        "join core.optional_prescription nm on d.id = nm.drug_id "
+                                                                        "join core.survey s on nm.survey_id = s.id "
+                                                                        "where s.id = :survey_id "
+                                                                        "order by 1 asc;")
                                                                 .arg(tr("Drug"))
                                                                 .arg(tr("Description")));
 
-        m_reqularDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
-                                                                              "pd.name as \"%1\" "
-                                                                              ", nm.morning_dosage as \"%2\" "
-                                                                              ", nm.lunch_dosage as \"%3\" "
-                                                                              ", nm.noon_dosage \"%4\" "
-                                                                              ", nm.night_dosage \"%5\" "
-                                                                              ", am.name as \"%6\" "
-                                                                              ", u.name as \"%7\" "
-                                                                              ", nm.id as \"%8\" "
-                                                                              ", nm.description as \"%9\" "
-                                                                              "from core.prescribeable_drug pd "
-                                                                              "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
-                                                                              "join core.survey s on nm.survey_id = s.id "
-                                                                              "join core.unit u on pd.dosage_unit_id = u.id "
-                                                                              "join core.administration_method am on pd.administration_method_id = am.id "
-                                                                              "where s.id = :survey_id "
-                                                                              "order by 1 asc;")
+        m_reqularDrugsQry = DataCollector::get()->prepareQuery(QString("select "
+                                                                       "pd.name as \"%1\" "
+                                                                       ", nm.morning_dosage as \"%2\" "
+                                                                       ", nm.lunch_dosage as \"%3\" "
+                                                                       ", nm.noon_dosage \"%4\" "
+                                                                       ", nm.night_dosage \"%5\" "
+                                                                       ", am.name as \"%6\" "
+                                                                       ", u.name as \"%7\" "
+                                                                       ", nm.id as \"%8\" "
+                                                                       ", nm.description as \"%9\" "
+                                                                       "from core.prescribeable_drug pd "
+                                                                       "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
+                                                                       "join core.survey s on nm.survey_id = s.id "
+                                                                       "join core.unit u on pd.dosage_unit_id = u.id "
+                                                                       "join core.administration_method am on pd.administration_method_id = am.id "
+                                                                       "where s.id = :survey_id "
+                                                                       "order by 1 asc;")
                                                                .arg(tr("Drug"))
                                                                .arg(tr("Morning"))
                                                                .arg(tr("Lunch"))
@@ -639,36 +639,36 @@ void SurveyForm::prepareQueries()
                                                                .arg(tr("Prescription ID"))
                                                                .arg(tr("Description")));
 
-        m_plasmaticLevelsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
-                                                                                 "m.name as \"%1\" "
-                                                                                 ", nm.concentration_value as \"%2\" "
-                                                                                 ", u.name as \"%3\" "
-                                                                                 ", nm.description as \"%4\" "
-                                                                                 ", nm.id as \"%5\" "
-                                                                                 "from core.molecule m "
-                                                                                 "join core.plasmatic_level nm on m.id = nm.molecule_id "
-                                                                                 "join core.survey s on nm.survey_id = s.id "
-                                                                                 "join core.unit u on nm.unit_id = u.id "
-                                                                                 "where s.id = :survey_id "
-                                                                                 "order by 1 asc")
+        m_plasmaticLevelsQry = DataCollector::get()->prepareQuery(QString("select "
+                                                                          "m.name as \"%1\" "
+                                                                          ", nm.concentration_value as \"%2\" "
+                                                                          ", u.name as \"%3\" "
+                                                                          ", nm.description as \"%4\" "
+                                                                          ", nm.id as \"%5\" "
+                                                                          "from core.molecule m "
+                                                                          "join core.plasmatic_level nm on m.id = nm.molecule_id "
+                                                                          "join core.survey s on nm.survey_id = s.id "
+                                                                          "join core.unit u on nm.unit_id = u.id "
+                                                                          "where s.id = :survey_id "
+                                                                          "order by 1 asc")
                                                                   .arg(tr("Molecule"))
                                                                   .arg(tr("Measurement"))
                                                                   .arg(tr("Unit"))
                                                                   .arg(tr("Comment"))
                                                                   .arg(tr("Measurement ID")));
 
-        m_depotDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
-                                                                            "pd.name as \"%1\", "
-                                                                            "dp.last_injection_on as \"%2\", "
-                                                                            "dp.dosage as \"%3\", "
-                                                                            "dp.injection_interval_in_days as \"%4\", "
-                                                                            "dp.description as \"%5\", "
-                                                                            "dp.id as \"%6\" "
-                                                                            "from core.survey s "
-                                                                            "join core.depot_prescription dp on s.id = dp.survey_id "
-                                                                            "join core.prescribeable_drug pd on dp.prescribeable_drug_id = pd.id "
-                                                                            "where s.id = :survey_id "
-                                                                            "order by 1 asc, 2 desc;")
+        m_depotDrugsQry = DataCollector::get()->prepareQuery(QString("select "
+                                                                     "pd.name as \"%1\", "
+                                                                     "dp.last_injection_on as \"%2\", "
+                                                                     "dp.dosage as \"%3\", "
+                                                                     "dp.injection_interval_in_days as \"%4\", "
+                                                                     "dp.description as \"%5\", "
+                                                                     "dp.id as \"%6\" "
+                                                                     "from core.survey s "
+                                                                     "join core.depot_prescription dp on s.id = dp.survey_id "
+                                                                     "join core.prescribeable_drug pd on dp.prescribeable_drug_id = pd.id "
+                                                                     "where s.id = :survey_id "
+                                                                     "order by 1 asc, 2 desc;")
                                                              .arg(tr("Prescribeable Drug"))
                                                              .arg(tr("Last Injection"))
                                                              .arg(tr("Dosage"))
