@@ -249,7 +249,7 @@ void SurveyForm::reloadIcd10Diagnosis()
     m_icd10Model->setQuery(m_icd10Qry);
 
     ui->icd10View->setModel(m_icd10Model);
-    ui->icd10View->hideColumn(1);
+    ui->icd10View->hideColumn(2);
 }
 
 void SurveyForm::addIcd10Diagnosis()
@@ -261,7 +261,7 @@ void SurveyForm::addIcd10Diagnosis()
     }
 
     try {
-        SurveyGateway().addIcd10DiagnosisToSurvey(dlg->currentId(), m_currentSurveyId);
+        SurveyGateway().addIcd10DiagnosisToSurvey(dlg->currentId(), dlg->comment(), m_currentSurveyId);
         DataCollector::get()->commit();
 
         reloadIcd10Diagnosis();
@@ -594,14 +594,16 @@ void SurveyForm::prepareQueries()
                                                           .arg(tr("Survey ID")));
 
         m_icd10Qry = DataCollector::get()->prepareQuery(QStringLiteral("select "
-                                                                       "icd10.name as \"%1\", "
-                                                                       "nm.id as id "
+                                                                       "icd10.name as \"%1\" "
+                                                                       ", nm.description as \"%2\" "
+                                                                       ", nm.id as id "
                                                                        "from core.icd10_diagnosis icd10 "
                                                                        "join core.icd10_survey nm on icd10.id = nm.icd10_diagnosis_id "
                                                                        "join core.survey s on nm.survey_id = s.id "
                                                                        "where s.id = :survey_id "
                                                                        "order by 1 asc;")
-                                                        .arg(tr("ICD10 Diagnosis")));
+                                                        .arg(tr("ICD10 Diagnosis"))
+                                                        .arg(tr("Description")));
         m_onDemandDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
                                                                                "d.name as \"%1\" "
                                                                                "from core.drug d "

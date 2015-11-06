@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QTextEdit>
 
 #include "ui_icd10diagnosisselectiondialog.h"
 
@@ -32,6 +33,7 @@ Icd10DiagnosisSelectionDialog::Icd10DiagnosisSelectionDialog(QWidget *parent) :
     }
 
     connect(ui->m_data, &QTableView::activated, this, &Icd10DiagnosisSelectionDialog::onIndexActivated);
+    connect(ui->m_comment, &QTextEdit::textChanged, this, &Icd10DiagnosisSelectionDialog::onCommentChanged);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }
@@ -47,4 +49,9 @@ void Icd10DiagnosisSelectionDialog::onIndexActivated(const QModelIndex &idx)
     m_selectedId = ui->m_data->model()->data(idIdx).toInt();
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(m_selectedId > 0);
+}
+
+void Icd10DiagnosisSelectionDialog::onCommentChanged()
+{
+    m_comment = ui->m_comment->toPlainText();
 }

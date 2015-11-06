@@ -11,7 +11,7 @@ public:
 
     void save(SurveySPtr s);
 
-    void addIcd10DiagnosisToSurvey(int icd10DiagnosisId, int surveyId);
+    void addIcd10DiagnosisToSurvey(int icd10DiagnosisId, const QString& comment, int surveyId);
     void addOnDemandDrugToSurvey(int drugId, int surveyId);
     void addRegularDrugToSurvey(int prescribeableDrugId, double morning, double lunch, double noon, double night, int surveyId);
     void addPlasmaticLevelToSurvey(int moleculeId, double value, const QString& unitName, int surveyId);
