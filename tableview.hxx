@@ -6,9 +6,5 @@ class TableView : public QTableView
 {
     Q_OBJECT
 public:
-    using QTableView::QTableView;
-
-signals:
-
-public slots:
+    explicit TableView(QWidget* p);
 };
