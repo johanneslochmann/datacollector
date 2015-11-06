@@ -37,10 +37,6 @@ void CoreStatisticsForm::onReportActivated(const QModelIndex& idx)
 {
     auto nameIdx = m_ui->m_reportSelector->model()->index(idx.row(), 0);
 
-    auto currentReportName = m_ui->m_reportSelector->model()->data(nameIdx).toString();
-
-    qDebug() << "request for report: " << currentReportName;
-
-    m_reportM->setTable(currentReportName);;
+    m_reportM->setTable(m_ui->m_reportSelector->model()->data(nameIdx).toString());;
     m_reportM->select();
 }
