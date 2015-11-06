@@ -519,6 +519,7 @@ void SurveyForm::addDepotDrug()
                                              dlg->dosage(),
                                              dlg->lastInjectionDate(),
                                              dlg->interval(),
+                                             dlg->comment(),
                                              m_currentSurveyId);
         DataCollector::get()->commit();
 

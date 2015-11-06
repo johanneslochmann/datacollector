@@ -24,12 +24,14 @@ public:
     double dosage() const { return m_dosage; }
     QDate lastInjectionDate() const { return m_lastInjectionDate; }
     int interval() const { return m_injectionInterval; }
+    QString comment() const { return m_comment; }
 
 public slots:
     void onIndexActivated(const QModelIndex& idx);
     void onLastInjectionDateChanged(const QDate& d);
     void onDosageChanged(const QString& s);
     void onInjectionIntervalChanged(const QString& s);
+    void onCommentChanged();
 
 private:
     std::unique_ptr<Ui::DepotDrugDialog> ui;
@@ -41,5 +43,6 @@ private:
     QDate m_lastInjectionDate { QDate() };
     double m_dosage { 0.0 };
     int m_injectionInterval { 0 };
+    QString m_comment { "" };
 };
 

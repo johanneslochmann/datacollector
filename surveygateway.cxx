@@ -64,17 +64,18 @@ void SurveyGateway::addPlasmaticLevelToSurvey(int moleculeId, double value, cons
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
-void SurveyGateway::addDepotDrugToSurvey(int prescribeableDrugId, double dosage, const QDate &lastInjection, int interval, int surveyId)
+void SurveyGateway::addDepotDrugToSurvey(int prescribeableDrugId, double dosage, const QDate &lastInjection, int interval, const QString& comment, int surveyId)
 {
     auto q = DataCollector::get()->prepareQuery("insert into "
-                                                "core.depot_prescription(prescribeable_drug_id, dosage, last_injection_on, injection_interval_in_days, survey_id) "
-                                                "values (:drug_id, :dosage, :last_injection, :interval, :survey_id) "
+                                                "core.depot_prescription(prescribeable_drug_id, dosage, last_injection_on, injection_interval_in_days, survey_id, description) "
+                                                "values (:drug_id, :dosage, :last_injection, :interval, :survey_id, :description) "
                                                 "returning id;");
     q.bindValue(":drug_id", prescribeableDrugId);
     q.bindValue(":dosage", dosage);
     q.bindValue(":last_injection", lastInjection);
     q.bindValue(":interval", interval);
     q.bindValue(":survey_id", surveyId);
+    q.bindValue(":description", comment);
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }

@@ -15,7 +15,7 @@ public:
     void addOnDemandDrugToSurvey(int drugId, const QString &description, int surveyId);
     void addRegularDrugToSurvey(int prescribeableDrugId, double morning, double lunch, double noon, double night, const QString &description, int surveyId);
     void addPlasmaticLevelToSurvey(int moleculeId, double value, const QString& unitName, const QString& comment, int surveyId);
-    void addDepotDrugToSurvey(int prescribeableDrugId, double dosage, const QDate& lastInjection, int interval, int surveyId);
+    void addDepotDrugToSurvey(int prescribeableDrugId, double dosage, const QDate& lastInjection, int interval, const QString &comment, int surveyId);
 
     void removeIcd10DiagnosisFromSurvey(int recordId);
     void removeOnDemandDrugFromSurvey(int recordId);
