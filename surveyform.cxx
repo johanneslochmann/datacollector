@@ -312,7 +312,7 @@ void SurveyForm::reloadOnDemandDrugs()
     m_onDemandDrugsModel->setQuery(m_onDemandDrugsQry);
 
     ui->onDemandDrugsView->setModel(m_onDemandDrugsModel);
-    ui->onDemandDrugsView->hideColumn(1);
+    ui->onDemandDrugsView->hideColumn(2);
 }
 
 void SurveyForm::addOnDemandDrug()
@@ -324,7 +324,7 @@ void SurveyForm::addOnDemandDrug()
     }
 
     try {
-        SurveyGateway().addOnDemandDrugToSurvey(dlg->currentId(), m_currentSurveyId);
+        SurveyGateway().addOnDemandDrugToSurvey(dlg->currentId(), dlg->comment(), m_currentSurveyId);
         DataCollector::get()->commit();
 
         reloadOnDemandDrugs();
@@ -606,12 +606,14 @@ void SurveyForm::prepareQueries()
                                                         .arg(tr("Description")));
         m_onDemandDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
                                                                                "d.name as \"%1\" "
+                                                                               ", nm.description as \"%2\" "
                                                                                "from core.drug d "
                                                                                "join core.optional_prescription nm on d.id = nm.drug_id "
                                                                                "join core.survey s on nm.survey_id = s.id "
                                                                                "where s.id = :survey_id "
                                                                                "order by 1 asc;")
-                                                                .arg(tr("Drug")));
+                                                                .arg(tr("Drug"))
+                                                                .arg(tr("Description")));
 
         m_reqularDrugsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
                                                                               "pd.name as \"%1\" "

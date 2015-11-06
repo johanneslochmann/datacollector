@@ -22,14 +22,15 @@ void SurveyGateway::addIcd10DiagnosisToSurvey(int icd10DiagnosisId, const QStrin
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
-void SurveyGateway::addOnDemandDrugToSurvey(int drugId, int surveyId)
+void SurveyGateway::addOnDemandDrugToSurvey(int drugId, const QString& description, int surveyId)
 {
 
-    auto q = DataCollector::get()->prepareQuery("insert into core.optional_prescription(drug_id, survey_id) "
-                                                "values (:drug_id, :survey_id) "
+    auto q = DataCollector::get()->prepareQuery("insert into core.optional_prescription(drug_id, survey_id, description) "
+                                                "values (:drug_id, :survey_id, :comment) "
                                                 "returning id;");
     q.bindValue(":drug_id", drugId);
     q.bindValue(":survey_id", surveyId);
+    q.bindValue(":comment", description);
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 

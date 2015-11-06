@@ -19,9 +19,11 @@ public:
     ~OnDemandDrugDialog();
 
     int currentId() const { return m_selectedId; }
+    QString comment() const { return m_comment; }
 
 public slots:
     void onIndexActivated(const QModelIndex& idx);
+    void onCommentChanged();
 
 private:
     std::unique_ptr<Ui::OnDemandDrugDialog> ui;
@@ -30,5 +32,6 @@ private:
     QSqlQueryModel* m_m;
 
     int m_selectedId { 0 };
+    QString m_comment { "" };
 };
 
