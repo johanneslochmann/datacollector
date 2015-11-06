@@ -34,18 +34,19 @@ void SurveyGateway::addOnDemandDrugToSurvey(int drugId, const QString& descripti
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
-void SurveyGateway::addRegularDrugToSurvey(int prescribeableDrugId, double morning, double lunch, double noon, double night, int surveyId)
+void SurveyGateway::addRegularDrugToSurvey(int prescribeableDrugId, double morning, double lunch, double noon, double night, const QString& description, int surveyId)
 {
     auto q = DataCollector::get()->prepareQuery("insert into "
-                                                "core.regular_prescription(prescribeable_drug_id, survey_id, morning_dosage, lunch_dosage, noon_dosage, night_dosage) "
-                                                "values (:prescribable_drug_id, :survey_id, :morning, :lunch, :noon, :night) "
+                                                "core.regular_prescription(prescribeable_drug_id, survey_id, morning_dosage, lunch_dosage, noon_dosage, night_dosage, description) "
+                                                "values (:prescribable_drug_id, :survey_id, :morning, :lunch, :noon, :night, :description) "
                                                 "returning id;");
-    q.bindValue(":prescribable_drug_id", prescribeableDrugId);
+    q.bindValue(":prescribable_drug_id", prescribeableDrugId);    
     q.bindValue(":survey_id", surveyId);
     q.bindValue(":morning", morning);
     q.bindValue(":lunch", lunch);
     q.bindValue(":noon", noon);
     q.bindValue(":night", night);
+    q.bindValue(":description", description);
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 

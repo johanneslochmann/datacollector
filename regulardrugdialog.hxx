@@ -24,6 +24,7 @@ public:
     double lunchDosage() const { return m_lunchDosage; }
     double noonDosage() const { return m_noonDosage; }
     double nightDosage() const { return m_nightDosage; }
+    QString comment() const { return m_comment; }
 
 public slots:
     void onIndexActivated(const QModelIndex& idx);
@@ -32,6 +33,7 @@ public slots:
     void onLunchDosageChanged(const QString& s);
     void onNoonDosageChanged(const QString& s);
     void onNightDosageChanged(const QString& s);
+    void onCommentChanged();
 
 private:
     std::unique_ptr<Ui::RegularDrugDialog> ui;
@@ -44,4 +46,5 @@ private:
     double m_lunchDosage { 0.0 };
     double m_noonDosage { 0.0 };
     double m_nightDosage { 0.0 };
+    QString m_comment { "" };
 };

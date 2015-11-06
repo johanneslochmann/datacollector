@@ -392,6 +392,7 @@ void SurveyForm::addRegularDrug()
                                                dlg->lunchDosage(),
                                                dlg->noonDosage(),
                                                dlg->nightDosage(),
+                                               dlg->comment(),
                                                m_currentSurveyId);
         DataCollector::get()->commit();
 
@@ -624,6 +625,7 @@ void SurveyForm::prepareQueries()
                                                                               ", am.name as \"%6\" "
                                                                               ", u.name as \"%7\" "
                                                                               ", nm.id as \"%8\" "
+                                                                              ", nm.description as \"%9\" "
                                                                               "from core.prescribeable_drug pd "
                                                                               "join core.regular_prescription nm on pd.id = nm.prescribeable_drug_id "
                                                                               "join core.survey s on nm.survey_id = s.id "
@@ -638,7 +640,8 @@ void SurveyForm::prepareQueries()
                                                                .arg(tr("Night"))
                                                                .arg(tr("Administration Method"))
                                                                .arg(tr("Drug Dosage Unit"))
-                                                               .arg(tr("Prescription ID")));
+                                                               .arg(tr("Prescription ID"))
+                                                               .arg(tr("Description")));
 
         m_plasmaticLevelsQry = DataCollector::get()->prepareQuery(QStringLiteral("select "
                                                                                  "m.name as \"%1\" "

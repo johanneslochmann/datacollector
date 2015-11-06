@@ -4,6 +4,7 @@
 #include <QDialogButtonBox>
 #include <QLineEdit>
 #include <QDoubleValidator>
+#include <QTextEdit>
 
 #include "ui_regulardrugdialog.h"
 
@@ -27,6 +28,7 @@ RegularDrugDialog::RegularDrugDialog(QWidget *parent) :
     connect(ui->lunchW, &QLineEdit::textChanged, this, &RegularDrugDialog::onLunchDosageChanged);
     connect(ui->noonW, &QLineEdit::textChanged, this, &RegularDrugDialog::onNoonDosageChanged);
     connect(ui->nightW, &QLineEdit::textChanged, this, &RegularDrugDialog::onNightDosageChanged);
+    connect(ui->m_comment, &QTextEdit::textChanged, this, &RegularDrugDialog::onCommentChanged);
 
     m_m = new QSqlQueryModel(this);
 
@@ -82,4 +84,9 @@ void RegularDrugDialog::onNoonDosageChanged(const QString &s)
 void RegularDrugDialog::onNightDosageChanged(const QString &s)
 {
     m_nightDosage = s.toDouble();
+}
+
+void RegularDrugDialog::onCommentChanged()
+{
+    m_comment = ui->m_comment->toPlainText();
 }
