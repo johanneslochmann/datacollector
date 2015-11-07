@@ -22,6 +22,17 @@ void SurveyGateway::addIcd10DiagnosisToSurvey(int icd10DiagnosisId, const QStrin
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
+void SurveyGateway::addCollateralEffectToSurvey(int effectId, const QString &comment, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into core.survey_collateral_effect(collateral_effect_id, survey_id, description) "
+                                                "values (:collateral_effect_id, :survey_id, :comment) "
+                                                "returning id;");
+    q.bindValue(":collateral_effect_id", effectId);
+    q.bindValue(":survey_id", surveyId);
+    q.bindValue(":comment", comment);
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
 void SurveyGateway::addOnDemandDrugToSurvey(int drugId, const QString& description, int surveyId)
 {
 
@@ -83,6 +94,15 @@ void SurveyGateway::addDepotDrugToSurvey(int prescribeableDrugId, double dosage,
 void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
+void SurveyGateway::removeCollateralEffectFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.survey_collateral_effect where id = :id;");
 
     q.bindValue(":id", recordId);
 

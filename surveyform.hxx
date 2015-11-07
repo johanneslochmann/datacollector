@@ -64,6 +64,10 @@ public slots:
     void addDepotDrug();
     void removeDepotDrug();
 
+    void reloadCollateralEffects();
+    void addCollateralEffect();
+    void removeCollateralEffect();
+
 protected:
     void prepareQueries();
     void setupModels();
@@ -82,6 +86,7 @@ private:
     QSqlQuery m_reqularDrugsQry;
     QSqlQuery m_plasmaticLevelsQry;
     QSqlQuery m_depotDrugsQry;
+    QSqlQuery m_collateralEffectsQry;
 
     QSqlQuery m_getProjectIdQry;
     QSqlQuery m_getCampaignIdQry;
@@ -94,6 +99,7 @@ private:
     QSqlQueryModel* m_reqularDrugsModel;
     QSqlQueryModel* m_plasmaticLevelsModel;
     QSqlQueryModel* m_depotDrugsModel;
+    QSqlQueryModel* m_collateralEffectsModel;
 
     int m_currentProjectId { 0 };
     int m_currentCampaignId { 0 };

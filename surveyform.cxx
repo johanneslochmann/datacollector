@@ -17,6 +17,7 @@
 #include "surveygateway.hxx"
 #include "plasmaticleveldialog.hxx"
 #include "depotdrugdialog.hxx"
+#include "collateraleffectdialog.hxx"
 
 #include "ui_surveyform.h"
 
@@ -54,6 +55,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->reloadDepotDrugs, &QPushButton::clicked, this, &SurveyForm::reloadDepotDrugs);
     connect(ui->addDepotDrug, &QPushButton::clicked, this, &SurveyForm::addDepotDrug);
     connect(ui->removeDepotDrug, &QPushButton::clicked, this, &SurveyForm::removeDepotDrug);
+    connect(ui->addCollateralEffectW, &QPushButton::clicked, this, &SurveyForm::addCollateralEffect);
+    connect(ui->reloadCollateralEffectsW, &QPushButton::clicked, this, &SurveyForm::reloadCollateralEffects);
+    connect(ui->removeCollateralEffectW, &QPushButton::clicked, this, &SurveyForm::removeCollateralEffect);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -76,6 +80,7 @@ void SurveyForm::onDatabaseAboutToClose()
     m_reqularDrugsModel->setQuery(QSqlQuery());
     m_plasmaticLevelsModel->setQuery(QSqlQuery());
     m_depotDrugsModel->setQuery(QSqlQuery());
+    m_collateralEffectsModel->setQuery(QSqlQuery());
 
     m_projectsQry.clear();
     m_campaignsQry.clear();
@@ -87,6 +92,7 @@ void SurveyForm::onDatabaseAboutToClose()
     m_reqularDrugsQry.clear();
     m_plasmaticLevelsQry.clear();
     m_depotDrugsQry.clear();
+    m_collateralEffectsQry.clear();
 }
 
 void SurveyForm::onDatabaseAvailable()
@@ -151,7 +157,7 @@ void SurveyForm::onCurrentSurveyChanged(const QModelIndex &idx)
 {
     emit surveyFilterChanged(0);
 
-    auto idIdx = ui->surveys->model()->index(idx.row(), 4);
+    auto idIdx = ui->surveys->model()->index(idx.row(), 5);
 
     m_currentSurveyId = ui->surveys->model()->data(idIdx).toInt();
 
@@ -191,11 +197,7 @@ void SurveyForm::onCampaignFilterChanged(int campaignId)
 void SurveyForm::onSurveyFilterChanged(int surveyId)
 {
     if (surveyId < 1) {
-        ui->icd10View->setEnabled(false);
-        ui->onDemandDrugsView->setEnabled(false);
-        ui->regularDrugsView->setEnabled(false);
-        ui->plasmaticLevelsView->setEnabled(false);
-        ui->depotDrugsView->setEnabled(false);
+        ui->tab->setEnabled(false);
         return;
     }
 
@@ -204,13 +206,9 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
     reloadRegularDrugs();
     reloadPlasmaticLevels();
     reloadDepotDrugs();
+    reloadCollateralEffects();
 
     ui->tab->setEnabled(true);
-    ui->icd10View->setEnabled(true);
-    ui->onDemandDrugsView->setEnabled(true);
-    ui->regularDrugsView->setEnabled(true);
-    ui->plasmaticLevelsView->setEnabled(true);
-    ui->depotDrugsView->setEnabled(true);
 }
 
 void SurveyForm::reload()
@@ -565,6 +563,72 @@ void SurveyForm::removeDepotDrug()
     }
 }
 
+void SurveyForm::reloadCollateralEffects()
+{
+    m_collateralEffectsQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_collateralEffectsQry, false);
+    m_collateralEffectsModel->setQuery(m_collateralEffectsQry);
+
+    ui->collateralEffectView->setModel(m_collateralEffectsModel);
+}
+
+void SurveyForm::addCollateralEffect()
+{
+    auto dlg = new CollateralEffectDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addCollateralEffectToSurvey(dlg->currentId(),
+                                                    dlg->comment(),
+                                                    m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadCollateralEffects();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add Collateral Effect to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeCollateralEffect()
+{
+    auto selectedIndexes = ui->collateralEffectView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->collateralEffectView->model()->index(idx.row(), 2);
+
+    auto selectedId = ui->collateralEffectView->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove Collateral Effect?"),
+                              tr("Remove Collateral Effect <b>%1</b> (%2)?")
+                              .arg(ui->collateralEffectView->model()->data(idx).toString())
+                              .arg(selectedId),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removeCollateralEffectFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadCollateralEffects();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove collateral effect from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
 void SurveyForm::prepareQueries()
 {
     try {
@@ -678,6 +742,17 @@ void SurveyForm::prepareQueries()
                                                              .arg(tr("Interval [days]"))
                                                              .arg(tr("Comment"))
                                                              .arg(tr("Prescription ID")));
+        m_collateralEffectsQry = DataCollector::get()->prepareQuery(QString("select "
+                                                                            "ce.name as \"%1\", "
+                                                                            "nm.description as \"%2\", "
+                                                                            "nm.id as id "
+                                                                            "from core.survey s "
+                                                                            "join core.survey_collateral_effect nm on s.id = nm.survey_id "
+                                                                            "join core.collateral_effect ce on nm.collateral_effect_id = ce.id "
+                                                                            "where s.id = :survey_id "
+                                                                            "order by 1 asc;")
+                                                                    .arg(tr("Name"))
+                                                                    .arg(tr("Description")));
     } catch(DatabaseError e) {
         showError(e);
     }
@@ -693,6 +768,7 @@ void SurveyForm::setupModels()
     m_reqularDrugsModel = new QSqlQueryModel(this);
     m_plasmaticLevelsModel = new QSqlQueryModel(this);
     m_depotDrugsModel = new QSqlQueryModel(this);
+    m_collateralEffectsModel = new QSqlQueryModel(this);
 
     ui->projects->setModel(m_projectsModel);
     ui->campaigns->setModel(m_campaignsModel);
@@ -702,6 +778,7 @@ void SurveyForm::setupModels()
     ui->regularDrugsView->setModel(m_reqularDrugsModel);
     ui->plasmaticLevelsView->setModel(m_plasmaticLevelsModel);
     ui->depotDrugsView->setModel(m_depotDrugsModel);
+    ui->collateralEffectView->setModel(m_collateralEffectsModel);;
 
     ui->surveys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -726,6 +803,10 @@ void SurveyForm::setupModels()
     ui->depotDrugsView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->depotDrugsView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->depotDrugsView->setSortingEnabled(true);
+
+    ui->collateralEffectView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->collateralEffectView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->collateralEffectView->setSortingEnabled(true);
 }
 
 void SurveyForm::showError(QSqlError err, const QString &msg)

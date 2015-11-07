@@ -63,7 +63,8 @@ SOURCES += main.cxx\
     smokinghabitsmanagementwidget.cxx \
     smokinghabit.cxx \
     smokinghabitgateway.cxx \
-    collateraleffectmanagementwidget.cxx
+    collateraleffectmanagementwidget.cxx \
+    collateraleffectdialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -121,7 +122,8 @@ HEADERS  += mainwindow.hxx \
     smokinghabitsmanagementwidget.hxx \
     smokinghabit.hxx \
     smokinghabitgateway.hxx \
-    collateraleffectmanagementwidget.hxx
+    collateraleffectmanagementwidget.hxx \
+    collateraleffectdialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
@@ -132,4 +134,5 @@ FORMS += \
     regulardrugdialog.ui \
     depotdrugdialog.ui \
     icd10diagnosisdialog.ui \
-    corestatisticsform.ui
+    corestatisticsform.ui \
+    collateraleffectdialog.ui
