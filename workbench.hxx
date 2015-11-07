@@ -29,9 +29,11 @@ public slots:
     void manageSurveys();
     void manageOrganizationUnits();
     void manageIcd10Diagnosis();
-    void manageSurveyData();
     void manageAgeClasses();
     void manageSmokingHabits();
+    void manageCollateralEffects();
+
+    void manageSurveyData();
     void showCoreStatistics();
 
 private:
@@ -52,6 +54,7 @@ private:
     TableManagementWidget* m_icd10Diagnosis;
     TableManagementWidget* m_ageClasses;
     TableManagementWidget* m_smokingHabits;
+    TableManagementWidget* m_collateralEffects;
 
     QWidget* m_surveyData;
     QWidget* m_coreStatics;

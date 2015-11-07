@@ -17,10 +17,12 @@
 #include "surveymanagementwidget.hxx"
 #include "organizationunitmanagementwidget.hxx"
 #include "icd10diagnosismanagementwidget.hxx"
-#include "surveyform.hxx"
-#include "corestatisticsform.hxx"
 #include "ageclassmanagementwidget.hxx"
 #include "smokinghabitsmanagementwidget.hxx"
+#include "collateraleffectmanagementwidget.hxx"
+
+#include "surveyform.hxx"
+#include "corestatisticsform.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -46,6 +48,7 @@ Workbench::Workbench(QWidget *parent)
     m_coreStatics = new CoreStatisticsForm(this);
     m_ageClasses = new AgeClassManagementWidget(this);
     m_smokingHabits = new SmokingHabitsManagementWidget(this);
+    m_collateralEffects = new CollateralEffectManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -63,9 +66,11 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_organizationUnits);
     addWidget(m_icd10Diagnosis);
     addWidget(m_ageClasses);
+    addWidget(m_smokingHabits);
+    addWidget(m_collateralEffects);
+
     addWidget(m_surveyData);
     addWidget(m_coreStatics);
-    addWidget(m_smokingHabits);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
     connect(app, &DataCollector::manageDrugAdministrationMethods, this, &Workbench::manageDrugAdministrationMethods);
@@ -84,6 +89,8 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageIcd10Diagnosis, this, &Workbench::manageIcd10Diagnosis);
     connect(app, &DataCollector::manageAgeClasses, this, &Workbench::manageAgeClasses);
     connect(app, &DataCollector::manageSmokingHabits, this, &Workbench::manageSmokingHabits);
+    connect(app, &DataCollector::manageCollateralEffects, this, &Workbench::manageCollateralEffects);
+
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
     connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
 
@@ -175,6 +182,11 @@ void Workbench::manageAgeClasses()
 void Workbench::manageSmokingHabits()
 {
     setCurrentWidget(m_smokingHabits);
+}
+
+void Workbench::manageCollateralEffects()
+{
+    setCurrentWidget(m_collateralEffects);
 }
 
 void Workbench::showCoreStatistics()

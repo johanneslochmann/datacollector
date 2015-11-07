@@ -265,11 +265,14 @@ void DataCollector::initActions()
     m_manageAgeClasses = new ActionEnabledIfConnectedToDatabase(tr("Age Classes"), this);
     connect(m_manageAgeClasses, &QAction::triggered, this, &DataCollector::manageAgeClasses);
 
-    m_manageSurveyData = new ActionEnabledIfConnectedToDatabase(tr("Manage Survey Data"), this);
-    connect(m_manageSurveyData, &QAction::triggered, this, &DataCollector::manageSurveyData);
-
     m_manageSmokingHabits = new ActionEnabledIfConnectedToDatabase(tr("Smoking Habits"), this);
     connect(m_manageSmokingHabits, &QAction::triggered, this, &DataCollector::manageSmokingHabits);
+
+    m_manageCollateralEffects = new ActionEnabledIfConnectedToDatabase(tr("Collateral Effects"), this);
+    connect(m_manageCollateralEffects, &QAction::triggered, this, &DataCollector::manageCollateralEffects);
+
+    m_manageSurveyData = new ActionEnabledIfConnectedToDatabase(tr("Manage Survey Data"), this);
+    connect(m_manageSurveyData, &QAction::triggered, this, &DataCollector::manageSurveyData);
 
     m_showCoreStatistics = new ActionEnabledIfConnectedToDatabase(tr("Show Core Statistics"), this);
     connect(m_showCoreStatistics, &QAction::triggered, this, &DataCollector::showCoreStatistics);

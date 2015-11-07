@@ -62,7 +62,8 @@ SOURCES += main.cxx\
     ageclassmanagementwidget.cxx \
     smokinghabitsmanagementwidget.cxx \
     smokinghabit.cxx \
-    smokinghabitgateway.cxx
+    smokinghabitgateway.cxx \
+    collateraleffectmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -119,7 +120,8 @@ HEADERS  += mainwindow.hxx \
     ageclassmanagementwidget.hxx \
     smokinghabitsmanagementwidget.hxx \
     smokinghabit.hxx \
-    smokinghabitgateway.hxx
+    smokinghabitgateway.hxx \
+    collateraleffectmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
