@@ -21,6 +21,10 @@ public:
     explicit CoreStatisticsForm(QWidget *parent = 0);
     ~CoreStatisticsForm();
 
+public slots:
+    void reloadStatistics();
+    void reloadData();
+
 protected:
     void onReportActivated(const QModelIndex &idx);
 
@@ -29,5 +33,7 @@ private:
 
     SqlTableModel* m_sourcesM;
     SqlTableModel* m_reportM;
+
+    QString m_currentReportName { "" };
 };
 
