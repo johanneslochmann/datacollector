@@ -145,14 +145,15 @@ void SurveyGateway::parse(SurveySPtr t, const QSqlRecord &rec)
 void SurveyGateway::insert(SurveySPtr s)
 {
     auto q = DataCollector::get()->prepareQuery("insert into "
-                                                "core.survey(proband_id, campaign_id, organization_unit_id, survey_date, description) "
-                                                "values(:proband_id, :campaign_id, :organization_unit_id, :survey_date, :description) "
+                                                "core.survey(proband_id, campaign_id, organization_unit_id, survey_date, description, smoking_habit_id) "
+                                                "values(:proband_id, :campaign_id, :organization_unit_id, :survey_date, :description, :smoking_habit_id) "
                                                 "returning id;");
     q.bindValue(":proband_id", s->probandId());
     q.bindValue(":campaign_id", s->campaignId());
     q.bindValue(":organization_unit_id", s->organizationUnitId());
     q.bindValue(":survey_date", s->date());
     q.bindValue(":description", s->description());
+    q.bindValue(":smoking_habit_id", s->smokingHabitId());
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 

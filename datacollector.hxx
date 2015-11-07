@@ -42,6 +42,7 @@ public:
     QAction* manageIcd10DiagnosisAction() const { return m_manageIcd10Diagnosis; }
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgeClassesAction() const { return m_manageAgeClasses; }
+    QAction* manageSmokingHabitsAction() const { return m_manageSmokingHabits; }
 
     QAction* showCoreStatisticsAction() const { return m_showCoreStatistics; }
 
@@ -79,6 +80,7 @@ signals:
     void manageOrganizationUnits();
     void manageIcd10Diagnosis();
     void manageAgeClasses();
+    void manageSmokingHabits();
     void manageSurveyData();
     void showCoreStatistics();
 
@@ -114,5 +116,6 @@ private:
     QAction* m_manageIcd10Diagnosis;
     QAction* m_manageSurveyData;
     QAction* m_manageAgeClasses;
+    QAction* m_manageSmokingHabits;
     QAction* m_showCoreStatistics;
 };

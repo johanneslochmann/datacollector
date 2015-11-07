@@ -77,6 +77,7 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
     coreData->addAction(app->manageAgeClassesAction());
+    coreData->addAction(app->manageSmokingHabitsAction());
     coreData->addSeparator();
     coreData->addAction(app->manageSurveysAction());
 

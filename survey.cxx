@@ -85,3 +85,13 @@ void Survey::setDescription(const QString &description)
     m_description = description;
 }
 
+int Survey::smokingHabitId() const
+{
+    return m_smokingHabitId;
+}
+
+void Survey::setSmokingHabitId(int smokingHabitId)
+{
+    m_smokingHabitId = smokingHabitId;
+}
+

@@ -16,6 +16,7 @@
 #include "probanddatagateway.hxx"
 #include "surveygateway.hxx"
 #include "organizationgateway.hxx"
+#include "smokinghabitgateway.hxx"
 
 SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCampaignId) :
     QDialog(parent),
@@ -34,6 +35,7 @@ SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCam
     loadProbands();
     loadOrganizations();
     loadProjects();
+    loadSmokingHabits();
 
     if (m_defaultProjectId > 0) {
         for (auto p : m_projects) {
@@ -55,10 +57,17 @@ SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCam
         }
     }
 
+    for (auto h : m_smokingHabits) {
+        if (m_data->smokingHabitId() == h->id()) {
+            ui->smokingHabit->setCurrentText(h->name());
+        }
+    }
+
     connect(ui->project, SIGNAL(activated(QString)), this, SLOT(onCurrentProjectChanged(QString)));
     connect(ui->campaign, SIGNAL(activated(QString)), this, SLOT(onCurrentCampaignChanged(QString)));
     connect(ui->proband, SIGNAL(activated(QString)), this, SLOT(onCurrentProbandChanged(QString)));
     connect(ui->organization, SIGNAL(activated(QString)), this, SLOT(onCurrentOrganizationChanged(QString)));
+    connect(ui->smokingHabit, SIGNAL(activated(QString)), this, SLOT(onCurrentSmokingHabitChanged(QString)));
     connect(ui->comment, SIGNAL(textChanged()), this, SLOT(onDescriptionChanged()));
 }
 
@@ -139,6 +148,17 @@ void SurveyDialog::onCurrentOrganizationChanged(const QString &name)
     }
 }
 
+void SurveyDialog::onCurrentSmokingHabitChanged(const QString &name)
+{
+    m_data->setSmokingHabitId(0);
+
+    for (auto o : m_smokingHabits) {
+        if (o->name() == name) {
+            m_data->setSmokingHabitId(o->id());
+        }
+    }
+}
+
 void SurveyDialog::onDescriptionChanged()
 {
     m_data->setDescription(ui->comment->toPlainText());
@@ -196,6 +216,24 @@ void SurveyDialog::loadOrganizations()
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, tr("Failed to load organizations."), this);
+    }
+}
+
+void SurveyDialog::loadSmokingHabits()
+{
+    try {
+        m_smokingHabits = SmokingHabitGateway().loadAll();
+        m_smokingHabits.push_back(std::make_shared<SmokingHabit>());
+
+        ui->smokingHabit->clear();
+        for (auto p : m_smokingHabits) {
+            ui->smokingHabit->addItem(p->name(), p->id());
+        }
+
+        ui->smokingHabit->setCurrentText("");
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to load smoking habits."), this);
     }
 }
 

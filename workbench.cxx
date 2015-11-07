@@ -20,6 +20,7 @@
 #include "surveyform.hxx"
 #include "corestatisticsform.hxx"
 #include "ageclassmanagementwidget.hxx"
+#include "smokinghabitsmanagementwidget.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -44,6 +45,7 @@ Workbench::Workbench(QWidget *parent)
     m_surveyData = new SurveyForm(this);
     m_coreStatics = new CoreStatisticsForm(this);
     m_ageClasses = new AgeClassManagementWidget(this);
+    m_smokingHabits = new SmokingHabitsManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -63,6 +65,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_ageClasses);
     addWidget(m_surveyData);
     addWidget(m_coreStatics);
+    addWidget(m_smokingHabits);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
     connect(app, &DataCollector::manageDrugAdministrationMethods, this, &Workbench::manageDrugAdministrationMethods);
@@ -80,6 +83,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageOrganizationUnits, this, &Workbench::manageOrganizationUnits);
     connect(app, &DataCollector::manageIcd10Diagnosis, this, &Workbench::manageIcd10Diagnosis);
     connect(app, &DataCollector::manageAgeClasses, this, &Workbench::manageAgeClasses);
+    connect(app, &DataCollector::manageSmokingHabits, this, &Workbench::manageSmokingHabits);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
     connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
 
@@ -166,6 +170,11 @@ void Workbench::manageSurveyData() {
 void Workbench::manageAgeClasses()
 {
     setCurrentWidget(m_ageClasses);
+}
+
+void Workbench::manageSmokingHabits()
+{
+    setCurrentWidget(m_smokingHabits);
 }
 
 void Workbench::showCoreStatistics()

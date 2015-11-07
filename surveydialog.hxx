@@ -9,6 +9,7 @@
 #include "survey.hxx"
 #include "proband.hxx"
 #include "organization.hxx"
+#include "smokinghabit.hxx"
 
 #include <memory>
 
@@ -33,12 +34,14 @@ public slots:
     virtual void onCurrentCampaignChanged(const QString& campaignName);
     virtual void onCurrentProbandChanged(const QString& label);
     virtual void onCurrentOrganizationChanged(const QString& name);
+    virtual void onCurrentSmokingHabitChanged(const QString& name);
     virtual void onDescriptionChanged();
 
 protected:
     virtual void loadProjects();
     virtual void loadProbands();
     virtual void loadOrganizations();
+    virtual void loadSmokingHabits();
 
 private:
     std::unique_ptr<Ui::SurveyDialog> ui;
@@ -52,4 +55,5 @@ private:
     ProbandSPtrVector m_probands;
     ProjectSPtrVector m_projects;
     CampaignSPtrVector m_campaigns;
+    SmokingHabitSPtrVector m_smokingHabits;
 };

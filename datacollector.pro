@@ -59,7 +59,10 @@ SOURCES += main.cxx\
     depotdrugdialog.cxx \
     icd10diagnosisdialog.cxx \
     corestatisticsform.cxx \
-    ageclassmanagementwidget.cxx
+    ageclassmanagementwidget.cxx \
+    smokinghabitsmanagementwidget.cxx \
+    smokinghabit.cxx \
+    smokinghabitgateway.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -113,7 +116,10 @@ HEADERS  += mainwindow.hxx \
     depotdrugdialog.hxx \
     icd10diagnosisdialog.hxx \
     corestatisticsform.hxx \
-    ageclassmanagementwidget.hxx
+    ageclassmanagementwidget.hxx \
+    smokinghabitsmanagementwidget.hxx \
+    smokinghabit.hxx \
+    smokinghabitgateway.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

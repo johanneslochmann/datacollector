@@ -577,18 +577,21 @@ void SurveyForm::prepareQueries()
                                                                   "prob.external_id::text || ' [' || coalesce(prob.surname, '') || ', ' || coalesce(prob.first_name, '') || ']' as \"%1\" "
                                                                   ", surv.survey_date as \"%2\" "
                                                                   ", org.name as \"%3\" "
+                                                                  ", smoking.name as \"%6\" "
                                                                   ", surv.description as \"%4\" "
                                                                   ", surv.id as \"%5\" "
                                                                   "from core.proband prob "
                                                                   "join core.survey surv on prob.id = surv.proband_id "
                                                                   "join core.organization_unit org on surv.organization_unit_id = org.id "
+                                                                  "join core.smoking_habit smoking on surv.smoking_habit_id = smoking.id "
                                                                   "where surv.campaign_id = :campaign_id "
                                                                   "order by 1, 2 asc;")
                                                           .arg(tr("Proband"))
                                                           .arg(tr("Survey Date"))
                                                           .arg(tr("Organization"))
                                                           .arg(tr("Description"))
-                                                          .arg(tr("Survey ID")));
+                                                          .arg(tr("Survey ID"))
+                                                          .arg(tr("Smoking Habit")));
 
         m_icd10Qry = DataCollector::get()->prepareQuery(QString("select "
                                                                 "icd10.name as \"%1\" "
