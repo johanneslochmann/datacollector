@@ -95,3 +95,13 @@ void Survey::setSmokingHabitId(int smokingHabitId)
     m_smokingHabitId = smokingHabitId;
 }
 
+double Survey::bmi() const
+{
+    return m_bmi;
+}
+
+void Survey::setBmi(double bmi)
+{
+    m_bmi = bmi;
+}
+

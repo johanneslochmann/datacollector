@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QDateEdit>
 #include <QTextEdit>
+#include <QDoubleValidator>
 
 #include "databaseerror.hxx"
 
@@ -31,6 +32,7 @@ SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCam
     ui->date->setDisplayFormat("dd.MM.yyyy");
     ui->date->setDate(QDate::currentDate());
     ui->date->setCalendarPopup(true);
+    ui->bmi->setValidator(new QDoubleValidator(this));
 
     loadProbands();
     loadOrganizations();
@@ -69,6 +71,8 @@ SurveyDialog::SurveyDialog(QWidget *parent, int defaultProjectId, int defaultCam
     connect(ui->organization, SIGNAL(activated(QString)), this, SLOT(onCurrentOrganizationChanged(QString)));
     connect(ui->smokingHabit, SIGNAL(activated(QString)), this, SLOT(onCurrentSmokingHabitChanged(QString)));
     connect(ui->comment, SIGNAL(textChanged()), this, SLOT(onDescriptionChanged()));
+    connect(ui->bmi, SIGNAL(textChanged(QString)), this, SLOT(onBMIChanged(QString)));
+    connect(ui->date, SIGNAL(dateChanged(QDate)), this, SLOT(onDateChanged(QDate)));
 }
 
 SurveyDialog::~SurveyDialog()
@@ -162,6 +166,16 @@ void SurveyDialog::onCurrentSmokingHabitChanged(const QString &name)
 void SurveyDialog::onDescriptionChanged()
 {
     m_data->setDescription(ui->comment->toPlainText());
+}
+
+void SurveyDialog::onBMIChanged(const QString &v)
+{
+    m_data->setBmi(v.toDouble());
+}
+
+void SurveyDialog::onDateChanged(const QDate &d)
+{
+    m_data->setDate(d);
 }
 
 void SurveyDialog::loadProjects()

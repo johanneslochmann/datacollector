@@ -157,7 +157,7 @@ void SurveyForm::onCurrentSurveyChanged(const QModelIndex &idx)
 {
     emit surveyFilterChanged(0);
 
-    auto idIdx = ui->surveys->model()->index(idx.row(), 5);
+    auto idIdx = ui->surveys->model()->index(idx.row(), 6);
 
     m_currentSurveyId = ui->surveys->model()->data(idIdx).toInt();
 
@@ -643,6 +643,7 @@ void SurveyForm::prepareQueries()
                                                                   ", org.name as \"%3\" "
                                                                   ", smoking.name as \"%6\" "
                                                                   ", surv.description as \"%4\" "
+                                                                  ", surv.bmi as \"%7\" "
                                                                   ", surv.id as \"%5\" "
                                                                   "from core.proband prob "
                                                                   "join core.survey surv on prob.id = surv.proband_id "
@@ -655,7 +656,8 @@ void SurveyForm::prepareQueries()
                                                           .arg(tr("Organization"))
                                                           .arg(tr("Description"))
                                                           .arg(tr("Survey ID"))
-                                                          .arg(tr("Smoking Habit")));
+                                                          .arg(tr("Smoking Habit"))
+                                                          .arg(tr("BMI")));
 
         m_icd10Qry = DataCollector::get()->prepareQuery(QString("select "
                                                                 "icd10.name as \"%1\" "

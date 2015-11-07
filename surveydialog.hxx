@@ -36,6 +36,8 @@ public slots:
     virtual void onCurrentOrganizationChanged(const QString& name);
     virtual void onCurrentSmokingHabitChanged(const QString& name);
     virtual void onDescriptionChanged();
+    virtual void onBMIChanged(const QString& v);
+    virtual void onDateChanged(const QDate& d);
 
 protected:
     virtual void loadProjects();

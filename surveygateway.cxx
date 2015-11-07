@@ -160,13 +160,14 @@ void SurveyGateway::parse(SurveySPtr t, const QSqlRecord &rec)
     t->setOrganizationUnitId(rec.value(rec.indexOf("organization_unit_id")).toInt());
     t->setDate(rec.value(rec.indexOf("survey_date")).toDate());
     t->setDescription(rec.value(rec.indexOf("description")).toString());
+    t->setBmi(rec.value(rec.indexOf("bmi")).toDouble());
 }
 
 void SurveyGateway::insert(SurveySPtr s)
 {
     auto q = DataCollector::get()->prepareQuery("insert into "
-                                                "core.survey(proband_id, campaign_id, organization_unit_id, survey_date, description, smoking_habit_id) "
-                                                "values(:proband_id, :campaign_id, :organization_unit_id, :survey_date, :description, :smoking_habit_id) "
+                                                "core.survey(proband_id, campaign_id, organization_unit_id, survey_date, description, smoking_habit_id, bmi) "
+                                                "values(:proband_id, :campaign_id, :organization_unit_id, :survey_date, :description, :smoking_habit_id, :bmi) "
                                                 "returning id;");
     q.bindValue(":proband_id", s->probandId());
     q.bindValue(":campaign_id", s->campaignId());
@@ -174,6 +175,7 @@ void SurveyGateway::insert(SurveySPtr s)
     q.bindValue(":survey_date", s->date());
     q.bindValue(":description", s->description());
     q.bindValue(":smoking_habit_id", s->smokingHabitId());
+    q.bindValue(":bmi", (s->bmi() > 0.0) ? s->bmi() : QVariant());
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 

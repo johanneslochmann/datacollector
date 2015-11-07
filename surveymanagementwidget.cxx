@@ -24,6 +24,7 @@ SurveyManagementWidget::SurveyManagementWidget(QWidget *p)
     model()->setHeaderData(model()->fieldIndex("survey_date"), Qt::Horizontal, tr("Survey Date"));
     model()->setHeaderData(5, Qt::Horizontal, tr("Organization Unit"));
     model()->setHeaderData(6, Qt::Horizontal, tr("Smoking Habit"));
+    model()->setHeaderData(model()->fieldIndex("bmi"), Qt::Horizontal, tr("BMI"));
 
     model()->select();
 }

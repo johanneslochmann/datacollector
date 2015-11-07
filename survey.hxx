@@ -23,6 +23,7 @@ public:
     int campaignId() const;
     int organizationUnitId() const;
     int smokingHabitId() const;
+    double bmi() const;
 
     void setProbandLabel(const QString &probandLabel);
     void setCampaignLabel(const QString &campaignLabel);
@@ -33,6 +34,7 @@ public:
     void setOrganizationUnit(const QString &organizationUnit);
     void setDescription(const QString &description);
     void setSmokingHabitId(int smokingHabitId);
+    void setBmi(double bmi);
 
 private:
     QString m_probandLabel;
@@ -45,5 +47,6 @@ private:
     int m_campaignId { 0 };
     int m_organizationUnitId { 0 };
     int m_smokingHabitId { 1 };
+    double m_bmi { 0.0 };
 };
 
