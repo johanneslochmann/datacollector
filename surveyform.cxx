@@ -44,6 +44,7 @@ SurveyForm::SurveyForm(QWidget *parent) :
 
     connect(ui->reloadSurveysW, &QPushButton::clicked, this, &SurveyForm::reloadSurveys);
     connect(ui->createSurveyW, &QPushButton::clicked, this, &SurveyForm::createSurvey);
+    connect(ui->deleteSurveyW, &QPushButton::clicked, this, &SurveyForm::removeSurvey);
     connect(ui->reloadIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::reloadIcd10Diagnosis);
     connect(ui->addIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::addIcd10Diagnosis);
     connect(ui->removeIcd10DiagnosisW, &QPushButton::clicked, this, &SurveyForm::removeIcd10Diagnosis);
@@ -267,6 +268,40 @@ void SurveyForm::createSurvey()
     }
 }
 
+void SurveyForm::removeSurvey()
+{
+    auto selectedIndexes = ui->surveys->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->surveys->model()->index(idx.row(), 6);
+
+    auto selectedId = ui->surveys->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove Survey?"),
+                              tr("Remove Survey <b>%1</b> (%2) and all datasets within?")
+                              .arg(ui->surveys->model()->data(idx).toString())
+                              .arg(selectedId),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removeSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadSurveys();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove Survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
 void SurveyForm::reloadIcd10Diagnosis()
 {
     m_icd10Qry.bindValue(":survey_id", m_currentSurveyId);
@@ -306,16 +341,16 @@ void SurveyForm::removeIcd10Diagnosis()
     }
 
     auto idx = selectedIndexes.first();
+    auto idIdx = ui->icd10View->model()->index(idx.row(), 2);
+    auto selectedId = ui->icd10View->model()->data(idIdx).toInt();
 
     if (QMessageBox::question(this, tr("Remove ICD10 Diagnosis?"),
-                              tr("Remove Diagnosis <b>%1</b>?").arg(ui->icd10View->model()->data(idx).toString()),
+                              tr("Remove Diagnosis <b>%1</b> (%2)?")
+                              .arg(ui->icd10View->model()->data(idx).toString())
+                              .arg(selectedId),
                               QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
         return;
     }
-
-    auto idIdx = ui->icd10View->model()->index(idx.row(), 1);
-
-    auto selectedId = ui->icd10View->model()->data(idIdx).toInt();
 
     try {
         SurveyGateway().removeIcd10DiagnosisFromSurvey(selectedId);
@@ -368,16 +403,19 @@ void SurveyForm::removeOnDemandDrug()
     }
 
     auto idx = selectedIndexes.first();
+    auto idIdx = ui->onDemandDrugsView->model()->index(idx.row(), 2);
+    auto selectedId = ui->onDemandDrugsView->model()->data(idIdx).toInt();
 
     if (QMessageBox::question(this, tr("Remove Drug?"),
-                              tr("Remove Drug <b>%1</b>?").arg(ui->onDemandDrugsView->model()->data(idx).toString()),
+                              tr("Remove Drug <b>%1</b> (%2)?")
+                              .arg(ui->onDemandDrugsView->model()->data(idx).toString())
+                              .arg(selectedId),
                               QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
         return;
     }
 
-    auto idIdx = ui->onDemandDrugsView->model()->index(idx.row(), 1);
 
-    auto selectedId = ui->onDemandDrugsView->model()->data(idIdx).toInt();
+
 
     try {
         SurveyGateway().removeOnDemandDrugFromSurvey(selectedId);
@@ -969,13 +1007,15 @@ void SurveyForm::prepareQueries()
         m_onDemandDrugsQry = DataCollector::get()->prepareQuery(QString("select "
                                                                         "d.name as \"%1\" "
                                                                         ", nm.description as \"%2\" "
+                                                                        ", nm.id as \"%3\" "
                                                                         "from core.drug d "
                                                                         "join core.optional_prescription nm on d.id = nm.drug_id "
                                                                         "join core.survey s on nm.survey_id = s.id "
                                                                         "where s.id = :survey_id "
                                                                         "order by 1 asc;")
                                                                 .arg(tr("Drug"))
-                                                                .arg(tr("Description")));
+                                                                .arg(tr("Description"))
+                                                                .arg(tr("ID")));
 
         m_reqularDrugsQry = DataCollector::get()->prepareQuery(QString("select "
                                                                        "pd.name as \"%1\" "

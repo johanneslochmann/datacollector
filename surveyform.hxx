@@ -43,6 +43,7 @@ public slots:
 
     void reloadSurveys();
     void createSurvey();
+    void removeSurvey();
 
     void reloadIcd10Diagnosis();
     void addIcd10Diagnosis();

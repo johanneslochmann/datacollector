@@ -147,6 +147,15 @@ void SurveyGateway::addWhoQolToSurvey(double physical, double psychological, dou
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
+void SurveyGateway::removeSurvey(int id)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.survey where id = :id;");
+
+    q.bindValue(":id", id);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
 void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where id = :id;");

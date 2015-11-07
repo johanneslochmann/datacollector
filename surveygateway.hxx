@@ -22,6 +22,7 @@ public:
     void addFpsToSurvey(double value, const QString& description, int surveyId);
     void addWhoQolToSurvey(double physical, double psychological, double social, double environmental, const QString& description, int surveyId);
 
+    void removeSurvey(int id);
     void removeIcd10DiagnosisFromSurvey(int recordId);
     void removeCollateralEffectFromSurvey(int recordId);
     void removeOnDemandDrugFromSurvey(int recordId);
