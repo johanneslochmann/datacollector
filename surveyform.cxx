@@ -18,6 +18,7 @@
 #include "plasmaticleveldialog.hxx"
 #include "depotdrugdialog.hxx"
 #include "collateraleffectdialog.hxx"
+#include "cgidialog.hxx"
 
 #include "ui_surveyform.h"
 
@@ -58,6 +59,9 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->addCollateralEffectW, &QPushButton::clicked, this, &SurveyForm::addCollateralEffect);
     connect(ui->reloadCollateralEffectsW, &QPushButton::clicked, this, &SurveyForm::reloadCollateralEffects);
     connect(ui->removeCollateralEffectW, &QPushButton::clicked, this, &SurveyForm::removeCollateralEffect);
+    connect(ui->addCgi, &QPushButton::clicked, this, &SurveyForm::addCgi);
+    connect(ui->reloadCgi, &QPushButton::clicked, this, &SurveyForm::reloadCgi);
+    connect(ui->removeCgi, &QPushButton::clicked, this, &SurveyForm::removeCgi);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -81,6 +85,7 @@ void SurveyForm::onDatabaseAboutToClose()
     m_plasmaticLevelsModel->setQuery(QSqlQuery());
     m_depotDrugsModel->setQuery(QSqlQuery());
     m_collateralEffectsModel->setQuery(QSqlQuery());
+    m_cgiModel->setQuery(QSqlQuery());
 
     m_projectsQry.clear();
     m_campaignsQry.clear();
@@ -93,6 +98,7 @@ void SurveyForm::onDatabaseAboutToClose()
     m_plasmaticLevelsQry.clear();
     m_depotDrugsQry.clear();
     m_collateralEffectsQry.clear();
+    m_cgiQry.clear();
 }
 
 void SurveyForm::onDatabaseAvailable()
@@ -207,6 +213,7 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
     reloadPlasmaticLevels();
     reloadDepotDrugs();
     reloadCollateralEffects();
+    reloadCgi();
 
     ui->tab->setEnabled(true);
 }
@@ -629,6 +636,73 @@ void SurveyForm::removeCollateralEffect()
     }
 }
 
+void SurveyForm::reloadCgi()
+{
+    m_cgiQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_cgiQry, false);
+    m_cgiModel->setQuery(m_cgiQry);
+
+    ui->cgiView->setModel(m_cgiModel);
+}
+
+void SurveyForm::addCgi()
+{
+    auto dlg = new CGIDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addCgiToSurvey(dlg->severity(),
+                                       dlg->improvement(),
+                                       dlg->comment(),
+                                       m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadCgi();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add CGI to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeCgi()
+{
+    auto selectedIndexes = ui->cgiView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->cgiView->model()->index(idx.row(), 3);
+
+    auto selectedId = ui->cgiView->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove CGI?"),
+                              tr("Remove CGI <b>%1</b> (%2)?")
+                              .arg(ui->cgiView->model()->data(idx).toString())
+                              .arg(selectedId),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removeCgiFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadCgi();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove CGI from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
 void SurveyForm::prepareQueries()
 {
     try {
@@ -755,6 +829,17 @@ void SurveyForm::prepareQueries()
                                                                             "order by 1 asc;")
                                                                     .arg(tr("Name"))
                                                                     .arg(tr("Description")));
+        m_cgiQry = DataCollector::get()->prepareQuery(QString("select "
+                                                              "c.severity as \"%1\", "
+                                                              "c.improvement as \"%2\", "
+                                                              "c.description as \"%3\", "
+                                                              "c.id as \"%4\" "
+                                                              "from core.cgi c "
+                                                              "where c.survey_id = :survey_id;")
+                                                      .arg(tr("Severity"))
+                                                      .arg(tr("Improvement"))
+                                                      .arg(tr("Description"))
+                                                      .arg(tr("ID")));
     } catch(DatabaseError e) {
         showError(e);
     }
@@ -771,6 +856,7 @@ void SurveyForm::setupModels()
     m_plasmaticLevelsModel = new QSqlQueryModel(this);
     m_depotDrugsModel = new QSqlQueryModel(this);
     m_collateralEffectsModel = new QSqlQueryModel(this);
+    m_cgiModel = new QSqlQueryModel(this);
 
     ui->projects->setModel(m_projectsModel);
     ui->campaigns->setModel(m_campaignsModel);
@@ -781,6 +867,7 @@ void SurveyForm::setupModels()
     ui->plasmaticLevelsView->setModel(m_plasmaticLevelsModel);
     ui->depotDrugsView->setModel(m_depotDrugsModel);
     ui->collateralEffectView->setModel(m_collateralEffectsModel);;
+    ui->cgiView->setModel(m_cgiModel);
 
     ui->surveys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -809,6 +896,11 @@ void SurveyForm::setupModels()
     ui->collateralEffectView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->collateralEffectView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->collateralEffectView->setSortingEnabled(true);
+
+    ui->cgiView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->cgiView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->cgiView->setSortingEnabled(true);
+
 }
 
 void SurveyForm::showError(QSqlError err, const QString &msg)

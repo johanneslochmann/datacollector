@@ -91,6 +91,20 @@ void SurveyGateway::addDepotDrugToSurvey(int prescribeableDrugId, double dosage,
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
+void SurveyGateway::addCgiToSurvey(double severity, double improvement, const QString &description, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into "
+                                                "core.cgi(survey_id, severity, improvement, description) "
+                                                "values(:survey_id, :severity, :improvement, :description) "
+                                                "returning id;");
+    q.bindValue(":survey_id", surveyId);
+    q.bindValue(":description", description);
+    q.bindValue(":severity", severity);
+    q.bindValue(":improvement", improvement);
+
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
 void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where id = :id;");
@@ -139,6 +153,15 @@ void SurveyGateway::removePlasmaticLevelFromSurvey(int recordId)
 void SurveyGateway::removeDepotDrugFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.depot_prescription where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
+void SurveyGateway::removeCgiFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.cgi where id = :id;");
 
     q.bindValue(":id", recordId);
 

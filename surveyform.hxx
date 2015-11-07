@@ -68,6 +68,10 @@ public slots:
     void addCollateralEffect();
     void removeCollateralEffect();
 
+    void reloadCgi();
+    void addCgi();
+    void removeCgi();
+
 protected:
     void prepareQueries();
     void setupModels();
@@ -87,6 +91,7 @@ private:
     QSqlQuery m_plasmaticLevelsQry;
     QSqlQuery m_depotDrugsQry;
     QSqlQuery m_collateralEffectsQry;
+    QSqlQuery m_cgiQry;
 
     QSqlQuery m_getProjectIdQry;
     QSqlQuery m_getCampaignIdQry;
@@ -100,6 +105,7 @@ private:
     QSqlQueryModel* m_plasmaticLevelsModel;
     QSqlQueryModel* m_depotDrugsModel;
     QSqlQueryModel* m_collateralEffectsModel;
+    QSqlQueryModel* m_cgiModel;
 
     int m_currentProjectId { 0 };
     int m_currentCampaignId { 0 };
