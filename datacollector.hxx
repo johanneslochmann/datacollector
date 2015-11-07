@@ -41,6 +41,8 @@ public:
     QAction* manageOrganizationUnitsAction() const { return m_manageOrganizationUnits; }
     QAction* manageIcd10DiagnosisAction() const { return m_manageIcd10Diagnosis; }
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
+    QAction* manageAgeClassesAction() const { return m_manageAgeClasses; }
+
     QAction* showCoreStatisticsAction() const { return m_showCoreStatistics; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql, bool createTransaction);
@@ -76,6 +78,7 @@ signals:
     void manageSurveys();
     void manageOrganizationUnits();
     void manageIcd10Diagnosis();
+    void manageAgeClasses();
     void manageSurveyData();
     void showCoreStatistics();
 
@@ -110,5 +113,6 @@ private:
     QAction* m_manageOrganizationUnits;
     QAction* m_manageIcd10Diagnosis;
     QAction* m_manageSurveyData;
+    QAction* m_manageAgeClasses;
     QAction* m_showCoreStatistics;
 };

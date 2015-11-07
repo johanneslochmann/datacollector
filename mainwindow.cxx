@@ -76,6 +76,7 @@ void MainWindow::initMenues()
     coreData->addSeparator();
     coreData->addAction(app->manageSexesAction());
     coreData->addAction(app->manageUnitsAction());
+    coreData->addAction(app->manageAgeClassesAction());
     coreData->addSeparator();
     coreData->addAction(app->manageSurveysAction());
 

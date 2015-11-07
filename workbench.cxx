@@ -19,6 +19,7 @@
 #include "icd10diagnosismanagementwidget.hxx"
 #include "surveyform.hxx"
 #include "corestatisticsform.hxx"
+#include "ageclassmanagementwidget.hxx"
 
 Workbench::Workbench(QWidget *parent)
     : QStackedWidget(parent)
@@ -42,6 +43,7 @@ Workbench::Workbench(QWidget *parent)
     m_icd10Diagnosis = new Icd10DiagnosisManagementWidget(this);
     m_surveyData = new SurveyForm(this);
     m_coreStatics = new CoreStatisticsForm(this);
+    m_ageClasses = new AgeClassManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -58,6 +60,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_surveys);
     addWidget(m_organizationUnits);
     addWidget(m_icd10Diagnosis);
+    addWidget(m_ageClasses);
     addWidget(m_surveyData);
     addWidget(m_coreStatics);
 
@@ -76,6 +79,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageSurveys, this, &Workbench::manageSurveys);
     connect(app, &DataCollector::manageOrganizationUnits, this, &Workbench::manageOrganizationUnits);
     connect(app, &DataCollector::manageIcd10Diagnosis, this, &Workbench::manageIcd10Diagnosis);
+    connect(app, &DataCollector::manageAgeClasses, this, &Workbench::manageAgeClasses);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
     connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
 
@@ -157,6 +161,11 @@ void Workbench::manageIcd10Diagnosis()
 
 void Workbench::manageSurveyData() {
     setCurrentWidget(m_surveyData);
+}
+
+void Workbench::manageAgeClasses()
+{
+    setCurrentWidget(m_ageClasses);
 }
 
 void Workbench::showCoreStatistics()

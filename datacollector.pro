@@ -58,7 +58,8 @@ SOURCES += main.cxx\
     regulardrugdialog.cxx \
     depotdrugdialog.cxx \
     icd10diagnosisdialog.cxx \
-    corestatisticsform.cxx
+    corestatisticsform.cxx \
+    ageclassmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -111,7 +112,8 @@ HEADERS  += mainwindow.hxx \
     regulardrugdialog.hxx \
     depotdrugdialog.hxx \
     icd10diagnosisdialog.hxx \
-    corestatisticsform.hxx
+    corestatisticsform.hxx \
+    ageclassmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

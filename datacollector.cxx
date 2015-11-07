@@ -262,6 +262,9 @@ void DataCollector::initActions()
     m_manageIcd10Diagnosis = new ActionEnabledIfConnectedToDatabase(tr("ICD 10 Diagnosis"), this);
     connect(m_manageIcd10Diagnosis, &QAction::triggered, this, &DataCollector::manageIcd10Diagnosis);
 
+    m_manageAgeClasses = new ActionEnabledIfConnectedToDatabase(tr("Age Classes"), this);
+    connect(m_manageAgeClasses, &QAction::triggered, this, &DataCollector::manageAgeClasses);
+
     m_manageSurveyData = new ActionEnabledIfConnectedToDatabase(tr("Manage Survey Data"), this);
     connect(m_manageSurveyData, &QAction::triggered, this, &DataCollector::manageSurveyData);
 
