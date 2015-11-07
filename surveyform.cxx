@@ -19,6 +19,9 @@
 #include "depotdrugdialog.hxx"
 #include "collateraleffectdialog.hxx"
 #include "cgidialog.hxx"
+#include "gafdialog.hxx"
+#include "fpsdialog.hxx"
+#include "whoqoldialog.hxx"
 
 #include "ui_surveyform.h"
 
@@ -62,6 +65,15 @@ SurveyForm::SurveyForm(QWidget *parent) :
     connect(ui->addCgi, &QPushButton::clicked, this, &SurveyForm::addCgi);
     connect(ui->reloadCgi, &QPushButton::clicked, this, &SurveyForm::reloadCgi);
     connect(ui->removeCgi, &QPushButton::clicked, this, &SurveyForm::removeCgi);
+    connect(ui->addGaf, &QPushButton::clicked, this, &SurveyForm::addGaf);
+    connect(ui->reloadGaf, &QPushButton::clicked, this, &SurveyForm::reloadGaf);
+    connect(ui->removeGaf, &QPushButton::clicked, this, &SurveyForm::removeGaf);
+    connect(ui->addFps, &QPushButton::clicked, this, &SurveyForm::addFps);
+    connect(ui->reloadFps, &QPushButton::clicked, this, &SurveyForm::reloadFps);
+    connect(ui->removeFps, &QPushButton::clicked, this, &SurveyForm::removeFps);
+    connect(ui->addWhoQol, &QPushButton::clicked, this, &SurveyForm::addWhoQol);
+    connect(ui->reloadWhoQol, &QPushButton::clicked, this, &SurveyForm::reloadWhoQol);
+    connect(ui->removeWhoQol, &QPushButton::clicked, this, &SurveyForm::removeWhoQol);
 
     connect(this, &SurveyForm::projectFilterChanged, this, &SurveyForm::onProjectFilterChanged);
     connect(this, &SurveyForm::campaignFilterChanged, this, &SurveyForm::onCampaignFilterChanged);
@@ -86,6 +98,9 @@ void SurveyForm::onDatabaseAboutToClose()
     m_depotDrugsModel->setQuery(QSqlQuery());
     m_collateralEffectsModel->setQuery(QSqlQuery());
     m_cgiModel->setQuery(QSqlQuery());
+    m_gafModel->setQuery(QSqlQuery());
+    m_fpsModel->setQuery(QSqlQuery());
+    m_whoQolModel->setQuery(QSqlQuery());
 
     m_projectsQry.clear();
     m_campaignsQry.clear();
@@ -99,6 +114,9 @@ void SurveyForm::onDatabaseAboutToClose()
     m_depotDrugsQry.clear();
     m_collateralEffectsQry.clear();
     m_cgiQry.clear();
+    m_gafQry.clear();
+    m_fpsQry.clear();
+    m_whoQolQry.clear();
 }
 
 void SurveyForm::onDatabaseAvailable()
@@ -214,6 +232,9 @@ void SurveyForm::onSurveyFilterChanged(int surveyId)
     reloadDepotDrugs();
     reloadCollateralEffects();
     reloadCgi();
+    reloadGaf();
+    reloadFps();
+    reloadWhoQol();
 
     ui->tab->setEnabled(true);
 }
@@ -703,6 +724,207 @@ void SurveyForm::removeCgi()
     }
 }
 
+void SurveyForm::reloadGaf()
+{
+    m_gafQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_gafQry, false);
+    m_gafModel->setQuery(m_gafQry);
+
+    ui->gafView->setModel(m_gafModel);
+}
+
+void SurveyForm::addGaf()
+{
+    auto dlg = new GAFDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addGafToSurvey(dlg->value(),
+                                       dlg->description(),
+                                       m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadGaf();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add GAF to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeGaf()
+{
+    auto selectedIndexes = ui->gafView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->gafView->model()->index(idx.row(), 2);
+
+    auto selectedId = ui->gafView->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove GAF?"),
+                              tr("Remove GAF <b>%1</b> (%2)?")
+                              .arg(ui->gafView->model()->data(idx).toString())
+                              .arg(selectedId),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removeGafFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadGaf();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove GAF from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::reloadFps()
+{
+    m_fpsQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_fpsQry, false);
+    m_fpsModel->setQuery(m_fpsQry);
+
+    ui->fpsView->setModel(m_fpsModel);
+}
+
+void SurveyForm::addFps()
+{
+    auto dlg = new FPSDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addFpsToSurvey(dlg->value(),
+                                       dlg->description(),
+                                       m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadFps();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add fps to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeFps()
+{
+    auto selectedIndexes = ui->fpsView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->fpsView->model()->index(idx.row(), 2);
+
+    auto selectedId = ui->fpsView->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove fps?"),
+                              tr("Remove fps <b>%1</b> (%2)?")
+                              .arg(ui->fpsView->model()->data(idx).toString())
+                              .arg(selectedId),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removeFpsFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadFps();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove fps from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::reloadWhoQol()
+{
+    m_whoQolQry.bindValue(":survey_id", m_currentSurveyId);
+
+    DataCollector::get()->performQuery(m_whoQolQry, false);
+    m_whoQolModel->setQuery(m_whoQolQry);
+
+    ui->whoQolView->setModel(m_whoQolModel);
+}
+
+void SurveyForm::addWhoQol()
+{
+    auto dlg = new WHOQOLDialog(this);
+
+    if (QDialog::Accepted != dlg->exec()) {
+        return;
+    }
+
+    try {
+        SurveyGateway().addWhoQolToSurvey(dlg->physical(),
+                                          dlg->psychological(),
+                                          dlg->social(),
+                                          dlg->environmental(),
+                                          dlg->description(),
+                                          m_currentSurveyId);
+        DataCollector::get()->commit();
+
+        reloadWhoQol();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to add WHOQOL to current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
+void SurveyForm::removeWhoQol()
+{
+    auto selectedIndexes = ui->whoQolView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        return;
+    }
+
+    auto idx = selectedIndexes.first();
+
+    auto idIdx = ui->whoQolView->model()->index(idx.row(), 5);
+
+    auto selectedId = ui->whoQolView->model()->data(idIdx).toInt();
+
+    if (QMessageBox::question(this, tr("Remove WHOQOL?"),
+                              tr("Remove WHOQOL <b>%1</b> (%2)?")
+                              .arg(ui->whoQolView->model()->data(idx).toString())
+                              .arg(selectedId),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+        return;
+    }
+
+    try {
+        SurveyGateway().removeWhoQolFromSurvey(selectedId);
+        DataCollector::get()->commit();
+
+        reloadWhoQol();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to remove WHOQOL from current survey."), this);
+        DataCollector::get()->rollback();
+    }
+}
+
 void SurveyForm::prepareQueries()
 {
     try {
@@ -840,6 +1062,40 @@ void SurveyForm::prepareQueries()
                                                       .arg(tr("Improvement"))
                                                       .arg(tr("Description"))
                                                       .arg(tr("ID")));
+
+        m_gafQry = DataCollector::get()->prepareQuery(QString("select "
+                                                              "g.gaf_value as \"%1\", "
+                                                              "g.description as \"%2\", "
+                                                              "g.id as \"%3\" "
+                                                              "from core.gaf g "
+                                                              "where g.survey_id = :survey_id;")
+                                                      .arg(tr("GAF Value"))
+                                                      .arg(tr("Description"))
+                                                      .arg(tr("ID")));
+        m_fpsQry = DataCollector::get()->prepareQuery(QString("select "
+                                                              "g.fps_value as \"%1\", "
+                                                              "g.description as \"%2\", "
+                                                              "g.id as \"%3\" "
+                                                              "from core.fps g "
+                                                              "where g.survey_id = :survey_id;")
+                                                      .arg(tr("FPS Value"))
+                                                      .arg(tr("Description"))
+                                                      .arg(tr("ID")));
+        m_whoQolQry = DataCollector::get()->prepareQuery(QString("select "
+                                                                 "g.physical as \"%1\", "
+                                                                 "g.Psychological as \"%2\", "
+                                                                 "g.social as \"%3\", "
+                                                                 "g.environmental as \"%4\", "
+                                                                 "g.description as \"%5\", "
+                                                                 "g.id as \"%6\" "
+                                                                 "from core.who_qol g "
+                                                                 "where g.survey_id = :survey_id;")
+                                                         .arg(tr("Physical"))
+                                                         .arg(tr("Psychological"))
+                                                         .arg(tr("Social"))
+                                                         .arg(tr("Environmental"))
+                                                         .arg(tr("Description"))
+                                                         .arg(tr("ID")));
     } catch(DatabaseError e) {
         showError(e);
     }
@@ -857,6 +1113,9 @@ void SurveyForm::setupModels()
     m_depotDrugsModel = new QSqlQueryModel(this);
     m_collateralEffectsModel = new QSqlQueryModel(this);
     m_cgiModel = new QSqlQueryModel(this);
+    m_gafModel = new QSqlQueryModel(this);
+    m_fpsModel = new QSqlQueryModel(this);
+    m_whoQolModel = new QSqlQueryModel(this);
 
     ui->projects->setModel(m_projectsModel);
     ui->campaigns->setModel(m_campaignsModel);
@@ -868,6 +1127,9 @@ void SurveyForm::setupModels()
     ui->depotDrugsView->setModel(m_depotDrugsModel);
     ui->collateralEffectView->setModel(m_collateralEffectsModel);;
     ui->cgiView->setModel(m_cgiModel);
+    ui->gafView->setModel(m_gafModel);
+    ui->fpsView->setModel(m_fpsModel);
+    ui->whoQolView->setModel(m_whoQolModel);
 
     ui->surveys->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->surveys->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -901,6 +1163,17 @@ void SurveyForm::setupModels()
     ui->cgiView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->cgiView->setSortingEnabled(true);
 
+    ui->gafView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->gafView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->gafView->setSortingEnabled(true);
+
+    ui->fpsView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->fpsView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->fpsView->setSortingEnabled(true);
+
+    ui->whoQolView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->whoQolView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->whoQolView->setSortingEnabled(true);
 }
 
 void SurveyForm::showError(QSqlError err, const QString &msg)

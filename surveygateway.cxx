@@ -105,6 +105,48 @@ void SurveyGateway::addCgiToSurvey(double severity, double improvement, const QS
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
 }
 
+void SurveyGateway::addGafToSurvey(double value, const QString &description, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into "
+                                                "core.gaf(survey_id, gaf_value, description) "
+                                                "values(:survey_id, :value, :description) "
+                                                "returning id;");
+    q.bindValue(":survey_id", surveyId);
+    q.bindValue(":description", description);
+    q.bindValue(":value", value);
+
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
+void SurveyGateway::addFpsToSurvey(double value, const QString &description, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into "
+                                                "core.fps(survey_id, fps_value, description) "
+                                                "values(:survey_id, :value, :description) "
+                                                "returning id;");
+    q.bindValue(":survey_id", surveyId);
+    q.bindValue(":description", description);
+    q.bindValue(":value", value);
+
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
+void SurveyGateway::addWhoQolToSurvey(double physical, double psychological, double social, double environmental, const QString &description, int surveyId)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into "
+                                                "core.who_qol(survey_id, physical, psychological, social, environmental, description) "
+                                                "values(:survey_id, :physical, :psychological, :social, :environmental, :description) "
+                                                "returning id;");
+    q.bindValue(":survey_id", surveyId);
+    q.bindValue(":description", description);
+    q.bindValue(":physical", physical);
+    q.bindValue(":psychological", psychological);
+    q.bindValue(":social", social);
+    q.bindValue(":environmental", environmental);
+
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
+}
+
 void SurveyGateway::removeIcd10DiagnosisFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where id = :id;");
@@ -162,6 +204,33 @@ void SurveyGateway::removeDepotDrugFromSurvey(int recordId)
 void SurveyGateway::removeCgiFromSurvey(int recordId)
 {
     auto q = DataCollector::get()->prepareQuery("delete from core.cgi where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
+void SurveyGateway::removeGafFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.gaf where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
+void SurveyGateway::removeFpsFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.fps where id = :id;");
+
+    q.bindValue(":id", recordId);
+
+    DataCollector::get()->performQuery(q, true);
+}
+
+void SurveyGateway::removeWhoQolFromSurvey(int recordId)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.who_qol where id = :id;");
 
     q.bindValue(":id", recordId);
 

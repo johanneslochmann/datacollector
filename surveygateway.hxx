@@ -18,6 +18,9 @@ public:
     void addPlasmaticLevelToSurvey(int moleculeId, double value, const QString& unitName, const QString& comment, int surveyId);
     void addDepotDrugToSurvey(int prescribeableDrugId, double dosage, const QDate& lastInjection, int interval, const QString &comment, int surveyId);
     void addCgiToSurvey(double severity, double improvement, const QString& description, int surveyId);
+    void addGafToSurvey(double value, const QString& description, int surveyId);
+    void addFpsToSurvey(double value, const QString& description, int surveyId);
+    void addWhoQolToSurvey(double physical, double psychological, double social, double environmental, const QString& description, int surveyId);
 
     void removeIcd10DiagnosisFromSurvey(int recordId);
     void removeCollateralEffectFromSurvey(int recordId);
@@ -26,6 +29,9 @@ public:
     void removePlasmaticLevelFromSurvey(int recordId);
     void removeDepotDrugFromSurvey(int recordId);
     void removeCgiFromSurvey(int recordId);
+    void removeGafFromSurvey(int recordId);
+    void removeFpsFromSurvey(int recordId);
+    void removeWhoQolFromSurvey(int recordId);
 
 protected:
     QString loadAllQueryText() const override;
@@ -33,3 +39,5 @@ protected:
     void insert(SurveySPtr s);
     void update(SurveySPtr s);
 };
+
+

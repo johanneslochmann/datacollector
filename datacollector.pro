@@ -65,7 +65,10 @@ SOURCES += main.cxx\
     smokinghabitgateway.cxx \
     collateraleffectmanagementwidget.cxx \
     collateraleffectdialog.cxx \
-    cgidialog.cxx
+    cgidialog.cxx \
+    gafdialog.cxx \
+    fpsdialog.cxx \
+    whoqoldialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -125,7 +128,10 @@ HEADERS  += mainwindow.hxx \
     smokinghabitgateway.hxx \
     collateraleffectmanagementwidget.hxx \
     collateraleffectdialog.hxx \
-    cgidialog.hxx
+    cgidialog.hxx \
+    gafdialog.hxx \
+    fpsdialog.hxx \
+    whoqoldialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
@@ -138,4 +144,7 @@ FORMS += \
     icd10diagnosisdialog.ui \
     corestatisticsform.ui \
     collateraleffectdialog.ui \
-    cgidialog.ui
+    cgidialog.ui \
+    gafdialog.ui \
+    fpsdialog.ui \
+    whoqoldialog.ui
