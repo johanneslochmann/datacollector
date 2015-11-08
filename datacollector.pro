@@ -68,7 +68,9 @@ SOURCES += main.cxx\
     cgidialog.cxx \
     gafdialog.cxx \
     fpsdialog.cxx \
-    whoqoldialog.cxx
+    whoqoldialog.cxx \
+    agaterecord.cxx \
+    agateform.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -131,7 +133,9 @@ HEADERS  += mainwindow.hxx \
     cgidialog.hxx \
     gafdialog.hxx \
     fpsdialog.hxx \
-    whoqoldialog.hxx
+    whoqoldialog.hxx \
+    agaterecord.hxx \
+    agateform.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
@@ -147,4 +151,5 @@ FORMS += \
     cgidialog.ui \
     gafdialog.ui \
     fpsdialog.ui \
-    whoqoldialog.ui
+    whoqoldialog.ui \
+    agateform.ui

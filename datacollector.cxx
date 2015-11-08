@@ -271,8 +271,11 @@ void DataCollector::initActions()
     m_manageCollateralEffects = new ActionEnabledIfConnectedToDatabase(tr("Collateral Effects"), this);
     connect(m_manageCollateralEffects, &QAction::triggered, this, &DataCollector::manageCollateralEffects);
 
-    m_manageSurveyData = new ActionEnabledIfConnectedToDatabase(tr("Manage Survey Data"), this);
+    m_manageSurveyData = new ActionEnabledIfConnectedToDatabase(tr("Manage Generic Survey Data"), this);
     connect(m_manageSurveyData, &QAction::triggered, this, &DataCollector::manageSurveyData);
+
+    m_manageAgateData = new ActionEnabledIfConnectedToDatabase(tr("Manage Agate Data"), this);
+    connect(m_manageAgateData, &QAction::triggered, this, &DataCollector::manageAgateData);
 
     m_showCoreStatistics = new ActionEnabledIfConnectedToDatabase(tr("Show Core Statistics"), this);
     connect(m_showCoreStatistics, &QAction::triggered, this, &DataCollector::showCoreStatistics);

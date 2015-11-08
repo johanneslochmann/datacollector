@@ -83,6 +83,8 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageSurveysAction());
 
     QMenu* dataEntry = new QMenu(tr("&Surveys"), this);
+    dataEntry->addAction(app->manageAgateDataAction());
+    dataEntry->addSeparator();
     dataEntry->addAction(app->manageSurveyDataAction());
 
     QMenu* stat = new QMenu(tr("&Statistics"), this);

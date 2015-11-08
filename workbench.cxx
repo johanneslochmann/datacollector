@@ -22,6 +22,7 @@
 #include "collateraleffectmanagementwidget.hxx"
 
 #include "surveyform.hxx"
+#include "agateform.hxx"
 #include "corestatisticsform.hxx"
 
 Workbench::Workbench(QWidget *parent)
@@ -49,6 +50,7 @@ Workbench::Workbench(QWidget *parent)
     m_ageClasses = new AgeClassManagementWidget(this);
     m_smokingHabits = new SmokingHabitsManagementWidget(this);
     m_collateralEffects = new CollateralEffectManagementWidget(this);
+    m_agateData = new AgateForm(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -70,6 +72,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_collateralEffects);
 
     addWidget(m_surveyData);
+    addWidget(m_agateData);
     addWidget(m_coreStatics);
 
     connect(app, &DataCollector::manageChannelsIntoPatient, this, &Workbench::manageChannelsIntoPatient);
@@ -90,6 +93,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageAgeClasses, this, &Workbench::manageAgeClasses);
     connect(app, &DataCollector::manageSmokingHabits, this, &Workbench::manageSmokingHabits);
     connect(app, &DataCollector::manageCollateralEffects, this, &Workbench::manageCollateralEffects);
+    connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
 
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
     connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
@@ -172,6 +176,11 @@ void Workbench::manageIcd10Diagnosis()
 
 void Workbench::manageSurveyData() {
     setCurrentWidget(m_surveyData);
+}
+
+void Workbench::manageAgateData()
+{
+    setCurrentWidget(m_agateData);
 }
 
 void Workbench::manageAgeClasses()

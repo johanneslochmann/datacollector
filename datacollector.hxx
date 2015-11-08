@@ -40,10 +40,12 @@ public:
     QAction* manageSurveysAction() const { return m_manageSurveys; }
     QAction* manageOrganizationUnitsAction() const { return m_manageOrganizationUnits; }
     QAction* manageIcd10DiagnosisAction() const { return m_manageIcd10Diagnosis; }
-    QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgeClassesAction() const { return m_manageAgeClasses; }
     QAction* manageSmokingHabitsAction() const { return m_manageSmokingHabits; }
     QAction* manageCollateralEffectsAction() const { return m_manageCollateralEffects; }
+
+    QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
+    QAction* manageAgateDataAction() const { return m_manageAgateData; }
 
     QAction* showCoreStatisticsAction() const { return m_showCoreStatistics; }
 
@@ -85,6 +87,7 @@ signals:
     void manageCollateralEffects();
 
     void manageSurveyData();
+    void manageAgateData();
     void showCoreStatistics();
 
 public slots:
@@ -122,5 +125,6 @@ private:
     QAction* m_manageCollateralEffects;
 
     QAction* m_manageSurveyData;
+    QAction* m_manageAgateData;
     QAction* m_showCoreStatistics;
 };

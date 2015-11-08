@@ -34,6 +34,7 @@ public slots:
     void manageCollateralEffects();
 
     void manageSurveyData();
+    void manageAgateData();
     void showCoreStatistics();
 
 private:
@@ -57,5 +58,6 @@ private:
     TableManagementWidget* m_collateralEffects;
 
     QWidget* m_surveyData;
+    QWidget* m_agateData;
     QWidget* m_coreStatics;
 };
