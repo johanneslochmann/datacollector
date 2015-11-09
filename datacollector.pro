@@ -79,7 +79,10 @@ SOURCES += main.cxx\
     datatablewidget.cxx \
     agatesurveystablewidget.cxx \
     agaterecordgateway.cxx \
-    sex.cxx
+    sex.cxx \
+    sexcombobox.cxx \
+    sexdatagateway.cxx \
+    agaterecorddialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -153,7 +156,10 @@ HEADERS  += mainwindow.hxx \
     datatablewidget.hxx \
     agatesurveystablewidget.hxx \
     agaterecordgateway.hxx \
-    sex.hxx
+    sex.hxx \
+    sexcombobox.hxx \
+    sexdatagateway.hxx \
+    agaterecorddialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

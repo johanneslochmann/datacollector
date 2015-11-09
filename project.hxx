@@ -22,7 +22,7 @@ public:
     bool hasName() const { return (!name().isEmpty()); }
 
 private:
-    QString m_name;
-    QString m_description;
+    QString m_name { "" };
+    QString m_description { "" };
 };
 

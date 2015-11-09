@@ -2,10 +2,13 @@
 
 #include <QLayout>
 #include <QDebug>
+#include <QFormLayout>
 
 #include "projectcombobox.hxx"
 #include "campaigncombobox.hxx"
 #include "agatesurveystablewidget.hxx"
+#include "sexcombobox.hxx"
+#include "agaterecorddialog.hxx"
 
 #include "datacollector.hxx"
 
@@ -45,18 +48,11 @@ void ManualAgateWidget::createSurveyListBox()
     connect(m_deleteSurvey, &QPushButton::clicked, this, &ManualAgateWidget::deleteSurvey);
 }
 
-void ManualAgateWidget::createCurrentSurveyBox()
-{
-    m_currentSurveyBox = new QGroupBox(tr("Current Survey"), this);
-
-}
-
 ManualAgateWidget::ManualAgateWidget(QWidget *parent)
     : QWidget(parent)
 {
     createFilterBox();
     createSurveyListBox();
-    createCurrentSurveyBox();
 
     connect(m_campaigns, &CampaignComboBox::currentCampaignChanged, this, &ManualAgateWidget::onCurrentCampaignChanged);
     connect(m_projects, &ProjectComboBox::currentProjectChanged, this, &ManualAgateWidget::onCurrentProjectChanged);
@@ -69,7 +65,6 @@ ManualAgateWidget::ManualAgateWidget(QWidget *parent)
     setLayout(new QVBoxLayout(this));
     layout()->addWidget(m_filterBox);
     layout()->addWidget(m_surveyListBox);
-    layout()->addWidget(m_currentSurveyBox);
 }
 
 void ManualAgateWidget::onCurrentProjectChanged(ProjectSPtr p)
@@ -88,7 +83,14 @@ void ManualAgateWidget::onCurrentCampaignChanged(CampaignSPtr c)
 
 void ManualAgateWidget::createSurvey()
 {
+    auto dlg = new AgateRecordDialog(this);
+    dlg->setDefaultProject(m_currentProject);
+    dlg->setDefaultCampaign(m_currentCampaign);
 
+    if (QDialog::Accepted == dlg->exec()) {
+        m_agateSurveys->reload();
+        // TODO: scroll to new survey and select it
+    }
 }
 
 void ManualAgateWidget::editSurvey()

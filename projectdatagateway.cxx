@@ -1,9 +1,6 @@
 #include "projectdatagateway.hxx"
 
 #include <QSqlRecord>
-#include <QDebug>
-
-
 
 QString ProjectDataGateway::loadAllQueryText() const
 {

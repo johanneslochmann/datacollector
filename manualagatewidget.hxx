@@ -9,6 +9,7 @@
 
 class ProjectComboBox;
 class CampaignComboBox;
+class SexComboBox;
 class AgateSurveysTableWidget;
 
 class ManualAgateWidget : public QWidget
@@ -30,7 +31,7 @@ public slots:
 private:
     void createFilterBox();
     void createSurveyListBox();
-    void createCurrentSurveyBox();
+    void configurePersonalDataWidget(QGroupBox* b);
 
     QGroupBox* m_filterBox;
     ProjectComboBox* m_projects;
@@ -41,8 +42,6 @@ private:
     QPushButton* m_createSurvey;
     QPushButton* m_editSurvey;
     QPushButton* m_deleteSurvey;
-
-    QGroupBox* m_currentSurveyBox;
 
     ProjectSPtr m_currentProject;
     CampaignSPtr m_currentCampaign;
