@@ -82,7 +82,12 @@ SOURCES += main.cxx\
     sex.cxx \
     sexcombobox.cxx \
     sexdatagateway.cxx \
-    agaterecorddialog.cxx
+    agaterecorddialog.cxx \
+    organizationcombobox.cxx \
+    agatedepottablewidget.cxx \
+    agatedepotdialog.cxx \
+    nameidpair.cxx \
+    prescribeabledruggateway.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -159,7 +164,12 @@ HEADERS  += mainwindow.hxx \
     sex.hxx \
     sexcombobox.hxx \
     sexdatagateway.hxx \
-    agaterecorddialog.hxx
+    agaterecorddialog.hxx \
+    organizationcombobox.hxx \
+    agatedepottablewidget.hxx \
+    agatedepotdialog.hxx \
+    nameidpair.hxx \
+    prescribeabledruggateway.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

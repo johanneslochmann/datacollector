@@ -8,6 +8,7 @@
 #include "campaigncombobox.hxx"
 #include "agatesurveystablewidget.hxx"
 #include "sexcombobox.hxx"
+#include "organizationcombobox.hxx"
 #include "agaterecorddialog.hxx"
 
 #include "datacollector.hxx"
@@ -33,12 +34,14 @@ void ManualAgateWidget::createDefaultBox()
 
     m_defaultProjects = new ProjectComboBox(m_defaultBox);
     m_defaultCampaigns = new CampaignComboBox(m_defaultBox);
+    m_defaultOrganizations = new OrganizationComboBox(m_defaultBox);
     m_defaultSurveyDateW = new QCalendarWidget(m_defaultBox);
     m_defaultSurveyDateW->setSelectedDate(m_defaultSurveyDate);
 
     l->addRow(tr("Default Project"), m_defaultProjects);
     l->addRow(tr("Default Campaign"), m_defaultCampaigns);
     l->addRow(tr("Default Survey Date"), m_defaultSurveyDateW);
+    l->addRow(tr("Default Organization"), m_defaultOrganizations);
 }
 
 void ManualAgateWidget::createSurveyListBox()
@@ -80,6 +83,7 @@ ManualAgateWidget::ManualAgateWidget(QWidget *parent)
 
     connect(m_defaultProjects, &ProjectComboBox::currentProjectChanged, this, &ManualAgateWidget::onDefaultProjectChanged);
     connect(m_defaultCampaigns, &CampaignComboBox::currentCampaignChanged, this, &ManualAgateWidget::onDefaultCampaignChanged);
+    connect(m_defaultOrganizations, &OrganizationComboBox::currentOrganizationChanged, this, &ManualAgateWidget::onDefaultOrganizationChanged);
     connect(m_defaultSurveyDateW, &QCalendarWidget::activated, this, &ManualAgateWidget::onDefaultDateChanged);
 
     setLayout(new QVBoxLayout(this));
@@ -104,6 +108,11 @@ void ManualAgateWidget::onDefaultCampaignChanged(CampaignSPtr c)
     }
 }
 
+void ManualAgateWidget::onDefaultOrganizationChanged(OrganizationSPtr o)
+{
+    m_defaultOrganization = o;
+}
+
 void ManualAgateWidget::onDefaultDateChanged(const QDate &d)
 {
     m_defaultSurveyDate = d;
@@ -115,6 +124,7 @@ void ManualAgateWidget::createSurvey()
     dlg->setDefaultProject(m_defaultProject);
     dlg->setDefaultCampaign(m_defaultCampaign);
     dlg->setDefaultDate(m_defaultSurveyDate);
+    dlg->setDefaultOrganization(m_defaultOrganization);
 
     if (QDialog::Accepted == dlg->exec()) {
         m_agateSurveys->reload();

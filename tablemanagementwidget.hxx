@@ -4,6 +4,8 @@
 
 #include <qitemselectionmodel.h>
 
+#include "nameidpair.hxx"
+
 class SqlTableModel;
 class TableView;
 
@@ -15,6 +17,8 @@ class TableManagementWidget : public QGroupBox
     Q_OBJECT
 public:
     explicit TableManagementWidget(QWidget *parent, const QString& tableName, const QString &title);
+
+    NameIdPair currentSelectionNameIdPair();
 
 signals:
 

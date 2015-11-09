@@ -10,3 +10,8 @@ AgateRecord::AgateRecord()
 {
 }
 
+void AgateRecord::removeDepot(int idx)
+{
+    m_depots.erase(m_depots.begin() + idx);
+}
+

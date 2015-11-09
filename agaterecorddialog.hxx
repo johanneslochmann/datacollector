@@ -1,13 +1,18 @@
 #pragma once
 
 #include <QDialog>
+
+#include <QPushButton>
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QCalendarWidget>
+#include <QLineEdit>
 
 #include "sexcombobox.hxx"
 #include "projectcombobox.hxx"
 #include "campaigncombobox.hxx"
+#include "organizationcombobox.hxx"
+#include "agatedepottablewidget.hxx"
 
 #include "agaterecord.hxx"
 
@@ -21,6 +26,7 @@ public:
     void setDefaultProject(ProjectSPtr p);
     void setDefaultCampaign(CampaignSPtr c);
     void setDefaultDate(const QDate& d);
+    void setDefaultOrganization(OrganizationSPtr o);
 
 signals:
 
@@ -30,12 +36,16 @@ public slots:
 
     void onProjectChanged(ProjectSPtr p);
     void onCampaignChanged(CampaignSPtr c);
+    void onOrganizationChanged(OrganizationSPtr o);
     void onSurveyDateChanged(const QDate& d);
+    void onBirthYearChanged(const QString& y);
+    void onSexChanged(SexSPtr s);
 
 protected:
     void configureUi();
     void configureSurveyBox();
     void configurePersonalBox();
+    void configureDepotBox();
 
 private:
     AgateRecordSPtr m_r;
@@ -46,12 +56,20 @@ private:
     QGroupBox* m_surveyBox;
     ProjectComboBox* m_projects;
     CampaignComboBox* m_campaigns;
+    OrganizationComboBox* m_organizations;
     QCalendarWidget* m_surveyDate;
 
     QGroupBox* m_personalBox;
+    QLineEdit* m_birthYear;
     SexComboBox* m_sexes;
+
+    QGroupBox* m_depotBox;
+    AgateDepotTableWidget* m_depots;
+    QPushButton* m_addDepot;
+    QPushButton* m_removeDepot;
 
     ProjectSPtr m_defaultProject;
     CampaignSPtr m_defaultCampaign;
+    OrganizationSPtr m_defaultOrganization;
     QDate m_defaultDate;
 };

@@ -8,8 +8,21 @@
 #include "sex.hxx"
 
 class AgateRecord;
+struct AgateDepot;
+
 using AgateRecordSPtr = std::shared_ptr<AgateRecord>;
+using AgateDepotSPtr = std::shared_ptr<AgateDepot>;
+
 using AgateRecordSPtrVector = std::vector<AgateRecordSPtr>;
+using AgateDepotSPtrVector = std::vector<AgateDepotSPtr>;
+
+struct AgateDepot {
+    QString prescribeableDrugName { "" };
+    int prescribeableDrugId { 0 };
+    QDate lastInjectionDate { QDate::currentDate() };
+    double dosageInMg { 0.0 };
+    int injectionIntervalInDays { 0 };
+};
 
 class AgateRecord
 {
@@ -23,6 +36,11 @@ public:
     SurveySPtr survey() const { return m_survey; }
     SexSPtr sex() const { return m_sex; }
 
+    AgateDepotSPtrVector depots() const { return m_depots; }
+
+    void addDepot(AgateDepotSPtr d) { m_depots.push_back(d); }
+    void removeDepot(int idx);
+
 private:
     ProjectSPtr m_project;
     CampaignSPtr m_campaign;
@@ -30,4 +48,6 @@ private:
     OrganizationSPtr m_organization;
     SurveySPtr m_survey;
     SexSPtr m_sex;
+
+    AgateDepotSPtrVector m_depots;
 };

@@ -9,11 +9,7 @@
 AgateSurveysTableWidget::AgateSurveysTableWidget(QWidget *p)
     : DataTableWidget(p)
 {
-    setSelectionBehavior(QAbstractItemView::SelectRows);
-    setSelectionMode(QAbstractItemView::SingleSelection);
-    setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    m_headerLabels << tr("Campaign") << tr("Proband") << tr("Survey Date") << tr("Organization"), tr("ID");
+    m_headerLabels << tr("Campaign") << tr("Proband") << tr("Survey Date") << tr("Organization") << tr("ID");
 }
 
 void AgateSurveysTableWidget::onProjectChanged(ProjectSPtr p)
@@ -59,17 +55,11 @@ void AgateSurveysTableWidget::reload()
     int r=0;
 
     for (auto i : buf) {
-        auto campaign = new QTableWidgetItem(format(i->campaign()));
-        auto proband = new QTableWidgetItem(format(i->proband()));
-        auto surveyDate = new QTableWidgetItem(i->survey()->date().toString("dd.MM.yyyy"));
-        auto organization = new QTableWidgetItem(format(i->organization()));
-        auto id = new QTableWidgetItem(i->survey()->id());
-
-        setItem(r, m_campaignCol, campaign);
-        setItem(r, m_probandCol, proband);
-        setItem(r, m_surveyDateCol, surveyDate);
-        setItem(r, m_organizationCol, organization);
-        setItem(r, m_idCol, id);
+        setItem(r, m_campaignCol, new QTableWidgetItem(format(i->campaign())));
+        setItem(r, m_probandCol, new QTableWidgetItem(format(i->proband())));
+        setItem(r, m_surveyDateCol, new QTableWidgetItem(i->survey()->date().toString("dd.MM.yyyy")));
+        setItem(r, m_organizationCol, new QTableWidgetItem(format(i->organization())));
+        setItem(r, m_idCol, new QTableWidgetItem(QString("%1").arg(i->survey()->id())));
 
         r++;
     }

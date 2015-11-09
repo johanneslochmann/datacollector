@@ -61,6 +61,23 @@ TableManagementWidget::TableManagementWidget(QWidget *parent, const QString &tab
     reload(false);
 }
 
+NameIdPair TableManagementWidget::currentSelectionNameIdPair()
+{
+    auto selectedIndexes = m_view->selectionModel()->selectedRows(m_model->fieldIndex(nameColumnName()));
+
+    if (selectedIndexes.empty()) {
+        return NameIdPair();
+    }
+
+    if (1 != selectedIndexes.size()) {
+        return NameIdPair();
+    }
+
+    auto idx = selectedIndexes.first();
+
+    return NameIdPair(m_model->data(idx).toString());
+}
+
 void TableManagementWidget::reload(bool askUser)
 {
     if (askUser) {
