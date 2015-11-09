@@ -22,7 +22,7 @@
 #include "collateraleffectmanagementwidget.hxx"
 
 #include "surveyform.hxx"
-#include "agateform.hxx"
+#include "manualagatewidget.hxx"
 #include "corestatisticsform.hxx"
 
 Workbench::Workbench(QWidget *parent)
@@ -50,7 +50,7 @@ Workbench::Workbench(QWidget *parent)
     m_ageClasses = new AgeClassManagementWidget(this);
     m_smokingHabits = new SmokingHabitsManagementWidget(this);
     m_collateralEffects = new CollateralEffectManagementWidget(this);
-    m_agateData = new AgateForm(this);
+    m_agateData = new ManualAgateWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);

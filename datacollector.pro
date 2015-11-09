@@ -70,7 +70,16 @@ SOURCES += main.cxx\
     fpsdialog.cxx \
     whoqoldialog.cxx \
     agaterecord.cxx \
-    agateform.cxx
+    agateform.cxx \
+    datacombobox.cxx \
+    projectcombobox.cxx \
+    manualagatewidget.cxx \
+    filtereddatacombobox.cxx \
+    campaigncombobox.cxx \
+    datatablewidget.cxx \
+    agatesurveystablewidget.cxx \
+    agaterecordgateway.cxx \
+    sex.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -135,7 +144,16 @@ HEADERS  += mainwindow.hxx \
     fpsdialog.hxx \
     whoqoldialog.hxx \
     agaterecord.hxx \
-    agateform.hxx
+    agateform.hxx \
+    datacombobox.hxx \
+    projectcombobox.hxx \
+    manualagatewidget.hxx \
+    filtereddatacombobox.hxx \
+    campaigncombobox.hxx \
+    datatablewidget.hxx \
+    agatesurveystablewidget.hxx \
+    agaterecordgateway.hxx \
+    sex.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

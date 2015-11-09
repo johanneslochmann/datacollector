@@ -3,9 +3,13 @@
 #include <memory>
 #include <vector>
 
+class Storable;
+using StorableSPtr = std::shared_ptr<Storable>;
+
 class Storable
 {
 public:
+    Storable();
     virtual ~Storable();
 
     int id() const;
@@ -15,7 +19,6 @@ public:
     bool hasId() const { return (id() > 0); }
 
 protected:
-    Storable();
 
 private:
     int m_id { 0 };
