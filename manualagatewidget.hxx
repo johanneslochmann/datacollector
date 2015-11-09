@@ -3,13 +3,13 @@
 #include <QWidget>
 #include <QGroupBox>
 #include <QPushButton>
+#include <QCalendarWidget>
 
 #include "project.hxx"
 #include "campaign.hxx"
 
 class ProjectComboBox;
 class CampaignComboBox;
-class SexComboBox;
 class AgateSurveysTableWidget;
 
 class ManualAgateWidget : public QWidget
@@ -21,8 +21,9 @@ public:
 signals:
 
 public slots:
-    void onCurrentProjectChanged(ProjectSPtr p);
-    void onCurrentCampaignChanged(CampaignSPtr c);
+    void onDefaultProjectChanged(ProjectSPtr p);
+    void onDefaultCampaignChanged(CampaignSPtr c);
+    void onDefaultDateChanged(const QDate& d);
 
     void createSurvey();
     void editSurvey();
@@ -30,12 +31,18 @@ public slots:
 
 private:
     void createFilterBox();
+    void createDefaultBox();
     void createSurveyListBox();
     void configurePersonalDataWidget(QGroupBox* b);
 
     QGroupBox* m_filterBox;
-    ProjectComboBox* m_projects;
-    CampaignComboBox* m_campaigns;
+    ProjectComboBox* m_projectsFilter;
+    CampaignComboBox* m_campaignsFilter;
+
+    QGroupBox* m_defaultBox;
+    ProjectComboBox* m_defaultProjects;
+    CampaignComboBox* m_defaultCampaigns;
+    QCalendarWidget* m_defaultSurveyDateW;
 
     QGroupBox* m_surveyListBox;
     AgateSurveysTableWidget* m_agateSurveys;
@@ -43,7 +50,8 @@ private:
     QPushButton* m_editSurvey;
     QPushButton* m_deleteSurvey;
 
-    ProjectSPtr m_currentProject;
-    CampaignSPtr m_currentCampaign;
+    ProjectSPtr m_defaultProject;
+    CampaignSPtr m_defaultCampaign;
+    QDate m_defaultSurveyDate { QDate::currentDate() };
 };
 

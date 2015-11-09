@@ -46,6 +46,19 @@ void AgateRecordDialog::setDefaultCampaign(CampaignSPtr c)
     QCoreApplication::processEvents();
 }
 
+void AgateRecordDialog::setDefaultDate(const QDate &d)
+{
+    m_defaultDate = d;
+
+    if (m_defaultDate.isValid()) {
+        m_surveyDate->setSelectedDate(m_defaultDate);
+    } else {
+        m_surveyDate->showToday();
+    }
+
+    QCoreApplication::processEvents();
+}
+
 void AgateRecordDialog::accept()
 {
     done(QDialog::Accepted);
@@ -54,6 +67,33 @@ void AgateRecordDialog::accept()
 void AgateRecordDialog::reject()
 {
     done(QDialog::Rejected);
+}
+
+void AgateRecordDialog::onProjectChanged(ProjectSPtr p)
+{
+    if (p && p->hasId()) {
+        m_r->project()->setId(p->id());
+        m_r->project()->setName(p->name());
+    } else {
+        m_r->project()->setId(0);
+        m_r->project()->setName("");
+    }
+}
+
+void AgateRecordDialog::onCampaignChanged(CampaignSPtr c)
+{
+    if (c && c->hasId()) {
+        m_r->campaign()->setId(c->id());
+        m_r->campaign()->setName(c->name());
+    } else {
+        m_r->campaign()->setId(0);
+        m_r->campaign()->setName("");
+    }
+}
+
+void AgateRecordDialog::onSurveyDateChanged(const QDate &d)
+{
+    m_r->survey()->setDate(d);
 }
 
 void AgateRecordDialog::configureUi()
@@ -84,14 +124,20 @@ void AgateRecordDialog::configureSurveyBox()
     m_surveyBox = new QGroupBox(tr("Survey"), m_rootBox);
     m_projects = new ProjectComboBox(m_surveyBox);
     m_campaigns = new CampaignComboBox(m_surveyBox);
+    m_surveyDate = new QCalendarWidget(m_surveyBox);
 
     connect(m_projects, &ProjectComboBox::currentProjectChanged, m_campaigns, &CampaignComboBox::onFilterChanged);
+
+    connect(m_projects, &ProjectComboBox::currentProjectChanged, this, &AgateRecordDialog::onProjectChanged);
+    connect(m_campaigns, &CampaignComboBox::currentCampaignChanged, this, &AgateRecordDialog::onCampaignChanged);
+    connect(m_surveyDate, &QCalendarWidget::activated, this, &AgateRecordDialog::onSurveyDateChanged);
 
     auto l = new QFormLayout(m_surveyBox);
     m_surveyBox->setLayout(l);
 
     l->addRow(tr("Project"), m_projects);
     l->addRow(tr("Campaign"), m_campaigns);
+    l->addRow(tr("Survey Date"), m_surveyDate);
 
     m_projects->reload();
 }

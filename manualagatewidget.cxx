@@ -15,14 +15,30 @@
 void ManualAgateWidget::createFilterBox()
 {
     m_filterBox = new QGroupBox(tr("Filter"), this);
-    m_filterBox->setLayout(new QHBoxLayout(m_filterBox));
+    auto l = new QFormLayout(m_filterBox);
+    m_filterBox->setLayout(l);
 
-    m_projects = new ProjectComboBox(m_filterBox);
-    m_campaigns = new CampaignComboBox(m_filterBox);
+    m_projectsFilter = new ProjectComboBox(m_filterBox);
+    m_campaignsFilter = new CampaignComboBox(m_filterBox);
 
+    l->addRow(tr("Show Only Project:"), m_projectsFilter);
+    l->addRow(tr("Show Only Campaign:"), m_campaignsFilter);
+}
 
-    m_filterBox->layout()->addWidget(m_projects);
-    m_filterBox->layout()->addWidget(m_campaigns);
+void ManualAgateWidget::createDefaultBox()
+{
+    m_defaultBox = new QGroupBox("Defaults", this);
+    auto l = new QFormLayout(m_defaultBox);
+    m_defaultBox->setLayout(l);
+
+    m_defaultProjects = new ProjectComboBox(m_defaultBox);
+    m_defaultCampaigns = new CampaignComboBox(m_defaultBox);
+    m_defaultSurveyDateW = new QCalendarWidget(m_defaultBox);
+    m_defaultSurveyDateW->setSelectedDate(m_defaultSurveyDate);
+
+    l->addRow(tr("Default Project"), m_defaultProjects);
+    l->addRow(tr("Default Campaign"), m_defaultCampaigns);
+    l->addRow(tr("Default Survey Date"), m_defaultSurveyDateW);
 }
 
 void ManualAgateWidget::createSurveyListBox()
@@ -52,40 +68,53 @@ ManualAgateWidget::ManualAgateWidget(QWidget *parent)
     : QWidget(parent)
 {
     createFilterBox();
+    createDefaultBox();
     createSurveyListBox();
 
-    connect(m_campaigns, &CampaignComboBox::currentCampaignChanged, this, &ManualAgateWidget::onCurrentCampaignChanged);
-    connect(m_projects, &ProjectComboBox::currentProjectChanged, this, &ManualAgateWidget::onCurrentProjectChanged);
+    connect(m_projectsFilter, &ProjectComboBox::currentProjectChanged, m_campaignsFilter, &CampaignComboBox::onFilterChanged);
 
-    connect(m_projects, &ProjectComboBox::currentProjectChanged, m_campaigns, &CampaignComboBox::onFilterChanged);
+    connect(m_projectsFilter, &ProjectComboBox::currentProjectChanged, m_agateSurveys, &AgateSurveysTableWidget::onProjectChanged);
+    connect(m_campaignsFilter, &CampaignComboBox::currentCampaignChanged, m_agateSurveys, &AgateSurveysTableWidget::onCampaignChanged);
 
-    connect(m_projects, &ProjectComboBox::currentProjectChanged, m_agateSurveys, &AgateSurveysTableWidget::onProjectChanged);
-    connect(m_campaigns, &CampaignComboBox::currentCampaignChanged, m_agateSurveys, &AgateSurveysTableWidget::onCampaignChanged);
+    connect(m_defaultProjects, &ProjectComboBox::currentProjectChanged, m_defaultCampaigns, &CampaignComboBox::onFilterChanged);
+
+    connect(m_defaultProjects, &ProjectComboBox::currentProjectChanged, this, &ManualAgateWidget::onDefaultProjectChanged);
+    connect(m_defaultCampaigns, &CampaignComboBox::currentCampaignChanged, this, &ManualAgateWidget::onDefaultCampaignChanged);
+    connect(m_defaultSurveyDateW, &QCalendarWidget::activated, this, &ManualAgateWidget::onDefaultDateChanged);
 
     setLayout(new QVBoxLayout(this));
     layout()->addWidget(m_filterBox);
+    layout()->addWidget(m_defaultBox);
     layout()->addWidget(m_surveyListBox);
 }
 
-void ManualAgateWidget::onCurrentProjectChanged(ProjectSPtr p)
+void ManualAgateWidget::onDefaultProjectChanged(ProjectSPtr p)
 {
-    m_currentProject = p;
-
-    qDebug() << "current project: " << (m_currentProject ? m_currentProject->name() : "<None>");
+    m_defaultProject = p;
 }
 
-void ManualAgateWidget::onCurrentCampaignChanged(CampaignSPtr c)
+void ManualAgateWidget::onDefaultCampaignChanged(CampaignSPtr c)
 {
-    m_currentCampaign = c;
+    m_defaultCampaign = c;
 
-    qDebug() << "current campaign: " << (m_currentCampaign ? m_currentCampaign->name() : "<None>");
+    if (m_defaultCampaign) {
+        if (m_defaultCampaign->begin().isValid()) {
+            m_defaultSurveyDateW->setSelectedDate(m_defaultCampaign->begin());
+        }
+    }
+}
+
+void ManualAgateWidget::onDefaultDateChanged(const QDate &d)
+{
+    m_defaultSurveyDate = d;
 }
 
 void ManualAgateWidget::createSurvey()
 {
     auto dlg = new AgateRecordDialog(this);
-    dlg->setDefaultProject(m_currentProject);
-    dlg->setDefaultCampaign(m_currentCampaign);
+    dlg->setDefaultProject(m_defaultProject);
+    dlg->setDefaultCampaign(m_defaultCampaign);
+    dlg->setDefaultDate(m_defaultSurveyDate);
 
     if (QDialog::Accepted == dlg->exec()) {
         m_agateSurveys->reload();

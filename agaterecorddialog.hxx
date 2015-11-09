@@ -3,6 +3,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QGroupBox>
+#include <QCalendarWidget>
 
 #include "sexcombobox.hxx"
 #include "projectcombobox.hxx"
@@ -19,12 +20,17 @@ public:
 
     void setDefaultProject(ProjectSPtr p);
     void setDefaultCampaign(CampaignSPtr c);
+    void setDefaultDate(const QDate& d);
 
 signals:
 
 public slots:
     void accept();
     void reject();
+
+    void onProjectChanged(ProjectSPtr p);
+    void onCampaignChanged(CampaignSPtr c);
+    void onSurveyDateChanged(const QDate& d);
 
 protected:
     void configureUi();
@@ -38,11 +44,14 @@ private:
     QGroupBox* m_rootBox;
 
     QGroupBox* m_surveyBox;
-    QGroupBox* m_personalBox;
     ProjectComboBox* m_projects;
     CampaignComboBox* m_campaigns;
+    QCalendarWidget* m_surveyDate;
+
+    QGroupBox* m_personalBox;
     SexComboBox* m_sexes;
 
     ProjectSPtr m_defaultProject;
     CampaignSPtr m_defaultCampaign;
+    QDate m_defaultDate;
 };
