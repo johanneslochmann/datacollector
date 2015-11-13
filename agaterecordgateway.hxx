@@ -14,6 +14,12 @@ public:
     AgateRecordSPtrVector loadAllInCampaign(CampaignSPtr c);
 
 protected:
+    void createProband(ProbandSPtr p);
+    void createSurvey(AgateRecordSPtr r);
+    void deleteDiagnosisFromSurvey(AgateRecordSPtr r);
+    void deleteDepotsFromSurvey(AgateRecordSPtr r);
+    void addDiagnosis(AgateRecordSPtr r);
+    void addDepots(AgateRecordSPtr r);
 
     void parse(AgateRecordSPtr ar, const QSqlRecord &rec);
 };

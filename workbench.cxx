@@ -45,11 +45,11 @@ Workbench::Workbench(QWidget *parent)
     m_surveys = new SurveyManagementWidget(this);
     m_organizationUnits = new OrganizationUnitManagementWidget(this);
     m_icd10Diagnosis = new Icd10DiagnosisManagementWidget(this);
-    m_surveyData = new SurveyForm(this);
     m_coreStatics = new CoreStatisticsForm(this);
     m_ageClasses = new AgeClassManagementWidget(this);
     m_smokingHabits = new SmokingHabitsManagementWidget(this);
     m_collateralEffects = new CollateralEffectManagementWidget(this);
+    m_surveyData = new SurveyForm(this);
     m_agateData = new ManualAgateWidget(this);
 
     addWidget(m_channelIntoPatient);
@@ -93,9 +93,10 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageAgeClasses, this, &Workbench::manageAgeClasses);
     connect(app, &DataCollector::manageSmokingHabits, this, &Workbench::manageSmokingHabits);
     connect(app, &DataCollector::manageCollateralEffects, this, &Workbench::manageCollateralEffects);
-    connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
 
+    connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
+
     connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
 
     setCurrentWidget(m_surveyData);

@@ -15,3 +15,13 @@ void AgateRecord::removeDepot(int idx)
     m_depots.erase(m_depots.begin() + idx);
 }
 
+void AgateRecord::removeMedication(int idx)
+{
+    m_medication.erase(m_medication.begin() + idx);
+}
+
+void AgateRecord::removeDiagnosis(int idx)
+{
+    m_diagnosis.erase(m_diagnosis.begin() + idx);
+}
+

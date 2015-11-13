@@ -11,7 +11,20 @@ AgateRecordGateway::AgateRecordGateway()
 
 void AgateRecordGateway::save(AgateRecordSPtr r)
 {
-    (void) r;
+    try {
+        DataCollector::get()->begin();
+        createProband(r->proband());
+        createSurvey(r);
+        deleteDiagnosisFromSurvey(r);
+        addDiagnosis(r);
+        deleteDepotsFromSurvey(r);
+        addDepots(r);
+        DataCollector::get()->commit();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, QObject::tr("Failed to save AGATE record."));
+        DataCollector::get()->rollback();
+    }
 }
 
 AgateRecordSPtrVector AgateRecordGateway::loadAllInProject(ProjectSPtr p)
@@ -96,6 +109,80 @@ AgateRecordSPtrVector AgateRecordGateway::loadAllInCampaign(CampaignSPtr c)
     }
 
     return buf;
+}
+
+void AgateRecordGateway::createProband(ProbandSPtr p)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into core.proband(year_of_birth, sex_id) values (:yob, :sex_id) returning id;");
+    q.bindValue(":yob", p->yearOfBirth());
+    q.bindValue(":sex_id", p->sexId());
+
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, false);
+    q.next();
+    p->setId(q.value("id").toInt());
+}
+
+void AgateRecordGateway::createSurvey(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into core.survey(campaign_id, survey_date, proband_id) values (:campaign_id, :survey_date, :proband_id) returning id;");
+    q.bindValue(":campaign_id", r->campaign()->id());
+    q.bindValue(":proband_id", r->proband()->id());
+    q.bindValue(":survey_date", r->survey()->date());
+
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, false);
+    q.next();
+    r->survey()->setId(q.value("id").toInt());
+}
+
+void AgateRecordGateway::deleteDiagnosisFromSurvey(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.icd10_survey where survey_id = :survey_id;");
+    q.bindValue(":survey_id", r->survey()->id());
+    DataCollector::get()->performQuery(q, false);
+}
+
+void AgateRecordGateway::deleteDepotsFromSurvey(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.depot_prescription where survey_id = :survey_id;");
+    q.bindValue(":survey_id", r->survey()->id());
+    DataCollector::get()->performQuery(q, false);
+}
+
+void AgateRecordGateway::addDiagnosis(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into core.icd10_survey(survey_id, icd10_diagnosis_id) values (:survey_id, :diagnosis_id);");
+
+    for (auto i : r->diagnosis()) {
+        q.bindValue(":survey_id", r->survey()->id());
+        q.bindValue(":diagnosis_id", i->id);
+
+        DataCollector::get()->performQuery(q, false);
+    }
+}
+
+void AgateRecordGateway::addDepots(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into core.depot_prescription("
+                                         "survey_id, "
+                                         "prescribeable_drug_id, "
+                                         "last_injection_on, "
+                                         "dosage, "
+                                         "injection_interval_in_days) values ("
+                                         ":survey_id, "
+                                         ":prescribeable_drug_id, "
+                                         ":last_injection_on, "
+                                         ":dosage, "
+                                         ":injection_interval_in_days);");
+
+    for (auto i : r->depots()) {
+        q.bindValue(":survey_id", r->survey()->id());
+        q.bindValue(":prescribeable_drug_id", i->prescribeableDrugId);
+        q.bindValue(":last_injection_on", i->lastInjectionDate);
+        q.bindValue(":dosage", i->dosageInMg);
+        q.bindValue(":injection_interval_in_days", i->injectionIntervalInDays);
+
+        DataCollector::get()->performQuery(q, false);
+    }
 }
 
 void AgateRecordGateway::parse(AgateRecordSPtr ar, const QSqlRecord &rec)

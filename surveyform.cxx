@@ -1123,7 +1123,7 @@ void SurveyForm::prepareQueries()
                                                       .arg(tr("ID")));
         m_whoQolQry = DataCollector::get()->prepareQuery(QString("select "
                                                                  "g.physical as \"%1\", "
-                                                                 "g.Psychological as \"%2\", "
+                                                                 "g.psychological as \"%2\", "
                                                                  "g.social as \"%3\", "
                                                                  "g.environmental as \"%4\", "
                                                                  "g.description as \"%5\", "

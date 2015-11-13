@@ -23,6 +23,7 @@ public:
     QString description() const;
     QString firstName() const;
     QString surname() const;
+    int yearOfBirth() const;
 
     void setExternalId(const QString &externalId);
     void setBirthday(const QDate &birthday);
@@ -32,6 +33,7 @@ public:
     void setDescription(const QString &description);
     void setFirstName(const QString &firstName);
     void setSurname(const QString &surname);
+    void setYearOfBirth(int yearOfBirth);
 
 private:
     QString m_externalId;
@@ -42,4 +44,5 @@ private:
     QString m_description;
     QString m_firstName;
     QString m_surname;
+    int m_yearOfBirth { 0 };
 };

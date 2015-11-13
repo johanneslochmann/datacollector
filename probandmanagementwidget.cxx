@@ -21,6 +21,7 @@ ProbandManagementWidget::ProbandManagementWidget(QWidget *p)
     model()->setHeaderData(model()->fieldIndex("description"), Qt::Horizontal, tr("Comment"));
     model()->setHeaderData(model()->fieldIndex("first_name"), Qt::Horizontal, tr("First Name"));
     model()->setHeaderData(model()->fieldIndex("surname"), Qt::Horizontal, tr("Surname"));
+    model()->setHeaderData(model()->fieldIndex("year_of_birth"), Qt::Horizontal, tr("Year Of Birth"));
     model()->setHeaderData(4, Qt::Horizontal, tr("Sex"));
 
     model()->select();

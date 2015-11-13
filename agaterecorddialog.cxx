@@ -6,6 +6,10 @@
 #include <QHBoxLayout>
 #include <QFormLayout>
 #include <QIntValidator>
+#include <QMessageBox>
+
+#include "agaterecordgateway.hxx"
+#include "datacollector.hxx"
 
 AgateRecordDialog::AgateRecordDialog(QWidget* p)
     : QDialog(p),
@@ -78,7 +82,17 @@ void AgateRecordDialog::setDefaultOrganization(OrganizationSPtr o)
 
 void AgateRecordDialog::accept()
 {
-    done(QDialog::Accepted);
+    if (!validate()) {
+        return;
+    }
+
+    try {
+        AgateRecordGateway().save(m_r);
+        done(QDialog::Accepted);
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, tr("Failed to save AGATE Record"), this);
+    }
 }
 
 void AgateRecordDialog::reject()
@@ -150,11 +164,15 @@ void AgateRecordDialog::configureUi()
 
     configureSurveyBox();
     configurePersonalBox();
+    configureDiagnosisBox();
     configureDepotBox();
+    configureMedicationBox();
 
     rootGrid->addWidget(m_surveyBox, 0, 0);
     rootGrid->addWidget(m_personalBox, 0, 1);
-    rootGrid->addWidget(m_depotBox, 1, 0);
+    rootGrid->addWidget(m_diagnosisBox, 0, 2);
+    rootGrid->addWidget(m_depotBox, 1, 0, 1, 2);
+    rootGrid->addWidget(m_medicationBox, 1, 2);
 
     m_b = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
 
@@ -227,5 +245,80 @@ void AgateRecordDialog::configureDepotBox()
 
     connect(m_addDepot, &QPushButton::clicked, m_depots, &AgateDepotTableWidget::create);
     connect(m_removeDepot, &QPushButton::clicked, m_depots, &AgateDepotTableWidget::remove);
+}
+
+void AgateRecordDialog::configureMedicationBox()
+{
+    m_medicationBox = new QGroupBox(tr("Medication"), m_rootBox);
+    m_medicationBox->setLayout(new QHBoxLayout(m_medicationBox));
+
+    m_medications = new AgateMedicationTableWidget(m_medicationBox, m_r);
+    m_addMedication = new QPushButton(tr("Add..."), m_medicationBox);
+    m_removeMedication = new QPushButton(tr("Remove"), m_medicationBox);
+
+    auto l = new QVBoxLayout();
+    l->addWidget(m_addMedication);
+    l->addStretch();
+    l->addWidget(m_removeMedication);
+
+    m_medicationBox->layout()->addWidget(m_medications);
+    m_medicationBox->layout()->addItem(l);
+
+    connect(m_addMedication, &QPushButton::clicked, m_medications, &AgateMedicationTableWidget::create);
+    connect(m_removeMedication, &QPushButton::clicked, m_medications, &AgateMedicationTableWidget::remove);
+}
+
+void AgateRecordDialog::configureDiagnosisBox()
+{
+
+    m_diagnosisBox = new QGroupBox(tr("Diagnosis"), m_rootBox);
+    m_diagnosisBox->setLayout(new QHBoxLayout(m_diagnosisBox));
+
+    m_diagnosis = new AgateDiagnosisTableWidget(m_diagnosisBox, m_r);
+    m_addDiagnosis = new QPushButton(tr("Add..."), m_diagnosisBox);
+    m_removeDiagnosis = new QPushButton(tr("Remove"), m_diagnosisBox);
+
+    auto l = new QVBoxLayout();
+    l->addWidget(m_addDiagnosis);
+    l->addStretch();
+    l->addWidget(m_removeDiagnosis);
+
+    m_diagnosisBox->layout()->addWidget(m_diagnosis);
+    m_diagnosisBox->layout()->addItem(l);
+
+    connect(m_addDiagnosis, &QPushButton::clicked, m_diagnosis, &AgateDiagnosisTableWidget::create);
+    connect(m_removeDiagnosis, &QPushButton::clicked, m_diagnosis, &AgateDiagnosisTableWidget::remove);
+}
+
+bool AgateRecordDialog::validate()
+{
+    QStringList errors;
+
+    if (m_r->campaign()->id() <= 0) {
+        errors.append(tr("Campaign is missing"));
+    }
+
+    if (m_r->organization()->id() <= 0) {
+        errors.append(tr("Organization is missing"));
+    }
+
+    if (m_r->proband()->yearOfBirth() <= 0) {
+        errors.append(tr("Year of birth is missing"));
+    }
+
+    if (m_r->sex()->id() <= 0) {
+        errors.append(tr("Sex is missing"));
+    }
+
+    if (!m_r->survey()->date().isValid()) {
+        errors.append(tr("Survey date is missing."));
+    }
+
+    if (!errors.isEmpty()) {
+        QMessageBox::critical(this, tr("Data incomplete"), tr("<p>Data is incomplete:</p><p>%1</p>").arg(errors.join("\n")));
+        return false;
+    }
+
+    return true;
 }
 

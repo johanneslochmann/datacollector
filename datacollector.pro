@@ -87,7 +87,13 @@ SOURCES += main.cxx\
     agatedepottablewidget.cxx \
     agatedepotdialog.cxx \
     nameidpair.cxx \
-    prescribeabledruggateway.cxx
+    prescribeabledruggateway.cxx \
+    agatemedicationtablewidget.cxx \
+    agatemedicationdialog.cxx \
+    moleculegateway.cxx \
+    agatediagnosistablewidget.cxx \
+    agatediagnosisdialog.cxx \
+    diagnosisgateway.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -169,7 +175,13 @@ HEADERS  += mainwindow.hxx \
     agatedepottablewidget.hxx \
     agatedepotdialog.hxx \
     nameidpair.hxx \
-    prescribeabledruggateway.hxx
+    prescribeabledruggateway.hxx \
+    agatemedicationtablewidget.hxx \
+    agatemedicationdialog.hxx \
+    moleculegateway.hxx \
+    agatediagnosistablewidget.hxx \
+    agatediagnosisdialog.hxx \
+    diagnosisgateway.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

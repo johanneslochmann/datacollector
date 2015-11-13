@@ -13,6 +13,8 @@
 #include "campaigncombobox.hxx"
 #include "organizationcombobox.hxx"
 #include "agatedepottablewidget.hxx"
+#include "agatemedicationtablewidget.hxx"
+#include "agatediagnosistablewidget.hxx"
 
 #include "agaterecord.hxx"
 
@@ -46,6 +48,10 @@ protected:
     void configureSurveyBox();
     void configurePersonalBox();
     void configureDepotBox();
+    void configureMedicationBox();
+    void configureDiagnosisBox();
+
+    bool validate();
 
 private:
     AgateRecordSPtr m_r;
@@ -67,6 +73,16 @@ private:
     AgateDepotTableWidget* m_depots;
     QPushButton* m_addDepot;
     QPushButton* m_removeDepot;
+
+    QGroupBox* m_medicationBox;
+    AgateMedicationTableWidget* m_medications;
+    QPushButton* m_addMedication;
+    QPushButton* m_removeMedication;
+
+    QGroupBox* m_diagnosisBox;
+    AgateDiagnosisTableWidget* m_diagnosis;
+    QPushButton* m_addDiagnosis;
+    QPushButton* m_removeDiagnosis;
 
     ProjectSPtr m_defaultProject;
     CampaignSPtr m_defaultCampaign;

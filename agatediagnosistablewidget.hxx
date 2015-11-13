@@ -4,11 +4,11 @@
 
 #include "agaterecord.hxx"
 
-class AgateMedicationTableWidget: public QTableWidget
+class AgateDiagnosisTableWidget: public QTableWidget
 {
     Q_OBJECT
 public:
-    explicit AgateMedicationTableWidget(QWidget* p, AgateRecordSPtr r);
+    explicit AgateDiagnosisTableWidget(QWidget* p, AgateRecordSPtr r);
 
 signals:
 

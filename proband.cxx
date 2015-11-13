@@ -107,3 +107,13 @@ void Proband::setSurname(const QString &surname)
     m_surname = surname;
 }
 
+int Proband::yearOfBirth() const
+{
+    return m_yearOfBirth;
+}
+
+void Proband::setYearOfBirth(int yearOfBirth)
+{
+    m_yearOfBirth = yearOfBirth;
+}
+

@@ -2,10 +2,10 @@
 
 #include <QString>
 
-class MoleculeGateway
+class DiagnosisGateway
 {
 public:
-    MoleculeGateway();
+    DiagnosisGateway();
 
     int loadIdFromName(const QString& name);
 };
