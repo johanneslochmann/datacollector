@@ -5,7 +5,7 @@
 #include <QPushButton>
 #include <QDialogButtonBox>
 #include <QGroupBox>
-#include <QCalendarWidget>
+#include <QDateEdit>
 #include <QLineEdit>
 
 #include "sexcombobox.hxx"
@@ -63,7 +63,7 @@ private:
     ProjectComboBox* m_projects;
     CampaignComboBox* m_campaigns;
     OrganizationComboBox* m_organizations;
-    QCalendarWidget* m_surveyDate;
+    QDateEdit* m_surveyDate;
 
     QGroupBox* m_personalBox;
     QLineEdit* m_birthYear;

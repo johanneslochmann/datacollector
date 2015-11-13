@@ -58,9 +58,9 @@ void AgateRecordDialog::setDefaultDate(const QDate &d)
     m_defaultDate = d;
 
     if (m_defaultDate.isValid()) {
-        m_surveyDate->setSelectedDate(m_defaultDate);
+        m_surveyDate->setDate(m_defaultDate);
     } else {
-        m_surveyDate->showToday();
+        m_surveyDate->setDate(QDate::currentDate());
     }
 
     QCoreApplication::processEvents();
@@ -193,13 +193,13 @@ void AgateRecordDialog::configureSurveyBox()
     m_projects = new ProjectComboBox(m_surveyBox);
     m_campaigns = new CampaignComboBox(m_surveyBox);
     m_organizations = new OrganizationComboBox(m_surveyBox);
-    m_surveyDate = new QCalendarWidget(m_surveyBox);
+    m_surveyDate = new QDateEdit(m_surveyBox);
 
     connect(m_projects, &ProjectComboBox::currentProjectChanged, m_campaigns, &CampaignComboBox::onFilterChanged);
 
     connect(m_projects, &ProjectComboBox::currentProjectChanged, this, &AgateRecordDialog::onProjectChanged);
     connect(m_campaigns, &CampaignComboBox::currentCampaignChanged, this, &AgateRecordDialog::onCampaignChanged);
-    connect(m_surveyDate, &QCalendarWidget::activated, this, &AgateRecordDialog::onSurveyDateChanged);
+    connect(m_surveyDate, &QDateEdit::dateChanged, this, &AgateRecordDialog::onSurveyDateChanged);
     connect(m_organizations, &OrganizationComboBox::currentOrganizationChanged, this, &AgateRecordDialog::onOrganizationChanged);
 
     auto l = new QFormLayout(m_surveyBox);

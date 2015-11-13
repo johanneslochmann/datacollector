@@ -3,7 +3,7 @@
 #include <QWidget>
 #include <QGroupBox>
 #include <QPushButton>
-#include <QCalendarWidget>
+#include <QDateEdit>
 
 #include "project.hxx"
 #include "campaign.hxx"
@@ -36,7 +36,6 @@ private:
     void createFilterBox();
     void createDefaultBox();
     void createSurveyListBox();
-    void configurePersonalDataWidget(QGroupBox* b);
 
     QGroupBox* m_filterBox;
     ProjectComboBox* m_projectsFilter;
@@ -46,7 +45,7 @@ private:
     ProjectComboBox* m_defaultProjects;
     CampaignComboBox* m_defaultCampaigns;
     OrganizationComboBox* m_defaultOrganizations;
-    QCalendarWidget* m_defaultSurveyDateW;
+    QDateEdit* m_defaultSurveyDateW;
 
     QGroupBox* m_surveyListBox;
     AgateSurveysTableWidget* m_agateSurveys;

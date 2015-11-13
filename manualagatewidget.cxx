@@ -35,8 +35,8 @@ void ManualAgateWidget::createDefaultBox()
     m_defaultProjects = new ProjectComboBox(m_defaultBox);
     m_defaultCampaigns = new CampaignComboBox(m_defaultBox);
     m_defaultOrganizations = new OrganizationComboBox(m_defaultBox);
-    m_defaultSurveyDateW = new QCalendarWidget(m_defaultBox);
-    m_defaultSurveyDateW->setSelectedDate(m_defaultSurveyDate);
+    m_defaultSurveyDateW = new QDateEdit(m_defaultBox);
+    m_defaultSurveyDateW->setDate(m_defaultSurveyDate);
 
     l->addRow(tr("Default Project"), m_defaultProjects);
     l->addRow(tr("Default Campaign"), m_defaultCampaigns);
@@ -84,12 +84,16 @@ ManualAgateWidget::ManualAgateWidget(QWidget *parent)
     connect(m_defaultProjects, &ProjectComboBox::currentProjectChanged, this, &ManualAgateWidget::onDefaultProjectChanged);
     connect(m_defaultCampaigns, &CampaignComboBox::currentCampaignChanged, this, &ManualAgateWidget::onDefaultCampaignChanged);
     connect(m_defaultOrganizations, &OrganizationComboBox::currentOrganizationChanged, this, &ManualAgateWidget::onDefaultOrganizationChanged);
-    connect(m_defaultSurveyDateW, &QCalendarWidget::activated, this, &ManualAgateWidget::onDefaultDateChanged);
+    connect(m_defaultSurveyDateW, &QDateEdit::dateChanged, this, &ManualAgateWidget::onDefaultDateChanged);
 
     setLayout(new QVBoxLayout(this));
-    layout()->addWidget(m_filterBox);
-    layout()->addWidget(m_defaultBox);
-    layout()->addWidget(m_surveyListBox);
+
+    auto topL = new QHBoxLayout(this);
+    topL->addWidget(m_filterBox);
+    topL->addWidget(m_defaultBox);
+
+    layout()->addItem(topL);
+    layout()->addWidget(m_surveyListBox);    
 }
 
 void ManualAgateWidget::onDefaultProjectChanged(ProjectSPtr p)
@@ -103,7 +107,7 @@ void ManualAgateWidget::onDefaultCampaignChanged(CampaignSPtr c)
 
     if (m_defaultCampaign) {
         if (m_defaultCampaign->begin().isValid()) {
-            m_defaultSurveyDateW->setSelectedDate(m_defaultCampaign->begin());
+            m_defaultSurveyDateW->setDate(m_defaultCampaign->begin());
         }
     }
 }
