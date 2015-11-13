@@ -40,7 +40,7 @@ AgateRecordSPtrVector AgateRecordGateway::loadAllInProject(ProjectSPtr p)
                                                 "prob.first_name as proband_name, "
                                                 "prob.surname as proband_surname, "
                                                 "prob.external_id as proband_external_id, "
-                                                "prob.birthday as proband_birthday, "
+                                                "prob.year_of_birth as proband_year_of_birth, "
                                                 "sex.name as proband_sex_name, "
                                                 "sex.id as proband_sex_id, "
                                                 "surv.id as survey_id, "
@@ -54,7 +54,7 @@ AgateRecordSPtrVector AgateRecordGateway::loadAllInProject(ProjectSPtr p)
                                                 "join core.sex sex on prob.sex_id = sex.id "
                                                 "join core.organization_unit org on surv.organization_unit_id = org.id "
                                                 "where proj.id = :project_id "
-                                                "order by campaign_name, proband_name, proband_surname, proband_external_id, proband_birthday, survey_id, survey_date;");
+                                                "order by campaign_name, proband_name, proband_surname, proband_external_id, proband_year_of_birth, survey_id, survey_date;");
     q.bindValue(":project_id", p->id());
 
     DataCollector::get()->performQuery(q, false);
@@ -82,7 +82,7 @@ AgateRecordSPtrVector AgateRecordGateway::loadAllInCampaign(CampaignSPtr c)
                                                 "prob.first_name as proband_name, "
                                                 "prob.surname as proband_surname, "
                                                 "prob.external_id as proband_external_id, "
-                                                "prob.birthday as proband_birthday, "
+                                                "prob.year_of_birth as proband_year_of_birth, "
                                                 "sex.name as proband_sex_name, "
                                                 "sex.id as proband_sex_id, "
                                                 "surv.id as survey_id, "
@@ -96,7 +96,7 @@ AgateRecordSPtrVector AgateRecordGateway::loadAllInCampaign(CampaignSPtr c)
                                                 "join core.sex sex on prob.sex_id = sex.id "
                                                 "join core.organization_unit org on surv.organization_unit_id = org.id "
                                                 "where camp.id = :campaign_id "
-                                                "order by campaign_name, proband_name, proband_surname, proband_external_id, proband_birthday, survey_id, survey_date;");
+                                                "order by campaign_name, proband_name, proband_surname, proband_external_id, proband_year_of_birth, survey_id, survey_date;");
     q.bindValue(":campaign_id", c->id());
 
     DataCollector::get()->performQuery(q, false);
@@ -195,7 +195,7 @@ void AgateRecordGateway::parse(AgateRecordSPtr ar, const QSqlRecord &rec)
     ar->proband()->setFirstName(rec.value(rec.indexOf("proband_name")).toString());
     ar->proband()->setSurname(rec.value(rec.indexOf("proband_surname")).toString());
     ar->proband()->setExternalId(rec.value(rec.indexOf("proband_external_id")).toString());
-    ar->proband()->setBirthday(rec.value(rec.indexOf("proband_birthday")).toDate());
+    ar->proband()->setYearOfBirth(rec.value(rec.indexOf("year_of_birth")).toInt());
     ar->sex()->setName(rec.value(rec.indexOf("sex_name")).toString());
     ar->sex()->setId(rec.value(rec.indexOf("sex_id")).toInt());
     ar->survey()->setId(rec.value(rec.indexOf("survey_id")).toInt());

@@ -88,11 +88,13 @@ void AgateRecordDialog::accept()
 
     try {
         AgateRecordGateway().save(m_r);
-        done(QDialog::Accepted);
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, tr("Failed to save AGATE Record"), this);
+        return;
     }
+
+    done(QDialog::Accepted);
 }
 
 void AgateRecordDialog::reject()
@@ -140,7 +142,7 @@ void AgateRecordDialog::onSurveyDateChanged(const QDate &d)
 
 void AgateRecordDialog::onBirthYearChanged(const QString &y)
 {
-    m_r->proband()->setBirthday(QDate(y.toInt(), 1, 1));
+    m_r->proband()->setYearOfBirth(y.toInt());
 }
 
 void AgateRecordDialog::onSexChanged(SexSPtr s)
@@ -148,9 +150,11 @@ void AgateRecordDialog::onSexChanged(SexSPtr s)
     if (s && s->hasId()) {
         m_r->sex()->setId(s->id());
         m_r->sex()->setName(s->name());
+        m_r->proband()->setSexId(s->id());
     } else {
         m_r->sex()->setId(0);
         m_r->sex()->setName("");
+        m_r->proband()->setSexId(0);
     }
 }
 
