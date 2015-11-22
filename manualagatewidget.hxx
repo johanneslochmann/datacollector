@@ -28,9 +28,9 @@ public slots:
     void onDefaultOrganizationChanged(OrganizationSPtr o);
     void onDefaultDateChanged(const QDate& d);
 
+    void onSurveyRecordActivated(const QModelIndex& idx);
+
     void createSurvey();
-    void editSurvey();
-    void deleteSurvey();
 
 private:
     void createFilterBox();

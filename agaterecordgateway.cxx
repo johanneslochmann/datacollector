@@ -15,14 +15,40 @@ void AgateRecordGateway::save(AgateRecordSPtr r)
         DataCollector::get()->begin();
         createProband(r->proband());
         createSurvey(r);
+
         deleteDiagnosisFromSurvey(r);
-        addDiagnosis(r);
         deleteDepotsFromSurvey(r);
+        deleteRegularPrescriptionsFromSurvey(r);
+
+        addDiagnosis(r);
         addDepots(r);
+        addRegularPrescriptions(r);
+
         DataCollector::get()->commit();
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, QObject::tr("Failed to save AGATE record."));
+        DataCollector::get()->rollback();
+    }
+}
+
+void AgateRecordGateway::remove(int surveyId)
+{
+    try {
+        DataCollector::get()->begin();
+        auto qsurv = DataCollector::get()->prepareQuery("delete from core.survey where id = :survey_id;");
+        auto qprob = DataCollector::get()->prepareQuery("delete from core.proband where id = (select proband_id from core.survey where id = :survey_id);");
+
+        qsurv.bindValue(":survey_id", surveyId);
+        qprob.bindValue(":survey_id", surveyId);
+
+        DataCollector::get()->performQuery(qsurv, false);
+        DataCollector::get()->performQuery(qprob, false);
+
+        DataCollector::get()->commit();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, QObject::tr("Failed to delete AGATE record."));
         DataCollector::get()->rollback();
     }
 }
@@ -148,6 +174,13 @@ void AgateRecordGateway::deleteDepotsFromSurvey(AgateRecordSPtr r)
     DataCollector::get()->performQuery(q, false);
 }
 
+void AgateRecordGateway::deleteRegularPrescriptionsFromSurvey(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("delete from core.regular_prescription where survey_id = :survey_id;");
+    q.bindValue(":survey_id", r->survey()->id());
+    DataCollector::get()->performQuery(q, false);
+}
+
 void AgateRecordGateway::addDiagnosis(AgateRecordSPtr r)
 {
     auto q = DataCollector::get()->prepareQuery("insert into core.icd10_survey(survey_id, icd10_diagnosis_id) values (:survey_id, :diagnosis_id);");
@@ -163,16 +196,16 @@ void AgateRecordGateway::addDiagnosis(AgateRecordSPtr r)
 void AgateRecordGateway::addDepots(AgateRecordSPtr r)
 {
     auto q = DataCollector::get()->prepareQuery("insert into core.depot_prescription("
-                                         "survey_id, "
-                                         "prescribeable_drug_id, "
-                                         "last_injection_on, "
-                                         "dosage, "
-                                         "injection_interval_in_days) values ("
-                                         ":survey_id, "
-                                         ":prescribeable_drug_id, "
-                                         ":last_injection_on, "
-                                         ":dosage, "
-                                         ":injection_interval_in_days);");
+                                                "survey_id, "
+                                                "prescribeable_drug_id, "
+                                                "last_injection_on, "
+                                                "dosage, "
+                                                "injection_interval_in_days) values ("
+                                                ":survey_id, "
+                                                ":prescribeable_drug_id, "
+                                                ":last_injection_on, "
+                                                ":dosage, "
+                                                ":injection_interval_in_days);");
 
     for (auto i : r->depots()) {
         q.bindValue(":survey_id", r->survey()->id());
@@ -183,6 +216,19 @@ void AgateRecordGateway::addDepots(AgateRecordSPtr r)
 
         DataCollector::get()->performQuery(q, false);
     }
+}
+
+void AgateRecordGateway::addRegularPrescriptions(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("insert into core.regular_prescription(survey_id, prescribeable_drug_id, morning_dosage, lunch_dosage, noon_dosage, night_dosage, description) "
+                                                "values (:survey_id, :prescribeable_drug_id, :morning_dosage, :lunch_dosage, :noon_dosage, :night_dosage, :description) "
+                                                "returning id;");
+
+    for (auto p : r->medication()) {
+        q.bindValue(":survey_id", r->survey()->id());
+        q.bindValue(":prescribeable_drug_id", p->moleculeId);
+    }
+
 }
 
 void AgateRecordGateway::parse(AgateRecordSPtr ar, const QSqlRecord &rec)

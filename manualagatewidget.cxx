@@ -10,6 +10,7 @@
 #include "sexcombobox.hxx"
 #include "organizationcombobox.hxx"
 #include "agaterecorddialog.hxx"
+#include "agaterecordgateway.hxx"
 
 #include "datacollector.hxx"
 
@@ -62,9 +63,10 @@ void ManualAgateWidget::createSurveyListBox()
     m_surveyListBox->layout()->addWidget(m_agateSurveys);
     m_surveyListBox->layout()->addItem(bl);
 
+    connect(m_agateSurveys, &AgateSurveysTableWidget::activated, this, &ManualAgateWidget::onSurveyRecordActivated);
     connect(m_createSurvey, &QPushButton::clicked, this, &ManualAgateWidget::createSurvey);
-    connect(m_editSurvey, &QPushButton::clicked, this, &ManualAgateWidget::editSurvey);
-    connect(m_deleteSurvey, &QPushButton::clicked, this, &ManualAgateWidget::deleteSurvey);
+    connect(m_editSurvey, &QPushButton::clicked, m_agateSurveys, &AgateSurveysTableWidget::editSelected);
+    connect(m_deleteSurvey, &QPushButton::clicked, m_agateSurveys, &AgateSurveysTableWidget::deleteSelected);
 }
 
 ManualAgateWidget::ManualAgateWidget(QWidget *parent)
@@ -93,7 +95,7 @@ ManualAgateWidget::ManualAgateWidget(QWidget *parent)
     topL->addWidget(m_defaultBox);
 
     layout()->addItem(topL);
-    layout()->addWidget(m_surveyListBox);    
+    layout()->addWidget(m_surveyListBox);
 }
 
 void ManualAgateWidget::onDefaultProjectChanged(ProjectSPtr p)
@@ -122,6 +124,11 @@ void ManualAgateWidget::onDefaultDateChanged(const QDate &d)
     m_defaultSurveyDate = d;
 }
 
+void ManualAgateWidget::onSurveyRecordActivated(const QModelIndex &idx)
+{
+
+}
+
 void ManualAgateWidget::createSurvey()
 {
     auto dlg = new AgateRecordDialog(this);
@@ -136,14 +143,5 @@ void ManualAgateWidget::createSurvey()
     }
 }
 
-void ManualAgateWidget::editSurvey()
-{
-
-}
-
-void ManualAgateWidget::deleteSurvey()
-{
-
-}
 
 

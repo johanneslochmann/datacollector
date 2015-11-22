@@ -13,12 +13,16 @@ class AgateSurveysTableWidget : public DataTableWidget
 public:
     explicit AgateSurveysTableWidget(QWidget* p);
 
+    int idColumn() const { return m_idCol; }
+
 signals:
 
 public slots:
     void onProjectChanged(ProjectSPtr p);
     void onCampaignChanged(CampaignSPtr c);
     void reload();
+    void editSelected();
+    void deleteSelected();
 
 protected:
     QString format(CampaignSPtr c) const;

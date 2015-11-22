@@ -2,6 +2,7 @@
 
 #include <QStringList>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "datacollector.hxx"
 #include "agaterecordgateway.hxx"
@@ -63,6 +64,37 @@ void AgateSurveysTableWidget::reload()
 
         r++;
     }
+}
+
+void AgateSurveysTableWidget::editSelected()
+{
+
+}
+
+void AgateSurveysTableWidget::deleteSelected()
+{
+    auto itm = currentItem();
+
+    if (!itm) {
+        return;
+    }
+
+    auto idItm = item(itm->row(), m_idCol);
+
+    if (!idItm) {
+        return;
+    }
+
+    if (QMessageBox::Yes != QMessageBox::warning(this,
+                                                 tr("Delete Survey?"),
+                                                 tr("<p>Delete Survey %1?</p>")
+                                                 .arg(idItm->data(Qt::DisplayRole).toInt()),
+                                                 QMessageBox::Yes | QMessageBox::No)) {
+        return;
+    }
+
+    AgateRecordGateway().remove(idItm->data(Qt::DisplayRole).toInt());
+    reload();
 }
 
 QString AgateSurveysTableWidget::format(CampaignSPtr c) const
