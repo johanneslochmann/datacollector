@@ -75,7 +75,7 @@ void AgateDepotDialog::configureUi()
 
     m_prescribeableDrugs = new PrescribeableDrugManagmentWidget(this);
     m_details = new QGroupBox(tr("Details"), this);
-    m_lastInjectionW = new QCalendarWidget(m_details);
+    m_lastInjectionW = new QDateEdit(m_details);
     m_dosageInMgW = new QLineEdit(m_details);
     m_dosageInMgW->setValidator(new QDoubleValidator(m_dosageInMgW));
     m_intervalInDaysW = new QLineEdit(m_details);
@@ -93,7 +93,7 @@ void AgateDepotDialog::configureUi()
 
     connect(m_b, &QDialogButtonBox::accepted, this, &AgateDepotDialog::accept);
     connect(m_b, &QDialogButtonBox::rejected, this, &AgateDepotDialog::reject);
-    connect(m_lastInjectionW, &QCalendarWidget::activated, this, &AgateDepotDialog::onLastInjectionDateChanged);
+    connect(m_lastInjectionW, &QDateEdit::dateChanged, this, &AgateDepotDialog::onLastInjectionDateChanged);
     connect(m_dosageInMgW, &QLineEdit::textChanged, this, &AgateDepotDialog::onDosisChanged);
     connect(m_intervalInDaysW, &QLineEdit::textChanged, this, &AgateDepotDialog::onIntervalChanged);
 }

@@ -4,7 +4,7 @@
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QLineEdit>
-#include <QCalendarWidget>
+#include <QDateEdit>
 
 #include "agaterecord.hxx"
 
@@ -34,7 +34,7 @@ private:
 
     PrescribeableDrugManagmentWidget* m_prescribeableDrugs;
     QGroupBox* m_details;
-    QCalendarWidget* m_lastInjectionW;
+    QDateEdit* m_lastInjectionW;
     QLineEdit* m_dosageInMgW;
     QLineEdit* m_intervalInDaysW;
 
