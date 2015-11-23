@@ -52,21 +52,20 @@ void ManualAgateWidget::createSurveyListBox()
     m_agateSurveys = new AgateSurveysTableWidget(this);
 
     m_createSurvey = new QPushButton(tr("Create Survey"), m_surveyListBox);
-    m_editSurvey = new QPushButton(tr("Edit Survey"), m_surveyListBox);
+    //m_editSurvey = new QPushButton(tr("Edit Survey"), m_surveyListBox);
     m_deleteSurvey = new QPushButton(tr("Delete Survey"), m_surveyListBox);
 
     auto bl = new QHBoxLayout();
     bl->addWidget(m_createSurvey);
-    bl->addWidget(m_editSurvey);
+    //bl->addWidget(m_editSurvey);
     bl->addWidget(m_deleteSurvey);
 
     m_surveyListBox->setLayout(new QVBoxLayout(m_surveyListBox));
     m_surveyListBox->layout()->addWidget(m_agateSurveys);
     m_surveyListBox->layout()->addItem(bl);
 
-    connect(m_agateSurveys, &AgateSurveysTableWidget::activated, this, &ManualAgateWidget::onSurveyRecordActivated);
     connect(m_createSurvey, &QPushButton::clicked, this, &ManualAgateWidget::createSurvey);
-    connect(m_editSurvey, &QPushButton::clicked, m_agateSurveys, &AgateSurveysTableWidget::editSelected);
+    //connect(m_editSurvey, &QPushButton::clicked, m_agateSurveys, &AgateSurveysTableWidget::editSelected);
     connect(m_deleteSurvey, &QPushButton::clicked, m_agateSurveys, &AgateSurveysTableWidget::deleteSelected);
 }
 
@@ -132,11 +131,6 @@ void ManualAgateWidget::onDefaultOrganizationChanged(OrganizationSPtr o)
 void ManualAgateWidget::onDefaultDateChanged(const QDate &d)
 {
     m_defaultSurveyDate = d;
-}
-
-void ManualAgateWidget::onSurveyRecordActivated(const QModelIndex &idx)
-{
-
 }
 
 void ManualAgateWidget::createSurvey()

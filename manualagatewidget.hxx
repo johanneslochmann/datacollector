@@ -29,8 +29,6 @@ public slots:
     void onDefaultOrganizationChanged(OrganizationSPtr o);
     void onDefaultDateChanged(const QDate& d);
 
-    void onSurveyRecordActivated(const QModelIndex& idx);
-
     void createSurvey();
 
 private:
@@ -52,7 +50,7 @@ private:
     QGroupBox* m_surveyListBox;
     AgateSurveysTableWidget* m_agateSurveys;
     QPushButton* m_createSurvey;
-    QPushButton* m_editSurvey;
+    //QPushButton* m_editSurvey;
     QPushButton* m_deleteSurvey;
 
     ProjectSPtr m_defaultProject;
