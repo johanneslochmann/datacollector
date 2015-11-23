@@ -10,6 +10,15 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
+-- Name: agate; Type: SCHEMA; Schema: -; Owner: jolo
+--
+
+CREATE SCHEMA agate;
+
+
+ALTER SCHEMA agate OWNER TO jolo;
+
+--
 -- Name: core; Type: SCHEMA; Schema: -; Owner: jolo
 --
 
@@ -69,6 +78,258 @@ SET search_path = core, pg_catalog;
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: icd10_diagnosis; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE icd10_diagnosis (
+    id integer NOT NULL,
+    name text NOT NULL,
+    long_name text DEFAULT ''::text NOT NULL,
+    description text DEFAULT ''::text NOT NULL
+);
+
+
+ALTER TABLE icd10_diagnosis OWNER TO jolo;
+
+--
+-- Name: icd10_survey; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE icd10_survey (
+    icd10_diagnosis_id integer NOT NULL,
+    survey_id integer NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE icd10_survey OWNER TO jolo;
+
+--
+-- Name: survey; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE survey (
+    id integer NOT NULL,
+    proband_id integer NOT NULL,
+    campaign_id integer NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    survey_date date NOT NULL,
+    organization_unit_id integer DEFAULT 2 NOT NULL,
+    smoking_habit_id integer DEFAULT 2 NOT NULL,
+    bmi numeric DEFAULT 0.0 NOT NULL,
+    CONSTRAINT survey_survey_date_check CHECK ((survey_date <= ('now'::text)::date))
+);
+
+
+ALTER TABLE survey OWNER TO jolo;
+
+SET search_path = agate, pg_catalog;
+
+--
+-- Name: all_diagnosis; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW all_diagnosis AS
+ SELECT s.id AS survey_id,
+    i.name AS diagnosis_name,
+    i.id AS diagnosis_id
+   FROM ((core.survey s
+     JOIN core.icd10_survey ids ON ((s.id = ids.survey_id)))
+     JOIN core.icd10_diagnosis i ON ((ids.icd10_diagnosis_id = i.id)))
+  ORDER BY s.id, i.name;
+
+
+ALTER TABLE all_diagnosis OWNER TO jolo;
+
+SET search_path = core, pg_catalog;
+
+--
+-- Name: campaign; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE campaign (
+    id integer NOT NULL,
+    project_id integer NOT NULL,
+    name text NOT NULL,
+    start_date date DEFAULT ('now'::text)::date NOT NULL,
+    end_date date DEFAULT ('now'::text)::date NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT campaign_check CHECK ((end_date >= start_date)),
+    CONSTRAINT campaign_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE campaign OWNER TO jolo;
+
+--
+-- Name: drug; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE drug (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT drug_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE drug OWNER TO jolo;
+
+--
+-- Name: prescribeable_drug; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE prescribeable_drug (
+    id integer NOT NULL,
+    drug_id integer NOT NULL,
+    name text NOT NULL,
+    dosage numeric(10,2) NOT NULL,
+    dosage_unit_id integer NOT NULL,
+    administration_method_id integer NOT NULL,
+    CONSTRAINT prescribeable_drug_dosage_check CHECK ((dosage > 0.0)),
+    CONSTRAINT prescribeable_drug_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE prescribeable_drug OWNER TO jolo;
+
+--
+-- Name: project; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE project (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT project_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE project OWNER TO jolo;
+
+--
+-- Name: seq_prescriptions; Type: SEQUENCE; Schema: core; Owner: jolo
+--
+
+CREATE SEQUENCE seq_prescriptions
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE seq_prescriptions OWNER TO jolo;
+
+--
+-- Name: regular_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE regular_prescription (
+    id integer DEFAULT nextval('seq_prescriptions'::regclass) NOT NULL,
+    survey_id integer NOT NULL,
+    prescribeable_drug_id integer NOT NULL,
+    morning_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
+    lunch_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
+    noon_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
+    night_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT regular_prescription_check CHECK (((((morning_dosage > 0.0) OR (lunch_dosage > 0.0)) OR (noon_dosage > 0.0)) OR (night_dosage > 0.0)))
+);
+
+
+ALTER TABLE regular_prescription OWNER TO jolo;
+
+SET search_path = agate, pg_catalog;
+
+--
+-- Name: all_regular_prescriptions; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW all_regular_prescriptions AS
+ SELECT d.name AS drug,
+    pd.name AS prescribeable_drug_name,
+    rp.morning_dosage,
+    rp.lunch_dosage,
+    rp.noon_dosage,
+    rp.night_dosage,
+    s.id AS survey_id,
+    pd.id AS prescribeable_drug_id
+   FROM (((((core.survey s
+     JOIN core.regular_prescription rp ON ((s.id = rp.survey_id)))
+     JOIN core.prescribeable_drug pd ON ((rp.prescribeable_drug_id = pd.id)))
+     JOIN core.campaign camp ON ((s.campaign_id = camp.id)))
+     JOIN core.project proj ON ((camp.project_id = proj.id)))
+     JOIN core.drug d ON ((pd.drug_id = d.id)))
+  WHERE (proj.name ~~ 'AGATE%'::text)
+  ORDER BY d.name, pd.name;
+
+
+ALTER TABLE all_regular_prescriptions OWNER TO jolo;
+
+SET search_path = core, pg_catalog;
+
+--
+-- Name: proband; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE proband (
+    id integer NOT NULL,
+    external_id integer,
+    birthday date,
+    height_in_cm integer,
+    sex_id integer NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    surname text DEFAULT ''::text NOT NULL,
+    first_name text DEFAULT ''::text NOT NULL,
+    year_of_birth integer
+);
+
+
+ALTER TABLE proband OWNER TO jolo;
+
+--
+-- Name: sex; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE sex (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT sex_name_check CHECK ((length(name) >= 1))
+);
+
+
+ALTER TABLE sex OWNER TO jolo;
+
+SET search_path = agate, pg_catalog;
+
+--
+-- Name: all_surveys; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW all_surveys AS
+ SELECT proj.name AS project_name,
+    camp.name AS campaign_name,
+    prob.year_of_birth AS proband_year_of_birth,
+    sex.name AS proband_sex,
+    surv.survey_date,
+    surv.id AS survey_id
+   FROM ((((core.project proj
+     JOIN core.campaign camp ON ((proj.id = camp.project_id)))
+     JOIN core.survey surv ON ((camp.id = surv.campaign_id)))
+     JOIN core.proband prob ON ((surv.proband_id = prob.id)))
+     JOIN core.sex sex ON ((prob.sex_id = sex.id)))
+  WHERE (proj.name ~~ 'AGATE%'::text)
+  ORDER BY proj.name, camp.name, prob.year_of_birth;
+
+
+ALTER TABLE all_surveys OWNER TO jolo;
+
+SET search_path = core, pg_catalog;
 
 --
 -- Name: administration_method; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
@@ -139,24 +400,6 @@ ALTER TABLE age_class_id_seq OWNER TO jolo;
 
 ALTER SEQUENCE age_class_id_seq OWNED BY age_class.id;
 
-
---
--- Name: campaign; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE campaign (
-    id integer NOT NULL,
-    project_id integer NOT NULL,
-    name text NOT NULL,
-    start_date date DEFAULT ('now'::text)::date NOT NULL,
-    end_date date DEFAULT ('now'::text)::date NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT campaign_check CHECK ((end_date >= start_date)),
-    CONSTRAINT campaign_name_check CHECK ((length(name) > 1))
-);
-
-
-ALTER TABLE campaign OWNER TO jolo;
 
 --
 -- Name: campaign_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
@@ -285,20 +528,6 @@ ALTER SEQUENCE collateral_effect_id_seq OWNED BY collateral_effect.id;
 
 
 --
--- Name: seq_prescriptions; Type: SEQUENCE; Schema: core; Owner: jolo
---
-
-CREATE SEQUENCE seq_prescriptions
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE seq_prescriptions OWNER TO jolo;
-
---
 -- Name: depot_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
 --
 
@@ -317,20 +546,6 @@ CREATE TABLE depot_prescription (
 
 
 ALTER TABLE depot_prescription OWNER TO jolo;
-
---
--- Name: drug; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE drug (
-    id integer NOT NULL,
-    name text NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT drug_name_check CHECK ((length(name) > 1))
-);
-
-
-ALTER TABLE drug OWNER TO jolo;
 
 --
 -- Name: drug_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
@@ -424,20 +639,6 @@ ALTER SEQUENCE gaf_id_seq OWNED BY gaf.id;
 
 
 --
--- Name: icd10_diagnosis; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE icd10_diagnosis (
-    id integer NOT NULL,
-    name text NOT NULL,
-    long_name text DEFAULT ''::text NOT NULL,
-    description text DEFAULT ''::text NOT NULL
-);
-
-
-ALTER TABLE icd10_diagnosis OWNER TO jolo;
-
---
 -- Name: icd10_diagnosis_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
 --
 
@@ -457,20 +658,6 @@ ALTER TABLE icd10_diagnosis_id_seq OWNER TO jolo;
 
 ALTER SEQUENCE icd10_diagnosis_id_seq OWNED BY icd10_diagnosis.id;
 
-
---
--- Name: icd10_survey; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE icd10_survey (
-    icd10_diagnosis_id integer NOT NULL,
-    survey_id integer NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    id integer NOT NULL
-);
-
-
-ALTER TABLE icd10_survey OWNER TO jolo;
 
 --
 -- Name: icd10_survey_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
@@ -565,6 +752,41 @@ ALTER SEQUENCE molecule_id_seq OWNED BY molecule.id;
 
 
 --
+-- Name: molecule_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE molecule_prescription (
+    id integer NOT NULL,
+    molecule_id integer NOT NULL,
+    survey_id integer NOT NULL,
+    dosage_in_mg numeric
+);
+
+
+ALTER TABLE molecule_prescription OWNER TO jolo;
+
+--
+-- Name: molecule_prescription_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
+--
+
+CREATE SEQUENCE molecule_prescription_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE molecule_prescription_id_seq OWNER TO jolo;
+
+--
+-- Name: molecule_prescription_id_seq; Type: SEQUENCE OWNED BY; Schema: core; Owner: jolo
+--
+
+ALTER SEQUENCE molecule_prescription_id_seq OWNED BY molecule_prescription.id;
+
+
+--
 -- Name: optional_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
 --
 
@@ -651,24 +873,6 @@ ALTER SEQUENCE plasmatic_level_id_seq OWNED BY plasmatic_level.id;
 
 
 --
--- Name: prescribeable_drug; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE prescribeable_drug (
-    id integer NOT NULL,
-    drug_id integer NOT NULL,
-    name text NOT NULL,
-    dosage numeric(10,2) NOT NULL,
-    dosage_unit_id integer NOT NULL,
-    administration_method_id integer NOT NULL,
-    CONSTRAINT prescribeable_drug_dosage_check CHECK ((dosage > 0.0)),
-    CONSTRAINT prescribeable_drug_name_check CHECK ((length(name) > 1))
-);
-
-
-ALTER TABLE prescribeable_drug OWNER TO jolo;
-
---
 -- Name: prescribeable_drug_composition; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
 --
 
@@ -727,27 +931,6 @@ ALTER SEQUENCE prescribeable_drug_id_seq OWNED BY prescribeable_drug.id;
 
 
 --
--- Name: proband; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE proband (
-    id integer NOT NULL,
-    external_id integer,
-    birthday date,
-    height_in_cm integer,
-    sex_id integer NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    surname text DEFAULT ''::text NOT NULL,
-    first_name text DEFAULT ''::text NOT NULL,
-    year_of_birth integer,
-    CONSTRAINT proband_birthday_check CHECK ((birthday < ('now'::text)::date)),
-    CONSTRAINT proband_height_in_cm_check CHECK (((height_in_cm >= 50) AND (height_in_cm <= 220)))
-);
-
-
-ALTER TABLE proband OWNER TO jolo;
-
---
 -- Name: proband_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
 --
 
@@ -769,20 +952,6 @@ ALTER SEQUENCE proband_id_seq OWNED BY proband.id;
 
 
 --
--- Name: project; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE project (
-    id integer NOT NULL,
-    name text NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT project_name_check CHECK ((length(name) > 1))
-);
-
-
-ALTER TABLE project OWNER TO jolo;
-
---
 -- Name: project_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
 --
 
@@ -802,39 +971,6 @@ ALTER TABLE project_id_seq OWNER TO jolo;
 
 ALTER SEQUENCE project_id_seq OWNED BY project.id;
 
-
---
--- Name: regular_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE regular_prescription (
-    id integer DEFAULT nextval('seq_prescriptions'::regclass) NOT NULL,
-    survey_id integer NOT NULL,
-    prescribeable_drug_id integer NOT NULL,
-    morning_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
-    lunch_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
-    noon_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
-    night_dosage numeric(10,2) DEFAULT 0.0 NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT regular_prescription_check CHECK (((((morning_dosage > 0.0) OR (lunch_dosage > 0.0)) OR (noon_dosage > 0.0)) OR (night_dosage > 0.0)))
-);
-
-
-ALTER TABLE regular_prescription OWNER TO jolo;
-
---
--- Name: sex; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE sex (
-    id integer NOT NULL,
-    name text NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT sex_name_check CHECK ((length(name) >= 1))
-);
-
-
-ALTER TABLE sex OWNER TO jolo;
 
 --
 -- Name: sex_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
@@ -890,25 +1026,6 @@ ALTER TABLE smoking_habit_id_seq OWNER TO jolo;
 
 ALTER SEQUENCE smoking_habit_id_seq OWNED BY smoking_habit.id;
 
-
---
--- Name: survey; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE survey (
-    id integer NOT NULL,
-    proband_id integer NOT NULL,
-    campaign_id integer NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    survey_date date NOT NULL,
-    organization_unit_id integer DEFAULT 2 NOT NULL,
-    smoking_habit_id integer DEFAULT 2 NOT NULL,
-    bmi numeric DEFAULT 0.0 NOT NULL,
-    CONSTRAINT survey_survey_date_check CHECK ((survey_date <= ('now'::text)::date))
-);
-
-
-ALTER TABLE survey OWNER TO jolo;
 
 --
 -- Name: survey_collateral_effect; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
@@ -1102,7 +1219,7 @@ CREATE VIEW available_reports AS
         END AS "Type"
    FROM (pg_class c
      JOIN pg_namespace n ON ((n.oid = c.relnamespace)))
-  WHERE (((c.relkind = ANY (ARRAY['r'::"char", 'v'::"char", 'm'::"char"])) AND (n.nspname !~ '^pg_toast'::text)) AND (n.nspname = ANY (ARRAY['stat'::name, 'corestat'::name])))
+  WHERE (((c.relkind = ANY (ARRAY['r'::"char", 'v'::"char", 'm'::"char"])) AND (n.nspname !~ '^pg_toast'::text)) AND (n.nspname = ANY (ARRAY['stat'::name, 'corestat'::name, 'agate'::name])))
   ORDER BY (((n.nspname)::text || '.'::text) || (c.relname)::text), obj_description(c.oid, 'pg_class'::name);
 
 
@@ -1989,6 +2106,13 @@ ALTER TABLE ONLY molecule_class ALTER COLUMN id SET DEFAULT nextval('molecule_cl
 -- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
 --
 
+ALTER TABLE ONLY molecule_prescription ALTER COLUMN id SET DEFAULT nextval('molecule_prescription_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
+--
+
 ALTER TABLE ONLY organization_unit ALTER COLUMN id SET DEFAULT nextval('organization_unit_id_seq'::regclass);
 
 
@@ -2301,6 +2425,22 @@ ALTER TABLE ONLY molecule
 
 
 --
+-- Name: molecule_prescription_molecule_id_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY molecule_prescription
+    ADD CONSTRAINT molecule_prescription_molecule_id_survey_id_key UNIQUE (molecule_id, survey_id);
+
+
+--
+-- Name: molecule_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY molecule_prescription
+    ADD CONSTRAINT molecule_prescription_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: optional_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
 --
 
@@ -2386,14 +2526,6 @@ ALTER TABLE ONLY prescribeable_drug
 
 ALTER TABLE ONLY prescribeable_drug
     ADD CONSTRAINT prescribeable_drug_pkey PRIMARY KEY (id);
-
-
---
--- Name: proband_external_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
---
-
-ALTER TABLE ONLY proband
-    ADD CONSTRAINT proband_external_id_key UNIQUE (external_id);
 
 
 --
@@ -2569,7 +2701,7 @@ ALTER TABLE ONLY depot_prescription
 --
 
 ALTER TABLE ONLY depot_prescription
-    ADD CONSTRAINT depot_prescription_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id);
+    ADD CONSTRAINT depot_prescription_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -2601,7 +2733,7 @@ ALTER TABLE ONLY icd10_survey
 --
 
 ALTER TABLE ONLY icd10_survey
-    ADD CONSTRAINT icd10_survey_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id);
+    ADD CONSTRAINT icd10_survey_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -2610,6 +2742,22 @@ ALTER TABLE ONLY icd10_survey
 
 ALTER TABLE ONLY molecule
     ADD CONSTRAINT molecule_molecule_class_id_fkey FOREIGN KEY (molecule_class_id) REFERENCES molecule_class(id);
+
+
+--
+-- Name: molecule_prescription_molecule_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: jolo
+--
+
+ALTER TABLE ONLY molecule_prescription
+    ADD CONSTRAINT molecule_prescription_molecule_id_fkey FOREIGN KEY (molecule_id) REFERENCES molecule(id);
+
+
+--
+-- Name: molecule_prescription_survey_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: jolo
+--
+
+ALTER TABLE ONLY molecule_prescription
+    ADD CONSTRAINT molecule_prescription_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -2721,7 +2869,7 @@ ALTER TABLE ONLY regular_prescription
 --
 
 ALTER TABLE ONLY regular_prescription
-    ADD CONSTRAINT regular_prescription_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id);
+    ADD CONSTRAINT regular_prescription_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

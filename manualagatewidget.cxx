@@ -11,6 +11,7 @@
 #include "organizationcombobox.hxx"
 #include "agaterecorddialog.hxx"
 #include "agaterecordgateway.hxx"
+#include "agaterecordviewer.hxx"
 
 #include "datacollector.hxx"
 
@@ -69,12 +70,18 @@ void ManualAgateWidget::createSurveyListBox()
     connect(m_deleteSurvey, &QPushButton::clicked, m_agateSurveys, &AgateSurveysTableWidget::deleteSelected);
 }
 
+void ManualAgateWidget::createAgateRecordViewer()
+{
+    m_agateRecordViewer = new AgateRecordViewer(this);
+}
+
 ManualAgateWidget::ManualAgateWidget(QWidget *parent)
     : QWidget(parent)
 {
     createFilterBox();
     createDefaultBox();
     createSurveyListBox();
+    createAgateRecordViewer();
 
     connect(m_projectsFilter, &ProjectComboBox::currentProjectChanged, m_campaignsFilter, &CampaignComboBox::onFilterChanged);
 
@@ -88,6 +95,8 @@ ManualAgateWidget::ManualAgateWidget(QWidget *parent)
     connect(m_defaultOrganizations, &OrganizationComboBox::currentOrganizationChanged, this, &ManualAgateWidget::onDefaultOrganizationChanged);
     connect(m_defaultSurveyDateW, &QDateEdit::dateChanged, this, &ManualAgateWidget::onDefaultDateChanged);
 
+    connect(m_agateSurveys, &AgateSurveysTableWidget::surveyActivated, m_agateRecordViewer, &AgateRecordViewer::setSurvey);
+
     setLayout(new QVBoxLayout(this));
 
     auto topL = new QHBoxLayout(this);
@@ -96,6 +105,7 @@ ManualAgateWidget::ManualAgateWidget(QWidget *parent)
 
     layout()->addItem(topL);
     layout()->addWidget(m_surveyListBox);
+    layout()->addWidget(m_agateRecordViewer);
 }
 
 void ManualAgateWidget::onDefaultProjectChanged(ProjectSPtr p)

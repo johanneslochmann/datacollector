@@ -93,7 +93,9 @@ SOURCES += main.cxx\
     moleculegateway.cxx \
     agatediagnosistablewidget.cxx \
     agatediagnosisdialog.cxx \
-    diagnosisgateway.cxx
+    diagnosisgateway.cxx \
+    htmlviewer.cxx \
+    agaterecordviewer.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -181,7 +183,9 @@ HEADERS  += mainwindow.hxx \
     moleculegateway.hxx \
     agatediagnosistablewidget.hxx \
     agatediagnosisdialog.hxx \
-    diagnosisgateway.hxx
+    diagnosisgateway.hxx \
+    htmlviewer.hxx \
+    agaterecordviewer.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

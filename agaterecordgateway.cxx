@@ -22,7 +22,7 @@ void AgateRecordGateway::save(AgateRecordSPtr r)
 
         addDiagnosis(r);
         addDepots(r);
-        addRegularPrescriptions(r);
+        addMoleculePrescriptions(r);
 
         DataCollector::get()->commit();
     }
@@ -51,6 +51,45 @@ void AgateRecordGateway::remove(int surveyId)
         DataCollector::get()->showDatabaseError(e, QObject::tr("Failed to delete AGATE record."));
         DataCollector::get()->rollback();
     }
+}
+
+AgateRecordSPtr AgateRecordGateway::loadById(int id)
+{
+    auto q = DataCollector::get()->prepareQuery("select "
+                                                "proj.name as project_name, "
+                                                "proj.id as project_id, "
+                                                "camp.name as campaign_name, "
+                                                "camp.id as campaign_id, "
+                                                "prob.id as proband_id, "
+                                                "prob.first_name as proband_name, "
+                                                "prob.surname as proband_surname, "
+                                                "prob.external_id as proband_external_id, "
+                                                "prob.year_of_birth as proband_year_of_birth, "
+                                                "sex.name as proband_sex_name, "
+                                                "sex.id as proband_sex_id, "
+                                                "surv.id as survey_id, "
+                                                "surv.survey_date as survey_date, "
+                                                "org.name as organization_name, "
+                                                "org.id as organization_id "
+                                                "from core.project proj "
+                                                "join core.campaign camp on proj.id = camp.project_id "
+                                                "join core.survey surv on camp.id = surv.campaign_id "
+                                                "join core.proband prob on surv.proband_id = prob.id "
+                                                "join core.sex sex on prob.sex_id = sex.id "
+                                                "join core.organization_unit org on surv.organization_unit_id = org.id "
+                                                "where surv.id = :survey_id;");
+    q.bindValue(":survey_id", id);
+
+    DataCollector::get()->performQueryWithExpectedSize(q, 1, false);
+    q.next();
+
+    auto rec = q.record();
+    auto ar = std::make_shared<AgateRecord>();
+    parse(ar, rec);
+
+    loadDetails(ar);
+
+    return ar;
 }
 
 AgateRecordSPtrVector AgateRecordGateway::loadAllInProject(ProjectSPtr p)
@@ -131,10 +170,95 @@ AgateRecordSPtrVector AgateRecordGateway::loadAllInCampaign(CampaignSPtr c)
         auto rec = q.record();
         auto ar = std::make_shared<AgateRecord>();
         parse(ar, rec);
+        loadDetails(ar);
         buf.push_back(ar);
     }
 
     return buf;
+}
+
+void AgateRecordGateway::loadDetails(AgateRecordSPtr r)
+{
+    loadDiagnosis(r);
+    loadDepots(r);
+    loadMoleculePrescriptions(r);
+}
+
+void AgateRecordGateway::loadDiagnosis(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("select d.id, d.name "
+                                                "from core.icd10_diagnosis d "
+                                                "join core.icd10_survey nm on nm.icd10_diagnosis_id = d.id "
+                                                "where nm.survey_id = :survey_id "
+                                                "order by d.name asc;");
+    q.bindValue(":survey_id", r->survey()->id());
+    DataCollector::get()->performQuery(q, false);
+
+    while(q.next()) {
+        auto rec = q.record();
+
+        auto buf = std::make_shared<AgateDiagnosis>();
+        buf->id = rec.value("id").toInt();
+        buf->name = rec.value("name").toString();
+
+        r->addDiagnosis(buf);
+    }
+}
+
+void AgateRecordGateway::loadDepots(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("select "
+                                                "pd.name as prescribeable_drug_name, "
+                                                "p.last_injection_on, "
+                                                "p.dosage, "
+                                                "p.injection_interval_in_days, "
+                                                "pd.id as prescribeable_drug_id "
+                                                "from core.depot_prescription p "
+                                                "join core.prescribeable_drug pd on p.prescribeable_drug_id = pd.id "
+                                                "where survey_id = :survey_id "
+                                                "order by 1, 2;");
+
+    q.bindValue(":survey_id", r->survey()->id());
+    DataCollector::get()->performQuery(q, false);
+
+    while(q.next()) {
+        auto rec = q.record();
+
+        auto buf = std::make_shared<AgateDepot>();
+        buf->prescribeableDrugName = rec.value("prescribeable_drug_name").toString();
+        buf->prescribeableDrugId = rec.value("prescribeable_drug_id").toInt();
+        buf->lastInjectionDate = rec.value("last_injection_on").toDate();
+        buf->dosageInMg = rec.value("dosage").toDouble();
+        buf->injectionIntervalInDays = rec.value("injection_interval_in_days").toInt();
+
+        r->addDepot(buf);
+    }
+}
+
+void AgateRecordGateway::loadMoleculePrescriptions(AgateRecordSPtr r)
+{
+    auto q = DataCollector::get()->prepareQuery("select "
+                                                "m.id as molecule_id, "
+                                                "m.name as molecule_name, "
+                                                "p.dosage_in_mg as dosage_in_mg "
+                                                "from core.molecule_prescription p "
+                                                "join core.molecule m on m.id = p.molecule_id "
+                                                "where p.survey_id = :survey_id;");
+
+    q.bindValue(":survey_id", r->survey()->id());
+    DataCollector::get()->performQuery(q, false);
+
+    while(q.next()) {
+        auto rec = q.record();
+
+        auto buf = std::make_shared<AgateMedication>();
+        buf->moleculeId = rec.value("molecule_id").toInt();
+        buf->moleculeName = rec.value("molecule_name").toString();
+        buf->dosageInMg = rec.value("dosage_in_mg").toDouble();
+
+        r->addMedication(buf);
+    }
+
 }
 
 void AgateRecordGateway::createProband(ProbandSPtr p)
@@ -218,15 +342,18 @@ void AgateRecordGateway::addDepots(AgateRecordSPtr r)
     }
 }
 
-void AgateRecordGateway::addRegularPrescriptions(AgateRecordSPtr r)
+void AgateRecordGateway::addMoleculePrescriptions(AgateRecordSPtr r)
 {
-    auto q = DataCollector::get()->prepareQuery("insert into core.regular_prescription(survey_id, prescribeable_drug_id, morning_dosage, lunch_dosage, noon_dosage, night_dosage, description) "
-                                                "values (:survey_id, :prescribeable_drug_id, :morning_dosage, :lunch_dosage, :noon_dosage, :night_dosage, :description) "
+    auto q = DataCollector::get()->prepareQuery("insert into core.molecule_prescription(survey_id, molecule_id, dosage_in_mg) "
+                                                "values (:survey_id, :molecule_id, :dosage) "
                                                 "returning id;");
 
     for (auto p : r->medication()) {
         q.bindValue(":survey_id", r->survey()->id());
-        q.bindValue(":prescribeable_drug_id", p->moleculeId);
+        q.bindValue(":molecule_id", p->moleculeId);
+        q.bindValue(":dosage", p->dosageInMg);
+
+        DataCollector::get()->performQuery(q, false);
     }
 
 }
@@ -241,9 +368,9 @@ void AgateRecordGateway::parse(AgateRecordSPtr ar, const QSqlRecord &rec)
     ar->proband()->setFirstName(rec.value(rec.indexOf("proband_name")).toString());
     ar->proband()->setSurname(rec.value(rec.indexOf("proband_surname")).toString());
     ar->proband()->setExternalId(rec.value(rec.indexOf("proband_external_id")).toString());
-    ar->proband()->setYearOfBirth(rec.value(rec.indexOf("year_of_birth")).toInt());
-    ar->sex()->setName(rec.value(rec.indexOf("sex_name")).toString());
-    ar->sex()->setId(rec.value(rec.indexOf("sex_id")).toInt());
+    ar->proband()->setYearOfBirth(rec.value(rec.indexOf("proband_year_of_birth")).toInt());
+    ar->sex()->setName(rec.value(rec.indexOf("proband_sex_name")).toString());
+    ar->sex()->setId(rec.value(rec.indexOf("proband_sex_id")).toInt());
     ar->survey()->setId(rec.value(rec.indexOf("survey_id")).toInt());
     ar->survey()->setDate(rec.value(rec.indexOf("survey_date")).toDate());
     ar->organization()->setName(rec.value(rec.indexOf("organization_name")).toString());

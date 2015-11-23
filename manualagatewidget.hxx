@@ -13,6 +13,7 @@ class ProjectComboBox;
 class CampaignComboBox;
 class OrganizationComboBox;
 class AgateSurveysTableWidget;
+class AgateRecordViewer;
 
 class ManualAgateWidget : public QWidget
 {
@@ -36,6 +37,7 @@ private:
     void createFilterBox();
     void createDefaultBox();
     void createSurveyListBox();
+    void createAgateRecordViewer();
 
     QGroupBox* m_filterBox;
     ProjectComboBox* m_projectsFilter;
@@ -57,5 +59,7 @@ private:
     CampaignSPtr m_defaultCampaign;
     OrganizationSPtr m_defaultOrganization;
     QDate m_defaultSurveyDate { QDate::currentDate() };
+
+    AgateRecordViewer* m_agateRecordViewer;
 };
 

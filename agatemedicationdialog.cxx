@@ -47,6 +47,8 @@ void AgateMedicationDialog::accept()
 
     m_d->dosageInMg = m_buffer.dosageInMg;
 
+    QMessageBox::information(this, "", tr("dosage: %1").arg(m_d->dosageInMg));
+
     done(QDialog::Accepted);
 }
 

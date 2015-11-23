@@ -16,6 +16,7 @@ public:
     int idColumn() const { return m_idCol; }
 
 signals:
+    void surveyActivated(int id);
 
 public slots:
     void onProjectChanged(ProjectSPtr p);
@@ -23,6 +24,7 @@ public slots:
     void reload();
     void editSelected();
     void deleteSelected();
+    void onActivated(QTableWidgetItem* current, QTableWidgetItem* previous);
 
 protected:
     QString format(CampaignSPtr c) const;

@@ -11,6 +11,8 @@ AgateSurveysTableWidget::AgateSurveysTableWidget(QWidget *p)
     : DataTableWidget(p)
 {
     m_headerLabels << tr("Campaign") << tr("Proband") << tr("Survey Date") << tr("Organization") << tr("ID");
+
+    connect(this, &DataTableWidget::currentItemChanged, this, &AgateSurveysTableWidget::onActivated);
 }
 
 void AgateSurveysTableWidget::onProjectChanged(ProjectSPtr p)
@@ -95,6 +97,25 @@ void AgateSurveysTableWidget::deleteSelected()
 
     AgateRecordGateway().remove(idItm->data(Qt::DisplayRole).toInt());
     reload();
+}
+
+void AgateSurveysTableWidget::onActivated(QTableWidgetItem *current, QTableWidgetItem *previous)
+{
+    (void) previous;
+
+    if (!currentItem()) {
+        emit surveyActivated(0);
+        return;
+    }
+
+    auto idItm = item(current->row(), m_idCol);
+
+    if (!idItm) {
+        emit surveyActivated(0);
+        return;
+    }
+
+    emit surveyActivated(idItm->data(Qt::DisplayRole).toInt());
 }
 
 QString AgateSurveysTableWidget::format(CampaignSPtr c) const

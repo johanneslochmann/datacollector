@@ -99,7 +99,7 @@ Workbench::Workbench(QWidget *parent)
 
     connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
 
-    setCurrentWidget(m_surveyData);
+    setCurrentWidget(m_agateData);
 }
 
 void Workbench::manageChannelsIntoPatient()
