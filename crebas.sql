@@ -1568,6 +1568,41 @@ ALTER SEQUENCE crime_type_id_seq OWNED BY crime_type.id;
 
 
 --
+-- Name: mental_disease; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE mental_disease (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT mental_disease_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE mental_disease OWNER TO jolo;
+
+--
+-- Name: mental_disease_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE mental_disease_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE mental_disease_id_seq OWNER TO jolo;
+
+--
+-- Name: mental_disease_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE mental_disease_id_seq OWNED BY mental_disease.id;
+
+
+--
 -- Name: modus_operandi; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -2727,6 +2762,13 @@ ALTER TABLE ONLY crime_type ALTER COLUMN id SET DEFAULT nextval('crime_type_id_s
 -- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
 --
 
+ALTER TABLE ONLY mental_disease ALTER COLUMN id SET DEFAULT nextval('mental_disease_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
 ALTER TABLE ONLY modus_operandi ALTER COLUMN id SET DEFAULT nextval('modus_operandi_id_seq'::regclass);
 
 
@@ -3299,6 +3341,22 @@ ALTER TABLE ONLY crime_type
 
 ALTER TABLE ONLY crime_type
     ADD CONSTRAINT crime_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mental_disease_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY mental_disease
+    ADD CONSTRAINT mental_disease_name_key UNIQUE (name);
+
+
+--
+-- Name: mental_disease_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY mental_disease
+    ADD CONSTRAINT mental_disease_pkey PRIMARY KEY (id);
 
 
 --

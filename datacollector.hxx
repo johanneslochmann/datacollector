@@ -52,6 +52,7 @@ public:
     QAction* manageCrimeCasePartyRolesAction() const { return m_manageCrimeCasePartyRoles; }
     QAction* manageJobsAction() const { return m_manageJobs; }
     QAction* manageCrimeMotivesAction() const { return m_manageCrimeMotives; }
+    QAction* manageMentalDiseasesAction() const { return m_manageMentalDiseases; }
 
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
@@ -103,6 +104,7 @@ signals:
     void manageCrimeCasePartyRoles();
     void manageJobs();
     void manageCrimeMotives();
+    void manageMentalDiseases();
 
     void manageSurveyData();
     void manageAgateData();
@@ -150,6 +152,7 @@ private:
     QAction* m_manageCrimeCasePartyRoles;
     QAction* m_manageJobs;
     QAction* m_manageCrimeMotives;
+    QAction* m_manageMentalDiseases;
 
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;

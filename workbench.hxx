@@ -41,6 +41,7 @@ public slots:
     void manageCrimeCasePartyRoles();
     void manageJobs();
     void manageCrimeMotives();
+    void manageMentalDiseases();
 
     void manageSurveyData();
     void manageAgateData();
@@ -74,6 +75,7 @@ private:
     TableManagementWidget* m_crimeCasePartyRoles;
     TableManagementWidget* m_crimeMotives;
     TableManagementWidget* m_jobs;
+    TableManagementWidget* m_mentalDiseases;
 
     QWidget* m_surveyData;
     QWidget* m_agateData;

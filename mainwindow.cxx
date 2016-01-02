@@ -90,6 +90,7 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageCrimeTypesAction());
     coreData->addAction(app->manageCrimeCasePartyRolesAction());
     coreData->addAction(app->manageCrimeMotivesAction());
+    coreData->addAction(app->manageMentalDiseasesAction());
     coreData->addSeparator();
     coreData->addAction(app->manageSurveysAction());
 
