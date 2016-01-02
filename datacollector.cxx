@@ -312,4 +312,7 @@ void DataCollector::initActions()
 
     m_manageConsultancyResults = new ActionEnabledIfConnectedToDatabase(tr("Consultancy Results"), this);
     connect(m_manageConsultancyResults, &QAction::triggered, this, &DataCollector::manageConsultancyResults);
+
+    m_manageWeapons = new ActionEnabledIfConnectedToDatabase(tr("Weapons"), this);
+    connect(m_manageWeapons, &QAction::triggered,this, &DataCollector::manageWeapons);
 }

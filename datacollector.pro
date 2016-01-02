@@ -106,7 +106,8 @@ SOURCES += main.cxx\
     jobmanagementwidget.cxx \
     crimemotivemanagementwidget.cxx \
     mentaldiseasemanagementwidget.cxx \
-    consultancyresultmanagementwidget.cxx
+    consultancyresultmanagementwidget.cxx \
+    weaponmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -207,7 +208,8 @@ HEADERS  += mainwindow.hxx \
     jobmanagementwidget.hxx \
     crimemotivemanagementwidget.hxx \
     mentaldiseasemanagementwidget.hxx \
-    consultancyresultmanagementwidget.hxx
+    consultancyresultmanagementwidget.hxx \
+    weaponmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

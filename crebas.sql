@@ -1673,6 +1673,42 @@ ALTER SEQUENCE modus_operandi_id_seq OWNED BY modus_operandi.id;
 
 
 --
+-- Name: weapon; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE weapon (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    weapon_type_id integer NOT NULL,
+    CONSTRAINT weapon_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE weapon OWNER TO jolo;
+
+--
+-- Name: weapon_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE weapon_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE weapon_id_seq OWNER TO jolo;
+
+--
+-- Name: weapon_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE weapon_id_seq OWNED BY weapon.id;
+
+
+--
 -- Name: weapon_type; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -2818,6 +2854,13 @@ ALTER TABLE ONLY modus_operandi ALTER COLUMN id SET DEFAULT nextval('modus_opera
 -- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
 --
 
+ALTER TABLE ONLY weapon ALTER COLUMN id SET DEFAULT nextval('weapon_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
 ALTER TABLE ONLY weapon_type ALTER COLUMN id SET DEFAULT nextval('weapon_type_id_seq'::regclass);
 
 
@@ -3434,6 +3477,22 @@ ALTER TABLE ONLY modus_operandi
 
 
 --
+-- Name: weapon_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY weapon
+    ADD CONSTRAINT weapon_name_key UNIQUE (name);
+
+
+--
+-- Name: weapon_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY weapon
+    ADD CONSTRAINT weapon_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: weapon_type_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -3747,6 +3806,16 @@ ALTER TABLE ONLY survey
 
 ALTER TABLE ONLY who_qol
     ADD CONSTRAINT who_qol_survey_id_fkey FOREIGN KEY (survey_id) REFERENCES survey(id);
+
+
+SET search_path = forensics, pg_catalog;
+
+--
+-- Name: weapon_weapon_type_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY weapon
+    ADD CONSTRAINT weapon_weapon_type_id_fkey FOREIGN KEY (weapon_type_id) REFERENCES weapon_type(id);
 
 
 --
