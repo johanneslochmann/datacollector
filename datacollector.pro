@@ -99,7 +99,8 @@ SOURCES += main.cxx\
     countrymanagementwidget.cxx \
     weapontypemanagementwidget.cxx \
     housingtypemanagementwidget.cxx \
-    modusoperandimanagementwidget.cxx
+    modusoperandimanagementwidget.cxx \
+    crimetypemanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -193,7 +194,8 @@ HEADERS  += mainwindow.hxx \
     countrymanagementwidget.hxx \
     weapontypemanagementwidget.hxx \
     housingtypemanagementwidget.hxx \
-    modusoperandimanagementwidget.hxx
+    modusoperandimanagementwidget.hxx \
+    crimetypemanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

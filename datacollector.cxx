@@ -291,4 +291,7 @@ void DataCollector::initActions()
 
     m_manageModusOperandi = new ActionEnabledIfConnectedToDatabase(tr("Modus Operandi"), this);
     connect(m_manageModusOperandi, &QAction::triggered, this, &DataCollector::manageModusOperandi);
+
+    m_manageCrimeTypes = new ActionEnabledIfConnectedToDatabase(tr("Crime Type"), this);
+    connect(m_manageCrimeTypes, &QAction::triggered, this, &DataCollector::manageCrimeTypes);
 }

@@ -85,6 +85,7 @@ void MainWindow::initMenues()
     coreData->addSeparator();
     coreData->addAction(app->manageWeaponTypesAction());
     coreData->addAction(app->manageModusOperandiAction());
+    coreData->addAction(app->manageCrimeTypesAction());
     coreData->addSeparator();
     coreData->addAction(app->manageSurveysAction());
 
