@@ -46,6 +46,7 @@ public:
     QAction* manageCountriesAction() const { return m_manageCountries; }
     QAction* manageWeaponTypesAction() const { return m_manageWeaponTypes; }
     QAction* manageHousingTypesAction() const { return m_manageHousingTypes; }
+    QAction* manageModusOperandiAction() const { return m_manageModusOperandi; }
 
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
@@ -91,6 +92,7 @@ signals:
     void manageCountries();
     void manageWeaponTypes();
     void manageHousingTypes();
+    void manageModusOperandi();
 
     void manageSurveyData();
     void manageAgateData();
@@ -132,6 +134,7 @@ private:
     QAction* m_manageCountries;
     QAction* m_manageWeaponTypes;
     QAction* m_manageHousingTypes;
+    QAction* m_manageModusOperandi;
 
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;

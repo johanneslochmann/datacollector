@@ -35,6 +35,7 @@ public slots:
     void manageCountries();
     void manageWeaponTypes();
     void manageHousingTypes();
+    void manageModusOperandi();
 
     void manageSurveyData();
     void manageAgateData();
@@ -62,6 +63,7 @@ private:
     TableManagementWidget* m_countries;
     TableManagementWidget* m_weaponTypes;
     TableManagementWidget* m_housingTypes;
+    TableManagementWidget* m_modusOperandi;
 
     QWidget* m_surveyData;
     QWidget* m_agateData;

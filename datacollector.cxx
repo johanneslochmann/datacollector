@@ -288,4 +288,7 @@ void DataCollector::initActions()
 
     m_manageHousingTypes = new ActionEnabledIfConnectedToDatabase(tr("Housing Types"), this);
     connect(m_manageHousingTypes, &QAction::triggered, this, &DataCollector::manageHousingTypes);
+
+    m_manageModusOperandi = new ActionEnabledIfConnectedToDatabase(tr("Modus Operandi"), this);
+    connect(m_manageModusOperandi, &QAction::triggered, this, &DataCollector::manageModusOperandi);
 }
