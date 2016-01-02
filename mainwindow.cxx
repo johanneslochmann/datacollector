@@ -83,6 +83,7 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageSmokingHabitsAction());
     coreData->addSeparator();
     coreData->addAction(app->manageCountriesAction());
+    coreData->addAction(app->manageCitiesAction());
     coreData->addAction(app->manageHousingTypesAction());
     coreData->addSeparator();
     coreData->addAction(app->manageWeaponTypesAction());

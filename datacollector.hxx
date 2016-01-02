@@ -55,6 +55,7 @@ public:
     QAction* manageMentalDiseasesAction() const { return m_manageMentalDiseases; }
     QAction* manageConsultancyResultsAction() const { return m_manageConsultancyResults; }
     QAction* manageWeaponsAction() const { return m_manageWeapons; }
+    QAction* manageCitiesAction() const { return m_manageCities; }
 
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
@@ -109,6 +110,7 @@ signals:
     void manageMentalDiseases();
     void manageConsultancyResults();
     void manageWeapons();
+    void manageCities();
 
     void manageSurveyData();
     void manageAgateData();
@@ -159,6 +161,7 @@ private:
     QAction* m_manageMentalDiseases;
     QAction* m_manageConsultancyResults;
     QAction* m_manageWeapons;
+    QAction* m_manageCities;
 
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;

@@ -32,6 +32,7 @@
 #include "mentaldiseasemanagementwidget.hxx"
 #include "consultancyresultmanagementwidget.hxx"
 #include "weaponmanagementwidget.hxx"
+#include "citymanagementwidget.hxx"
 
 #include "surveyform.hxx"
 #include "manualagatewidget.hxx"
@@ -75,6 +76,7 @@ Workbench::Workbench(QWidget *parent)
     m_mentalDiseases = new MentalDiseaseManagementWidget(this);
     m_consultancyResults = new ConsultancyResultManagementWidget(this);
     m_weapons = new WeaponManagementWidget(this);
+    m_cities = new CityManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -106,6 +108,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_mentalDiseases);
     addWidget(m_consultancyResults);
     addWidget(m_weapons);
+    addWidget(m_cities);
 
     addWidget(m_surveyData);
     addWidget(m_agateData);
@@ -141,6 +144,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageMentalDiseases, this, &Workbench::manageMentalDiseases);
     connect(app, &DataCollector::manageConsultancyResults, this, &Workbench::manageConsultancyResults);
     connect(app, &DataCollector::manageWeapons, this, &Workbench::manageWeapons);
+    connect(app, &DataCollector::manageCities, this, &Workbench::manageCities);
 
     connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
@@ -305,6 +309,11 @@ void Workbench::manageConsultancyResults()
 void Workbench::manageWeapons()
 {
     setCurrentWidget(m_weapons);
+}
+
+void Workbench::manageCities()
+{
+    setCurrentWidget(m_cities);
 }
 
 void Workbench::showCoreStatistics()

@@ -1746,6 +1746,43 @@ ALTER SEQUENCE weapon_type_id_seq OWNED BY weapon_type.id;
 SET search_path = geo, pg_catalog;
 
 --
+-- Name: city; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE city (
+    id integer NOT NULL,
+    name text NOT NULL,
+    people_count integer DEFAULT 0 NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    country_id integer NOT NULL,
+    CONSTRAINT city_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE city OWNER TO jolo;
+
+--
+-- Name: city_id_seq; Type: SEQUENCE; Schema: geo; Owner: jolo
+--
+
+CREATE SEQUENCE city_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE city_id_seq OWNER TO jolo;
+
+--
+-- Name: city_id_seq; Type: SEQUENCE OWNED BY; Schema: geo; Owner: jolo
+--
+
+ALTER SEQUENCE city_id_seq OWNED BY city.id;
+
+
+--
 -- Name: country; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
 --
 
@@ -2870,6 +2907,13 @@ SET search_path = geo, pg_catalog;
 -- Name: id; Type: DEFAULT; Schema: geo; Owner: jolo
 --
 
+ALTER TABLE ONLY city ALTER COLUMN id SET DEFAULT nextval('city_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: geo; Owner: jolo
+--
+
 ALTER TABLE ONLY country ALTER COLUMN id SET DEFAULT nextval('country_id_seq'::regclass);
 
 
@@ -3511,6 +3555,22 @@ ALTER TABLE ONLY weapon_type
 SET search_path = geo, pg_catalog;
 
 --
+-- Name: city_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY city
+    ADD CONSTRAINT city_name_key UNIQUE (name);
+
+
+--
+-- Name: city_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY city
+    ADD CONSTRAINT city_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: country_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
 --
 
@@ -3816,6 +3876,16 @@ SET search_path = forensics, pg_catalog;
 
 ALTER TABLE ONLY weapon
     ADD CONSTRAINT weapon_weapon_type_id_fkey FOREIGN KEY (weapon_type_id) REFERENCES weapon_type(id);
+
+
+SET search_path = geo, pg_catalog;
+
+--
+-- Name: city_country_id_fkey; Type: FK CONSTRAINT; Schema: geo; Owner: jolo
+--
+
+ALTER TABLE ONLY city
+    ADD CONSTRAINT city_country_id_fkey FOREIGN KEY (country_id) REFERENCES country(id);
 
 
 --
