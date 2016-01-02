@@ -30,6 +30,7 @@
 #include "jobmanagementwidget.hxx"
 #include "crimemotivemanagementwidget.hxx"
 #include "mentaldiseasemanagementwidget.hxx"
+#include "consultancyresultmanagementwidget.hxx"
 
 #include "surveyform.hxx"
 #include "manualagatewidget.hxx"
@@ -71,6 +72,7 @@ Workbench::Workbench(QWidget *parent)
     m_jobs = new JobManagementWidget(this);
     m_crimeMotives = new CrimeMotiveManagementWidget(this);
     m_mentalDiseases = new MentalDiseaseManagementWidget(this);
+    m_consultancyResults = new ConsultancyResultManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -100,6 +102,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_jobs);
     addWidget(m_crimeMotives);
     addWidget(m_mentalDiseases);
+    addWidget(m_consultancyResults);
 
     addWidget(m_surveyData);
     addWidget(m_agateData);
@@ -133,6 +136,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageJobs, this, &Workbench::manageJobs);
     connect(app, &DataCollector::manageCrimeMotives, this, &Workbench::manageCrimeMotives);
     connect(app, &DataCollector::manageMentalDiseases, this, &Workbench::manageMentalDiseases);
+    connect(app, &DataCollector::manageConsultancyResults, this, &Workbench::manageConsultancyResults);
 
     connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
@@ -287,6 +291,11 @@ void Workbench::manageCrimeMotives()
 void Workbench::manageMentalDiseases()
 {
     setCurrentWidget(m_mentalDiseases);
+}
+
+void Workbench::manageConsultancyResults()
+{
+    setCurrentWidget(m_consultancyResults);
 }
 
 void Workbench::showCoreStatistics()

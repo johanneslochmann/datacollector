@@ -1463,6 +1463,41 @@ ALTER TABLE available_reports OWNER TO jolo;
 SET search_path = forensics, pg_catalog;
 
 --
+-- Name: consultancy_result; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE consultancy_result (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT consultancy_result_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE consultancy_result OWNER TO jolo;
+
+--
+-- Name: consultancy_result_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE consultancy_result_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE consultancy_result_id_seq OWNER TO jolo;
+
+--
+-- Name: consultancy_result_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE consultancy_result_id_seq OWNED BY consultancy_result.id;
+
+
+--
 -- Name: crime_case_party_role; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -2741,6 +2776,13 @@ SET search_path = forensics, pg_catalog;
 -- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
 --
 
+ALTER TABLE ONLY consultancy_result ALTER COLUMN id SET DEFAULT nextval('consultancy_result_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
 ALTER TABLE ONLY crime_case_party_role ALTER COLUMN id SET DEFAULT nextval('crime_case_party_role_id_seq'::regclass);
 
 
@@ -3294,6 +3336,22 @@ ALTER TABLE ONLY who_qol
 
 
 SET search_path = forensics, pg_catalog;
+
+--
+-- Name: consultancy_result_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY consultancy_result
+    ADD CONSTRAINT consultancy_result_name_key UNIQUE (name);
+
+
+--
+-- Name: consultancy_result_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY consultancy_result
+    ADD CONSTRAINT consultancy_result_pkey PRIMARY KEY (id);
+
 
 --
 -- Name: crime_case_party_role_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 

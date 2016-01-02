@@ -309,4 +309,7 @@ void DataCollector::initActions()
 
     m_manageMentalDiseases = new ActionEnabledIfConnectedToDatabase(tr("Mental Diseases"), this);
     connect(m_manageMentalDiseases, &QAction::triggered, this, &DataCollector::manageMentalDiseases);
+
+    m_manageConsultancyResults = new ActionEnabledIfConnectedToDatabase(tr("Consultancy Results"), this);
+    connect(m_manageConsultancyResults, &QAction::triggered, this, &DataCollector::manageConsultancyResults);
 }
