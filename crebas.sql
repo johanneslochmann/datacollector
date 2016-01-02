@@ -1393,6 +1393,41 @@ ALTER TABLE available_reports OWNER TO jolo;
 SET search_path = forensics, pg_catalog;
 
 --
+-- Name: crime_type; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE crime_type (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT crime_type_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE crime_type OWNER TO jolo;
+
+--
+-- Name: crime_type_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE crime_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE crime_type_id_seq OWNER TO jolo;
+
+--
+-- Name: crime_type_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE crime_type_id_seq OWNED BY crime_type.id;
+
+
+--
 -- Name: modus_operandi; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -2517,6 +2552,13 @@ SET search_path = forensics, pg_catalog;
 -- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
 --
 
+ALTER TABLE ONLY crime_type ALTER COLUMN id SET DEFAULT nextval('crime_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
 ALTER TABLE ONLY modus_operandi ALTER COLUMN id SET DEFAULT nextval('modus_operandi_id_seq'::regclass);
 
 
@@ -3010,6 +3052,22 @@ ALTER TABLE ONLY who_qol
 
 
 SET search_path = forensics, pg_catalog;
+
+--
+-- Name: crime_type_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY crime_type
+    ADD CONSTRAINT crime_type_name_key UNIQUE (name);
+
+
+--
+-- Name: crime_type_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY crime_type
+    ADD CONSTRAINT crime_type_pkey PRIMARY KEY (id);
+
 
 --
 -- Name: modus_operandi_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
