@@ -300,4 +300,7 @@ void DataCollector::initActions()
 
     m_manageCrimeCasePartyRoles = new ActionEnabledIfConnectedToDatabase(tr("Crime Case Party Roles"), this);
     connect(m_manageCrimeCasePartyRoles, &QAction::triggered, this, &DataCollector::manageCrimeCasePartyRoles);
+
+    m_manageJobs = new ActionEnabledIfConnectedToDatabase(tr("Jobs"), this);
+    connect(m_manageJobs, &QAction::triggered, this, &DataCollector::manageJobs);
 }

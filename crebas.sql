@@ -909,6 +909,41 @@ ALTER SEQUENCE information_source_type_id_seq OWNED BY information_source_type.i
 
 
 --
+-- Name: job; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE job (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT job_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE job OWNER TO jolo;
+
+--
+-- Name: job_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
+--
+
+CREATE SEQUENCE job_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE job_id_seq OWNER TO jolo;
+
+--
+-- Name: job_id_seq; Type: SEQUENCE OWNED BY; Schema: core; Owner: jolo
+--
+
+ALTER SEQUENCE job_id_seq OWNED BY job.id;
+
+
+--
 -- Name: molecule_class_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
 --
 
@@ -2515,6 +2550,13 @@ ALTER TABLE ONLY information_source_type ALTER COLUMN id SET DEFAULT nextval('in
 -- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
 --
 
+ALTER TABLE ONLY job ALTER COLUMN id SET DEFAULT nextval('job_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
+--
+
 ALTER TABLE ONLY molecule ALTER COLUMN id SET DEFAULT nextval('molecule_id_seq'::regclass);
 
 
@@ -2877,6 +2919,22 @@ ALTER TABLE ONLY information_source_type
 
 ALTER TABLE ONLY information_source_type
     ADD CONSTRAINT information_source_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: job_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY job
+    ADD CONSTRAINT job_name_key UNIQUE (name);
+
+
+--
+-- Name: job_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY job
+    ADD CONSTRAINT job_pkey PRIMARY KEY (id);
 
 
 --
