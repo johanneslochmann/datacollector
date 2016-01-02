@@ -100,7 +100,8 @@ SOURCES += main.cxx\
     weapontypemanagementwidget.cxx \
     housingtypemanagementwidget.cxx \
     modusoperandimanagementwidget.cxx \
-    crimetypemanagementwidget.cxx
+    crimetypemanagementwidget.cxx \
+    informationsourcetypemanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -195,7 +196,8 @@ HEADERS  += mainwindow.hxx \
     weapontypemanagementwidget.hxx \
     housingtypemanagementwidget.hxx \
     modusoperandimanagementwidget.hxx \
-    crimetypemanagementwidget.hxx
+    crimetypemanagementwidget.hxx \
+    informationsourcetypemanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

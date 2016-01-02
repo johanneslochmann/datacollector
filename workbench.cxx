@@ -25,6 +25,7 @@
 #include "housingtypemanagementwidget.hxx"
 #include "modusoperandimanagementwidget.hxx"
 #include "crimetypemanagementwidget.hxx"
+#include "informationsourcetypemanagementwidget.hxx"
 
 #include "surveyform.hxx"
 #include "manualagatewidget.hxx"
@@ -61,6 +62,7 @@ Workbench::Workbench(QWidget *parent)
     m_housingTypes = new HousingTypeManagementWidget(this);
     m_modusOperandi = new ModusOperandiManagementWidget(this);
     m_crimeTypes = new CrimeTypeManagementWidget(this);
+    m_informationSourceTypes = new InformationSourceTypeManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -85,6 +87,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_housingTypes);
     addWidget(m_modusOperandi);
     addWidget(m_crimeTypes);
+    addWidget(m_informationSourceTypes);
 
     addWidget(m_surveyData);
     addWidget(m_agateData);
@@ -113,6 +116,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageHousingTypes, this, &Workbench::manageHousingTypes);
     connect(app, &DataCollector::manageModusOperandi, this, &Workbench::manageModusOperandi);
     connect(app, &DataCollector::manageCrimeTypes, this, &Workbench::manageCrimeTypes);
+    connect(app, &DataCollector::manageInformationSourceTypes, this, &Workbench::manageInformationSourceTypes);
 
     connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
@@ -242,6 +246,11 @@ void Workbench::manageModusOperandi()
 void Workbench::manageCrimeTypes()
 {
     setCurrentWidget(m_crimeTypes);
+}
+
+void Workbench::manageInformationSourceTypes()
+{
+    setCurrentWidget(m_informationSourceTypes);
 }
 
 void Workbench::showCoreStatistics()

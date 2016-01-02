@@ -48,6 +48,7 @@ public:
     QAction* manageHousingTypesAction() const { return m_manageHousingTypes; }
     QAction* manageModusOperandiAction() const { return m_manageModusOperandi; }
     QAction* manageCrimeTypesAction() const { return m_manageCrimeTypes; }
+    QAction* manageInformationSourceTypesAction() const { return m_manageInformationSourceTypes; }
 
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
@@ -95,6 +96,7 @@ signals:
     void manageHousingTypes();
     void manageModusOperandi();
     void manageCrimeTypes();
+    void manageInformationSourceTypes();
 
     void manageSurveyData();
     void manageAgateData();
@@ -138,6 +140,7 @@ private:
     QAction* m_manageHousingTypes;
     QAction* m_manageModusOperandi;
     QAction* m_manageCrimeTypes;
+    QAction* m_manageInformationSourceTypes;
 
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;

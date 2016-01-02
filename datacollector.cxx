@@ -294,4 +294,7 @@ void DataCollector::initActions()
 
     m_manageCrimeTypes = new ActionEnabledIfConnectedToDatabase(tr("Crime Type"), this);
     connect(m_manageCrimeTypes, &QAction::triggered, this, &DataCollector::manageCrimeTypes);
+
+    m_manageInformationSourceTypes = new ActionEnabledIfConnectedToDatabase(tr("Information Source Types"), this);
+    connect(m_manageInformationSourceTypes, &QAction::triggered, this, &DataCollector::manageInformationSourceTypes);
 }

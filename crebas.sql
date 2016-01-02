@@ -874,6 +874,41 @@ ALTER SEQUENCE icd10_survey_id_seq OWNED BY icd10_survey.id;
 
 
 --
+-- Name: information_source_type; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE information_source_type (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT information_source_type_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE information_source_type OWNER TO jolo;
+
+--
+-- Name: information_source_type_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
+--
+
+CREATE SEQUENCE information_source_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE information_source_type_id_seq OWNER TO jolo;
+
+--
+-- Name: information_source_type_id_seq; Type: SEQUENCE OWNED BY; Schema: core; Owner: jolo
+--
+
+ALTER SEQUENCE information_source_type_id_seq OWNED BY information_source_type.id;
+
+
+--
 -- Name: molecule_class_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
 --
 
@@ -2438,6 +2473,13 @@ ALTER TABLE ONLY icd10_survey ALTER COLUMN id SET DEFAULT nextval('icd10_survey_
 -- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
 --
 
+ALTER TABLE ONLY information_source_type ALTER COLUMN id SET DEFAULT nextval('information_source_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
+--
+
 ALTER TABLE ONLY molecule ALTER COLUMN id SET DEFAULT nextval('molecule_id_seq'::regclass);
 
 
@@ -2777,6 +2819,22 @@ ALTER TABLE ONLY icd10_diagnosis
 
 ALTER TABLE ONLY icd10_survey
     ADD CONSTRAINT icd10_survey_icd10_diagnosis_id_survey_id_key UNIQUE (icd10_diagnosis_id, survey_id);
+
+
+--
+-- Name: information_source_type_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY information_source_type
+    ADD CONSTRAINT information_source_type_name_key UNIQUE (name);
+
+
+--
+-- Name: information_source_type_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY information_source_type
+    ADD CONSTRAINT information_source_type_pkey PRIMARY KEY (id);
 
 
 --
