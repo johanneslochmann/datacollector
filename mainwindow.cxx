@@ -82,6 +82,8 @@ void MainWindow::initMenues()
     coreData->addSeparator();
     coreData->addAction(app->manageCountriesAction());
     coreData->addSeparator();
+    coreData->addAction(app->manageWeaponTypesAction());
+    coreData->addSeparator();
     coreData->addAction(app->manageSurveysAction());
 
     QMenu* dataEntry = new QMenu(tr("&Surveys"), this);

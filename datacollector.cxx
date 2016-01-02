@@ -282,4 +282,7 @@ void DataCollector::initActions()
 
     m_manageCountries = new ActionEnabledIfConnectedToDatabase(tr("Countries"), this);
     connect(m_manageCountries, &QAction::triggered, this, &DataCollector::manageCountries);
+
+    m_manageWeaponTypes = new ActionEnabledIfConnectedToDatabase(tr("Weapon Types"), this);
+    connect(m_manageWeaponTypes, &QAction::triggered, this, &DataCollector::manageWeaponTypes);
 }

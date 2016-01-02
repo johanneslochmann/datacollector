@@ -44,6 +44,7 @@ public:
     QAction* manageSmokingHabitsAction() const { return m_manageSmokingHabits; }
     QAction* manageCollateralEffectsAction() const { return m_manageCollateralEffects; }
     QAction* manageCountriesAction() const { return m_manageCountries; }
+    QAction* manageWeaponTypesAction() const { return m_manageWeaponTypes; }
 
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
@@ -87,6 +88,7 @@ signals:
     void manageSmokingHabits();
     void manageCollateralEffects();
     void manageCountries();
+    void manageWeaponTypes();
 
     void manageSurveyData();
     void manageAgateData();
@@ -126,6 +128,7 @@ private:
     QAction* m_manageSmokingHabits;
     QAction* m_manageCollateralEffects;
     QAction* m_manageCountries;
+    QAction* m_manageWeaponTypes;
 
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;
