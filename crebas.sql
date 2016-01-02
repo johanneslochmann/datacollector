@@ -37,6 +37,24 @@ CREATE SCHEMA corestat;
 ALTER SCHEMA corestat OWNER TO jolo;
 
 --
+-- Name: forensics; Type: SCHEMA; Schema: -; Owner: jolo
+--
+
+CREATE SCHEMA forensics;
+
+
+ALTER SCHEMA forensics OWNER TO jolo;
+
+--
+-- Name: geo; Type: SCHEMA; Schema: -; Owner: jolo
+--
+
+CREATE SCHEMA geo;
+
+
+ALTER SCHEMA geo OWNER TO jolo;
+
+--
 -- Name: stat; Type: SCHEMA; Schema: -; Owner: jolo
 --
 
@@ -381,6 +399,149 @@ CREATE VIEW all_surveys AS
 
 ALTER TABLE all_surveys OWNER TO jolo;
 
+--
+-- Name: diagnosis_count; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW diagnosis_count AS
+ SELECT p.name AS "Project",
+    icd10.name AS "Diagnosis Name",
+    count(1) AS "Count"
+   FROM ((((core.icd10_diagnosis icd10
+     JOIN core.icd10_survey s_icd10 ON ((icd10.id = s_icd10.icd10_diagnosis_id)))
+     JOIN core.survey s ON ((s_icd10.survey_id = s.id)))
+     JOIN core.campaign c ON ((s.campaign_id = c.id)))
+     JOIN core.project p ON ((c.project_id = p.id)))
+  WHERE (p.name ~~ '%AGATE%'::text)
+  GROUP BY p.name, icd10.name
+  ORDER BY p.name, count(1) DESC;
+
+
+ALTER TABLE diagnosis_count OWNER TO jolo;
+
+--
+-- Name: diagnosis_count_per_campaign; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW diagnosis_count_per_campaign AS
+ SELECT p.name AS "Project",
+    c.name AS "Campaign",
+    icd10.name AS "Diagnosis Name",
+    count(1) AS "Count"
+   FROM ((((core.icd10_diagnosis icd10
+     JOIN core.icd10_survey s_icd10 ON ((icd10.id = s_icd10.icd10_diagnosis_id)))
+     JOIN core.survey s ON ((s_icd10.survey_id = s.id)))
+     JOIN core.campaign c ON ((s.campaign_id = c.id)))
+     JOIN core.project p ON ((c.project_id = p.id)))
+  WHERE (p.name ~~ '%AGATE%'::text)
+  GROUP BY p.name, c.name, icd10.name
+  ORDER BY p.name, count(1) DESC;
+
+
+ALTER TABLE diagnosis_count_per_campaign OWNER TO jolo;
+
+SET search_path = core, pg_catalog;
+
+--
+-- Name: molecule_class; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE molecule_class (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT molecule_class_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE molecule_class OWNER TO jolo;
+
+SET search_path = agate, pg_catalog;
+
+--
+-- Name: molecule_class_prescription_count; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW molecule_class_prescription_count AS
+ SELECT p.name AS "Project",
+    mc.name AS "Molecule Class",
+    count(1) AS "Prescription Count"
+   FROM (((((core.project p
+     JOIN core.campaign c ON ((p.id = c.project_id)))
+     JOIN core.survey s ON ((c.id = s.campaign_id)))
+     JOIN core.molecule_prescription mp ON ((s.id = mp.survey_id)))
+     JOIN core.molecule m ON ((mp.molecule_id = m.id)))
+     JOIN core.molecule_class mc ON ((m.molecule_class_id = mc.id)))
+  WHERE (p.name ~~ '%AGATE%'::text)
+  GROUP BY p.name, mc.name
+  ORDER BY p.name, count(1) DESC;
+
+
+ALTER TABLE molecule_class_prescription_count OWNER TO jolo;
+
+--
+-- Name: molecule_class_prescription_per_campaign_count; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW molecule_class_prescription_per_campaign_count AS
+ SELECT p.name AS "Project",
+    c.name AS "Campaign",
+    mc.name AS "Molecule Class",
+    count(1) AS "Prescription Count"
+   FROM (((((core.project p
+     JOIN core.campaign c ON ((p.id = c.project_id)))
+     JOIN core.survey s ON ((c.id = s.campaign_id)))
+     JOIN core.molecule_prescription mp ON ((s.id = mp.survey_id)))
+     JOIN core.molecule m ON ((mp.molecule_id = m.id)))
+     JOIN core.molecule_class mc ON ((m.molecule_class_id = mc.id)))
+  WHERE (p.name ~~ '%AGATE%'::text)
+  GROUP BY p.name, c.name, mc.name
+  ORDER BY p.name, count(1) DESC;
+
+
+ALTER TABLE molecule_class_prescription_per_campaign_count OWNER TO jolo;
+
+--
+-- Name: molecule_prescription_count; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW molecule_prescription_count AS
+ SELECT p.name AS "Project",
+    m.name AS "Molecule",
+    count(1) AS "Prescription Count"
+   FROM ((((core.project p
+     JOIN core.campaign c ON ((p.id = c.project_id)))
+     JOIN core.survey s ON ((c.id = s.campaign_id)))
+     JOIN core.molecule_prescription mp ON ((s.id = mp.survey_id)))
+     JOIN core.molecule m ON ((mp.molecule_id = m.id)))
+  WHERE (p.name ~~ '%AGATE%'::text)
+  GROUP BY p.name, m.name
+  ORDER BY p.name, count(1) DESC;
+
+
+ALTER TABLE molecule_prescription_count OWNER TO jolo;
+
+--
+-- Name: molecule_prescription_per_campaign_count; Type: VIEW; Schema: agate; Owner: jolo
+--
+
+CREATE VIEW molecule_prescription_per_campaign_count AS
+ SELECT p.name AS "Project",
+    c.name AS "Campaign",
+    m.name AS "Molecule",
+    count(1) AS "Prescription Count"
+   FROM ((((core.project p
+     JOIN core.campaign c ON ((p.id = c.project_id)))
+     JOIN core.survey s ON ((c.id = s.campaign_id)))
+     JOIN core.molecule_prescription mp ON ((s.id = mp.survey_id)))
+     JOIN core.molecule m ON ((mp.molecule_id = m.id)))
+  WHERE (p.name ~~ '%AGATE%'::text)
+  GROUP BY p.name, c.name, m.name
+  ORDER BY p.name, count(1) DESC;
+
+
+ALTER TABLE molecule_prescription_per_campaign_count OWNER TO jolo;
+
 SET search_path = core, pg_catalog;
 
 --
@@ -711,20 +872,6 @@ ALTER TABLE icd10_survey_id_seq OWNER TO jolo;
 
 ALTER SEQUENCE icd10_survey_id_seq OWNED BY icd10_survey.id;
 
-
---
--- Name: molecule_class; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE molecule_class (
-    id integer NOT NULL,
-    name text NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT molecule_class_name_check CHECK ((length(name) > 1))
-);
-
-
-ALTER TABLE molecule_class OWNER TO jolo;
 
 --
 -- Name: molecule_class_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
@@ -1242,6 +1389,152 @@ CREATE VIEW available_reports AS
 
 
 ALTER TABLE available_reports OWNER TO jolo;
+
+SET search_path = forensics, pg_catalog;
+
+--
+-- Name: modus_operandi; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE modus_operandi (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT modus_operandi_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE modus_operandi OWNER TO jolo;
+
+--
+-- Name: modus_operandi_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE modus_operandi_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE modus_operandi_id_seq OWNER TO jolo;
+
+--
+-- Name: modus_operandi_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE modus_operandi_id_seq OWNED BY modus_operandi.id;
+
+
+--
+-- Name: weapon_type; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE weapon_type (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT weapon_type_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE weapon_type OWNER TO jolo;
+
+--
+-- Name: weapon_type_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE weapon_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE weapon_type_id_seq OWNER TO jolo;
+
+--
+-- Name: weapon_type_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE weapon_type_id_seq OWNED BY weapon_type.id;
+
+
+SET search_path = geo, pg_catalog;
+
+--
+-- Name: country; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE country (
+    id integer NOT NULL,
+    name text NOT NULL,
+    symbol text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT country_name_check CHECK ((length(name) > 1)),
+    CONSTRAINT country_symbol_check CHECK ((length(symbol) > 1))
+);
+
+
+ALTER TABLE country OWNER TO jolo;
+
+--
+-- Name: country_id_seq; Type: SEQUENCE; Schema: geo; Owner: jolo
+--
+
+CREATE SEQUENCE country_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE country_id_seq OWNER TO jolo;
+
+--
+-- Name: country_id_seq; Type: SEQUENCE OWNED BY; Schema: geo; Owner: jolo
+--
+
+ALTER SEQUENCE country_id_seq OWNED BY country.id;
+
+
+--
+-- Name: housing_type; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE housing_type (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT housing_type_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE housing_type OWNER TO jolo;
+
+--
+-- Name: housing_type_id_seq; Type: SEQUENCE; Schema: geo; Owner: jolo
+--
+
+CREATE SEQUENCE housing_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE housing_type_id_seq OWNER TO jolo;
+
+--
+-- Name: housing_type_id_seq; Type: SEQUENCE OWNED BY; Schema: geo; Owner: jolo
+--
+
+ALTER SEQUENCE housing_type_id_seq OWNED BY housing_type.id;
+
 
 SET search_path = stat, pg_catalog;
 
@@ -2218,6 +2511,40 @@ ALTER TABLE ONLY unit ALTER COLUMN id SET DEFAULT nextval('unit_id_seq'::regclas
 ALTER TABLE ONLY who_qol ALTER COLUMN id SET DEFAULT nextval('who_qol_id_seq'::regclass);
 
 
+SET search_path = forensics, pg_catalog;
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY modus_operandi ALTER COLUMN id SET DEFAULT nextval('modus_operandi_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY weapon_type ALTER COLUMN id SET DEFAULT nextval('weapon_type_id_seq'::regclass);
+
+
+SET search_path = geo, pg_catalog;
+
+--
+-- Name: id; Type: DEFAULT; Schema: geo; Owner: jolo
+--
+
+ALTER TABLE ONLY country ALTER COLUMN id SET DEFAULT nextval('country_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: geo; Owner: jolo
+--
+
+ALTER TABLE ONLY housing_type ALTER COLUMN id SET DEFAULT nextval('housing_type_id_seq'::regclass);
+
+
+SET search_path = core, pg_catalog;
+
 --
 -- Name: administration_method_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
 --
@@ -2681,6 +3008,84 @@ ALTER TABLE ONLY who_qol
 ALTER TABLE ONLY who_qol
     ADD CONSTRAINT who_qol_survey_id_key UNIQUE (survey_id);
 
+
+SET search_path = forensics, pg_catalog;
+
+--
+-- Name: modus_operandi_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY modus_operandi
+    ADD CONSTRAINT modus_operandi_name_key UNIQUE (name);
+
+
+--
+-- Name: modus_operandi_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY modus_operandi
+    ADD CONSTRAINT modus_operandi_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: weapon_type_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY weapon_type
+    ADD CONSTRAINT weapon_type_name_key UNIQUE (name);
+
+
+--
+-- Name: weapon_type_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY weapon_type
+    ADD CONSTRAINT weapon_type_pkey PRIMARY KEY (id);
+
+
+SET search_path = geo, pg_catalog;
+
+--
+-- Name: country_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY country
+    ADD CONSTRAINT country_name_key UNIQUE (name);
+
+
+--
+-- Name: country_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY country
+    ADD CONSTRAINT country_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: country_symbol_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY country
+    ADD CONSTRAINT country_symbol_key UNIQUE (symbol);
+
+
+--
+-- Name: housing_type_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY housing_type
+    ADD CONSTRAINT housing_type_name_key UNIQUE (name);
+
+
+--
+-- Name: housing_type_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY housing_type
+    ADD CONSTRAINT housing_type_pkey PRIMARY KEY (id);
+
+
+SET search_path = core, pg_catalog;
 
 --
 -- Name: administration_method_channel_into_patient_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: jolo
