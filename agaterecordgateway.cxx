@@ -274,10 +274,11 @@ void AgateRecordGateway::createProband(ProbandSPtr p)
 
 void AgateRecordGateway::createSurvey(AgateRecordSPtr r)
 {
-    auto q = DataCollector::get()->prepareQuery("insert into core.survey(campaign_id, survey_date, proband_id) values (:campaign_id, :survey_date, :proband_id) returning id;");
+    auto q = DataCollector::get()->prepareQuery("insert into core.survey(campaign_id, survey_date, proband_id, organization_unit_id) values (:campaign_id, :survey_date, :proband_id, :organization_unit_id) returning id;");
     q.bindValue(":campaign_id", r->campaign()->id());
     q.bindValue(":proband_id", r->proband()->id());
     q.bindValue(":survey_date", r->survey()->date());
+    q.bindValue(":organization_unit_id", r->organization()->id());
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, false);
     q.next();

@@ -34,6 +34,11 @@ void AgateMedicationDialog::accept()
         return;
     }
 
+    if (m_buffer.dosageInMg <= 0.0) {
+        QMessageBox::information(this, tr("Dosage missing"), tr("Dosage missing."));
+        return;
+    }
+
     try {
         pdNameIdPair.setId(MoleculeGateway().loadIdFromName(pdNameIdPair.name()));
     }
@@ -46,8 +51,6 @@ void AgateMedicationDialog::accept()
     m_d->moleculeId = pdNameIdPair.id();
 
     m_d->dosageInMg = m_buffer.dosageInMg;
-
-    QMessageBox::information(this, "", tr("dosage: %1").arg(m_d->dosageInMg));
 
     done(QDialog::Accepted);
 }

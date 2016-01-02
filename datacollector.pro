@@ -203,3 +203,6 @@ FORMS += \
     fpsdialog.ui \
     whoqoldialog.ui \
     agateform.ui
+
+DISTFILES += \
+    database/forschung.backup
