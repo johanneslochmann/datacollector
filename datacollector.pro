@@ -97,7 +97,8 @@ SOURCES += main.cxx\
     htmlviewer.cxx \
     agaterecordviewer.cxx \
     countrymanagementwidget.cxx \
-    weapontypemanagementwidget.cxx
+    weapontypemanagementwidget.cxx \
+    housingtypemanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -189,7 +190,8 @@ HEADERS  += mainwindow.hxx \
     htmlviewer.hxx \
     agaterecordviewer.hxx \
     countrymanagementwidget.hxx \
-    weapontypemanagementwidget.hxx
+    weapontypemanagementwidget.hxx \
+    housingtypemanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

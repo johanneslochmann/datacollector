@@ -285,4 +285,7 @@ void DataCollector::initActions()
 
     m_manageWeaponTypes = new ActionEnabledIfConnectedToDatabase(tr("Weapon Types"), this);
     connect(m_manageWeaponTypes, &QAction::triggered, this, &DataCollector::manageWeaponTypes);
+
+    m_manageHousingTypes = new ActionEnabledIfConnectedToDatabase(tr("Housing Types"), this);
+    connect(m_manageHousingTypes, &QAction::triggered, this, &DataCollector::manageHousingTypes);
 }

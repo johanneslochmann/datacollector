@@ -34,6 +34,7 @@ public slots:
     void manageCollateralEffects();
     void manageCountries();
     void manageWeaponTypes();
+    void manageHousingTypes();
 
     void manageSurveyData();
     void manageAgateData();
@@ -60,6 +61,7 @@ private:
     TableManagementWidget* m_collateralEffects;
     TableManagementWidget* m_countries;
     TableManagementWidget* m_weaponTypes;
+    TableManagementWidget* m_housingTypes;
 
     QWidget* m_surveyData;
     QWidget* m_agateData;

@@ -22,6 +22,7 @@
 #include "collateraleffectmanagementwidget.hxx"
 #include "countrymanagementwidget.hxx"
 #include "weapontypemanagementwidget.hxx"
+#include "housingtypemanagementwidget.hxx"
 
 #include "surveyform.hxx"
 #include "manualagatewidget.hxx"
@@ -55,6 +56,7 @@ Workbench::Workbench(QWidget *parent)
     m_agateData = new ManualAgateWidget(this);
     m_countries = new CountryManagementWidget(this);
     m_weaponTypes = new WeaponTypeManagementWidget(this);
+    m_housingTypes = new HousingTypeManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -76,6 +78,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_collateralEffects);
     addWidget(m_countries);
     addWidget(m_weaponTypes);
+    addWidget(m_housingTypes);
 
     addWidget(m_surveyData);
     addWidget(m_agateData);
@@ -101,6 +104,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageCollateralEffects, this, &Workbench::manageCollateralEffects);
     connect(app, &DataCollector::manageCountries, this, &Workbench::manageCountries);
     connect(app, &DataCollector::manageWeaponTypes, this, &Workbench::manageWeaponTypes);
+    connect(app, &DataCollector::manageHousingTypes, this, &Workbench::manageHousingTypes);
 
     connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
@@ -215,6 +219,11 @@ void Workbench::manageCountries()
 void Workbench::manageWeaponTypes()
 {
     setCurrentWidget(m_weaponTypes);
+}
+
+void Workbench::manageHousingTypes()
+{
+    setCurrentWidget(m_housingTypes);
 }
 
 void Workbench::showCoreStatistics()
