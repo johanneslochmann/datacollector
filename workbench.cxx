@@ -28,6 +28,7 @@
 #include "informationsourcetypemanagementwidget.hxx"
 #include "crimecasepartyrolemanagementwidget.hxx"
 #include "jobmanagementwidget.hxx"
+#include "crimemotivemanagementwidget.hxx"
 
 #include "surveyform.hxx"
 #include "manualagatewidget.hxx"
@@ -67,6 +68,7 @@ Workbench::Workbench(QWidget *parent)
     m_informationSourceTypes = new InformationSourceTypeManagementWidget(this);
     m_crimeCasePartyRoles = new CrimeCasePartyRoleManagementWidget(this);
     m_jobs = new JobManagementWidget(this);
+    m_crimeMotives = new CrimeMotiveManagementWidget(this);
 
     addWidget(m_channelIntoPatient);
     addWidget(m_drugAdministrationMethod);
@@ -94,6 +96,7 @@ Workbench::Workbench(QWidget *parent)
     addWidget(m_informationSourceTypes);
     addWidget(m_crimeCasePartyRoles);
     addWidget(m_jobs);
+    addWidget(m_crimeMotives);
 
     addWidget(m_surveyData);
     addWidget(m_agateData);
@@ -125,6 +128,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageInformationSourceTypes, this, &Workbench::manageInformationSourceTypes);
     connect(app, &DataCollector::manageCrimeCasePartyRoles, this, &Workbench::manageCrimeCasePartyRoles);
     connect(app, &DataCollector::manageJobs, this, &Workbench::manageJobs);
+    connect(app, &DataCollector::manageCrimeMotives, this, &Workbench::manageCrimeMotives);
 
     connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
@@ -269,6 +273,11 @@ void Workbench::manageCrimeCasePartyRoles()
 void Workbench::manageJobs()
 {
     setCurrentWidget(m_jobs);
+}
+
+void Workbench::manageCrimeMotives()
+{
+    setCurrentWidget(m_crimeMotives);
 }
 
 void Workbench::showCoreStatistics()

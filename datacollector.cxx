@@ -303,4 +303,7 @@ void DataCollector::initActions()
 
     m_manageJobs = new ActionEnabledIfConnectedToDatabase(tr("Jobs"), this);
     connect(m_manageJobs, &QAction::triggered, this, &DataCollector::manageJobs);
+
+    m_manageCrimeMotives = new ActionEnabledIfConnectedToDatabase(tr("Crime Motives"), this);
+    connect(m_manageCrimeMotives, &QAction::triggered, this, &DataCollector::manageCrimeMotives);
 }
