@@ -32,6 +32,7 @@ public slots:
     void manageAgeClasses();
     void manageSmokingHabits();
     void manageCollateralEffects();
+    void manageCountries();
 
     void manageSurveyData();
     void manageAgateData();
@@ -56,6 +57,7 @@ private:
     TableManagementWidget* m_ageClasses;
     TableManagementWidget* m_smokingHabits;
     TableManagementWidget* m_collateralEffects;
+    TableManagementWidget* m_countries;
 
     QWidget* m_surveyData;
     QWidget* m_agateData;

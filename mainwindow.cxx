@@ -80,6 +80,8 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageAgeClassesAction());
     coreData->addAction(app->manageSmokingHabitsAction());
     coreData->addSeparator();
+    coreData->addAction(app->manageCountriesAction());
+    coreData->addSeparator();
     coreData->addAction(app->manageSurveysAction());
 
     QMenu* dataEntry = new QMenu(tr("&Surveys"), this);

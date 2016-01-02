@@ -279,4 +279,7 @@ void DataCollector::initActions()
 
     m_showCoreStatistics = new ActionEnabledIfConnectedToDatabase(tr("Show Core Statistics"), this);
     connect(m_showCoreStatistics, &QAction::triggered, this, &DataCollector::showCoreStatistics);
+
+    m_manageCountries = new ActionEnabledIfConnectedToDatabase(tr("Countries"), this);
+    connect(m_manageCountries, &QAction::triggered, this, &DataCollector::manageCountries);
 }

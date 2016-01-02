@@ -95,7 +95,8 @@ SOURCES += main.cxx\
     agatediagnosisdialog.cxx \
     diagnosisgateway.cxx \
     htmlviewer.cxx \
-    agaterecordviewer.cxx
+    agaterecordviewer.cxx \
+    countrymanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -185,7 +186,8 @@ HEADERS  += mainwindow.hxx \
     agatediagnosisdialog.hxx \
     diagnosisgateway.hxx \
     htmlviewer.hxx \
-    agaterecordviewer.hxx
+    agaterecordviewer.hxx \
+    countrymanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
