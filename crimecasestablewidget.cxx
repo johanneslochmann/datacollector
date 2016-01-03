@@ -138,9 +138,9 @@ void CrimeCasesTableWidget::onActivated(QTableWidgetItem *current, QTableWidgetI
     emit crimeCaseActivated(idItm->data(Qt::DisplayRole).toInt());
 }
 
-QString CrimeCasesTableWidget::format(HousingTypeDataSPtr t) const
+QString CrimeCasesTableWidget::format(HousingTypeSPtr t) const
 {
-    return t->name;
+    return t->name();
 }
 
 QString CrimeCasesTableWidget::format(CityDataSPtr c) const

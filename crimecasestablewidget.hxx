@@ -22,7 +22,7 @@ public slots:
     void onActivated(QTableWidgetItem* current, QTableWidgetItem* previous);
 
 protected:
-    QString format(HousingTypeDataSPtr t) const;
+    QString format(HousingTypeSPtr t) const;
     QString format(CityDataSPtr c) const;
 
 private:

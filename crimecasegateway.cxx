@@ -88,7 +88,7 @@ void CrimeCaseGateway::insert(CrimeCaseSPtr c)
                                                 "returning id;");
     q.bindValue(":name", c->name());
     q.bindValue(":city_id", (c->city()->id > 0) ? QVariant(c->city()->id) : QVariant(QVariant::Int));
-    q.bindValue(":housing_type_id", (c->housingType()->id > 0) ? QVariant(c->housingType()->id) : QVariant(QVariant::Int));
+    q.bindValue(":housing_type_id", (c->housingType()->id() > 0) ? QVariant(c->housingType()->id()) : QVariant(QVariant::Int));
     q.bindValue(":crime_year", c->crimeYear());
     q.bindValue(":crime_date", c->crimeDate());
     q.bindValue(":crime_time", c->crimeTime());
@@ -115,7 +115,7 @@ void CrimeCaseGateway::update(CrimeCaseSPtr c)
 
     q.bindValue(":name", c->name());
     q.bindValue(":city_id", (c->city()->id > 0) ? QVariant(c->city()->id) : QVariant(QVariant::Int));
-    q.bindValue(":housing_type_id", (c->housingType()->id > 0) ? QVariant(c->housingType()->id) : QVariant(QVariant::Int));
+    q.bindValue(":housing_type_id", (c->housingType()->id() > 0) ? QVariant(c->housingType()->id()) : QVariant(QVariant::Int));
     q.bindValue(":crime_year", c->crimeYear());
     q.bindValue(":crime_date", c->crimeDate());
     q.bindValue(":crime_time", c->crimeTime());
@@ -138,7 +138,7 @@ void CrimeCaseGateway::parse(CrimeCaseSPtr c, const QSqlRecord &rec)
     c->setId(rec.value("id").toInt());
     c->setName(rec.value("name").toString());
     c->city()->id = rec.value("city_id").toInt();
-    c->housingType()->id = rec.value("housing_type_id").toInt();
+    c->housingType()->setId(rec.value("housing_type_id").toInt());
     c->setCrimeYear(rec.value("crime_year").toInt());
     c->setCrimeDate(QDate::fromString(rec.value("crime_date").toString(), Qt::ISODate));
     c->setCrimeTime(QTime::fromString(rec.value("crime_time").toString(), "hh:mm:ss"));
