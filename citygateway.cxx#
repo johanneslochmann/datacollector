@@ -1,0 +1,6 @@
+#include "citygateway.hxx"
+
+CityGateway::CityGateway()
+{
+
+}

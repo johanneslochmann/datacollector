@@ -117,7 +117,8 @@ SOURCES += main.cxx\
     housingtypecombobox.cxx \
     housingtype.cxx \
     housingtypegateway.cxx \
-    city.cxx
+    city.cxx \
+    citygateway.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -229,7 +230,9 @@ HEADERS  += mainwindow.hxx \
     housingtypecombobox.hxx \
     housingtype.hxx \
     housingtypegateway.hxx \
-    city.hxx
+    city.hxx \
+    citygateway.hxx \
+    citygateway.cxx#
 
 FORMS += \
     databaseconnectiondatadialog.ui \
