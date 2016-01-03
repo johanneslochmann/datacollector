@@ -39,6 +39,8 @@ public:
     void setCrimeTime(const QTime& t);
     void setDescription(const QString &description);
 
+    void setHousingType(HousingTypeSPtr t);
+
     int id() const { return m_id; }
     QString name() const;
     CityDataSPtr city() const { return m_city; }

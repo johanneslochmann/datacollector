@@ -2,7 +2,12 @@
 
 QString HousingTypeGateway::loadAllQueryText() const
 {
-    return "select name, description, id from core.housing_type order by name asc;";
+    return "select name, description, id from geo.housing_type order by name asc;";
+}
+
+QString HousingTypeGateway::loadByIdQueryText() const
+{
+    return "select name, description, id from geo.housing_type where id = :id;";
 }
 
 void HousingTypeGateway::parse(std::shared_ptr<DataGateway::DataType> t, const QSqlRecord &rec)

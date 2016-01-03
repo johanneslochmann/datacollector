@@ -22,4 +22,5 @@ protected:
 
 private:
     void parse(CrimeCaseSPtr c, const QSqlRecord& rec);
+    void loadDetails(CrimeCaseSPtr c);
 };

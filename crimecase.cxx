@@ -20,6 +20,17 @@ void CrimeCase::setDescription(const QString &description)
     m_description = description;
 }
 
+void CrimeCase::setHousingType(HousingTypeSPtr t)
+{
+    if (t) {
+        m_housingType->setId(t->id());
+        m_housingType->setName(t->name());
+    } else {
+        m_housingType->setId(0);
+        m_housingType->setName(QString());
+    }
+}
+
 void CrimeCase::setName(const QString &name)
 {
     m_name = name;

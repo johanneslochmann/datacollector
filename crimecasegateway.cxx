@@ -2,6 +2,8 @@
 
 #include "datacollector.hxx"
 
+#include "housingtypegateway.hxx"
+
 CrimeCaseGateway::CrimeCaseGateway()
 {
 
@@ -56,6 +58,7 @@ CrimeCaseSPtrVector CrimeCaseGateway::loadAll()
         auto rec = q.record();
         auto c = std::make_shared<CrimeCase>();
         parse(c, rec);
+        loadDetails(c);
         buf.push_back(c);
     }
 
@@ -76,6 +79,7 @@ CrimeCaseSPtr CrimeCaseGateway::loadById(int id)
     auto rec = q.record();
     auto c = std::make_shared<CrimeCase>();
     parse(c, rec);
+    loadDetails(c);
 
     return c;
 }
@@ -143,4 +147,11 @@ void CrimeCaseGateway::parse(CrimeCaseSPtr c, const QSqlRecord &rec)
     c->setCrimeDate(QDate::fromString(rec.value("crime_date").toString(), Qt::ISODate));
     c->setCrimeTime(QTime::fromString(rec.value("crime_time").toString(), "hh:mm:ss"));
     c->setDescription(rec.value("description").toString());
+}
+
+void CrimeCaseGateway::loadDetails(CrimeCaseSPtr c)
+{
+    if (c->housingType()->id() > 0) {
+        c->setHousingType(HousingTypeGateway().loadById(c->housingType()->id()));
+    }
 }

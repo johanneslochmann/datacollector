@@ -46,10 +46,10 @@ void CrimeCasesTableWidget::reload()
     for (auto i : buf) {
         setItem(r, m_nameCol, new QTableWidgetItem(i->name()));
         setItem(r, m_cityCol, new QTableWidgetItem(format(i->city())));
-        setItem(r, m_cityCol, new QTableWidgetItem(format(i->housingType())));
+        setItem(r, m_housingTypeCol, new QTableWidgetItem(format(i->housingType())));
         setItem(r, m_crimeYearCol, new QTableWidgetItem(i->crimeYear().toString()));
         setItem(r, m_crimeDateCol, new QTableWidgetItem(i->crimeDate().toDate().toString("dd.MM.yyyy")));
-        setItem(r, m_crimeTimeCol, new QTableWidgetItem(i->crimeTime().toTime().toString("HH:MM")));
+        setItem(r, m_crimeTimeCol, new QTableWidgetItem(i->crimeTime().toTime().toString("HH:mm")));
         setItem(r, m_idCol, new QTableWidgetItem(QString("%1").arg(i->id())));
 
         r++;
