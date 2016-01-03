@@ -31,6 +31,17 @@ void CrimeCase::setHousingType(HousingTypeSPtr t)
     }
 }
 
+void CrimeCase::setCity(CitySPtr c)
+{
+    if (c) {
+        m_city->setId(c->id());
+        m_city->setName(c->name());
+    } else {
+        m_city->setId(0);
+        m_city->setName(QString());
+    }
+}
+
 void CrimeCase::setName(const QString &name)
 {
     m_name = name;

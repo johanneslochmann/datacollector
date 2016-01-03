@@ -3,6 +3,7 @@
 #include "datacollector.hxx"
 
 #include "housingtypegateway.hxx"
+#include "citygateway.hxx"
 
 CrimeCaseGateway::CrimeCaseGateway()
 {
@@ -153,5 +154,9 @@ void CrimeCaseGateway::loadDetails(CrimeCaseSPtr c)
 {
     if (c->housingType()->id() > 0) {
         c->setHousingType(HousingTypeGateway().loadById(c->housingType()->id()));
+    }
+
+    if (c->city()->id() > 0) {
+        c->setCity(CityGateway().loadById(c->city()->id()));
     }
 }

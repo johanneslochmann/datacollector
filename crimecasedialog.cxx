@@ -11,6 +11,7 @@
 #include "datacollector.hxx"
 #include "crimecasegateway.hxx"
 #include "housingtypecombobox.hxx"
+#include "citycombobox.hxx"
 
 CrimeCaseDialog::CrimeCaseDialog(QWidget *p, CrimeCaseSPtr d)
     : QDialog(p), m_crimeCase(d)
@@ -60,6 +61,7 @@ void CrimeCaseDialog::createCoreInfoBox()
     m_crimeDate = new QLineEdit(m_crimeCase->crimeDate().toString(), m_coreInfoBox);
     m_crimeTime = new QLineEdit(m_crimeCase->crimeTime().toString(), m_coreInfoBox);
     m_housingType = new HousingTypeComboBox(m_coreInfoBox);
+    m_city = new CityComboBox(m_coreInfoBox);
     m_description = new QTextEdit(m_crimeCase->description(), m_coreInfoBox);
 
     l->addRow(tr("&Name"), m_name);
@@ -67,12 +69,18 @@ void CrimeCaseDialog::createCoreInfoBox()
     l->addRow(tr("&Date [YYYY-MM-DD]"), m_crimeDate);
     l->addRow(tr("&Time [h:m]"), m_crimeTime);
     l->addRow(tr("&Housing Type"), m_housingType);
+    l->addRow(tr("&City"), m_city);
     l->addRow(tr("D&escription"), m_description);
 
     m_housingType->reload();
+    m_city->reload();
 
     if (m_crimeCase->housingType()->id() > 0) {
         m_housingType->setCurrentText(m_crimeCase->housingType()->name());
+    }
+
+    if (m_crimeCase->city()->id() > 0) {
+        m_city->setCurrentText(m_crimeCase->city()->name());
     }
 
     m_mainBox->layout()->addWidget(m_coreInfoBox);
@@ -83,4 +91,5 @@ void CrimeCaseDialog::createCoreInfoBox()
     connect(m_crimeTime, &QLineEdit::textChanged, [=](const QString& s) { m_crimeCase->setCrimeTime(QTime::fromString(s, "h:m")); });
     connect(m_description, &QTextEdit::textChanged, [=]() { m_crimeCase->setDescription(m_description->toPlainText()); });
     connect(m_housingType, &HousingTypeComboBox::currentHousingTypeChanged, [=](HousingTypeSPtr t) { m_crimeCase->setHousingType(t); });
+    connect(m_city, &CityComboBox::currentCityChanged, [=](CitySPtr c) { m_crimeCase->setCity(c); });
 }

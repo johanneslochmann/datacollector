@@ -11,6 +11,7 @@ class QLineEdit;
 class QTextEdit;
 
 class HousingTypeComboBox;
+class CityComboBox;
 
 class CrimeCaseDialog : public QDialog
 {
@@ -32,6 +33,7 @@ private:
     QGroupBox* m_coreInfoBox;
     QLineEdit* m_name;
     HousingTypeComboBox* m_housingType;
+    CityComboBox* m_city;
     QLineEdit* m_crimeYear;
     QLineEdit* m_crimeDate;
     QLineEdit* m_crimeTime;

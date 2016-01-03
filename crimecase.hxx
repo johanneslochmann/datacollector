@@ -34,6 +34,7 @@ public:
     void setDescription(const QString &description);
 
     void setHousingType(HousingTypeSPtr t);
+    void setCity(CitySPtr c);
 
     int id() const { return m_id; }
     QString name() const;
