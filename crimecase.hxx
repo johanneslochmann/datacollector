@@ -8,13 +8,7 @@
 #include <vector>
 
 #include "housingtype.hxx"
-
-struct CityData {
-    QString name;
-    int id;
-};
-
-using CityDataSPtr = std::shared_ptr<CityData>;
+#include "city.hxx"
 
 class CrimeCase;
 using CrimeCaseSPtr = std::shared_ptr<CrimeCase>;
@@ -43,7 +37,7 @@ public:
 
     int id() const { return m_id; }
     QString name() const;
-    CityDataSPtr city() const { return m_city; }
+    CitySPtr city() const { return m_city; }
     HousingTypeSPtr housingType() const { return m_housingType; }
     QVariant crimeYear() const { return m_crimeYear; }
     QVariant crimeDate() const { return m_crimeDate; }
@@ -58,7 +52,7 @@ private:
     QVariant m_crimeTime { QVariant(QVariant::Time) };
     QString m_description { "" };
 
-    CityDataSPtr m_city { std::make_shared<CityData>() };
+    CitySPtr m_city { std::make_shared<City>() };
     HousingTypeSPtr m_housingType { std::make_shared<HousingType>() };
 };
 

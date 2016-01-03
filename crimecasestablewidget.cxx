@@ -143,7 +143,7 @@ QString CrimeCasesTableWidget::format(HousingTypeSPtr t) const
     return t->name();
 }
 
-QString CrimeCasesTableWidget::format(CityDataSPtr c) const
+QString CrimeCasesTableWidget::format(CitySPtr c) const
 {
-    return c->name;
+    return c->name();
 }

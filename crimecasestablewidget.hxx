@@ -23,7 +23,7 @@ public slots:
 
 protected:
     QString format(HousingTypeSPtr t) const;
-    QString format(CityDataSPtr c) const;
+    QString format(CitySPtr c) const;
 
 private:
     QStringList m_headerLabels;

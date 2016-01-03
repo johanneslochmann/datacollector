@@ -116,7 +116,8 @@ SOURCES += main.cxx\
     crimecasedialog.cxx \
     housingtypecombobox.cxx \
     housingtype.cxx \
-    housingtypegateway.cxx
+    housingtypegateway.cxx \
+    city.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -227,7 +228,8 @@ HEADERS  += mainwindow.hxx \
     crimecasedialog.hxx \
     housingtypecombobox.hxx \
     housingtype.hxx \
-    housingtypegateway.hxx
+    housingtypegateway.hxx \
+    city.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
