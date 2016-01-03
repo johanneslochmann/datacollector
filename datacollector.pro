@@ -113,7 +113,10 @@ SOURCES += main.cxx\
     crimecasegateway.cxx \
     crimecasewidget.cxx \
     crimecasestablewidget.cxx \
-    crimecasedialog.cxx
+    crimecasedialog.cxx \
+    housingtypecombobox.cxx \
+    housingtype.cxx \
+    housingtypegateway.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -221,7 +224,10 @@ HEADERS  += mainwindow.hxx \
     crimecasegateway.hxx \
     crimecasewidget.hxx \
     crimecasestablewidget.hxx \
-    crimecasedialog.hxx
+    crimecasedialog.hxx \
+    housingtypecombobox.hxx \
+    housingtype.hxx \
+    housingtypegateway.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
