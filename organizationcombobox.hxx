@@ -21,5 +21,5 @@ protected:
     void implReload() override;
 
 private:
-    OrganizationSPtrVector m_Organizations;
+    OrganizationSPtrVector m_organizations;
 };

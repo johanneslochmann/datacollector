@@ -19,9 +19,9 @@ void OrganizationComboBox::onCurrentDatasetChanged(StorableSPtr s)
 
 StorableSPtr OrganizationComboBox::storableForText(const QString &txt) const
 {
-    auto it = std::find_if(m_Organizations.begin(), m_Organizations.end(), [=](OrganizationSPtr cand) { return (cand->name() == txt); });
+    auto it = std::find_if(m_organizations.begin(), m_organizations.end(), [=](OrganizationSPtr cand) { return (cand->name() == txt); });
 
-    if (m_Organizations.end() != it) {
+    if (m_organizations.end() != it) {
        return *it;
     }
 
@@ -32,9 +32,9 @@ void OrganizationComboBox::implReload()
 {
     try {
         clear();
-        m_Organizations = OrganizationGateway().loadAll();
+        m_organizations = OrganizationGateway().loadAll();
 
-        for (auto p : m_Organizations) {
+        for (auto p : m_organizations) {
             addItem(p->name(), p->id());
         }
 
