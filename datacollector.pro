@@ -108,7 +108,12 @@ SOURCES += main.cxx\
     mentaldiseasemanagementwidget.cxx \
     consultancyresultmanagementwidget.cxx \
     weaponmanagementwidget.cxx \
-    citymanagementwidget.cxx
+    citymanagementwidget.cxx \
+    crimecase.cxx \
+    crimecasegateway.cxx \
+    crimecasewidget.cxx \
+    crimecasestablewidget.cxx \
+    crimecasedialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -211,7 +216,12 @@ HEADERS  += mainwindow.hxx \
     mentaldiseasemanagementwidget.hxx \
     consultancyresultmanagementwidget.hxx \
     weaponmanagementwidget.hxx \
-    citymanagementwidget.hxx
+    citymanagementwidget.hxx \
+    crimecase.hxx \
+    crimecasegateway.hxx \
+    crimecasewidget.hxx \
+    crimecasestablewidget.hxx \
+    crimecasedialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

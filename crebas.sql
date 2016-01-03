@@ -1498,6 +1498,46 @@ ALTER SEQUENCE consultancy_result_id_seq OWNED BY consultancy_result.id;
 
 
 --
+-- Name: crime_case; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE crime_case (
+    id integer NOT NULL,
+    name text NOT NULL,
+    city_id integer,
+    housing_type_id integer,
+    crime_year integer,
+    crime_date date,
+    crime_time time without time zone,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT crime_case_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE crime_case OWNER TO jolo;
+
+--
+-- Name: crime_case_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE crime_case_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE crime_case_id_seq OWNER TO jolo;
+
+--
+-- Name: crime_case_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE crime_case_id_seq OWNED BY crime_case.id;
+
+
+--
 -- Name: crime_case_party_role; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -2856,6 +2896,13 @@ ALTER TABLE ONLY consultancy_result ALTER COLUMN id SET DEFAULT nextval('consult
 -- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
 --
 
+ALTER TABLE ONLY crime_case ALTER COLUMN id SET DEFAULT nextval('crime_case_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
 ALTER TABLE ONLY crime_case_party_role ALTER COLUMN id SET DEFAULT nextval('crime_case_party_role_id_seq'::regclass);
 
 
@@ -3441,6 +3488,14 @@ ALTER TABLE ONLY consultancy_result
 
 
 --
+-- Name: crime_case_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY crime_case
+    ADD CONSTRAINT crime_case_name_key UNIQUE (name);
+
+
+--
 -- Name: crime_case_party_role_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -3454,6 +3509,14 @@ ALTER TABLE ONLY crime_case_party_role
 
 ALTER TABLE ONLY crime_case_party_role
     ADD CONSTRAINT crime_case_party_role_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: crime_case_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY crime_case
+    ADD CONSTRAINT crime_case_pkey PRIMARY KEY (id);
 
 
 --
@@ -3869,6 +3932,22 @@ ALTER TABLE ONLY who_qol
 
 
 SET search_path = forensics, pg_catalog;
+
+--
+-- Name: crime_case_city_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case
+    ADD CONSTRAINT crime_case_city_id_fkey FOREIGN KEY (city_id) REFERENCES geo.city(id);
+
+
+--
+-- Name: crime_case_housing_type_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case
+    ADD CONSTRAINT crime_case_housing_type_id_fkey FOREIGN KEY (housing_type_id) REFERENCES geo.housing_type(id);
+
 
 --
 -- Name: weapon_weapon_type_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo

@@ -318,4 +318,7 @@ void DataCollector::initActions()
 
     m_manageCities = new ActionEnabledIfConnectedToDatabase(tr("Cities"), this);
     connect(m_manageCities, &QAction::triggered, this, &DataCollector::manageCities);
+
+    m_manageCrimeCases = new ActionEnabledIfConnectedToDatabase(tr("Crime Cases"), this);
+    connect(m_manageCrimeCases, &QAction::triggered, this, &DataCollector::manageCrimeCases);
 }
