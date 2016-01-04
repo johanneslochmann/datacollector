@@ -27,6 +27,7 @@ protected:
     QString format(SexSPtr s) const;
     QString format(CrimeTypeSPtr t) const;
     QString format(JobSPtr j) const;
+    QString format(CrimeMotiveSPtr m) const;
 
 private:
     CrimeCaseSPtr m_crimeCase;

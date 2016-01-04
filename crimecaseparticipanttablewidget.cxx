@@ -166,3 +166,8 @@ QString CrimeCaseParticipantTableWidget::format(JobSPtr j) const
     return j->name();
 }
 
+QString CrimeCaseParticipantTableWidget::format(CrimeMotiveSPtr m) const
+{
+    return m->name();
+}
+

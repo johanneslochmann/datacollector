@@ -86,3 +86,13 @@ void CrimeCaseParticipant::setJob(const JobSPtr &job)
 {
     m_job = job;
 }
+
+CrimeMotiveSPtr CrimeCaseParticipant::motive() const
+{
+    return m_motive;
+}
+
+void CrimeCaseParticipant::setMotive(const CrimeMotiveSPtr &motive)
+{
+    m_motive = motive;
+}

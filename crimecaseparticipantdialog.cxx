@@ -15,6 +15,7 @@
 #include "sexcombobox.hxx"
 #include "crimetypecombobox.hxx"
 #include "jobcombobox.hxx"
+#include "crimemotivecombobox.hxx"
 
 CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCaseParticipantSPtr ccp)
     : QDialog(p), m_participant(ccp)
@@ -55,6 +56,10 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
         m_crimeType->setCurrentText(m_participant->crimeType()->name());
     }
 
+    m_motive = new CrimeMotiveComboBox(b);
+    if (m_participant->motive()->id() > 0) {
+        m_motive->setCurrentText(m_participant->motive()->name());
+    }
     m_description = new QTextEdit(m_participant->description(), b);
 
     l->addRow(tr("&Crime Case"), m_crimeCase);
@@ -64,6 +69,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     l->addRow(tr("&Age in Years"), m_ageInYears);
     l->addRow(tr("&Job"), m_job);
     l->addRow(tr("Crime &Type"), m_crimeType);
+    l->addRow(tr("&Motive"), m_motive);
     l->addRow(tr("&Description"), m_description);
 
     m_bb = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -75,6 +81,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     connect(m_role, &CrimeCasePartyRoleComboBox::currentCrimeCasePartyRoleChanged, [=](CrimeCasePartyRoleSPtr r) { m_participant->setRole(r); });
     connect(m_sex, &SexComboBox::currentSexChanged, [=](SexSPtr s) { m_participant->setSex(s); });
     connect(m_crimeType, &CrimeTypeComboBox::currentCrimeTypeChanged, [=](CrimeTypeSPtr t) { m_participant->setCrimeType(t); });
+    connect(m_motive, &CrimeMotiveComboBox::currentCrimeMotiveChanged, [=](CrimeMotiveSPtr m) { m_participant->setMotive(m); });
     connect(m_job, &JobComboBox::currentJobChanged, [=](JobSPtr j) { m_participant->setJob(j); });
     connect(m_name, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setName(v); });
     connect(m_ageInYears, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setAgeInYears(v.toInt()); });
