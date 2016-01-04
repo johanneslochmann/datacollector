@@ -7,6 +7,7 @@
 #include "crimetype.hxx"
 #include "job.hxx"
 #include "crimemotive.hxx"
+#include "mentaldisease.hxx"
 
 class CrimeCase;
 
@@ -30,6 +31,7 @@ public:
     CrimeTypeSPtr crimeType() const;
     JobSPtr job() const;
     CrimeMotiveSPtr motive() const;
+    MentalDiseaseSPtr mentalDisease() const;
 
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
     void setName(const QString &name);
@@ -40,6 +42,7 @@ public:
     void setCrimeType(const CrimeTypeSPtr &crimeType);
     void setJob(const JobSPtr &job);
     void setMotive(const CrimeMotiveSPtr &motive);
+    void setMentalDisease(const MentalDiseaseSPtr &mentalDisease);
 
 private:
     CrimeCaseSPtr m_crimeCase;
@@ -53,6 +56,7 @@ private:
     CrimeTypeSPtr m_crimeType { std::make_shared<CrimeType>() };
     JobSPtr m_job { std::make_shared<Job>() };
     CrimeMotiveSPtr m_motive { std::make_shared<CrimeMotive>() };
+    MentalDiseaseSPtr m_mentalDisease { std::make_shared<MentalDisease>() };
 };
 
 /*
@@ -65,12 +69,12 @@ CREATE TABLE forensics.crime_case_participant
   crime_case_id			integer not null references forensics.crime_case,
   sex_id			integer references core.sex default null,
 crime_case_party_role_id	integer not null references forensics.crime_case_party_role,
-
-  has_precedent_convictions	boolean not null default false,
   crime_type_id			integer references forensics.crime_type default null,
-  modus_operandi_id		integer references forensics.modus_operandi,
   mental_disease_id		integer references forensics.mental_disease,
   crime_motive_id		integer references forensics.crime_motive,
+
+  has_precedent_convictions	boolean not null default false,
+  modus_operandi_id		integer references forensics.modus_operandi,
   consultancy_result_id		integer references forensics.consultancy_result,
   weapon_id			integer references forensics.weapon,
 );*/

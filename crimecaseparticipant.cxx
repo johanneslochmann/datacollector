@@ -96,3 +96,13 @@ void CrimeCaseParticipant::setMotive(const CrimeMotiveSPtr &motive)
 {
     m_motive = motive;
 }
+
+MentalDiseaseSPtr CrimeCaseParticipant::mentalDisease() const
+{
+    return m_mentalDisease;
+}
+
+void CrimeCaseParticipant::setMentalDisease(const MentalDiseaseSPtr &mentalDisease)
+{
+    m_mentalDisease = mentalDisease;
+}
