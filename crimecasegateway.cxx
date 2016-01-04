@@ -95,9 +95,9 @@ void CrimeCaseGateway::insert(CrimeCaseSPtr c)
                                                 ":processing_status_id) "
                                                 "returning id;");
     q.bindValue(":name", c->name());
-    q.bindValue(":city_id", (c->city()->id() > 0) ? QVariant(c->city()->id()) : QVariant(QVariant::Int));
-    q.bindValue(":housing_type_id", (c->housingType()->id() > 0) ? QVariant(c->housingType()->id()) : QVariant(QVariant::Int));
-    q.bindValue(":processing_status_id", (c->processingStatus()->id() > 0) ? QVariant(c->processingStatus()->id()) : QVariant(QVariant::Int));
+    q.bindValue(":city_id", ((c->city() && c->city()->id()) > 0) ? QVariant(c->city()->id()) : QVariant(QVariant::Int));
+    q.bindValue(":housing_type_id", ((c->housingType() && c->housingType()->id()) > 0) ? QVariant(c->housingType()->id()) : QVariant(QVariant::Int));
+    q.bindValue(":processing_status_id", ((c->processingStatus() && c->processingStatus()->id()) > 0) ? QVariant(c->processingStatus()->id()) : QVariant(QVariant::Int));
     q.bindValue(":crime_year", c->crimeYear());
     q.bindValue(":crime_date", c->crimeDate());
     q.bindValue(":crime_time", c->crimeTime());
@@ -124,13 +124,13 @@ void CrimeCaseGateway::update(CrimeCaseSPtr c)
                                                 "returning id;");
 
     q.bindValue(":name", c->name());
-    q.bindValue(":city_id", (c->city()->id() > 0) ? QVariant(c->city()->id()) : QVariant(QVariant::Int));
-    q.bindValue(":housing_type_id", (c->housingType()->id() > 0) ? QVariant(c->housingType()->id()) : QVariant(QVariant::Int));
+    q.bindValue(":city_id", ((c->city() && c->city()->id()) > 0) ? QVariant(c->city()->id()) : QVariant(QVariant::Int));
+    q.bindValue(":housing_type_id", ((c->housingType() && c->housingType()->id()) > 0) ? QVariant(c->housingType()->id()) : QVariant(QVariant::Int));
     q.bindValue(":crime_year", c->crimeYear());
     q.bindValue(":crime_date", c->crimeDate());
     q.bindValue(":crime_time", c->crimeTime());
     q.bindValue(":description", c->description());
-    q.bindValue(":processing_status_id", (c->processingStatus()->id() > 0) ? QVariant(c->processingStatus()->id()) : QVariant(QVariant::Int));
+    q.bindValue(":processing_status_id", ((c->processingStatus() && c->processingStatus()->id()) > 0) ? QVariant(c->processingStatus()->id()) : QVariant(QVariant::Int));
     q.bindValue(":id", c->id());
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, false);

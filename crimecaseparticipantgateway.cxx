@@ -111,15 +111,15 @@ void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
     q.bindValue(":name", c->name());
     q.bindValue(":age_in_years", c->ageInYears() > 0 ? c->ageInYears() : QVariant(QVariant::Int));
     q.bindValue(":description", c->description());
-    q.bindValue(":crime_case_party_role_id", c->role()->id() > 0 ? c->role()->id() : QVariant(QVariant::Int));
-    q.bindValue(":sex_id", c->sex()->id() > 0 ? c->sex()->id() : QVariant(QVariant::Int));
-    q.bindValue(":crime_type_id", c->crimeType()->id() > 0 ? c->crimeType()->id() : QVariant(QVariant::Int));
-    q.bindValue(":job_id", c->job()->id() > 0 ? c->job()->id() : QVariant(QVariant::Int));
-    q.bindValue(":crime_motive_id", c->motive()->id() > 0 ? c->motive()->id() : QVariant(QVariant::Int));
-    q.bindValue(":mental_disease_id", c->mentalDisease()->id() > 0 ? c->mentalDisease()->id() : QVariant(QVariant::Int));
-    q.bindValue(":modus_operandi_id", c->modusOperandi()->id() > 0 ? c->modusOperandi()->id() : QVariant(QVariant::Int));
-    q.bindValue(":weapon_id", c->weapon()->id() > 0 ? c->weapon()->id() : QVariant(QVariant::Int));
-    q.bindValue(":consultancy_result_id", c->consultancyResult()->id() > 0 ? c->consultancyResult()->id() : QVariant(QVariant::Int));
+    q.bindValue(":crime_case_party_role_id", (c->role() && c->role()->id()) > 0 ? c->role()->id() : QVariant(QVariant::Int));
+    q.bindValue(":sex_id", (c->sex() && c->sex()->id()) > 0 ? c->sex()->id() : QVariant(QVariant::Int));
+    q.bindValue(":crime_type_id", (c->crimeType() && c->crimeType()->id()) > 0 ? c->crimeType()->id() : QVariant(QVariant::Int));
+    q.bindValue(":job_id", (c->job() && c->job()->id()) > 0 ? c->job()->id() : QVariant(QVariant::Int));
+    q.bindValue(":crime_motive_id", (c->motive() && c->motive()->id()) > 0 ? c->motive()->id() : QVariant(QVariant::Int));
+    q.bindValue(":mental_disease_id", (c->mentalDisease() && c->mentalDisease()->id()) > 0 ? c->mentalDisease()->id() : QVariant(QVariant::Int));
+    q.bindValue(":modus_operandi_id", (c->modusOperandi() && c->modusOperandi()->id()) > 0 ? c->modusOperandi()->id() : QVariant(QVariant::Int));
+    q.bindValue(":weapon_id", (c->weapon() && c->weapon()->id()) > 0 ? c->weapon()->id() : QVariant(QVariant::Int));
+    q.bindValue(":consultancy_result_id", (c->consultancyResult() && c->consultancyResult()->id()) > 0 ? c->consultancyResult()->id() : QVariant(QVariant::Int));
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
     q.next();
@@ -145,20 +145,20 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
                                                 "consultancy_result_id = :consultancy_result_id "
                                                 "where id = :id;");
 
+    q.bindValue(":id", c->id());
     q.bindValue(":crime_case_id", c->crimeCase()->id());
     q.bindValue(":name", c->name());
     q.bindValue(":age_in_years", c->ageInYears() > 0 ? c->ageInYears() : QVariant(QVariant::Int));
     q.bindValue(":description", c->description());
-    q.bindValue(":id", c->id());
-    q.bindValue(":crime_case_party_role_id", c->role()->id() > 0 ? c->role()->id() : QVariant(QVariant::Int));
-    q.bindValue(":sex_id", c->sex()->id() > 0 ? c->sex()->id() : QVariant(QVariant::Int));
-    q.bindValue(":crime_type_id", c->crimeType()->id() > 0 ? c->crimeType()->id() : QVariant(QVariant::Int));
-    q.bindValue(":job_id", c->job()->id() > 0 ? c->job()->id() : QVariant(QVariant::Int));
-    q.bindValue(":crime_motive_id", c->motive()->id() > 0 ? c->motive()->id() : QVariant(QVariant::Int));
-    q.bindValue(":mental_disease_id", c->mentalDisease()->id() > 0 ? c->mentalDisease()->id() : QVariant(QVariant::Int));
-    q.bindValue(":modus_operandi_id", c->modusOperandi()->id() > 0 ? c->modusOperandi()->id() : QVariant(QVariant::Int));
-    q.bindValue(":weapon_id", c->weapon()->id() > 0 ? c->weapon()->id() : QVariant(QVariant::Int));
-    q.bindValue(":consultancy_result_id", c->consultancyResult()->id() > 0 ? c->consultancyResult()->id() : QVariant(QVariant::Int));
+    q.bindValue(":crime_case_party_role_id", (c->role() && c->role()->id()) > 0 ? c->role()->id() : QVariant(QVariant::Int));
+    q.bindValue(":sex_id", (c->sex() && c->sex()->id()) > 0 ? c->sex()->id() : QVariant(QVariant::Int));
+    q.bindValue(":crime_type_id", (c->crimeType() && c->crimeType()->id()) > 0 ? c->crimeType()->id() : QVariant(QVariant::Int));
+    q.bindValue(":job_id", (c->job() && c->job()->id()) > 0 ? c->job()->id() : QVariant(QVariant::Int));
+    q.bindValue(":crime_motive_id", (c->motive() && c->motive()->id()) > 0 ? c->motive()->id() : QVariant(QVariant::Int));
+    q.bindValue(":mental_disease_id", (c->mentalDisease() && c->mentalDisease()->id()) > 0 ? c->mentalDisease()->id() : QVariant(QVariant::Int));
+    q.bindValue(":modus_operandi_id", (c->modusOperandi() && c->modusOperandi()->id()) > 0 ? c->modusOperandi()->id() : QVariant(QVariant::Int));
+    q.bindValue(":weapon_id", (c->weapon() && c->weapon()->id()) > 0 ? c->weapon()->id() : QVariant(QVariant::Int));
+    q.bindValue(":consultancy_result_id", (c->consultancyResult() && c->consultancyResult()->id()) > 0 ? c->consultancyResult()->id() : QVariant(QVariant::Int));
 
     DataCollector::get()->performQuery(q, true);
 }
