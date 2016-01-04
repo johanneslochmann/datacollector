@@ -64,6 +64,7 @@ void MainWindow::initMenues()
     coreData->addAction(app->manageCampaignsAction());
     coreData->addAction(app->manageInformationSourceTypesAction());
     coreData->addAction(app->manageJobsAction());
+    coreData->addAction(app->manageProcessingStatesAction());
     coreData->addSeparator();
     coreData->addAction(app->manageOrganizationUnitsAction());
     coreData->addAction(app->manageIcd10DiagnosisAction());

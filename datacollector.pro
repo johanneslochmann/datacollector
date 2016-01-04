@@ -155,7 +155,11 @@ SOURCES += main.cxx\
     weaponcombobox.cxx \
     consultancyresult.cxx \
     consultancyresultgateway.cxx \
-    consultancyresultcombobox.cxx
+    consultancyresultcombobox.cxx \
+    processingstatus.cxx \
+    processingstatusgateway.cxx \
+    processingstatuscombobox.cxx \
+    processingstatusmanagementwidget.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -306,7 +310,11 @@ HEADERS  += mainwindow.hxx \
     weaponcombobox.hxx \
     consultancyresult.hxx \
     consultancyresultgateway.hxx \
-    consultancyresultcombobox.hxx
+    consultancyresultcombobox.hxx \
+    processingstatus.hxx \
+    processingstatusgateway.hxx \
+    processingstatuscombobox.hxx \
+    processingstatusmanagementwidget.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

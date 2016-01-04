@@ -46,6 +46,7 @@ public slots:
     void manageWeapons();
     void manageCities();
     void manageCrimeCases();
+    void manageProcessingStates();
 
     void manageSurveyData();
     void manageAgateData();
@@ -83,6 +84,7 @@ private:
     TableManagementWidget* m_consultancyResults;
     TableManagementWidget* m_weapons;
     TableManagementWidget* m_cities;
+    TableManagementWidget* m_processingStates;
 
     QWidget* m_surveyData;
     QWidget* m_agateData;

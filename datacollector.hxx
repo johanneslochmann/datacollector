@@ -57,6 +57,7 @@ public:
     QAction* manageWeaponsAction() const { return m_manageWeapons; }
     QAction* manageCitiesAction() const { return m_manageCities; }
     QAction* manageCrimeCasesAction() const { return m_manageCrimeCases; }
+    QAction* manageProcessingStatesAction() const { return m_manageProcessingStates; }
 
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
@@ -113,6 +114,7 @@ signals:
     void manageWeapons();
     void manageCities();
     void manageCrimeCases();
+    void manageProcessingStates();
 
     void manageSurveyData();
     void manageAgateData();
@@ -165,6 +167,7 @@ private:
     QAction* m_manageWeapons;
     QAction* m_manageCities;
     QAction* m_manageCrimeCases;
+    QAction* m_manageProcessingStates;
 
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;
