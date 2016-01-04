@@ -105,7 +105,7 @@ void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
                                                 "modus_operandi_id, weapon_id) values "
                                                 "(:crime_case_id, :name, :age_in_years, :description, :crime_case_party_role_id, "
                                                 ":sex_id, :crime_type_id, :job_id, :crime_motive_id, :mental_disease_id, "
-                                                ", :modus_operandi_id, :weapon_id) "
+                                                ":modus_operandi_id, :weapon_id) "
                                                 "returning id;");
     q.bindValue(":crime_case_id", c->crimeCase()->id());
     q.bindValue(":name", c->name());

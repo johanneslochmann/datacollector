@@ -17,6 +17,7 @@
 #include "informationsourceforcrimecasetablewidget.hxx"
 #include "informationsourceforcrimecasedialog.hxx"
 #include "crimecaseparticipantdialog.hxx"
+#include "processingstatuscombobox.hxx"
 
 CrimeCaseDialog::CrimeCaseDialog(QWidget *p, CrimeCaseSPtr d)
     : QDialog(p), m_crimeCase(d)
@@ -113,6 +114,7 @@ void CrimeCaseDialog::createCoreInfoBox()
     auto l = new QFormLayout(m_coreInfoBox);
     m_coreInfoBox->setLayout(l);
 
+    m_processingStatus = new ProcessingStatusComboBox(m_coreInfoBox);
     m_name = new QLineEdit(m_crimeCase->name(), m_coreInfoBox);
     m_crimeYear = new QLineEdit(m_crimeCase->crimeYear().toString(), m_coreInfoBox);
     m_crimeDate = new QLineEdit(m_crimeCase->crimeDate().toString(), m_coreInfoBox);
@@ -121,6 +123,7 @@ void CrimeCaseDialog::createCoreInfoBox()
     m_city = new CityComboBox(m_coreInfoBox);
     m_description = new QTextEdit(m_crimeCase->description(), m_coreInfoBox);
 
+    l->addRow(tr("&Processing Status"), m_processingStatus);
     l->addRow(tr("&Name"), m_name);
     l->addRow(tr("&Year"), m_crimeYear);
     l->addRow(tr("&Date [YYYY-MM-DD]"), m_crimeDate);
@@ -140,8 +143,13 @@ void CrimeCaseDialog::createCoreInfoBox()
         m_city->setCurrentText(m_crimeCase->city()->name());
     }
 
+    if (m_crimeCase->processingStatus()->id() > 0) {
+        m_processingStatus->setCurrentText(m_crimeCase->processingStatus()->name());
+    }
+
     m_mainBox->layout()->addWidget(m_coreInfoBox);
 
+    connect(m_processingStatus, &ProcessingStatusComboBox::currentProcessingStatusChanged, [=](ProcessingStatusSPtr s) { m_crimeCase->setProcessingStatus(s); });
     connect(m_name, &QLineEdit::textChanged, [=](const QString& s) { m_crimeCase->setName(s); });
     connect(m_crimeYear, &QLineEdit::textChanged, [=](const QString& s) { m_crimeCase->setCrimeYear(s.toInt()); });
     connect(m_crimeDate, &QLineEdit::textChanged, [=](const QString& s) { m_crimeCase->setCrimeDate(QDate::fromString(s, Qt::ISODate)); });

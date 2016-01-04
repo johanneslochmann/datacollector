@@ -12,6 +12,7 @@
 #include "city.hxx"
 #include "informationsourceforcrimecase.hxx"
 #include "crimecaseparticipant.hxx"
+#include "processingstatus.hxx"
 
 class CrimeCase;
 using CrimeCaseSPtr = std::shared_ptr<CrimeCase>;
@@ -39,6 +40,7 @@ public:
 
     QString name() const;
     CitySPtr city() const { return m_city; }
+    ProcessingStatusSPtr processingStatus() const;
     HousingTypeSPtr housingType() const { return m_housingType; }
     QVariant crimeYear() const { return m_crimeYear; }
     QVariant crimeDate() const { return m_crimeDate; }
@@ -51,6 +53,7 @@ public:
     const CrimeCaseParticipantSPtrVector participants() const { return m_participants; }
     void setInformationSources(InformationSourceForCrimeCaseSPtrVector v) { m_informationSources = v; }
     void setParticipants(CrimeCaseParticipantSPtrVector v) { m_participants = v; }
+    void setProcessingStatus(const ProcessingStatusSPtr &processingStatus);
 
 private:
     QString m_name { "" };
@@ -61,6 +64,8 @@ private:
 
     CitySPtr m_city { std::make_shared<City>() };
     HousingTypeSPtr m_housingType { std::make_shared<HousingType>() };
+    ProcessingStatusSPtr m_processingStatus { std::make_shared<ProcessingStatus>() };
+
     InformationSourceForCrimeCaseSPtrVector m_informationSources;
     CrimeCaseParticipantSPtrVector m_participants;
 };

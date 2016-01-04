@@ -24,10 +24,12 @@ public slots:
 protected:
     QString format(HousingTypeSPtr t) const;
     QString format(CitySPtr c) const;
+    QString format(ProcessingStatusSPtr s) const;
 
 private:
     QStringList m_headerLabels;
-    int m_nameCol { 0 };
+    int m_processingStatusCol { 0 };
+    int m_nameCol { m_processingStatusCol + 1 };
     int m_cityCol { m_nameCol + 1 };
     int m_housingTypeCol { m_cityCol + 1 };
     int m_crimeYearCol { m_housingTypeCol + 1 };

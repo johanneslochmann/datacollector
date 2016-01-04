@@ -12,7 +12,8 @@
 CrimeCasesTableWidget::CrimeCasesTableWidget(QWidget *p)
     : DataTableWidget(p)
 {
-    m_headerLabels << tr("Name")
+    m_headerLabels << tr("Status")
+                   << tr("Name")
                    << tr("City")
                    << tr("Housing Type")
                    << tr("Year")
@@ -45,6 +46,7 @@ void CrimeCasesTableWidget::reload()
     int r=0;
 
     for (auto i : buf) {
+        setItem(r, m_processingStatusCol, new QTableWidgetItem(format(i->processingStatus())));
         setItem(r, m_nameCol, new QTableWidgetItem(i->name()));
         setItem(r, m_cityCol, new QTableWidgetItem(format(i->city())));
         setItem(r, m_housingTypeCol, new QTableWidgetItem(format(i->housingType())));
@@ -80,8 +82,6 @@ void CrimeCasesTableWidget::editSelected()
 
     try {
         auto crimeCase = CrimeCaseGateway().loadById(id);
-
-        qDebug() << "name: " << crimeCase->name();
 
         auto dlg = new CrimeCaseDialog(this, crimeCase);
 
@@ -147,4 +147,9 @@ QString CrimeCasesTableWidget::format(HousingTypeSPtr t) const
 QString CrimeCasesTableWidget::format(CitySPtr c) const
 {
     return c->name();
+}
+
+QString CrimeCasesTableWidget::format(ProcessingStatusSPtr s) const
+{
+    return s->name();
 }

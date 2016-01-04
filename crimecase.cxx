@@ -26,6 +26,16 @@ void CrimeCase::removeInformationSource(InformationSourceForCrimeCaseSPtr i)
     }
 }
 
+ProcessingStatusSPtr CrimeCase::processingStatus() const
+{
+    return m_processingStatus;
+}
+
+void CrimeCase::setProcessingStatus(const ProcessingStatusSPtr &status)
+{
+    m_processingStatus = status;
+}
+
 void CrimeCase::setDescription(const QString &description)
 {
     m_description = description;

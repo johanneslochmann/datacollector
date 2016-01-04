@@ -15,6 +15,7 @@ class HousingTypeComboBox;
 class CityComboBox;
 class CrimeCaseParticipantTableWidget;
 class InformationSourceForCrimeCaseTableWidget;
+class ProcessingStatusComboBox;
 
 class CrimeCaseDialog : public QDialog
 {
@@ -45,6 +46,7 @@ private:
     QGroupBox* m_mainBox;
 
     QGroupBox* m_coreInfoBox;
+    ProcessingStatusComboBox* m_processingStatus;
     QLineEdit* m_name;
     HousingTypeComboBox* m_housingType;
     CityComboBox* m_city;
