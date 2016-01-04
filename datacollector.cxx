@@ -114,6 +114,8 @@ QSqlDatabase DataCollector::database()
 
 void DataCollector::showDatabaseError(const DatabaseError &err, const QString &info, QWidget *parent)
 {
+    qDebug() << (info.isEmpty() ? tr("Database Error") : info) << ": " << err.error().text();
+
     QMessageBox::critical((parent ? parent : activeWindow()),
                           (info.isEmpty() ? tr("Database Error") : info),
                           err.error().text());

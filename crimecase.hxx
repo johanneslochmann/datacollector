@@ -11,6 +11,7 @@
 #include "housingtype.hxx"
 #include "city.hxx"
 #include "informationsourceforcrimecase.hxx"
+#include "crimecaseparticipant.hxx"
 
 class CrimeCase;
 using CrimeCaseSPtr = std::shared_ptr<CrimeCase>;
@@ -47,7 +48,9 @@ public:
     void addInformationSource(InformationSourceForCrimeCaseSPtr i) { m_informationSources.push_back(i); }
     void removeInformationSource(InformationSourceForCrimeCaseSPtr i);
     const InformationSourceForCrimeCaseSPtrVector informationSources() const { return m_informationSources; }
+    const CrimeCaseParticipantSPtrVector participants() const { return m_participants; }
     void setInformationSources(InformationSourceForCrimeCaseSPtrVector v) { m_informationSources = v; }
+    void setParticipants(CrimeCaseParticipantSPtrVector v) { m_participants = v; }
 
 private:
     QString m_name { "" };
@@ -59,5 +62,6 @@ private:
     CitySPtr m_city { std::make_shared<City>() };
     HousingTypeSPtr m_housingType { std::make_shared<HousingType>() };
     InformationSourceForCrimeCaseSPtrVector m_informationSources;
+    CrimeCaseParticipantSPtrVector m_participants;
 };
 

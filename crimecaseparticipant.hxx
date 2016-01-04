@@ -2,12 +2,14 @@
 
 #include "storable.hxx"
 
+#include "crimecasepartyrole.hxx"
+
 class CrimeCase;
 
 using CrimeCaseSPtr = std::shared_ptr<CrimeCase>;
 
 class CrimeCaseParticipant;
-using CrimeCaseParticipantSPtr = std::shared_ptr<CrimeCaseSPtr>;
+using CrimeCaseParticipantSPtr = std::shared_ptr<CrimeCaseParticipant>;
 using CrimeCaseParticipantSPtrVector = std::vector<CrimeCaseParticipantSPtr>;
 
 class CrimeCaseParticipant : public Storable
@@ -16,8 +18,43 @@ public:
     CrimeCaseParticipant();
 
     CrimeCaseSPtr crimeCase() const;
+    QString name() const;
+    int ageInYears() const;
+    QString description() const;
+    CrimeCasePartyRoleSPtr role() const;
+
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
+    void setName(const QString &name);
+    void setAgeInYears(int ageInYears);
+    void setDescription(const QString &description);
+    void setRole(const CrimeCasePartyRoleSPtr &role);
 
 private:
     CrimeCaseSPtr m_crimeCase;
+
+    QString m_name { "" };
+    int m_ageInYears { 0 };
+    QString m_description { "" };
+
+    CrimeCasePartyRoleSPtr m_role { std::make_shared<CrimeCasePartyRole>() };
 };
+
+/*
+CREATE TABLE forensics.crime_case_participant
+(
+  name      text
+    id 				serial NOT NULL primary key,
+  age_in_years			integer default null,
+  description 			text NOT NULL DEFAULT ''::text
+
+crime_case_party_role_id	integer not null references forensics.crime_case_party_role,
+  crime_case_id			integer not null references forensics.crime_case,
+  sex_id			integer references core.sex default null,
+  has_precedent_convictions	boolean not null default false,
+  crime_type_id			integer references forensics.crime_type default null,
+  modus_operandi_id		integer references forensics.modus_operandi,
+  mental_disease_id		integer references forensics.mental_disease,
+  crime_motive_id		integer references forensics.crime_motive,
+  consultancy_result_id		integer references forensics.consultancy_result,
+  weapon_id			integer references forensics.weapon,
+);*/

@@ -1538,6 +1538,51 @@ ALTER SEQUENCE crime_case_id_seq OWNED BY crime_case.id;
 
 
 --
+-- Name: crime_case_participant; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE crime_case_participant (
+    id integer NOT NULL,
+    crime_case_party_role_id integer NOT NULL,
+    crime_case_id integer NOT NULL,
+    name text DEFAULT ''::text NOT NULL,
+    sex_id integer,
+    age_in_years integer,
+    has_precedent_convictions boolean DEFAULT false NOT NULL,
+    crime_type_id integer,
+    modus_operandi_id integer,
+    mental_disease_id integer,
+    crime_motive_id integer,
+    consultancy_result_id integer,
+    weapon_id integer,
+    description text DEFAULT ''::text NOT NULL
+);
+
+
+ALTER TABLE crime_case_participant OWNER TO jolo;
+
+--
+-- Name: crime_case_participant_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE crime_case_participant_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE crime_case_participant_id_seq OWNER TO jolo;
+
+--
+-- Name: crime_case_participant_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE crime_case_participant_id_seq OWNED BY crime_case_participant.id;
+
+
+--
 -- Name: crime_case_party_role; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -2941,6 +2986,13 @@ ALTER TABLE ONLY crime_case ALTER COLUMN id SET DEFAULT nextval('crime_case_id_s
 -- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
 --
 
+ALTER TABLE ONLY crime_case_participant ALTER COLUMN id SET DEFAULT nextval('crime_case_participant_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
 ALTER TABLE ONLY crime_case_party_role ALTER COLUMN id SET DEFAULT nextval('crime_case_party_role_id_seq'::regclass);
 
 
@@ -3541,6 +3593,14 @@ ALTER TABLE ONLY crime_case
 
 
 --
+-- Name: crime_case_participant_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: crime_case_party_role_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -4008,6 +4068,78 @@ ALTER TABLE ONLY crime_case
 
 ALTER TABLE ONLY crime_case
     ADD CONSTRAINT crime_case_housing_type_id_fkey FOREIGN KEY (housing_type_id) REFERENCES geo.housing_type(id);
+
+
+--
+-- Name: crime_case_participant_consultancy_result_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_consultancy_result_id_fkey FOREIGN KEY (consultancy_result_id) REFERENCES consultancy_result(id);
+
+
+--
+-- Name: crime_case_participant_crime_case_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_crime_case_id_fkey FOREIGN KEY (crime_case_id) REFERENCES crime_case(id);
+
+
+--
+-- Name: crime_case_participant_crime_case_party_role_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_crime_case_party_role_id_fkey FOREIGN KEY (crime_case_party_role_id) REFERENCES crime_case_party_role(id);
+
+
+--
+-- Name: crime_case_participant_crime_motive_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_crime_motive_id_fkey FOREIGN KEY (crime_motive_id) REFERENCES crime_motive(id);
+
+
+--
+-- Name: crime_case_participant_crime_type_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_crime_type_id_fkey FOREIGN KEY (crime_type_id) REFERENCES crime_type(id);
+
+
+--
+-- Name: crime_case_participant_mental_disease_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_mental_disease_id_fkey FOREIGN KEY (mental_disease_id) REFERENCES mental_disease(id);
+
+
+--
+-- Name: crime_case_participant_modus_operandi_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_modus_operandi_id_fkey FOREIGN KEY (modus_operandi_id) REFERENCES modus_operandi(id);
+
+
+--
+-- Name: crime_case_participant_sex_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_sex_id_fkey FOREIGN KEY (sex_id) REFERENCES core.sex(id);
+
+
+--
+-- Name: crime_case_participant_weapon_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT crime_case_participant_weapon_id_fkey FOREIGN KEY (weapon_id) REFERENCES weapon(id);
 
 
 --

@@ -7,11 +7,15 @@
 #include "datacollector.hxx"
 
 #include "crimecasegateway.hxx"
+#include "crimecaseparticipantgateway.hxx"
+#include "crimecaseparticipant.hxx"
+#include "crimecaseparticipantdialog.hxx"
 
 CrimeCaseParticipantTableWidget::CrimeCaseParticipantTableWidget(QWidget *p)
     : DataTableWidget(p)
 {
-    m_headerLabels << tr("Campaign") << tr("Proband") << tr("Survey Date") << tr("Organization") << tr("ID");
+    m_headerLabels << tr("Role") << tr("Crime Type") << tr("Modus Operandi") << tr("Name") << tr("Sex") << tr("Age")
+                   << tr("Profession") << tr("ID");
 
     connect(this, &DataTableWidget::currentItemChanged, this, &CrimeCaseParticipantTableWidget::onActivated);
 }
@@ -25,47 +29,77 @@ void CrimeCaseParticipantTableWidget::onCrimeCaseChanged(CrimeCaseSPtr c)
 void CrimeCaseParticipantTableWidget::reload()
 {
     clear();
-/*
-    AgateRecordSPtrVector buf;
+
+    if (m_crimeCase->id() < 1) {
+        return;
+    }
 
     try {
-        // if a campaign filter is set, use it and ignore project filter (campaign already is in current project)
-        if (m_campaign && m_campaign->hasId()) {
-            qDebug() << "reloading for campaign: " << m_campaign->name();
-            buf = AgateRecordGateway().loadAllInCampaign(m_campaign);
-        } else {
-            if (m_project && m_project->hasId()) {
-                qDebug() << "reloading for project: " << m_project->name();
-                buf = AgateRecordGateway().loadAllInProject(m_project);
-            }
-        }
+        CrimeCaseParticipantGateway().loadAllInCrimeCase(m_crimeCase);
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, tr("Failed to load agate surveys."), this);
     }
 
-    setRowCount(buf.size());
+    setRowCount(m_crimeCase->participants().size());
     setColumnCount(m_idCol + 1);
 
     setHorizontalHeaderLabels(m_headerLabels);;
 
     int r=0;
 
-    for (auto i : buf) {
-        setItem(r, m_campaignCol, new QTableWidgetItem(format(i->campaign())));
-        setItem(r, m_probandCol, new QTableWidgetItem(format(i->proband())));
-        setItem(r, m_surveyDateCol, new QTableWidgetItem(i->survey()->date().toString("dd.MM.yyyy")));
-        setItem(r, m_organizationCol, new QTableWidgetItem(format(i->organization())));
-        setItem(r, m_idCol, new QTableWidgetItem(QString("%1").arg(i->survey()->id())));
+    for (auto i : m_crimeCase->participants()) {
+        /*int m_participantRoleCol { 0 };
+        int m_crimeTypeCol { m_participantRoleCol + 1 };
+        int m_modusOperandiCol { m_crimeTypeCol + 1 };
+        int m_sexCol { m_nameCol + 1 };
+        int m_professionCol { m_sexCol + 1 };
+        int m_idCol { m_professionCol + 1 };
+        */
+        setItem(r, m_participantRoleCol, new QTableWidgetItem(format(i->role())));
+        setItem(r, m_nameCol, new QTableWidgetItem(i->name()));
+        setItem(r, m_idCol, new QTableWidgetItem(QString("%1").arg(i->id())));
+        setItem(r, m_ageCol, new QTableWidgetItem(QString("%1").arg(i->ageInYears())));
 
         r++;
     }
-    */
 }
 
 void CrimeCaseParticipantTableWidget::editSelected()
 {
+    auto itm = currentItem();
 
+    if (!itm) {
+        return;
+    }
+
+    auto idItm = item(itm->row(), m_idCol);
+
+    if (!idItm) {
+        return;
+    }
+
+    auto id = idItm->data(Qt::DisplayRole).toInt();
+
+    if (id < 1) {
+        QMessageBox::information(this, tr("Hint"), tr("No Participant selected"));
+        return;
+    }
+
+    try {
+        auto b = CrimeCaseParticipantGateway().loadById(id);
+        b->setCrimeCase(m_crimeCase);
+        CrimeCaseParticipantGateway().loadSubRecords(b);
+
+        auto dlg = new CrimeCaseParticipantDialog(this, b);
+
+        dlg->exec();
+
+        reload();
+    }
+    catch(DatabaseError e) {
+        DataCollector::get()->showDatabaseError(e, QObject::tr("Failed to delete crime case participant record."));
+    }
 }
 
 void CrimeCaseParticipantTableWidget::deleteSelected()
@@ -81,18 +115,17 @@ void CrimeCaseParticipantTableWidget::deleteSelected()
     if (!idItm) {
         return;
     }
-/*
+
     if (QMessageBox::Yes != QMessageBox::warning(this,
-                                                 tr("Delete Survey?"),
-                                                 tr("<p>Delete Survey %1?</p>")
+                                                 tr("Delete Participant?"),
+                                                 tr("<p>Delete Participant %1?</p>")
                                                  .arg(idItm->data(Qt::DisplayRole).toInt()),
                                                  QMessageBox::Yes | QMessageBox::No)) {
         return;
     }
 
-    AgateRecordGateway().remove(idItm->data(Qt::DisplayRole).toInt());
+    CrimeCaseParticipantGateway().remove(idItm->data(Qt::DisplayRole).toInt());
     reload();
-    */
 }
 
 void CrimeCaseParticipantTableWidget::onActivated(QTableWidgetItem *current, QTableWidgetItem *previous)
@@ -112,5 +145,10 @@ void CrimeCaseParticipantTableWidget::onActivated(QTableWidgetItem *current, QTa
     }
 
     emit crimeCaseParticipantActivated(idItm->data(Qt::DisplayRole).toInt());
+}
+
+QString CrimeCaseParticipantTableWidget::format(CrimeCasePartyRoleSPtr r) const
+{
+    return (r->name().isEmpty() ? QString("%1").arg(r->id()) : r->name());
 }
 

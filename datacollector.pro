@@ -130,7 +130,11 @@ SOURCES += main.cxx\
     crimecaseparticipantgateway.cxx \
     informationsourceforcrimecasetablewidget.cxx \
     informationsourceforcrimecasegateway.cxx \
-    informationsourceforcrimecasedialog.cxx
+    informationsourceforcrimecasedialog.cxx \
+    crimecaseparticipantdialog.cxx \
+    crimecasepartyrole.cxx \
+    crimecasepartyrolegateway.cxx \
+    crimecasepartyrolecombobox.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -256,7 +260,11 @@ HEADERS  += mainwindow.hxx \
     crimecaseparticipantgateway.hxx \
     informationsourceforcrimecasetablewidget.hxx \
     informationsourceforcrimecasegateway.hxx \
-    informationsourceforcrimecasedialog.hxx
+    informationsourceforcrimecasedialog.hxx \
+    crimecaseparticipantdialog.hxx \
+    crimecasepartyrole.hxx \
+    crimecasepartyrolegateway.hxx \
+    crimecasepartyrolecombobox.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
