@@ -7,11 +7,14 @@
 #include <QTextEdit>
 #include <QGroupBox>
 #include <QFormLayout>
+#include <QPushButton>
 
 #include "datacollector.hxx"
 #include "crimecasegateway.hxx"
 #include "housingtypecombobox.hxx"
 #include "citycombobox.hxx"
+#include "crimecaseparticipanttablewidget.hxx"
+#include "informationsourceforcrimecasetablewidget.hxx"
 
 CrimeCaseDialog::CrimeCaseDialog(QWidget *p, CrimeCaseSPtr d)
     : QDialog(p), m_crimeCase(d)
@@ -32,22 +35,60 @@ void CrimeCaseDialog::accept()
     }
 }
 
+void CrimeCaseDialog::save()
+{
+    if (CrimeCaseGateway().save(m_crimeCase)) {
+        emit crimeCaseSaved();
+    }
+}
+
+void CrimeCaseDialog::createParticipant()
+{
+
+}
+
+void CrimeCaseDialog::createInformationSource()
+{
+
+}
+
+void CrimeCaseDialog::onCrimeCaseSaved()
+{
+    m_participantsBox->setEnabled(true);
+    m_informationSourcesBox->setEnabled(true);
+
+    m_participants->onCrimeCaseChanged(m_crimeCase);
+    m_informationSources->setCrimeCase(m_crimeCase);
+}
+
 void CrimeCaseDialog::createWidgets()
 {
     m_mainBox = new QGroupBox(tr("Crime Case"), this);
     m_mainBox->setLayout(new QGridLayout(m_mainBox));
 
     createCoreInfoBox();
+    createInformationSourcesBox();
+    createParticipantsBox();
 
-    m_buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
+    m_buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Save,
                                      Qt::Horizontal,
                                      this);
 
     layout()->addWidget(m_mainBox);
     layout()->addWidget(m_buttons);
 
-    connect(m_buttons, &QDialogButtonBox::accepted, this, &CrimeCaseDialog::accept);
     connect(m_buttons, &QDialogButtonBox::rejected, this, &CrimeCaseDialog::reject);
+    connect(m_buttons->button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &CrimeCaseDialog::accept);
+    connect(m_buttons->button(QDialogButtonBox::Save), &QPushButton::clicked, this, &CrimeCaseDialog::save);
+
+    m_participantsBox->setEnabled(false);
+    m_informationSourcesBox->setEnabled(false);
+
+    connect(this, &CrimeCaseDialog::crimeCaseSaved, this, &CrimeCaseDialog::onCrimeCaseSaved);
+
+    if (m_crimeCase->id() > 0) {
+        emit crimeCaseSaved();
+    }
 }
 
 void CrimeCaseDialog::createCoreInfoBox()
@@ -92,4 +133,66 @@ void CrimeCaseDialog::createCoreInfoBox()
     connect(m_description, &QTextEdit::textChanged, [=]() { m_crimeCase->setDescription(m_description->toPlainText()); });
     connect(m_housingType, &HousingTypeComboBox::currentHousingTypeChanged, [=](HousingTypeSPtr t) { m_crimeCase->setHousingType(t); });
     connect(m_city, &CityComboBox::currentCityChanged, [=](CitySPtr c) { m_crimeCase->setCity(c); });
+}
+
+void CrimeCaseDialog::createParticipantsBox()
+{
+    m_participantsBox = new QGroupBox(tr("&Participants"), m_coreInfoBox);
+    m_participantsBox->setLayout(new QHBoxLayout(m_participantsBox));
+
+    m_participants = new CrimeCaseParticipantTableWidget(m_participantsBox);
+    m_participantsBox->layout()->addWidget(m_participants);
+    m_participants->onCrimeCaseChanged(m_crimeCase);
+
+    m_reloadParticipants = new QPushButton(tr("&Reload"), m_participantsBox);
+    m_createParticipant = new QPushButton(tr("&Create..."), m_participantsBox);
+    m_editParticipant = new QPushButton(tr("&Edit..."), m_participantsBox);
+    m_deleteParticipant = new QPushButton(tr("&Delete..."), m_participantsBox);
+
+    QVBoxLayout* m_bl = new QVBoxLayout();
+    m_bl->addWidget(m_reloadParticipants);
+    m_bl->addStretch();
+    m_bl->addWidget(m_createParticipant);
+    m_bl->addWidget(m_editParticipant);
+    m_bl->addStretch();
+    m_bl->addWidget(m_deleteParticipant);
+
+    m_participantsBox->layout()->addItem(m_bl);
+    m_mainBox->layout()->addWidget(m_participantsBox);
+
+    connect(m_reloadParticipants, &QPushButton::clicked, m_participants, &CrimeCaseParticipantTableWidget::reload);
+    connect(m_createParticipant, &QPushButton::clicked, this, &CrimeCaseDialog::createParticipant);
+    connect(m_editParticipant, &QPushButton::clicked, m_participants, &CrimeCaseParticipantTableWidget::editSelected);
+    connect(m_deleteParticipant, &QPushButton::clicked, m_participants, &CrimeCaseParticipantTableWidget::deleteSelected);
+}
+
+void CrimeCaseDialog::createInformationSourcesBox()
+{
+    m_informationSourcesBox = new QGroupBox(tr("&Information Sources"), m_mainBox);
+    m_informationSourcesBox->setLayout(new QHBoxLayout(m_informationSourcesBox));
+
+    m_informationSources = new InformationSourceForCrimeCaseTableWidget(m_informationSourcesBox);
+    m_informationSources->setCrimeCase(m_crimeCase);
+    m_informationSourcesBox->layout()->addWidget(m_informationSources);
+
+    m_reloadInformationSources = new QPushButton(tr("&Reload"), m_informationSourcesBox);
+    m_createInformationSource = new QPushButton(tr("&Create..."), m_informationSourcesBox);
+    m_editInformationSource = new QPushButton(tr("&Edit..."), m_informationSourcesBox);
+    m_deleteInformationSource = new QPushButton(tr("&Delete..."), m_informationSourcesBox);
+
+    auto bl = new QVBoxLayout();
+    bl->addWidget(m_reloadInformationSources);
+    bl->addStretch();
+    bl->addWidget(m_createInformationSource);
+    bl->addWidget(m_editInformationSource);
+    bl->addStretch();
+    bl->addWidget(m_deleteInformationSource);
+
+    m_informationSourcesBox->layout()->addItem(bl);
+    m_mainBox->layout()->addWidget(m_informationSourcesBox);
+
+    connect(m_reloadInformationSources, &QPushButton::clicked, m_informationSources, &InformationSourceForCrimeCaseTableWidget::reload);
+    connect(m_createInformationSource, &QPushButton::clicked, this, &CrimeCaseDialog::createInformationSource);
+    connect(m_editInformationSource, &QPushButton::clicked, m_informationSources, &InformationSourceForCrimeCaseTableWidget::editSelected);
+    connect(m_deleteInformationSource, &QPushButton::clicked, m_informationSources, &InformationSourceForCrimeCaseTableWidget::deleteSelected);
 }

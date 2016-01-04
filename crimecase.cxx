@@ -1,6 +1,7 @@
 #include "crimecase.hxx"
 
 CrimeCase::CrimeCase()
+    : Storable()
 {
 
 }
@@ -13,6 +14,16 @@ QString CrimeCase::name() const
 QString CrimeCase::description() const
 {
     return m_description;
+}
+
+void CrimeCase::removeInformationSource(InformationSourceForCrimeCaseSPtr i)
+{
+   auto it = std::find_if(std::begin(m_informationSources), std::end(m_informationSources),
+                          [=](InformationSourceForCrimeCaseSPtr cand) {return (cand == i); });
+
+    if (std::end(m_informationSources) != it) {
+        m_informationSources.erase(it);
+    }
 }
 
 void CrimeCase::setDescription(const QString &description)

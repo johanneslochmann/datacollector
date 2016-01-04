@@ -9,9 +9,12 @@ class QDialogButtonBox;
 class QLabel;
 class QLineEdit;
 class QTextEdit;
+class QPushButton;
 
 class HousingTypeComboBox;
 class CityComboBox;
+class CrimeCaseParticipantTableWidget;
+class InformationSourceForCrimeCaseTableWidget;
 
 class CrimeCaseDialog : public QDialog
 {
@@ -20,12 +23,23 @@ public:
     CrimeCaseDialog(QWidget* p, CrimeCaseSPtr d);
     virtual ~CrimeCaseDialog();
 
+signals:
+    void crimeCaseSaved();
+
 public slots:
     void accept();
+    void save();
+
+    void createParticipant();
+    void createInformationSource();
+
+    void onCrimeCaseSaved();
 
 private:
     void createWidgets();
     void createCoreInfoBox();
+    void createParticipantsBox();
+    void createInformationSourcesBox();
 
     CrimeCaseSPtr m_crimeCase;
     QGroupBox* m_mainBox;
@@ -38,6 +52,20 @@ private:
     QLineEdit* m_crimeDate;
     QLineEdit* m_crimeTime;
     QTextEdit* m_description;
+
+    QGroupBox* m_participantsBox;
+    CrimeCaseParticipantTableWidget* m_participants;
+    QPushButton* m_reloadParticipants;
+    QPushButton* m_createParticipant;
+    QPushButton* m_editParticipant;
+    QPushButton* m_deleteParticipant;
+
+    QGroupBox* m_informationSourcesBox;
+    InformationSourceForCrimeCaseTableWidget* m_informationSources;
+    QPushButton* m_reloadInformationSources;
+    QPushButton* m_createInformationSource;
+    QPushButton* m_editInformationSource;
+    QPushButton* m_deleteInformationSource;
 
     QDialogButtonBox* m_buttons;
 };

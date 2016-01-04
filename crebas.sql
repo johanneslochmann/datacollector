@@ -1643,6 +1643,44 @@ ALTER SEQUENCE crime_type_id_seq OWNED BY crime_type.id;
 
 
 --
+-- Name: information_source_for_crime_case; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE information_source_for_crime_case (
+    id integer NOT NULL,
+    information_source_type_id integer NOT NULL,
+    crime_case_id integer NOT NULL,
+    url text NOT NULL,
+    when_added timestamp with time zone DEFAULT now() NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT information_source_for_crime_case_url_check CHECK ((length(url) > 1))
+);
+
+
+ALTER TABLE information_source_for_crime_case OWNER TO jolo;
+
+--
+-- Name: information_source_for_crime_case_id_seq; Type: SEQUENCE; Schema: forensics; Owner: jolo
+--
+
+CREATE SEQUENCE information_source_for_crime_case_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE information_source_for_crime_case_id_seq OWNER TO jolo;
+
+--
+-- Name: information_source_for_crime_case_id_seq; Type: SEQUENCE OWNED BY; Schema: forensics; Owner: jolo
+--
+
+ALTER SEQUENCE information_source_for_crime_case_id_seq OWNED BY information_source_for_crime_case.id;
+
+
+--
 -- Name: mental_disease; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -2924,6 +2962,13 @@ ALTER TABLE ONLY crime_type ALTER COLUMN id SET DEFAULT nextval('crime_type_id_s
 -- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
 --
 
+ALTER TABLE ONLY information_source_for_crime_case ALTER COLUMN id SET DEFAULT nextval('information_source_for_crime_case_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: forensics; Owner: jolo
+--
+
 ALTER TABLE ONLY mental_disease ALTER COLUMN id SET DEFAULT nextval('mental_disease_id_seq'::regclass);
 
 
@@ -3552,6 +3597,22 @@ ALTER TABLE ONLY crime_type
 
 
 --
+-- Name: information_source_for_crime_case_crime_case_id_url_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY information_source_for_crime_case
+    ADD CONSTRAINT information_source_for_crime_case_crime_case_id_url_key UNIQUE (crime_case_id, url);
+
+
+--
+-- Name: information_source_for_crime_case_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY information_source_for_crime_case
+    ADD CONSTRAINT information_source_for_crime_case_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: mental_disease_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
 --
 
@@ -3947,6 +4008,22 @@ ALTER TABLE ONLY crime_case
 
 ALTER TABLE ONLY crime_case
     ADD CONSTRAINT crime_case_housing_type_id_fkey FOREIGN KEY (housing_type_id) REFERENCES geo.housing_type(id);
+
+
+--
+-- Name: information_source_for_crime_ca_information_source_type_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY information_source_for_crime_case
+    ADD CONSTRAINT information_source_for_crime_ca_information_source_type_id_fkey FOREIGN KEY (information_source_type_id) REFERENCES core.information_source_type(id);
+
+
+--
+-- Name: information_source_for_crime_case_crime_case_id_fkey; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY information_source_for_crime_case
+    ADD CONSTRAINT information_source_for_crime_case_crime_case_id_fkey FOREIGN KEY (crime_case_id) REFERENCES crime_case(id);
 
 
 --

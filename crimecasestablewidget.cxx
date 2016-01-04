@@ -21,6 +21,7 @@ CrimeCasesTableWidget::CrimeCasesTableWidget(QWidget *p)
                    << tr("ID");
 
     connect(this, &DataTableWidget::currentItemChanged, this, &CrimeCasesTableWidget::onActivated);
+    connect(DataCollector::get(), &DataCollector::databaseAvailable, this, &CrimeCasesTableWidget::reload);
 }
 
 void CrimeCasesTableWidget::reload()

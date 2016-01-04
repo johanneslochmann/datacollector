@@ -119,7 +119,18 @@ SOURCES += main.cxx\
     housingtypegateway.cxx \
     city.cxx \
     citygateway.cxx \
-    citycombobox.cxx
+    citycombobox.cxx \
+    informationsourceforcrimecase.cxx \
+    informationsourcetype.cxx \
+    informationsourcetypegateway.cxx \
+    informationsourcetypecombobox.cxx \
+    crimecasecombobox.cxx \
+    crimecaseparticipanttablewidget.cxx \
+    crimecaseparticipant.cxx \
+    crimecaseparticipantgateway.cxx \
+    informationsourceforcrimecasetablewidget.cxx \
+    informationsourceforcrimecasegateway.cxx \
+    informationsourceforcrimecasedialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -234,7 +245,18 @@ HEADERS  += mainwindow.hxx \
     city.hxx \
     citygateway.hxx \
     citygateway.cxx \#
-    citycombobox.hxx
+    citycombobox.hxx \
+    informationsourceforcrimecase.hxx \
+    informationsourcetype.hxx \
+    informationsourcetypegateway.hxx \
+    informationsourcetypecombobox.hxx \
+    crimecasecombobox.hxx \
+    crimecaseparticipanttablewidget.hxx \
+    crimecaseparticipant.hxx \
+    crimecaseparticipantgateway.hxx \
+    informationsourceforcrimecasetablewidget.hxx \
+    informationsourceforcrimecasegateway.hxx \
+    informationsourceforcrimecasedialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
