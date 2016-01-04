@@ -11,6 +11,7 @@
 #include "informationsourceforcrimecasedialog.hxx"
 #include "crimecase.hxx"
 #include "informationsourcetype.hxx"
+#include "informationsourcetypegateway.hxx"
 
 InformationSourceForCrimeCaseTableWidget::InformationSourceForCrimeCaseTableWidget(QWidget *p)
     : DataTableWidget(p)
@@ -85,9 +86,11 @@ void InformationSourceForCrimeCaseTableWidget::editSelected()
     }
 
     try {
-        auto InformationSourceForCrimeCase = InformationSourceForCrimeCaseGateway().loadById(id);
+        auto b = InformationSourceForCrimeCaseGateway().loadById(id);
+        b->setCrimeCase(m_crimeCase);
+        b->setInformationSourceType(InformationSourceTypeGateway().loadById(b->informationSourceType()->id()));
 
-        auto dlg = new InformationSourceForCrimeCaseDialog(this, InformationSourceForCrimeCase);
+        auto dlg = new InformationSourceForCrimeCaseDialog(this, b);
 
         dlg->exec();
 
@@ -151,5 +154,5 @@ void InformationSourceForCrimeCaseTableWidget::setCrimeCase(CrimeCaseSPtr c)
 
 QString InformationSourceForCrimeCaseTableWidget::format(InformationSourceTypeSPtr t) const
 {
-    return t->name();
+    return (t->name().isEmpty() ? QString("%1").arg(t->id()) : t->name());
 }

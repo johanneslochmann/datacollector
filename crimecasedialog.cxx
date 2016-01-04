@@ -15,6 +15,7 @@
 #include "citycombobox.hxx"
 #include "crimecaseparticipanttablewidget.hxx"
 #include "informationsourceforcrimecasetablewidget.hxx"
+#include "informationsourceforcrimecasedialog.hxx"
 
 CrimeCaseDialog::CrimeCaseDialog(QWidget *p, CrimeCaseSPtr d)
     : QDialog(p), m_crimeCase(d)
@@ -49,7 +50,14 @@ void CrimeCaseDialog::createParticipant()
 
 void CrimeCaseDialog::createInformationSource()
 {
+    auto buf = std::make_shared<InformationSourceForCrimeCase>();
+    buf->setCrimeCase(m_crimeCase);
 
+    auto dlg = new InformationSourceForCrimeCaseDialog(this, buf);
+
+    if (QDialog::Accepted == dlg->exec()) {
+        m_informationSources->reload();
+    }
 }
 
 void CrimeCaseDialog::onCrimeCaseSaved()

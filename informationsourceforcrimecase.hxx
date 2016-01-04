@@ -28,11 +28,12 @@ public:
     void setDescription(const QString &description);
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
     void setWhenAdded(const QDateTime &whenAdded);
+    void setInformationSourceType(InformationSourceTypeSPtr t) { m_informationSourceType = t; }
 
 private:
     QString m_url;
-    QString m_description;
-    QDateTime m_whenAdded;
+    QString m_description { "" };
+    QDateTime m_whenAdded { QDateTime::currentDateTime() };
 
     CrimeCaseSPtr m_crimeCase;
     InformationSourceTypeSPtr m_informationSourceType;

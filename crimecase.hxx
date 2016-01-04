@@ -47,6 +47,7 @@ public:
     void addInformationSource(InformationSourceForCrimeCaseSPtr i) { m_informationSources.push_back(i); }
     void removeInformationSource(InformationSourceForCrimeCaseSPtr i);
     const InformationSourceForCrimeCaseSPtrVector informationSources() const { return m_informationSources; }
+    void setInformationSources(InformationSourceForCrimeCaseSPtrVector v) { m_informationSources = v; }
 
 private:
     QString m_name { "" };
