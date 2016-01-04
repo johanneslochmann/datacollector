@@ -26,6 +26,7 @@ protected:
     QString format(CrimeCasePartyRoleSPtr r) const;
     QString format(SexSPtr s) const;
     QString format(CrimeTypeSPtr t) const;
+    QString format(JobSPtr j) const;
 
 private:
     CrimeCaseSPtr m_crimeCase;
@@ -37,8 +38,8 @@ private:
     int m_nameCol { m_modusOperandiCol + 1 };
     int m_sexCol { m_nameCol + 1 };
     int m_ageCol { m_sexCol + 1 };
-    int m_professionCol { m_ageCol + 1 };
-    int m_idCol { m_professionCol + 1 };
+    int m_jobCol { m_ageCol + 1 };
+    int m_idCol { m_jobCol + 1 };
 
 };
 

@@ -76,3 +76,13 @@ void CrimeCaseParticipant::setCrimeType(const CrimeTypeSPtr &crimeType)
 {
     m_crimeType = crimeType;
 }
+
+JobSPtr CrimeCaseParticipant::job() const
+{
+    return m_job;
+}
+
+void CrimeCaseParticipant::setJob(const JobSPtr &job)
+{
+    m_job = job;
+}

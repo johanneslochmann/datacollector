@@ -15,7 +15,7 @@ CrimeCaseParticipantTableWidget::CrimeCaseParticipantTableWidget(QWidget *p)
     : DataTableWidget(p)
 {
     m_headerLabels << tr("Role") << tr("Crime Type") << tr("Modus Operandi") << tr("Name") << tr("Sex") << tr("Age")
-                   << tr("Profession") << tr("ID");
+                   << tr("Job") << tr("ID");
 
     connect(this, &DataTableWidget::currentItemChanged, this, &CrimeCaseParticipantTableWidget::onActivated);
 }
@@ -51,7 +51,6 @@ void CrimeCaseParticipantTableWidget::reload()
     for (auto i : m_crimeCase->participants()) {
         /*
         int m_modusOperandiCol { m_crimeTypeCol + 1 };
-        int m_professionCol { m_sexCol + 1 };
         */
         setItem(r, m_participantRoleCol, new QTableWidgetItem(format(i->role())));
         setItem(r, m_nameCol, new QTableWidgetItem(i->name()));
@@ -59,6 +58,7 @@ void CrimeCaseParticipantTableWidget::reload()
         setItem(r, m_ageCol, new QTableWidgetItem(QString("%1").arg(i->ageInYears())));
         setItem(r, m_sexCol, new QTableWidgetItem(format(i->sex())));
         setItem(r, m_crimeTypeCol, new QTableWidgetItem(format(i->crimeType())));
+        setItem(r, m_jobCol, new QTableWidgetItem(format(i->job())));
 
         r++;
     }
@@ -159,5 +159,10 @@ QString CrimeCaseParticipantTableWidget::format(SexSPtr s) const
 QString CrimeCaseParticipantTableWidget::format(CrimeTypeSPtr t) const
 {
     return t->name();
+}
+
+QString CrimeCaseParticipantTableWidget::format(JobSPtr j) const
+{
+    return j->name();
 }
 

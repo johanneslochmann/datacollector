@@ -137,7 +137,10 @@ SOURCES += main.cxx\
     crimecasepartyrolecombobox.cxx \
     crimetype.cxx \
     crimetypegateway.cxx \
-    crimetypecombobox.cxx
+    crimetypecombobox.cxx \
+    job.cxx \
+    jobgateway.cxx \
+    jobcombobox.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -270,7 +273,10 @@ HEADERS  += mainwindow.hxx \
     crimecasepartyrolecombobox.hxx \
     crimetype.hxx \
     crimetypegateway.hxx \
-    crimetypecombobox.hxx
+    crimetypecombobox.hxx \
+    job.hxx \
+    jobgateway.hxx \
+    jobcombobox.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
