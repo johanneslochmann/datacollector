@@ -1172,6 +1172,41 @@ ALTER SEQUENCE proband_id_seq OWNED BY proband.id;
 
 
 --
+-- Name: processing_status; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE processing_status (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT processing_status_name_check CHECK ((length(name) >= 1))
+);
+
+
+ALTER TABLE processing_status OWNER TO jolo;
+
+--
+-- Name: processing_status_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
+--
+
+CREATE SEQUENCE processing_status_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE processing_status_id_seq OWNER TO jolo;
+
+--
+-- Name: processing_status_id_seq; Type: SEQUENCE OWNED BY; Schema: core; Owner: jolo
+--
+
+ALTER SEQUENCE processing_status_id_seq OWNED BY processing_status.id;
+
+
+--
 -- Name: project_id_seq; Type: SEQUENCE; Schema: core; Owner: jolo
 --
 
@@ -1510,6 +1545,7 @@ CREATE TABLE crime_case (
     crime_date date,
     crime_time time without time zone,
     description text DEFAULT ''::text NOT NULL,
+    processing_status_id integer,
     CONSTRAINT crime_case_name_check CHECK ((length(name) > 1))
 );
 
@@ -1555,7 +1591,8 @@ CREATE TABLE crime_case_participant (
     crime_motive_id integer,
     consultancy_result_id integer,
     weapon_id integer,
-    description text DEFAULT ''::text NOT NULL
+    description text DEFAULT ''::text NOT NULL,
+    job_id integer
 );
 
 
@@ -2914,6 +2951,13 @@ ALTER TABLE ONLY proband ALTER COLUMN id SET DEFAULT nextval('proband_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
 --
 
+ALTER TABLE ONLY processing_status ALTER COLUMN id SET DEFAULT nextval('processing_status_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: core; Owner: jolo
+--
+
 ALTER TABLE ONLY project ALTER COLUMN id SET DEFAULT nextval('project_id_seq'::regclass);
 
 
@@ -3436,6 +3480,22 @@ ALTER TABLE ONLY prescribeable_drug
 
 ALTER TABLE ONLY proband
     ADD CONSTRAINT proband_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: processing_status_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY processing_status
+    ADD CONSTRAINT processing_status_name_key UNIQUE (name);
+
+
+--
+-- Name: processing_status_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+--
+
+ALTER TABLE ONLY processing_status
+    ADD CONSTRAINT processing_status_pkey PRIMARY KEY (id);
 
 
 --
@@ -4140,6 +4200,22 @@ ALTER TABLE ONLY crime_case_participant
 
 ALTER TABLE ONLY crime_case_participant
     ADD CONSTRAINT crime_case_participant_weapon_id_fkey FOREIGN KEY (weapon_id) REFERENCES weapon(id);
+
+
+--
+-- Name: fk_job; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case_participant
+    ADD CONSTRAINT fk_job FOREIGN KEY (job_id) REFERENCES core.job(id);
+
+
+--
+-- Name: fk_status; Type: FK CONSTRAINT; Schema: forensics; Owner: jolo
+--
+
+ALTER TABLE ONLY crime_case
+    ADD CONSTRAINT fk_status FOREIGN KEY (processing_status_id) REFERENCES core.processing_status(id);
 
 
 --
