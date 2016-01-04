@@ -18,6 +18,7 @@ class CrimeMotiveComboBox;
 class MentalDiseaseComboBox;
 class ModusOperandiComboBox;
 class WeaponComboBox;
+class ConsultancyResultComboBox;
 
 class CrimeCaseParticipantDialog : public QDialog
 {
@@ -44,6 +45,7 @@ private:
     MentalDiseaseComboBox* m_mentalDisease;
     ModusOperandiComboBox* m_modusOperandi;
     WeaponComboBox* m_weapon;
+    ConsultancyResultComboBox* m_consultancyResult;
 
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;

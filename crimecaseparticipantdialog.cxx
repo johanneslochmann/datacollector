@@ -19,6 +19,7 @@
 #include "mentaldiseasecombobox.hxx"
 #include "modusoperandicombobox.hxx"
 #include "weaponcombobox.hxx"
+#include "consultancyresultcombobox.hxx"
 
 void CrimeCaseParticipantDialog::createDataWidgets()
 {
@@ -71,6 +72,12 @@ void CrimeCaseParticipantDialog::createDataWidgets()
     if (m_participant->weapon()->id() > 0) {
         m_weapon->setCurrentText(m_participant->weapon()->name());
     }
+
+    m_consultancyResult = new ConsultancyResultComboBox(m_b);
+    if (m_participant->consultancyResult()->id() > 0) {
+        m_consultancyResult->setCurrentText(m_participant->consultancyResult()->name());
+    }
+
     m_description = new QTextEdit(m_participant->description(), m_b);
 }
 
@@ -96,6 +103,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     l->addRow(tr("Modus &Operandi"), m_modusOperandi);
     l->addRow(tr("&Weapon"), m_weapon);
     l->addRow(tr("Mental Dis&ease"), m_mentalDisease);
+    l->addRow(tr("Consultancy &Result"), m_consultancyResult);
     l->addRow(tr("&Description"), m_description);
 
     m_bb = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -112,6 +120,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     connect(m_mentalDisease, &MentalDiseaseComboBox::currentMentalDiseaseChanged, [=](MentalDiseaseSPtr s) { m_participant->setMentalDisease(s); });
     connect(m_modusOperandi, &ModusOperandiComboBox::currentModusOperandiChanged, [=](ModusOperandiSPtr m) { m_participant->setModusOperandi(m); });
     connect(m_weapon, &WeaponComboBox::currentWeaponChanged, [=](WeaponSPtr w) { m_participant->setWeapon(w); });
+    connect(m_consultancyResult, &ConsultancyResultComboBox::currentConsultancyResultChanged, [=](ConsultancyResultSPtr r) { m_participant->setConsultancyResult(r); });
     connect(m_name, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setName(v); });
     connect(m_ageInYears, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setAgeInYears(v.toInt()); });
     connect(m_description, &QTextEdit::textChanged, [=]() { m_participant->setDescription(m_description->toPlainText()); });

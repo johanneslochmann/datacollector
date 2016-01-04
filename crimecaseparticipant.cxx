@@ -126,3 +126,13 @@ void CrimeCaseParticipant::setWeapon(const WeaponSPtr &weapon)
 {
     m_weapon = weapon;
 }
+
+ConsultancyResultSPtr CrimeCaseParticipant::consultancyResult() const
+{
+    return m_consultancyResult;
+}
+
+void CrimeCaseParticipant::setConsultancyResult(const ConsultancyResultSPtr &consultancyResult)
+{
+    m_consultancyResult = consultancyResult;
+}

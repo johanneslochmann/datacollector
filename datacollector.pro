@@ -152,7 +152,10 @@ SOURCES += main.cxx\
     modusoperandicombobox.cxx \
     weapon.cxx \
     weapongateway.cxx \
-    weaponcombobox.cxx
+    weaponcombobox.cxx \
+    consultancyresult.cxx \
+    consultancyresultgateway.cxx \
+    consultancyresultcombobox.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -300,7 +303,10 @@ HEADERS  += mainwindow.hxx \
     modusoperandicombobox.hxx \
     weapon.hxx \
     weapongateway.hxx \
-    weaponcombobox.hxx
+    weaponcombobox.hxx \
+    consultancyresult.hxx \
+    consultancyresultgateway.hxx \
+    consultancyresultcombobox.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
