@@ -5,6 +5,7 @@
 #include "crimecase.hxx"
 #include "crimecaseparticipant.hxx"
 #include "crimecasepartyrolegateway.hxx"
+#include "sexdatagateway.hxx"
 
 void CrimeCaseParticipantGateway::loadAllInCrimeCase(CrimeCaseSPtr crimeCase)
 {
@@ -77,19 +78,23 @@ void CrimeCaseParticipantGateway::parse(std::shared_ptr<DataGateway::DataType> t
     t->setAgeInYears(rec.value(rec.indexOf("age_in_years")).toInt());
     t->crimeCase()->setId(rec.value(rec.indexOf("crime_case_id")).toInt());
     t->role()->setId(rec.value(rec.indexOf("crime_case_party_role_id")).toInt());
+    t->sex()->setId(rec.value(rec.indexOf("sex_id")).toInt());
 }
 
 void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
 {
     auto q = DataCollector::get()->prepareQuery("insert into forensics.crime_case_participant "
-                                                "(crime_case_id, name, age_in_years, description, crime_case_party_role_id) values "
-                                                "(:crime_case_id, :name, :age_in_years, :description, :crime_case_party_role_id) "
+                                                "(crime_case_id, name, age_in_years, description, crime_case_party_role_id, "
+                                                "sex_id) values "
+                                                "(:crime_case_id, :name, :age_in_years, :description, :crime_case_party_role_id, "
+                                                ":sex_id) "
                                                 "returning id;");
     q.bindValue(":crime_case_id", c->crimeCase()->id());
     q.bindValue(":name", c->name());
     q.bindValue(":age_in_years", c->ageInYears() > 0 ? c->ageInYears() : QVariant(QVariant::Int));
     q.bindValue(":description", c->description());
     q.bindValue(":crime_case_party_role_id", c->role()->id() > 0 ? c->role()->id() : QVariant(QVariant::Int));
+    q.bindValue(":sex_id", c->sex()->id() > 0 ? c->sex()->id() : QVariant(QVariant::Int));
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
     q.next();
@@ -104,7 +109,8 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
                                                 "name = :name, "
                                                 "age_in_years = :age_in_years, "
                                                 "description = :description, "
-                                                "crime_case_party_role_id = :crime_case_party_role_id "
+                                                "crime_case_party_role_id = :crime_case_party_role_id, "
+                                                "sex_id = :sex_id "
                                                 "where id = :id;");
 
     q.bindValue(":crime_case_id", c->crimeCase()->id());
@@ -113,6 +119,7 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
     q.bindValue(":description", c->description());
     q.bindValue(":id", c->id());
     q.bindValue(":crime_case_party_role_id", c->role()->id() > 0 ? c->role()->id() : QVariant(QVariant::Int));
+    q.bindValue(":sex_id", c->sex()->id() > 0 ? c->sex()->id() : QVariant(QVariant::Int));
 
     DataCollector::get()->performQuery(q, true);
 }
@@ -121,6 +128,10 @@ void CrimeCaseParticipantGateway::loadSubRecords(CrimeCaseParticipantSPtr c)
 {
     if (c->role()->id() > 0) {
         c->setRole(CrimeCasePartyRoleGateway().loadById(c->role()->id()));
+    }
+
+    if (c->sex()->id() > 0) {
+        c->setSex(SexDataGateway().loadById(c->sex()->id()));
     }
 }
 

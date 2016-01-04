@@ -24,6 +24,7 @@ public slots:
 
 protected:
     QString format(CrimeCasePartyRoleSPtr r) const;
+    QString format(SexSPtr s) const;
 
 private:
     CrimeCaseSPtr m_crimeCase;

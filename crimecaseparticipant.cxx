@@ -56,3 +56,13 @@ void CrimeCaseParticipant::setRole(const CrimeCasePartyRoleSPtr &role)
 {
     m_role = role;
 }
+
+SexSPtr CrimeCaseParticipant::sex() const
+{
+    return m_sex;
+}
+
+void CrimeCaseParticipant::setSex(const SexSPtr &sex)
+{
+    m_sex = sex;
+}

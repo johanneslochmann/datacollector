@@ -49,17 +49,16 @@ void CrimeCaseParticipantTableWidget::reload()
     int r=0;
 
     for (auto i : m_crimeCase->participants()) {
-        /*int m_participantRoleCol { 0 };
+        /*
         int m_crimeTypeCol { m_participantRoleCol + 1 };
         int m_modusOperandiCol { m_crimeTypeCol + 1 };
-        int m_sexCol { m_nameCol + 1 };
         int m_professionCol { m_sexCol + 1 };
-        int m_idCol { m_professionCol + 1 };
         */
         setItem(r, m_participantRoleCol, new QTableWidgetItem(format(i->role())));
         setItem(r, m_nameCol, new QTableWidgetItem(i->name()));
         setItem(r, m_idCol, new QTableWidgetItem(QString("%1").arg(i->id())));
         setItem(r, m_ageCol, new QTableWidgetItem(QString("%1").arg(i->ageInYears())));
+        setItem(r, m_sexCol, new QTableWidgetItem(format(i->sex())));
 
         r++;
     }
@@ -149,6 +148,11 @@ void CrimeCaseParticipantTableWidget::onActivated(QTableWidgetItem *current, QTa
 
 QString CrimeCaseParticipantTableWidget::format(CrimeCasePartyRoleSPtr r) const
 {
-    return (r->name().isEmpty() ? QString("%1").arg(r->id()) : r->name());
+    return r->name();
+}
+
+QString CrimeCaseParticipantTableWidget::format(SexSPtr s) const
+{
+    return s->name();
 }
 

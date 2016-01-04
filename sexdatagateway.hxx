@@ -12,6 +12,7 @@ public:
 
 protected:
     QString loadAllQueryText() const override;
+    QString loadByIdQueryText() const override;
     void parse(std::shared_ptr<Sex> t, const QSqlRecord &rec) override;
 };
 
