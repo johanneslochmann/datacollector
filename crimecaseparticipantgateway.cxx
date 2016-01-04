@@ -12,6 +12,7 @@
 #include "jobgateway.hxx"
 #include "crimemotivegateway.hxx"
 #include "mentaldiseasegateway.hxx"
+#include "modusoperandigateway.hxx"
 
 void CrimeCaseParticipantGateway::loadAllInCrimeCase(CrimeCaseSPtr crimeCase)
 {
@@ -89,15 +90,18 @@ void CrimeCaseParticipantGateway::parse(std::shared_ptr<DataGateway::DataType> t
     t->job()->setId(rec.value(rec.indexOf("job_id")).toInt());
     t->motive()->setId(rec.value(rec.indexOf("crime_motive_id")).toInt());
     t->mentalDisease()->setId(rec.value(rec.indexOf("mental_disease_id")).toInt());
+    t->modusOperandi()->setId(rec.value(rec.indexOf("modus_operandi_id")).toInt());
 }
 
 void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
 {
     auto q = DataCollector::get()->prepareQuery("insert into forensics.crime_case_participant "
                                                 "(crime_case_id, name, age_in_years, description, crime_case_party_role_id, "
-                                                "sex_id, crime_type_id, job_id, crime_motive_id, mental_disease_id) values "
+                                                "sex_id, crime_type_id, job_id, crime_motive_id, mental_disease_id, "
+                                                "modus_operandi_id) values "
                                                 "(:crime_case_id, :name, :age_in_years, :description, :crime_case_party_role_id, "
-                                                ":sex_id, :crime_type_id, :job_id, :crime_motive_id, :mental_disease_id) "
+                                                ":sex_id, :crime_type_id, :job_id, :crime_motive_id, :mental_disease_id, "
+                                                ", :modus_operandi_id) "
                                                 "returning id;");
     q.bindValue(":crime_case_id", c->crimeCase()->id());
     q.bindValue(":name", c->name());
@@ -109,6 +113,7 @@ void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
     q.bindValue(":job_id", c->job()->id() > 0 ? c->job()->id() : QVariant(QVariant::Int));
     q.bindValue(":crime_motive_id", c->motive()->id() > 0 ? c->motive()->id() : QVariant(QVariant::Int));
     q.bindValue(":mental_disease_id", c->mentalDisease()->id() > 0 ? c->mentalDisease()->id() : QVariant(QVariant::Int));
+    q.bindValue(":modus_operandi_id", c->modusOperandi()->id() > 0 ? c->modusOperandi()->id() : QVariant(QVariant::Int));
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
     q.next();
@@ -128,7 +133,8 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
                                                 "crime_type_id = :crime_type_id, "
                                                 "job_id = :job_id, "
                                                 "crime_motive_id = :crime_motive_id, "
-                                                "mental_disease_id = :mental_disease_id "
+                                                "mental_disease_id = :mental_disease_id, "
+                                                "modus_operandi_id = :modus_operandi_id "
                                                 "where id = :id;");
 
     q.bindValue(":crime_case_id", c->crimeCase()->id());
@@ -142,6 +148,7 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
     q.bindValue(":job_id", c->job()->id() > 0 ? c->job()->id() : QVariant(QVariant::Int));
     q.bindValue(":crime_motive_id", c->motive()->id() > 0 ? c->motive()->id() : QVariant(QVariant::Int));
     q.bindValue(":mental_disease_id", c->mentalDisease()->id() > 0 ? c->mentalDisease()->id() : QVariant(QVariant::Int));
+    q.bindValue(":modus_operandi_id", c->modusOperandi()->id() > 0 ? c->modusOperandi()->id() : QVariant(QVariant::Int));
 
     DataCollector::get()->performQuery(q, true);
 }
@@ -170,6 +177,10 @@ void CrimeCaseParticipantGateway::loadSubRecords(CrimeCaseParticipantSPtr c)
 
     if (c->mentalDisease()->id() > 0) {
         c->setMentalDisease(MentalDiseaseGateway().loadById(c->mentalDisease()->id()));
+    }
+
+    if (c->modusOperandi()->id() > 0) {
+        c->setModusOperandi(ModusOperandiGateway().loadById(c->modusOperandi()->id()));
     }
 }
 

@@ -106,3 +106,13 @@ void CrimeCaseParticipant::setMentalDisease(const MentalDiseaseSPtr &mentalDisea
 {
     m_mentalDisease = mentalDisease;
 }
+
+ModusOperandiSPtr CrimeCaseParticipant::modusOperandi() const
+{
+    return m_modusOperandi;
+}
+
+void CrimeCaseParticipant::setModusOperandi(const ModusOperandiSPtr &modusOperandi)
+{
+    m_modusOperandi = modusOperandi;
+}

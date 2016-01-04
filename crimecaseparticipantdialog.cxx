@@ -17,6 +17,7 @@
 #include "jobcombobox.hxx"
 #include "crimemotivecombobox.hxx"
 #include "mentaldiseasecombobox.hxx"
+#include "modusoperandicombobox.hxx"
 
 void CrimeCaseParticipantDialog::createDataWidgets()
 {
@@ -60,6 +61,11 @@ void CrimeCaseParticipantDialog::createDataWidgets()
         m_mentalDisease->setCurrentText(m_participant->mentalDisease()->name());
     }
 
+    m_modusOperandi = new ModusOperandiComboBox(m_b);
+    if (m_participant->modusOperandi()->id() > 0) {
+        m_modusOperandi->setCurrentText(m_participant->modusOperandi()->name());
+    }
+
     m_description = new QTextEdit(m_participant->description(), m_b);
 }
 
@@ -82,6 +88,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     l->addRow(tr("&Job"), m_job);
     l->addRow(tr("Crime &Type"), m_crimeType);
     l->addRow(tr("&Motive"), m_motive);
+    l->addRow(tr("Modus &Operandi"), m_modusOperandi);
     l->addRow(tr("Mental Dis&ease"), m_mentalDisease);
     l->addRow(tr("&Description"), m_description);
 
@@ -97,6 +104,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     connect(m_motive, &CrimeMotiveComboBox::currentCrimeMotiveChanged, [=](CrimeMotiveSPtr m) { m_participant->setMotive(m); });
     connect(m_job, &JobComboBox::currentJobChanged, [=](JobSPtr j) { m_participant->setJob(j); });
     connect(m_mentalDisease, &MentalDiseaseComboBox::currentMentalDiseaseChanged, [=](MentalDiseaseSPtr s) { m_participant->setMentalDisease(s); });
+    connect(m_modusOperandi, &ModusOperandiComboBox::currentModusOperandiChanged, [=](ModusOperandiSPtr m) { m_participant->setModusOperandi(m); });
     connect(m_name, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setName(v); });
     connect(m_ageInYears, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setAgeInYears(v.toInt()); });
     connect(m_description, &QTextEdit::textChanged, [=]() { m_participant->setDescription(m_description->toPlainText()); });

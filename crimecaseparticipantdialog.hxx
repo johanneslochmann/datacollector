@@ -16,6 +16,7 @@ class CrimeTypeComboBox;
 class JobComboBox;
 class CrimeMotiveComboBox;
 class MentalDiseaseComboBox;
+class ModusOperandiComboBox;
 
 class CrimeCaseParticipantDialog : public QDialog
 {
@@ -28,6 +29,8 @@ public slots:
     void accept();
 
 private:
+    void createDataWidgets();
+
     CrimeCaseParticipantSPtr m_participant;
 
     QGroupBox* m_b;
@@ -38,10 +41,10 @@ private:
     CrimeMotiveComboBox* m_motive;
     CrimeTypeComboBox* m_crimeType;
     MentalDiseaseComboBox* m_mentalDisease;
+    ModusOperandiComboBox* m_modusOperandi;
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;
     QTextEdit* m_description;
 
     QDialogButtonBox* m_bb;
-    void createDataWidgets();
 };

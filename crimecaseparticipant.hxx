@@ -8,6 +8,7 @@
 #include "job.hxx"
 #include "crimemotive.hxx"
 #include "mentaldisease.hxx"
+#include "modusoperandi.hxx"
 
 class CrimeCase;
 
@@ -32,6 +33,7 @@ public:
     JobSPtr job() const;
     CrimeMotiveSPtr motive() const;
     MentalDiseaseSPtr mentalDisease() const;
+    ModusOperandiSPtr modusOperandi() const;
 
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
     void setName(const QString &name);
@@ -43,6 +45,7 @@ public:
     void setJob(const JobSPtr &job);
     void setMotive(const CrimeMotiveSPtr &motive);
     void setMentalDisease(const MentalDiseaseSPtr &mentalDisease);
+    void setModusOperandi(const ModusOperandiSPtr &modusOperandi);
 
 private:
     CrimeCaseSPtr m_crimeCase;
@@ -57,6 +60,7 @@ private:
     JobSPtr m_job { std::make_shared<Job>() };
     CrimeMotiveSPtr m_motive { std::make_shared<CrimeMotive>() };
     MentalDiseaseSPtr m_mentalDisease { std::make_shared<MentalDisease>() };
+    ModusOperandiSPtr m_modusOperandi { std::make_shared<ModusOperandi>() };
 };
 
 /*
@@ -72,9 +76,9 @@ crime_case_party_role_id	integer not null references forensics.crime_case_party_
   crime_type_id			integer references forensics.crime_type default null,
   mental_disease_id		integer references forensics.mental_disease,
   crime_motive_id		integer references forensics.crime_motive,
+  modus_operandi_id		integer references forensics.modus_operandi,
 
   has_precedent_convictions	boolean not null default false,
-  modus_operandi_id		integer references forensics.modus_operandi,
   consultancy_result_id		integer references forensics.consultancy_result,
   weapon_id			integer references forensics.weapon,
 );*/
