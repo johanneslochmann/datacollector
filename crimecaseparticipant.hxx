@@ -9,6 +9,7 @@
 #include "crimemotive.hxx"
 #include "mentaldisease.hxx"
 #include "modusoperandi.hxx"
+#include "weapon.hxx"
 
 class CrimeCase;
 
@@ -34,6 +35,7 @@ public:
     CrimeMotiveSPtr motive() const;
     MentalDiseaseSPtr mentalDisease() const;
     ModusOperandiSPtr modusOperandi() const;
+    WeaponSPtr weapon() const;
 
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
     void setName(const QString &name);
@@ -46,6 +48,7 @@ public:
     void setMotive(const CrimeMotiveSPtr &motive);
     void setMentalDisease(const MentalDiseaseSPtr &mentalDisease);
     void setModusOperandi(const ModusOperandiSPtr &modusOperandi);
+    void setWeapon(const WeaponSPtr &weapon);
 
 private:
     CrimeCaseSPtr m_crimeCase;
@@ -61,6 +64,7 @@ private:
     CrimeMotiveSPtr m_motive { std::make_shared<CrimeMotive>() };
     MentalDiseaseSPtr m_mentalDisease { std::make_shared<MentalDisease>() };
     ModusOperandiSPtr m_modusOperandi { std::make_shared<ModusOperandi>() };
+    WeaponSPtr m_weapon { std::make_shared<Weapon>() };
 };
 
 /*

@@ -116,3 +116,13 @@ void CrimeCaseParticipant::setModusOperandi(const ModusOperandiSPtr &modusOperan
 {
     m_modusOperandi = modusOperandi;
 }
+
+WeaponSPtr CrimeCaseParticipant::weapon() const
+{
+    return m_weapon;
+}
+
+void CrimeCaseParticipant::setWeapon(const WeaponSPtr &weapon)
+{
+    m_weapon = weapon;
+}

@@ -149,7 +149,10 @@ SOURCES += main.cxx\
     mentaldiseasecombobox.cxx \
     modusoperandi.cxx \
     modusoperandigateway.cxx \
-    modusoperandicombobox.cxx
+    modusoperandicombobox.cxx \
+    weapon.cxx \
+    weapongateway.cxx \
+    weaponcombobox.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -294,7 +297,10 @@ HEADERS  += mainwindow.hxx \
     mentaldiseasecombobox.hxx \
     modusoperandi.hxx \
     modusoperandigateway.hxx \
-    modusoperandicombobox.hxx
+    modusoperandicombobox.hxx \
+    weapon.hxx \
+    weapongateway.hxx \
+    weaponcombobox.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
