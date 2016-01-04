@@ -35,8 +35,7 @@ private:
     QStringList m_headerLabels;
     int m_participantRoleCol { 0 };
     int m_crimeTypeCol { m_participantRoleCol + 1 };
-    int m_modusOperandiCol { m_crimeTypeCol + 1 };
-    int m_nameCol { m_modusOperandiCol + 1 };
+    int m_nameCol { m_crimeTypeCol + 1 };
     int m_sexCol { m_nameCol + 1 };
     int m_ageCol { m_sexCol + 1 };
     int m_jobCol { m_ageCol + 1 };

@@ -14,7 +14,7 @@
 CrimeCaseParticipantTableWidget::CrimeCaseParticipantTableWidget(QWidget *p)
     : DataTableWidget(p)
 {
-    m_headerLabels << tr("Role") << tr("Crime Type") << tr("Modus Operandi") << tr("Name") << tr("Sex") << tr("Age")
+    m_headerLabels << tr("Role") << tr("Crime Type") << tr("Name") << tr("Sex") << tr("Age")
                    << tr("Job") << tr("ID");
 
     connect(this, &DataTableWidget::currentItemChanged, this, &CrimeCaseParticipantTableWidget::onActivated);
@@ -49,9 +49,6 @@ void CrimeCaseParticipantTableWidget::reload()
     int r=0;
 
     for (auto i : m_crimeCase->participants()) {
-        /*
-        int m_modusOperandiCol { m_crimeTypeCol + 1 };
-        */
         setItem(r, m_participantRoleCol, new QTableWidgetItem(format(i->role())));
         setItem(r, m_nameCol, new QTableWidgetItem(i->name()));
         setItem(r, m_idCol, new QTableWidgetItem(QString("%1").arg(i->id())));
