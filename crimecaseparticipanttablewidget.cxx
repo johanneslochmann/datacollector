@@ -50,7 +50,6 @@ void CrimeCaseParticipantTableWidget::reload()
 
     for (auto i : m_crimeCase->participants()) {
         /*
-        int m_crimeTypeCol { m_participantRoleCol + 1 };
         int m_modusOperandiCol { m_crimeTypeCol + 1 };
         int m_professionCol { m_sexCol + 1 };
         */
@@ -59,6 +58,7 @@ void CrimeCaseParticipantTableWidget::reload()
         setItem(r, m_idCol, new QTableWidgetItem(QString("%1").arg(i->id())));
         setItem(r, m_ageCol, new QTableWidgetItem(QString("%1").arg(i->ageInYears())));
         setItem(r, m_sexCol, new QTableWidgetItem(format(i->sex())));
+        setItem(r, m_crimeTypeCol, new QTableWidgetItem(format(i->crimeType())));
 
         r++;
     }
@@ -154,5 +154,10 @@ QString CrimeCaseParticipantTableWidget::format(CrimeCasePartyRoleSPtr r) const
 QString CrimeCaseParticipantTableWidget::format(SexSPtr s) const
 {
     return s->name();
+}
+
+QString CrimeCaseParticipantTableWidget::format(CrimeTypeSPtr t) const
+{
+    return t->name();
 }
 

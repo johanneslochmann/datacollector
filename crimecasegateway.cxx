@@ -4,6 +4,7 @@
 
 #include "housingtypegateway.hxx"
 #include "citygateway.hxx"
+#include "crimetypegateway.hxx"
 
 CrimeCaseGateway::CrimeCaseGateway()
 {
@@ -89,7 +90,8 @@ void CrimeCaseGateway::insert(CrimeCaseSPtr c)
 {
     auto q = DataCollector::get()->prepareQuery("insert into forensics.crime_case "
                                                 "(name, city_id, housing_type_id, crime_year, crime_date, crime_time, description) "
-                                                "values (:name, :city_id, :housing_type_id, :crime_year, :crime_date, :crime_time, :description) "
+                                                "values (:name, :city_id, :housing_type_id, :crime_year, :crime_date, :crime_time, :description, "
+                                                ":crime_type_id) "
                                                 "returning id;");
     q.bindValue(":name", c->name());
     q.bindValue(":city_id", (c->city()->id() > 0) ? QVariant(c->city()->id()) : QVariant(QVariant::Int));

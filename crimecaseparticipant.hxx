@@ -4,6 +4,7 @@
 
 #include "crimecasepartyrole.hxx"
 #include "sex.hxx"
+#include "crimetype.hxx"
 
 class CrimeCase;
 
@@ -24,6 +25,7 @@ public:
     QString description() const;
     CrimeCasePartyRoleSPtr role() const;
     SexSPtr sex() const;
+    CrimeTypeSPtr crimeType() const;
 
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
     void setName(const QString &name);
@@ -31,6 +33,7 @@ public:
     void setDescription(const QString &description);
     void setRole(const CrimeCasePartyRoleSPtr &role);
     void setSex(const SexSPtr &sex);
+    void setCrimeType(const CrimeTypeSPtr &crimeType);
 
 private:
     CrimeCaseSPtr m_crimeCase;
@@ -41,6 +44,7 @@ private:
 
     CrimeCasePartyRoleSPtr m_role { std::make_shared<CrimeCasePartyRole>() };
     SexSPtr m_sex { std::make_shared<Sex>() };
+    CrimeTypeSPtr m_crimeType { std::make_shared<CrimeType>() };
 };
 
 /*

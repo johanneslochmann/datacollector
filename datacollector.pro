@@ -134,7 +134,10 @@ SOURCES += main.cxx\
     crimecaseparticipantdialog.cxx \
     crimecasepartyrole.cxx \
     crimecasepartyrolegateway.cxx \
-    crimecasepartyrolecombobox.cxx
+    crimecasepartyrolecombobox.cxx \
+    crimetype.cxx \
+    crimetypegateway.cxx \
+    crimetypecombobox.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -264,7 +267,10 @@ HEADERS  += mainwindow.hxx \
     crimecaseparticipantdialog.hxx \
     crimecasepartyrole.hxx \
     crimecasepartyrolegateway.hxx \
-    crimecasepartyrolecombobox.hxx
+    crimecasepartyrolecombobox.hxx \
+    crimetype.hxx \
+    crimetypegateway.hxx \
+    crimetypecombobox.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

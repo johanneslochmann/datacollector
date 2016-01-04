@@ -11,6 +11,7 @@ class QTextEdit;
 class CrimeCaseComboBox;
 class CrimeCasePartyRoleComboBox;
 class SexComboBox;
+class CrimeTypeComboBox;
 
 class CrimeCaseParticipantDialog : public QDialog
 {
@@ -28,6 +29,7 @@ private:
     CrimeCaseComboBox* m_crimeCase;
     CrimeCasePartyRoleComboBox* m_role;
     SexComboBox* m_sex;
+    CrimeTypeComboBox* m_crimeType;
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;
     QTextEdit* m_description;

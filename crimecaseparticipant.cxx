@@ -66,3 +66,13 @@ void CrimeCaseParticipant::setSex(const SexSPtr &sex)
 {
     m_sex = sex;
 }
+
+CrimeTypeSPtr CrimeCaseParticipant::crimeType() const
+{
+    return m_crimeType;
+}
+
+void CrimeCaseParticipant::setCrimeType(const CrimeTypeSPtr &crimeType)
+{
+    m_crimeType = crimeType;
+}
