@@ -9,6 +9,7 @@
 #include "actionenabledifnotconnectedtodatabase.hxx"
 #include "databaseconnectiondatadialog.hxx"
 #include "databaseerror.hxx"
+#include "aboutdatacollectordialog.hxx"
 
 DataCollector *DataCollector::get()
 {
@@ -195,7 +196,8 @@ void DataCollector::pingDatabase()
 
 void DataCollector::aboutProgram()
 {
-
+    auto dlg = new AboutDataCollectorDialog(activeWindow());
+    dlg->exec();
 }
 
 void DataCollector::initActions()

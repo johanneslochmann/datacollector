@@ -159,7 +159,8 @@ SOURCES += main.cxx\
     processingstatus.cxx \
     processingstatusgateway.cxx \
     processingstatuscombobox.cxx \
-    processingstatusmanagementwidget.cxx
+    processingstatusmanagementwidget.cxx \
+    aboutdatacollectordialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -314,7 +315,8 @@ HEADERS  += mainwindow.hxx \
     processingstatus.hxx \
     processingstatusgateway.hxx \
     processingstatuscombobox.hxx \
-    processingstatusmanagementwidget.hxx
+    processingstatusmanagementwidget.hxx \
+    aboutdatacollectordialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
@@ -331,7 +333,8 @@ FORMS += \
     gafdialog.ui \
     fpsdialog.ui \
     whoqoldialog.ui \
-    agateform.ui
+    agateform.ui \
+    aboutdatacollectordialog.ui
 
 DISTFILES += \
     database/forschung.backup
