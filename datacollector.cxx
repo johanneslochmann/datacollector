@@ -279,8 +279,8 @@ void DataCollector::initActions()
     m_manageAgateData = new ActionEnabledIfConnectedToDatabase(tr("Manage Agate Data"), this);
     connect(m_manageAgateData, &QAction::triggered, this, &DataCollector::manageAgateData);
 
-    m_showCoreStatistics = new ActionEnabledIfConnectedToDatabase(tr("Show Core Statistics"), this);
-    connect(m_showCoreStatistics, &QAction::triggered, this, &DataCollector::showCoreStatistics);
+    m_showAllStatistics = new ActionEnabledIfConnectedToDatabase(tr("Show All Statistics"), this);
+    connect(m_showAllStatistics, &QAction::triggered, this, &DataCollector::showAllStatistics);
 
     m_manageCountries = new ActionEnabledIfConnectedToDatabase(tr("Countries"), this);
     connect(m_manageCountries, &QAction::triggered, this, &DataCollector::manageCountries);

@@ -179,7 +179,7 @@ void MainWindow::createCriminologyMenu(DataCollector *app)
 void MainWindow::createStatisticsMenu(DataCollector* app)
 {
     m_statisticsM = new QMenu(tr("&Statistics"), this);
-    m_statisticsM->addAction(app->showCoreStatisticsAction());
+    m_statisticsM->addAction(app->showAllStatisticsAction());
 }
 
 void MainWindow::createHelpMenu(DataCollector* app)

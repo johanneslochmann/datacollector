@@ -62,7 +62,7 @@ public:
     QAction* manageSurveyDataAction() const { return m_manageSurveyData; }
     QAction* manageAgateDataAction() const { return m_manageAgateData; }
 
-    QAction* showCoreStatisticsAction() const { return m_showCoreStatistics; }
+    QAction* showAllStatisticsAction() const { return m_showAllStatistics; }
 
     QSqlQuery prepareAndPerformQuery(const QString& sql, bool createTransaction);
     QSqlQuery prepareQuery(const QString& sql);
@@ -118,7 +118,7 @@ signals:
 
     void manageSurveyData();
     void manageAgateData();
-    void showCoreStatistics();
+    void showAllStatistics();
 
 public slots:
     void openDatabase();
@@ -171,5 +171,5 @@ private:
 
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;
-    QAction* m_showCoreStatistics;
+    QAction* m_showAllStatistics;
 };

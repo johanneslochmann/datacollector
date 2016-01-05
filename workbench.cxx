@@ -157,7 +157,7 @@ Workbench::Workbench(QWidget *parent)
     connect(app, &DataCollector::manageAgateData, this, &Workbench::manageAgateData);
     connect(app, &DataCollector::manageSurveyData, this, &Workbench::manageSurveyData);
 
-    connect(app, &DataCollector::showCoreStatistics, this, &Workbench::showCoreStatistics);
+    connect(app, &DataCollector::showAllStatistics, this, &Workbench::showCoreStatistics);
 
     setCurrentWidget(m_agateData);
 }
