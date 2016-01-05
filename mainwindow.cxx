@@ -44,81 +44,177 @@ void MainWindow::databaseUnavailable()
 {
 }
 
+void MainWindow::createFileMenu(DataCollector *app)
+{
+    m_fileM = new QMenu(tr("&File"), this);
+    m_fileM->addAction(app->quitAction());
+}
+
+void MainWindow::createDatabaseMenu(DataCollector *app)
+{
+    m_databaseM = new QMenu(tr("&Database"), this);
+    m_databaseM->addAction(app->openDatabaseAction());
+    m_databaseM->addAction(app->closeDatabaseAction());
+    m_databaseM->addSeparator();
+    m_databaseM->addAction(app->pingDatabaseAction());
+}
+
+void MainWindow::createAdminMenu(DataCollector *app)
+{
+    m_adminM = new QMenu(tr("&Administration"), this);
+    m_adminM->addAction(app->manageProbandsAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageProjectsAction());
+    m_adminM->addAction(app->manageCampaignsAction());
+    m_adminM->addAction(app->manageInformationSourceTypesAction());
+    m_adminM->addAction(app->manageJobsAction());
+    m_adminM->addAction(app->manageProcessingStatesAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageOrganizationUnitsAction());
+    m_adminM->addAction(app->manageIcd10DiagnosisAction());
+    m_adminM->addAction(app->manageCollateralEffectsAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageChannelsIntoPatientAction());
+    m_adminM->addAction(app->manageDrugAdministrationMethodsAction());
+    m_adminM->addAction(app->manageMoleculeClassesAction());
+    m_adminM->addAction(app->manageMoleculesAction());
+    m_adminM->addAction(app->manageDrugsAction());
+    m_adminM->addAction(app->managePrescribeableDrugsAction());
+    m_adminM->addAction(app->managePrescribeableDrugsCompositionAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageSexesAction());
+    m_adminM->addAction(app->manageUnitsAction());
+    m_adminM->addAction(app->manageAgeClassesAction());
+    m_adminM->addAction(app->manageSmokingHabitsAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageCountriesAction());
+    m_adminM->addAction(app->manageCitiesAction());
+    m_adminM->addAction(app->manageHousingTypesAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageCrimeCasesAction());
+    m_adminM->addAction(app->manageWeaponTypesAction());
+    m_adminM->addAction(app->manageWeaponsAction());
+    m_adminM->addAction(app->manageModusOperandiAction());
+    m_adminM->addAction(app->manageCrimeTypesAction());
+    m_adminM->addAction(app->manageCrimeCasePartyRolesAction());
+    m_adminM->addAction(app->manageCrimeMotivesAction());
+    m_adminM->addAction(app->manageMentalDiseasesAction());
+    m_adminM->addAction(app->manageConsultancyResultsAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageSurveysAction());
+    m_adminM->addSeparator();
+    m_adminM->addAction(app->manageSurveyDataAction());
+}
+
+void MainWindow::createProjectMenu(DataCollector *app)
+{
+    m_projectM = new QMenu(tr("&Projects"), this);
+    m_projectM->addAction(app->manageProjectsAction());
+    m_projectM->addAction(app->manageCampaignsAction());
+    m_projectM->addAction(app->manageProcessingStatesAction());
+}
+
+void MainWindow::createPharmacologyMenu(DataCollector *app)
+{
+    m_pharmacologyM = new QMenu(tr("Ph&armacology"), this);
+    m_pharmacologyM->addAction(app->manageChannelsIntoPatientAction());
+    m_pharmacologyM->addAction(app->manageDrugAdministrationMethodsAction());
+    m_pharmacologyM->addAction(app->manageMoleculeClassesAction());
+    m_pharmacologyM->addAction(app->manageMoleculesAction());
+    m_pharmacologyM->addAction(app->manageDrugsAction());
+    m_pharmacologyM->addAction(app->managePrescribeableDrugsAction());
+    m_pharmacologyM->addAction(app->managePrescribeableDrugsCompositionAction());
+    m_pharmacologyM->addAction(app->manageSmokingHabitsAction());
+}
+
+void MainWindow::createAgateMenu(DataCollector *app)
+{
+    m_agateM = new QMenu(tr("&AGATE"), this);
+    m_agateM->addAction(app->manageAgateDataAction());
+    m_agateM->addSeparator();
+    m_agateM->addAction(app->manageProjectsAction());
+    m_agateM->addAction(app->manageCampaignsAction());
+    m_agateM->addSeparator();
+    m_agateM->addAction(app->manageOrganizationUnitsAction());
+    m_agateM->addAction(app->manageIcd10DiagnosisAction());
+    m_agateM->addSeparator();
+    m_agateM->addAction(app->manageChannelsIntoPatientAction());
+    m_agateM->addAction(app->manageDrugAdministrationMethodsAction());
+    m_agateM->addAction(app->manageMoleculeClassesAction());
+    m_agateM->addAction(app->manageMoleculesAction());
+    m_agateM->addAction(app->manageDrugsAction());
+    m_agateM->addAction(app->managePrescribeableDrugsAction());
+    m_agateM->addAction(app->managePrescribeableDrugsCompositionAction());
+    m_agateM->addSeparator();
+    m_agateM->addAction(app->manageSexesAction());
+    m_agateM->addAction(app->manageUnitsAction());
+    m_agateM->addAction(app->manageAgeClassesAction());
+    m_agateM->addSeparator();
+}
+
+void MainWindow::createCriminologyMenu(DataCollector *app)
+{
+    m_criminologyM = new QMenu(tr("&Criminology"), this);
+
+    m_criminologyM->addSeparator();
+    m_criminologyM->addAction(app->manageCrimeCasesAction());
+    m_criminologyM->addSeparator();
+    m_criminologyM->addAction(app->manageInformationSourceTypesAction());
+    m_criminologyM->addAction(app->manageJobsAction());
+    m_criminologyM->addAction(app->manageProcessingStatesAction());
+    m_criminologyM->addAction(app->manageSexesAction());
+    m_criminologyM->addAction(app->manageCountriesAction());
+    m_criminologyM->addAction(app->manageCitiesAction());
+    m_criminologyM->addAction(app->manageHousingTypesAction());
+    m_criminologyM->addAction(app->manageWeaponTypesAction());
+    m_criminologyM->addAction(app->manageWeaponsAction());
+    m_criminologyM->addAction(app->manageModusOperandiAction());
+    m_criminologyM->addAction(app->manageCrimeTypesAction());
+    m_criminologyM->addAction(app->manageCrimeCasePartyRolesAction());
+    m_criminologyM->addAction(app->manageCrimeMotivesAction());
+    m_criminologyM->addAction(app->manageMentalDiseasesAction());
+    m_criminologyM->addAction(app->manageConsultancyResultsAction());
+}
+
+void MainWindow::createStatisticsMenu(DataCollector* app)
+{
+    m_statisticsM = new QMenu(tr("&Statistics"), this);
+    m_statisticsM->addAction(app->showCoreStatisticsAction());
+}
+
+void MainWindow::createHelpMenu(DataCollector* app)
+{
+    m_helpM = new QMenu(tr("&Help"), this);
+    m_helpM->addAction(app->aboutProgramAction());
+    m_helpM->addSeparator();
+    m_helpM->addAction(app->aboutQtAction());
+}
+
 void MainWindow::initMenues()
 {
     auto app = DataCollector::get();
 
-    QMenu* file = new QMenu(tr("&File"), this);
-    file->addAction(app->quitAction());
+    createFileMenu(app);
+    createDatabaseMenu(app);
+    createAdminMenu(app);
+    createProjectMenu(app);
+    createPharmacologyMenu(app);
+    createAgateMenu(app);
+    createStatisticsMenu(app);
+    createCriminologyMenu(app);
+    createAgateMenu(app);
+    createHelpMenu(app);
 
-    QMenu* db = new QMenu(tr("&Database"), this);
-    db->addAction(app->openDatabaseAction());
-    db->addAction(app->closeDatabaseAction());
-    db->addSeparator();
-    db->addAction(app->pingDatabaseAction());
-
-    QMenu* coreData = new QMenu(tr("&Core Data"), this);
-    coreData->addAction(app->manageProbandsAction());
-    coreData->addSeparator();
-    coreData->addAction(app->manageProjectsAction());
-    coreData->addAction(app->manageCampaignsAction());
-    coreData->addAction(app->manageInformationSourceTypesAction());
-    coreData->addAction(app->manageJobsAction());
-    coreData->addAction(app->manageProcessingStatesAction());
-    coreData->addSeparator();
-    coreData->addAction(app->manageOrganizationUnitsAction());
-    coreData->addAction(app->manageIcd10DiagnosisAction());
-    coreData->addAction(app->manageCollateralEffectsAction());
-    coreData->addSeparator();
-    coreData->addAction(app->manageChannelsIntoPatientAction());
-    coreData->addAction(app->manageDrugAdministrationMethodsAction());
-    coreData->addAction(app->manageMoleculeClassesAction());
-    coreData->addAction(app->manageMoleculesAction());
-    coreData->addAction(app->manageDrugsAction());
-    coreData->addAction(app->managePrescribeableDrugsAction());
-    coreData->addAction(app->managePrescribeableDrugsCompositionAction());
-    coreData->addSeparator();
-    coreData->addAction(app->manageSexesAction());
-    coreData->addAction(app->manageUnitsAction());
-    coreData->addAction(app->manageAgeClassesAction());
-    coreData->addAction(app->manageSmokingHabitsAction());
-    coreData->addSeparator();
-    coreData->addAction(app->manageCountriesAction());
-    coreData->addAction(app->manageCitiesAction());
-    coreData->addAction(app->manageHousingTypesAction());
-    coreData->addSeparator();
-    coreData->addAction(app->manageCrimeCasesAction());
-    coreData->addAction(app->manageWeaponTypesAction());
-    coreData->addAction(app->manageWeaponsAction());
-    coreData->addAction(app->manageModusOperandiAction());
-    coreData->addAction(app->manageCrimeTypesAction());
-    coreData->addAction(app->manageCrimeCasePartyRolesAction());
-    coreData->addAction(app->manageCrimeMotivesAction());
-    coreData->addAction(app->manageMentalDiseasesAction());
-    coreData->addAction(app->manageConsultancyResultsAction());
-    coreData->addSeparator();
-    coreData->addAction(app->manageSurveysAction());
-
-    QMenu* dataEntry = new QMenu(tr("&Surveys"), this);
-    dataEntry->addAction(app->manageAgateDataAction());
-    dataEntry->addSeparator();
-    dataEntry->addAction(app->manageSurveyDataAction());
-
-    QMenu* stat = new QMenu(tr("&Statistics"), this);
-    stat->addAction(app->showCoreStatisticsAction());
-
-    QMenu* help = new QMenu(tr("&Help"), this);
-    help->addAction(app->aboutProgramAction());
-    help->addSeparator();
-    help->addAction(app->aboutQtAction());
-
-    menuBar()->addMenu(file);
-    menuBar()->addMenu(db);
-    menuBar()->addMenu(coreData);
-    menuBar()->addMenu(dataEntry);
-    menuBar()->addMenu(stat);
+    menuBar()->addMenu(m_fileM);
+    menuBar()->addMenu(m_databaseM);
+    menuBar()->addMenu(m_adminM);
+    menuBar()->addMenu(m_projectM);
+    menuBar()->addMenu(m_pharmacologyM);
+    menuBar()->addMenu(m_criminologyM);
+    menuBar()->addMenu(m_agateM);
+    menuBar()->addMenu(m_statisticsM);
     menuBar()->addSeparator();
-    menuBar()->addMenu(help);
+    menuBar()->addMenu(m_helpM);
 }
 
 void MainWindow::initStatusBar()
