@@ -50,6 +50,7 @@ private:
     QCheckBox* m_hasPreviousConvictions;
     QCheckBox* m_isAlcoholIntoxicated;
     QCheckBox* m_isDrugIntoxicated;
+    QCheckBox* m_legallyOwnsWeapon;
 
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;

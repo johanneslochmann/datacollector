@@ -166,3 +166,13 @@ void CrimeCaseParticipant::setIsAlcoholIntoxicated(bool isAlcoholIntoxicated)
 {
     m_isAlcoholIntoxicated = isAlcoholIntoxicated;
 }
+
+bool CrimeCaseParticipant::legallyOwnsWeapon() const
+{
+    return m_legallyOwnsWeapon;
+}
+
+void CrimeCaseParticipant::setLegallyOwnsWeapon(bool legallyOwnsWeapon)
+{
+    m_legallyOwnsWeapon = legallyOwnsWeapon;
+}

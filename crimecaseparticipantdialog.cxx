@@ -69,6 +69,7 @@ void CrimeCaseParticipantDialog::createDataWidgets()
         m_modusOperandi->setCurrentText(m_participant->modusOperandi()->name());
     }
 
+    m_legallyOwnsWeapon = new QCheckBox(tr("Owns Weapon &Legally"));
     m_weapon = new WeaponComboBox(m_b);
     if (m_participant->weapon()->id() > 0) {
         m_weapon->setCurrentText(m_participant->weapon()->name());
@@ -109,6 +110,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     l->addRow(tr("Crime &Type"), m_crimeType);
     l->addRow(tr("&Motive"), m_motive);
     l->addRow(tr("Modus &Operandi"), m_modusOperandi);
+    l->addRow(nullptr, m_legallyOwnsWeapon);
     l->addRow(tr("&Weapon"), m_weapon);
     l->addRow(tr("Mental Dis&ease"), m_mentalDisease);
     l->addRow(tr("Consultancy &Result"), m_consultancyResult);
@@ -137,6 +139,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     connect(m_hasPreviousConvictions, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setHasPrecedentConvictions(isChecked); });
     connect(m_isAlcoholIntoxicated, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setIsAlcoholIntoxicated(isChecked); });
     connect(m_isDrugIntoxicated, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setIsDrugIntoxicated(isChecked); });
+    connect(m_legallyOwnsWeapon, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setLegallyOwnsWeapon(isChecked); });
     connect(m_description, &QPlainTextEdit::textChanged, [=]() { m_participant->setDescription(m_description->toPlainText()); });
 
     connect(m_bb, &QDialogButtonBox::accepted, this, &CrimeCaseParticipantDialog::accept);
