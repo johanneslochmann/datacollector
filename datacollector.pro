@@ -160,7 +160,8 @@ SOURCES += main.cxx\
     processingstatusgateway.cxx \
     processingstatuscombobox.cxx \
     processingstatusmanagementwidget.cxx \
-    aboutdatacollectordialog.cxx
+    aboutdatacollectordialog.cxx \
+    settingsdialog.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -316,7 +317,8 @@ HEADERS  += mainwindow.hxx \
     processingstatusgateway.hxx \
     processingstatuscombobox.hxx \
     processingstatusmanagementwidget.hxx \
-    aboutdatacollectordialog.hxx
+    aboutdatacollectordialog.hxx \
+    settingsdialog.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \
