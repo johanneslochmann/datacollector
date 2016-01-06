@@ -86,6 +86,7 @@ void CrimeCaseParticipantDialog::createDataWidgets()
     m_isAlcoholIntoxicated->setChecked(m_participant->isAlcoholIntoxicated());
     m_isDrugIntoxicated = new QCheckBox(tr("Is Drug Intoxicated"), m_b);
     m_isDrugIntoxicated->setChecked(m_participant->isDrugIntoxicated());
+    m_legallyOwnsWeapon->setChecked(m_participant->legallyOwnsWeapon());
 
     m_description = new QPlainTextEdit(m_participant->description(), m_b);
 }
