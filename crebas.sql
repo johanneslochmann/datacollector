@@ -1604,7 +1604,8 @@ CREATE TABLE crime_case_participant (
     job_id integer,
     is_drug_intoxicated boolean DEFAULT false,
     is_alcohol_intoxicated boolean DEFAULT false,
-    legally_owns_weapon boolean DEFAULT false NOT NULL
+    legally_owns_weapon boolean DEFAULT false NOT NULL,
+    has_long_conflict_history boolean DEFAULT false NOT NULL
 );
 
 
@@ -2289,6 +2290,81 @@ ALTER TABLE crime_case_party_overview OWNER TO jolo;
 --
 
 COMMENT ON VIEW crime_case_party_overview IS 'overview of all parties involved in crime cases';
+
+
+--
+-- Name: opfer_per_crime_case_count; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW opfer_per_crime_case_count AS
+ SELECT cc.id AS crime_case_id,
+    cc.name AS crime_case,
+    count(1) AS count
+   FROM ((forensics.crime_case cc
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  WHERE (ccpr.name = 'Opfer'::text)
+  GROUP BY cc.id, cc.name
+  ORDER BY cc.id, cc.name, count(1);
+
+
+ALTER TABLE opfer_per_crime_case_count OWNER TO jolo;
+
+--
+-- Name: VIEW opfer_per_crime_case_count; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW opfer_per_crime_case_count IS 'count parties with role <Opfer> involved in crime case';
+
+
+--
+-- Name: parties_by_role_count; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW parties_by_role_count AS
+ SELECT cc.id AS crime_case_id,
+    cc.name AS crime_case,
+    ccpr.name AS crime_case_party_role,
+    count(1) AS count
+   FROM ((forensics.crime_case cc
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  GROUP BY cc.id, cc.name, ccpr.name
+  ORDER BY cc.id, cc.name, ccpr.name;
+
+
+ALTER TABLE parties_by_role_count OWNER TO jolo;
+
+--
+-- Name: VIEW parties_by_role_count; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW parties_by_role_count IS 'count parties with their role involved in crime case';
+
+
+--
+-- Name: taeter_per_crime_case_count; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW taeter_per_crime_case_count AS
+ SELECT cc.id AS crime_case_id,
+    cc.name AS crime_case,
+    count(1) AS count
+   FROM ((forensics.crime_case cc
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  WHERE (ccpr.name = 'Täter'::text)
+  GROUP BY cc.id, cc.name
+  ORDER BY cc.id, cc.name, count(1);
+
+
+ALTER TABLE taeter_per_crime_case_count OWNER TO jolo;
+
+--
+-- Name: VIEW taeter_per_crime_case_count; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW taeter_per_crime_case_count IS 'count parties with role <Täter> involved in crime case';
 
 
 SET search_path = geo, pg_catalog;
