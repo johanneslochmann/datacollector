@@ -20,6 +20,12 @@ void Settings::save(const DatabaseConnectionData &cd)
     s.setValue("UserName", cd.userName());
 }
 
+void Settings::save(const QString &translationFileName)
+{
+    QSettings s;
+    s.setValue("TranslationFileName", translationFileName);
+}
+
 DatabaseConnectionData Settings::loadDatabaseConnectionData()
 {
     QSettings s;
@@ -33,5 +39,11 @@ DatabaseConnectionData Settings::loadDatabaseConnectionData()
     cd.setUserName(s.value("UserName", defaultDatabaseUserName).toString());
 
     return cd;
+}
+
+QString Settings::translationFileName()
+{
+    QSettings s;
+    return s.value("TranslationFileName").toString();
 }
 
