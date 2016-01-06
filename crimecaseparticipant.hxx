@@ -73,23 +73,3 @@ private:
     WeaponSPtr m_weapon { std::make_shared<Weapon>() };
     ConsultancyResultSPtr m_consultancyResult { std::make_shared<ConsultancyResult>() };
 };
-
-/*
-CREATE TABLE forensics.crime_case_participant
-(
-  name      text
-    id 				serial NOT NULL primary key,
-  age_in_years			integer default null,
-  description 			text NOT NULL DEFAULT ''::text
-  crime_case_id			integer not null references forensics.crime_case,
-  sex_id			integer references core.sex default null,
-crime_case_party_role_id	integer not null references forensics.crime_case_party_role,
-  crime_type_id			integer references forensics.crime_type default null,
-  mental_disease_id		integer references forensics.mental_disease,
-  crime_motive_id		integer references forensics.crime_motive,
-  modus_operandi_id		integer references forensics.modus_operandi,
-  consultancy_result_id		integer references forensics.consultancy_result,
-  weapon_id			integer references forensics.weapon,
-
-  has_precedent_convictions	boolean not null default false,
-);*/
