@@ -156,7 +156,7 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
                                                 "consultancy_result_id = :consultancy_result_id, "
                                                 "has_precedent_convictions = :has_precedent_convictions, "
                                                 "is_alcohol_intoxicated = :is_alcohol_intoxicated, "
-                                                "is_drug_intoxicated = :is_drug_intoxicated, "
+                                                "is_drug_intoxicated = :is_drug_intoxicated "
                                                 "where id = :id;");
 
     q.bindValue(":id", c->id());
