@@ -22,6 +22,8 @@
 CrimeCaseDialog::CrimeCaseDialog(QWidget *p, CrimeCaseSPtr d)
     : QDialog(p), m_crimeCase(d)
 {
+    showFullScreen();
+
     setLayout(new QVBoxLayout(this));
 
     createWidgets();

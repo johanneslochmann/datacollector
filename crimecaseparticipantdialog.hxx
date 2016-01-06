@@ -8,6 +8,7 @@ class QDialogButtonBox;
 class QLineEdit;
 class QTextEdit;
 class QGroupBox;
+class QCheckBox;
 
 class CrimeCaseComboBox;
 class CrimeCasePartyRoleComboBox;
@@ -46,6 +47,7 @@ private:
     ModusOperandiComboBox* m_modusOperandi;
     WeaponComboBox* m_weapon;
     ConsultancyResultComboBox* m_consultancyResult;
+    QCheckBox* m_hasPreviousConvictions;
 
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;

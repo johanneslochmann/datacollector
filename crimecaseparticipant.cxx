@@ -136,3 +136,13 @@ void CrimeCaseParticipant::setConsultancyResult(const ConsultancyResultSPtr &con
 {
     m_consultancyResult = consultancyResult;
 }
+
+bool CrimeCaseParticipant::hasPrecedentConvictions() const
+{
+    return m_hasPrecedentConvictions;
+}
+
+void CrimeCaseParticipant::setHasPrecedentConvictions(bool value)
+{
+    m_hasPrecedentConvictions = value;
+}

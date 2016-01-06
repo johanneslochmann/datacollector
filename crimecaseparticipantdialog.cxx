@@ -7,6 +7,7 @@
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QIntValidator>
+#include <QCheckBox>
 
 #include "datacollector.hxx"
 #include "crimecasecombobox.hxx"
@@ -78,6 +79,9 @@ void CrimeCaseParticipantDialog::createDataWidgets()
         m_consultancyResult->setCurrentText(m_participant->consultancyResult()->name());
     }
 
+    m_hasPreviousConvictions = new QCheckBox(tr("&Has Previous Convictions"), m_b);
+    m_hasPreviousConvictions->setChecked(m_participant->hasPrecedentConvictions());
+
     m_description = new QTextEdit(m_participant->description(), m_b);
 }
 
@@ -85,7 +89,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     : QDialog(p), m_participant(ccp)
 {
     setLayout(new QVBoxLayout(this));
-
+    
     m_b = new QGroupBox("Crime Case Party", this);
     auto l = new QFormLayout(m_b);
     m_b->setLayout(l);
@@ -104,6 +108,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     l->addRow(tr("&Weapon"), m_weapon);
     l->addRow(tr("Mental Dis&ease"), m_mentalDisease);
     l->addRow(tr("Consultancy &Result"), m_consultancyResult);
+    l->addRow(m_hasPreviousConvictions);
     l->addRow(tr("&Description"), m_description);
 
     m_bb = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
@@ -123,6 +128,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     connect(m_consultancyResult, &ConsultancyResultComboBox::currentConsultancyResultChanged, [=](ConsultancyResultSPtr r) { m_participant->setConsultancyResult(r); });
     connect(m_name, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setName(v); });
     connect(m_ageInYears, &QLineEdit::textChanged, [=](const QString& v) { m_participant->setAgeInYears(v.toInt()); });
+    connect(m_hasPreviousConvictions, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setHasPrecedentConvictions(isChecked); });
     connect(m_description, &QTextEdit::textChanged, [=]() { m_participant->setDescription(m_description->toPlainText()); });
 
     connect(m_bb, &QDialogButtonBox::accepted, this, &CrimeCaseParticipantDialog::accept);

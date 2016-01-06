@@ -38,6 +38,7 @@ public:
     ModusOperandiSPtr modusOperandi() const;
     WeaponSPtr weapon() const;
     ConsultancyResultSPtr consultancyResult() const;
+    bool hasPrecedentConvictions() const;
 
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
     void setName(const QString &name);
@@ -52,6 +53,7 @@ public:
     void setModusOperandi(const ModusOperandiSPtr &modusOperandi);
     void setWeapon(const WeaponSPtr &weapon);
     void setConsultancyResult(const ConsultancyResultSPtr &consultancyResult);
+    void setHasPrecedentConvictions(bool value);
 
 private:
     CrimeCaseSPtr m_crimeCase;
@@ -59,6 +61,7 @@ private:
     QString m_name { "" };
     int m_ageInYears { 0 };
     QString m_description { "" };
+    bool m_hasPrecedentConvictions { false };
 
     CrimeCasePartyRoleSPtr m_role { std::make_shared<CrimeCasePartyRole>() };
     SexSPtr m_sex { std::make_shared<Sex>() };
