@@ -6,7 +6,7 @@
 #include <QSqlQueryModel>
 #include <QDebug>
 #include <QDateEdit>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 #include <QDoubleValidator>
 
 #include "databaseerror.hxx"

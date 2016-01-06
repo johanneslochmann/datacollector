@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QDialogButtonBox>
 #include <QPushButton>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 #include "ui_icd10diagnosisdialog.h"
 
@@ -33,7 +33,7 @@ Icd10DiagnosisDialog::Icd10DiagnosisDialog(QWidget *parent) :
     }
 
     connect(ui->m_data, &QTableView::activated, this, &Icd10DiagnosisDialog::onIndexActivated);
-    connect(ui->m_comment, &QTextEdit::textChanged, this, &Icd10DiagnosisDialog::onCommentChanged);
+    connect(ui->m_comment, &QPlainTextEdit::textChanged, this, &Icd10DiagnosisDialog::onCommentChanged);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }

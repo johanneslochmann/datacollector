@@ -2,7 +2,7 @@
 #include "ui_cgidialog.h"
 
 #include <QLineEdit>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 CGIDialog::CGIDialog(QWidget *parent) :
     QDialog(parent),
@@ -12,7 +12,7 @@ CGIDialog::CGIDialog(QWidget *parent) :
 
     connect(ui->severity, &QLineEdit::textChanged, this, &CGIDialog::onSeverityChanged);
     connect(ui->improvement, &QLineEdit::textChanged, this, &CGIDialog::onImprovementChanged);
-    connect(ui->comment, &QTextEdit::textChanged, this, &CGIDialog::onCommentChanged);
+    connect(ui->comment, &QPlainTextEdit::textChanged, this, &CGIDialog::onCommentChanged);
 }
 
 CGIDialog::~CGIDialog()

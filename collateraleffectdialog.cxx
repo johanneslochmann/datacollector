@@ -2,7 +2,7 @@
 
 #include <QPushButton>
 #include <QTableView>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 #include "ui_collateraleffectdialog.h"
 
@@ -31,7 +31,7 @@ CollateralEffectDialog::CollateralEffectDialog(QWidget *parent) :
     }
 
     connect(ui->m_d, &QTableView::activated, this, &CollateralEffectDialog::onIndexActivated);
-    connect(ui->m_comment, &QTextEdit::textChanged, this, &CollateralEffectDialog::onCommentChanged);
+    connect(ui->m_comment, &QPlainTextEdit::textChanged, this, &CollateralEffectDialog::onCommentChanged);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }

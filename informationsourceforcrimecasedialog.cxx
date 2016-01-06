@@ -4,7 +4,7 @@
 #include <QLayout>
 #include <QLineEdit>
 #include <QLabel>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 #include <QDateTimeEdit>
 #include <QLayout>
 #include <QGroupBox>
@@ -29,8 +29,8 @@ InformationSourceForCrimeCaseDialog::InformationSourceForCrimeCaseDialog(QWidget
     m_sourceTypes = new InformationSourceTypeComboBox(b);
     m_url = new QLineEdit(m_data->url(), b);
     m_when = new QDateTimeEdit(m_data->whenAdded(), b);
-    m_description = new QTextEdit(b);
-    m_description->setText(m_data->description());
+    m_description = new QPlainTextEdit(b);
+    m_description->setPlainText(m_data->description());
 
     l->addRow(tr("&Crime Case"), m_crimeCases);
     l->addRow(tr("&Information Source Type"), m_sourceTypes);
@@ -53,7 +53,7 @@ InformationSourceForCrimeCaseDialog::InformationSourceForCrimeCaseDialog(QWidget
     connect(m_sourceTypes, &InformationSourceTypeComboBox::currentInformationSourceTypeChanged, [=](InformationSourceTypeSPtr t) { m_data->setInformationSourceType(t); });
     connect(m_url, &QLineEdit::textChanged, [=](const QString& s) { m_data->setUrl( s); });
     connect(m_when, &QDateTimeEdit::dateTimeChanged, [=](const QDateTime& t) { m_data->setWhenAdded(t); });
-    connect(m_description, &QTextEdit::textChanged, [=]() { m_data->setDescription(m_description->toPlainText()); });
+    connect(m_description, &QPlainTextEdit::textChanged, [=]() { m_data->setDescription(m_description->toPlainText()); });
 
     connect(m_buttons, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_buttons, &QDialogButtonBox::rejected, this, &QDialog::reject);

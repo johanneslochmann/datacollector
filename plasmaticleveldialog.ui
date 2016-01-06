@@ -67,7 +67,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTextEdit" name="comment"/>
+         <widget class="QPlainTextEdit" name="comment"/>
         </item>
        </layout>
       </item>

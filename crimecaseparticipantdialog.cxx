@@ -5,7 +5,7 @@
 #include <QFormLayout>
 #include <QDialogButtonBox>
 #include <QLineEdit>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 #include <QIntValidator>
 #include <QCheckBox>
 
@@ -86,7 +86,7 @@ void CrimeCaseParticipantDialog::createDataWidgets()
     m_isDrugIntoxicated = new QCheckBox(tr("Is Drug Intoxicated"), m_b);
     m_isDrugIntoxicated->setChecked(m_participant->isDrugIntoxicated());
 
-    m_description = new QTextEdit(m_participant->description(), m_b);
+    m_description = new QPlainTextEdit(m_participant->description(), m_b);
 }
 
 CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCaseParticipantSPtr ccp)
@@ -137,7 +137,7 @@ CrimeCaseParticipantDialog::CrimeCaseParticipantDialog(QWidget *p, CrimeCasePart
     connect(m_hasPreviousConvictions, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setHasPrecedentConvictions(isChecked); });
     connect(m_isAlcoholIntoxicated, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setIsAlcoholIntoxicated(isChecked); });
     connect(m_isDrugIntoxicated, &QCheckBox::toggled, [=](bool isChecked) { m_participant->setIsDrugIntoxicated(isChecked); });
-    connect(m_description, &QTextEdit::textChanged, [=]() { m_participant->setDescription(m_description->toPlainText()); });
+    connect(m_description, &QPlainTextEdit::textChanged, [=]() { m_participant->setDescription(m_description->toPlainText()); });
 
     connect(m_bb, &QDialogButtonBox::accepted, this, &CrimeCaseParticipantDialog::accept);
     connect(m_bb, &QDialogButtonBox::rejected, this, &CrimeCaseParticipantDialog::reject);

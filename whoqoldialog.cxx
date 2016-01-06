@@ -2,7 +2,7 @@
 #include "ui_whoqoldialog.h"
 
 #include <QLineEdit>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 WHOQOLDialog::WHOQOLDialog(QWidget *parent) :
     QDialog(parent),
@@ -14,7 +14,7 @@ WHOQOLDialog::WHOQOLDialog(QWidget *parent) :
     connect(ui->psychological, &QLineEdit::textChanged, this, &WHOQOLDialog::onPsychologicalChanged);
     connect(ui->social, &QLineEdit::textChanged, this, &WHOQOLDialog::onSocialChanged);
     connect(ui->environmental, &QLineEdit::textChanged, this, &WHOQOLDialog::onEnvironmentalChanged);
-    connect(ui->comment, &QTextEdit::textChanged, this, &WHOQOLDialog::onDescriptionChanged);
+    connect(ui->comment, &QPlainTextEdit::textChanged, this, &WHOQOLDialog::onDescriptionChanged);
 }
 
 WHOQOLDialog::~WHOQOLDialog()

@@ -6,7 +6,7 @@
 
 class QDialogButtonBox;
 class QLineEdit;
-class QTextEdit;
+class QPlainTextEdit;
 class QDateTimeEdit;
 
 class CrimeCaseComboBox;
@@ -27,6 +27,6 @@ private:
     InformationSourceTypeComboBox* m_sourceTypes;
     QLineEdit* m_url;
     QDateTimeEdit* m_when;
-    QTextEdit* m_description;
+    QPlainTextEdit* m_description;
     QDialogButtonBox* m_buttons;
 };

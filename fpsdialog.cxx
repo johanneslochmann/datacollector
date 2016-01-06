@@ -2,7 +2,7 @@
 #include "ui_fpsdialog.h"
 
 #include <QLineEdit>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 FPSDialog::FPSDialog(QWidget *parent) :
     QDialog(parent),
@@ -11,7 +11,7 @@ FPSDialog::FPSDialog(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->fps, &QLineEdit::textChanged, this, &FPSDialog::onValueChanged);
-    connect(ui->comment, &QTextEdit::textChanged, this, &FPSDialog::onDescriptionChanged);
+    connect(ui->comment, &QPlainTextEdit::textChanged, this, &FPSDialog::onDescriptionChanged);
 }
 
 FPSDialog::~FPSDialog()

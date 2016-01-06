@@ -2,7 +2,7 @@
 
 #include <QPushButton>
 #include <QDialogButtonBox>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 #include "ui_ondemanddrugdialog.h"
 
@@ -31,7 +31,7 @@ OnDemandDrugDialog::OnDemandDrugDialog(QWidget *parent) :
     }
 
     connect(ui->m_data, &QTableView::activated, this, &OnDemandDrugDialog::onIndexActivated);
-    connect(ui->m_comment, &QTextEdit::textChanged, this, &OnDemandDrugDialog::onCommentChanged);
+    connect(ui->m_comment, &QPlainTextEdit::textChanged, this, &OnDemandDrugDialog::onCommentChanged);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 }

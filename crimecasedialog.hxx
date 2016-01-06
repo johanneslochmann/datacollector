@@ -8,7 +8,7 @@ class QGroupBox;
 class QDialogButtonBox;
 class QLabel;
 class QLineEdit;
-class QTextEdit;
+class QPlainTextEdit;
 class QPushButton;
 
 class HousingTypeComboBox;
@@ -53,7 +53,7 @@ private:
     QLineEdit* m_crimeYear;
     QLineEdit* m_crimeDate;
     QLineEdit* m_crimeTime;
-    QTextEdit* m_description;
+    QPlainTextEdit* m_description;
 
     QGroupBox* m_participantsBox;
     CrimeCaseParticipantTableWidget* m_participants;

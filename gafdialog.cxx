@@ -2,7 +2,7 @@
 #include "ui_gafdialog.h"
 
 #include <QLineEdit>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 GAFDialog::GAFDialog(QWidget *parent) :
     QDialog(parent),
@@ -11,7 +11,7 @@ GAFDialog::GAFDialog(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->gaf, &QLineEdit::textChanged, this, &GAFDialog::onValueChanged);
-    connect(ui->comment, &QTextEdit::textChanged, this, &GAFDialog::onDescriptionChanged);
+    connect(ui->comment, &QPlainTextEdit::textChanged, this, &GAFDialog::onDescriptionChanged);
 }
 
 GAFDialog::~GAFDialog()

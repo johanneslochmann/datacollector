@@ -6,7 +6,7 @@
 
 class QDialogButtonBox;
 class QLineEdit;
-class QTextEdit;
+class QPlainTextEdit;
 class QGroupBox;
 class QCheckBox;
 
@@ -53,7 +53,7 @@ private:
 
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;
-    QTextEdit* m_description;
+    QPlainTextEdit* m_description;
 
     QDialogButtonBox* m_bb;
 };

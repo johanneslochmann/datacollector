@@ -6,7 +6,7 @@
 #include <QIntValidator>
 #include <QPushButton>
 #include <QDialogButtonBox>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 #include "ui_depotdrugdialog.h"
 
@@ -30,7 +30,7 @@ DepotDrugDialog::DepotDrugDialog(QWidget *parent) :
     connect(ui->dosage, &QLineEdit::textChanged, this, &DepotDrugDialog::onDosageChanged);
     connect(ui->lastInjection, &QDateEdit::dateChanged, this, &DepotDrugDialog::onLastInjectionDateChanged);
     connect(ui->interval, &QLineEdit::textChanged, this, &DepotDrugDialog::onInjectionIntervalChanged);
-    connect(ui->comment, &QTextEdit::textChanged, this, &DepotDrugDialog::onCommentChanged);
+    connect(ui->comment, &QPlainTextEdit::textChanged, this, &DepotDrugDialog::onCommentChanged);
 
     m_m = new QSqlQueryModel(this);
 

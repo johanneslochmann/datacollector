@@ -139,7 +139,7 @@
        </layout>
       </item>
       <item row="7" column="1">
-       <widget class="QTextEdit" name="comment"/>
+       <widget class="QPlainTextEdit" name="comment"/>
       </item>
      </layout>
      <zorder>label_3</zorder>

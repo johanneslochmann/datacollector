@@ -4,7 +4,7 @@
 #include <QLayout>
 #include <QLabel>
 #include <QLineEdit>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 #include <QGroupBox>
 #include <QFormLayout>
 #include <QPushButton>
@@ -123,7 +123,7 @@ void CrimeCaseDialog::createCoreInfoBox()
     m_crimeTime = new QLineEdit(m_crimeCase->crimeTime().toString(), m_coreInfoBox);
     m_housingType = new HousingTypeComboBox(m_coreInfoBox);
     m_city = new CityComboBox(m_coreInfoBox);
-    m_description = new QTextEdit(m_crimeCase->description(), m_coreInfoBox);
+    m_description = new QPlainTextEdit(m_crimeCase->description(), m_coreInfoBox);
 
     l->addRow(tr("&Processing Status"), m_processingStatus);
     l->addRow(tr("&Name"), m_name);
@@ -156,7 +156,7 @@ void CrimeCaseDialog::createCoreInfoBox()
     connect(m_crimeYear, &QLineEdit::textChanged, [=](const QString& s) { m_crimeCase->setCrimeYear(s.toInt()); });
     connect(m_crimeDate, &QLineEdit::textChanged, [=](const QString& s) { m_crimeCase->setCrimeDate(QDate::fromString(s, Qt::ISODate)); });
     connect(m_crimeTime, &QLineEdit::textChanged, [=](const QString& s) { m_crimeCase->setCrimeTime(QTime::fromString(s, "h:m")); });
-    connect(m_description, &QTextEdit::textChanged, [=]() { m_crimeCase->setDescription(m_description->toPlainText()); });
+    connect(m_description, &QPlainTextEdit::textChanged, [=]() { m_crimeCase->setDescription(m_description->toPlainText()); });
     connect(m_housingType, &HousingTypeComboBox::currentHousingTypeChanged, [=](HousingTypeSPtr t) { m_crimeCase->setHousingType(t); });
     connect(m_city, &CityComboBox::currentCityChanged, [=](CitySPtr c) { m_crimeCase->setCity(c); });
 }
