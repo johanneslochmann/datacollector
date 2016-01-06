@@ -46,6 +46,15 @@ CREATE SCHEMA forensics;
 ALTER SCHEMA forensics OWNER TO jolo;
 
 --
+-- Name: forstat; Type: SCHEMA; Schema: -; Owner: jolo
+--
+
+CREATE SCHEMA forstat;
+
+
+ALTER SCHEMA forstat OWNER TO jolo;
+
+--
 -- Name: geo; Type: SCHEMA; Schema: -; Owner: jolo
 --
 
@@ -1489,7 +1498,7 @@ CREATE VIEW available_reports AS
         END AS "Report Type"
    FROM (pg_class c
      JOIN pg_namespace n ON ((n.oid = c.relnamespace)))
-  WHERE (((c.relkind = ANY (ARRAY['r'::"char", 'v'::"char", 'm'::"char"])) AND (n.nspname !~ '^pg_toast'::text)) AND (n.nspname = ANY (ARRAY['stat'::name, 'corestat'::name, 'agate'::name, 'core'::name])))
+  WHERE (((c.relkind = ANY (ARRAY['r'::"char", 'v'::"char", 'm'::"char"])) AND (n.nspname !~ '^pg_toast'::text)) AND (n.nspname = ANY (ARRAY['forstat'::name, 'stat'::name, 'corestat'::name, 'agate'::name, 'core'::name])))
   ORDER BY (((n.nspname)::text || '.'::text) || (c.relname)::text), obj_description(c.oid, 'pg_class'::name);
 
 
