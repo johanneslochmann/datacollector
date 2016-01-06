@@ -161,7 +161,8 @@ SOURCES += main.cxx\
     processingstatuscombobox.cxx \
     processingstatusmanagementwidget.cxx \
     aboutdatacollectordialog.cxx \
-    settingsdialog.cxx
+    settingsdialog.cxx \
+    filenameselector.cxx
 
 HEADERS  += mainwindow.hxx \
     datacollector.hxx \
@@ -318,7 +319,8 @@ HEADERS  += mainwindow.hxx \
     processingstatuscombobox.hxx \
     processingstatusmanagementwidget.hxx \
     aboutdatacollectordialog.hxx \
-    settingsdialog.hxx
+    settingsdialog.hxx \
+    filenameselector.hxx
 
 FORMS += \
     databaseconnectiondatadialog.ui \

@@ -9,6 +9,8 @@ class QLineEdit;
 class QGroupBox;
 class QGridLayout;
 
+#include "filenameselector.hxx"
+
 class SettingsDialog : public QDialog
 {
     Q_OBJECT
@@ -18,8 +20,11 @@ public:
 signals:
 
 public slots:
+    void accept();
 
 private:
     QGroupBox* m_gb;
     QDialogButtonBox* m_b;
+
+    FileNameSelector* m_translationFile;
 };
