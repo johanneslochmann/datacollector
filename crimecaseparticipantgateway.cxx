@@ -22,7 +22,8 @@ void CrimeCaseParticipantGateway::loadAllInCrimeCase(CrimeCaseSPtr crimeCase)
                                                 "id, crime_case_party_role_id, crime_case_id, sex_id, "
                                                 "age_in_years, has_precedent_convictions, crime_type_id, "
                                                 "modus_operandi_id, mental_disease_id, crime_motive_id, consultancy_result_id, "
-                                                "weapon_id, description, name, job_id, has_precedent_convictions "
+                                                "weapon_id, description, name, job_id, has_precedent_convictions, "
+                                                "is_drug_intoxicated, is_alcohol_intoxicated "
                                                 "from forensics.crime_case_participant "
                                                 "where crime_case_id = :case_id;");
     q.bindValue(":case_id", crimeCase->id());
@@ -63,7 +64,8 @@ QString CrimeCaseParticipantGateway::loadAllQueryText() const
            "id, crime_case_party_role_id, crime_case_id, sex_id, "
            "age_in_years, has_precedent_convictions, crime_type_id, "
            "modus_operandi_id, mental_disease_id, crime_motive_id, consultancy_result_id, "
-           "weapon_id, description, name, job_id, has_precedent_convictions "
+           "weapon_id, description, name, job_id, has_precedent_convictions, "
+           "is_drug_intoxicated, is_alcohol_intoxicated "
            "from forensics.crime_case_participant "
            "order by id;";
 }
@@ -74,7 +76,8 @@ QString CrimeCaseParticipantGateway::loadByIdQueryText() const
            "id, crime_case_party_role_id, crime_case_id, sex_id, "
            "age_in_years, has_precedent_convictions, crime_type_id, "
            "modus_operandi_id, mental_disease_id, crime_motive_id, consultancy_result_id, "
-           "weapon_id, description, name, job_id, has_precedent_convictions "
+           "weapon_id, description, name, job_id, has_precedent_convictions, "
+           "is_drug_intoxicated, is_alcohol_intoxicated "
            "from forensics.crime_case_participant "
            "where id = :id;";
 }
@@ -95,7 +98,9 @@ void CrimeCaseParticipantGateway::parse(std::shared_ptr<DataGateway::DataType> t
     t->modusOperandi()->setId(rec.value(rec.indexOf("modus_operandi_id")).toInt());
     t->weapon()->setId(rec.value(rec.indexOf("weapon_id")).toInt());
     t->consultancyResult()->setId(rec.value(rec.indexOf("consultancy_result_id")).toInt());
-    t->setHasPrecedentConvictions(rec.value(rec.indexOf("has_precedent_convictions")).toBool());
+    t->setHasPrecedentConvictions(rec.value(rec.indexOf("has_precedent_convictions")).toBool());    
+    t->setIsAlcoholIntoxicated(rec.value(rec.indexOf("is_alcohol_intoxicated")).toBool());
+    t->setIsDrugIntoxicated(rec.value(rec.indexOf("is_drug_intoxicated")).toBool());
 }
 
 void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
@@ -103,10 +108,12 @@ void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
     auto q = DataCollector::get()->prepareQuery("insert into forensics.crime_case_participant "
                                                 "(crime_case_id, name, age_in_years, description, crime_case_party_role_id, "
                                                 "sex_id, crime_type_id, job_id, crime_motive_id, mental_disease_id, "
-                                                "modus_operandi_id, weapon_id, has_precedent_convictions) values "
+                                                "modus_operandi_id, weapon_id, has_precedent_convictions, "
+                                                "is_alcohol_intoxicated, is_drug_intoxicated) values "
                                                 "(:crime_case_id, :name, :age_in_years, :description, :crime_case_party_role_id, "
                                                 ":sex_id, :crime_type_id, :job_id, :crime_motive_id, :mental_disease_id, "
-                                                ":modus_operandi_id, :weapon_id, :has_precedent_convictions) "
+                                                ":modus_operandi_id, :weapon_id, :has_precedent_convictions, "
+                                                ":is_alcohol_intoxicated, :is_drug_intoxicated) "
                                                 "returning id;");
     q.bindValue(":crime_case_id", c->crimeCase()->id());
     q.bindValue(":name", c->name());
@@ -122,6 +129,8 @@ void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
     q.bindValue(":weapon_id", (c->weapon() && c->weapon()->id()) > 0 ? c->weapon()->id() : QVariant(QVariant::Int));
     q.bindValue(":consultancy_result_id", (c->consultancyResult() && c->consultancyResult()->id()) > 0 ? c->consultancyResult()->id() : QVariant(QVariant::Int));
     q.bindValue(":has_precedent_convictions", c->hasPrecedentConvictions());
+    q.bindValue(":is_alcohol_intoxicated", c->isAlcoholIntoxicated());
+    q.bindValue(":is_drug_intoxicated", c->isDrugIntoxicated());
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
     q.next();
@@ -145,7 +154,9 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
                                                 "modus_operandi_id = :modus_operandi_id, "
                                                 "weapon_id = :weapon_id, "
                                                 "consultancy_result_id = :consultancy_result_id, "
-                                                "has_precedent_convictions = :has_precedent_convictions "
+                                                "has_precedent_convictions = :has_precedent_convictions, "
+                                                "is_alcohol_intoxicated = :is_alcohol_intoxicated, "
+                                                "is_drug_intoxicated = :is_drug_intoxicated, "
                                                 "where id = :id;");
 
     q.bindValue(":id", c->id());
@@ -163,6 +174,8 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
     q.bindValue(":weapon_id", (c->weapon() && c->weapon()->id()) > 0 ? c->weapon()->id() : QVariant(QVariant::Int));
     q.bindValue(":consultancy_result_id", (c->consultancyResult() && c->consultancyResult()->id()) > 0 ? c->consultancyResult()->id() : QVariant(QVariant::Int));
     q.bindValue(":has_precedent_convictions", c->hasPrecedentConvictions());
+    q.bindValue(":is_alcohol_intoxicated", c->isAlcoholIntoxicated());
+    q.bindValue(":is_drug_intoxicated", c->isDrugIntoxicated());
 
     DataCollector::get()->performQuery(q, true);
 }

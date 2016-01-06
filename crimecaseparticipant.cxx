@@ -146,3 +146,23 @@ void CrimeCaseParticipant::setHasPrecedentConvictions(bool value)
 {
     m_hasPrecedentConvictions = value;
 }
+
+bool CrimeCaseParticipant::isDrugIntoxicated() const
+{
+    return m_isDrugIntoxicated;
+}
+
+void CrimeCaseParticipant::setIsDrugIntoxicated(bool isDrugIntoxicated)
+{
+    m_isDrugIntoxicated = isDrugIntoxicated;
+}
+
+bool CrimeCaseParticipant::isAlcoholIntoxicated() const
+{
+    return m_isAlcoholIntoxicated;
+}
+
+void CrimeCaseParticipant::setIsAlcoholIntoxicated(bool isAlcoholIntoxicated)
+{
+    m_isAlcoholIntoxicated = isAlcoholIntoxicated;
+}

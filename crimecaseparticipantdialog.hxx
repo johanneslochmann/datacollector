@@ -48,6 +48,8 @@ private:
     WeaponComboBox* m_weapon;
     ConsultancyResultComboBox* m_consultancyResult;
     QCheckBox* m_hasPreviousConvictions;
+    QCheckBox* m_isAlcoholIntoxicated;
+    QCheckBox* m_isDrugIntoxicated;
 
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;
