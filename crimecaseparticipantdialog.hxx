@@ -51,7 +51,7 @@ private:
     QCheckBox* m_isAlcoholIntoxicated;
     QCheckBox* m_isDrugIntoxicated;
     QCheckBox* m_legallyOwnsWeapon;
-
+    QCheckBox* m_hasLongConflictHistory;
     QLineEdit* m_name;
     QLineEdit* m_ageInYears;
     QPlainTextEdit* m_description;

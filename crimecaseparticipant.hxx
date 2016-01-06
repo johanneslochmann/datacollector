@@ -42,6 +42,7 @@ public:
     bool isDrugIntoxicated() const;
     bool isAlcoholIntoxicated() const;
     bool legallyOwnsWeapon() const;
+    bool hasLongConflictHistory() const;
 
     void setCrimeCase(const CrimeCaseSPtr &crimeCase);
     void setName(const QString &name);
@@ -60,6 +61,7 @@ public:
     void setIsDrugIntoxicated(bool isDrugIntoxicated);
     void setIsAlcoholIntoxicated(bool isAlcoholIntoxicated);
     void setLegallyOwnsWeapon(bool legallyOwnsWeapon);
+    void setHasLongConflictHistory(bool hasLongConflictHistory);
 
 private:
     CrimeCaseSPtr m_crimeCase;
@@ -71,6 +73,7 @@ private:
     bool m_isDrugIntoxicated { false };
     bool m_isAlcoholIntoxicated { false };
     bool m_legallyOwnsWeapon { false };
+    bool m_hasLongConflictHistory { false };
 
     CrimeCasePartyRoleSPtr m_role { std::make_shared<CrimeCasePartyRole>() };
     SexSPtr m_sex { std::make_shared<Sex>() };

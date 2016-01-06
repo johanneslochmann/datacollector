@@ -176,3 +176,13 @@ void CrimeCaseParticipant::setLegallyOwnsWeapon(bool legallyOwnsWeapon)
 {
     m_legallyOwnsWeapon = legallyOwnsWeapon;
 }
+
+bool CrimeCaseParticipant::hasLongConflictHistory() const
+{
+    return m_hasLongConflictHistory;
+}
+
+void CrimeCaseParticipant::setHasLongConflictHistory(bool haLongConflictHistory)
+{
+    m_hasLongConflictHistory = haLongConflictHistory;
+}

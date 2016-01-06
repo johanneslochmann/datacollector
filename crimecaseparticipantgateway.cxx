@@ -23,7 +23,8 @@ void CrimeCaseParticipantGateway::loadAllInCrimeCase(CrimeCaseSPtr crimeCase)
                                                 "age_in_years, has_precedent_convictions, crime_type_id, "
                                                 "modus_operandi_id, mental_disease_id, crime_motive_id, consultancy_result_id, "
                                                 "weapon_id, description, name, job_id, has_precedent_convictions, "
-                                                "is_drug_intoxicated, is_alcohol_intoxicated, legally_owns_weapon "
+                                                "is_drug_intoxicated, is_alcohol_intoxicated, legally_owns_weapon, "
+                                                "has_long_conflict_history "
                                                 "from forensics.crime_case_participant "
                                                 "where crime_case_id = :case_id;");
     q.bindValue(":case_id", crimeCase->id());
@@ -65,7 +66,8 @@ QString CrimeCaseParticipantGateway::loadAllQueryText() const
            "age_in_years, has_precedent_convictions, crime_type_id, "
            "modus_operandi_id, mental_disease_id, crime_motive_id, consultancy_result_id, "
            "weapon_id, description, name, job_id, has_precedent_convictions, "
-           "is_drug_intoxicated, is_alcohol_intoxicated, legally_owns_weapon "
+           "is_drug_intoxicated, is_alcohol_intoxicated, legally_owns_weapon, "
+           "has_long_conflict_history "
            "from forensics.crime_case_participant "
            "order by id;";
 }
@@ -77,7 +79,8 @@ QString CrimeCaseParticipantGateway::loadByIdQueryText() const
            "age_in_years, has_precedent_convictions, crime_type_id, "
            "modus_operandi_id, mental_disease_id, crime_motive_id, consultancy_result_id, "
            "weapon_id, description, name, job_id, has_precedent_convictions, "
-           "is_drug_intoxicated, is_alcohol_intoxicated, legally_owns_weapon "
+           "is_drug_intoxicated, is_alcohol_intoxicated, legally_owns_weapon, "
+           "has_long_conflict_history "
            "from forensics.crime_case_participant "
            "where id = :id;";
 }
@@ -102,6 +105,7 @@ void CrimeCaseParticipantGateway::parse(std::shared_ptr<DataGateway::DataType> t
     t->setIsAlcoholIntoxicated(rec.value(rec.indexOf("is_alcohol_intoxicated")).toBool());
     t->setIsDrugIntoxicated(rec.value(rec.indexOf("is_drug_intoxicated")).toBool());
     t->setLegallyOwnsWeapon(rec.value(rec.indexOf("legally_owns_weapon")).toBool());
+    t->setHasLongConflictHistory(rec.value(rec.indexOf("has_long_conflict_history")).toBool());
 }
 
 void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
@@ -110,11 +114,13 @@ void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
                                                 "(crime_case_id, name, age_in_years, description, crime_case_party_role_id, "
                                                 "sex_id, crime_type_id, job_id, crime_motive_id, mental_disease_id, "
                                                 "modus_operandi_id, weapon_id, has_precedent_convictions, "
-                                                "is_alcohol_intoxicated, is_drug_intoxicated, legally_owns_weapon) values "
+                                                "is_alcohol_intoxicated, is_drug_intoxicated, legally_owns_weapon, "
+                                                "has_long_conflict_history) values "
                                                 "(:crime_case_id, :name, :age_in_years, :description, :crime_case_party_role_id, "
                                                 ":sex_id, :crime_type_id, :job_id, :crime_motive_id, :mental_disease_id, "
                                                 ":modus_operandi_id, :weapon_id, :has_precedent_convictions, "
-                                                ":is_alcohol_intoxicated, :is_drug_intoxicated, :legally_owns_weapon) "
+                                                ":is_alcohol_intoxicated, :is_drug_intoxicated, :legally_owns_weapon, "
+                                                ":has_long_conflict_history) "
                                                 "returning id;");
     q.bindValue(":crime_case_id", c->crimeCase()->id());
     q.bindValue(":name", c->name());
@@ -133,6 +139,7 @@ void CrimeCaseParticipantGateway::insert(CrimeCaseParticipantSPtr c)
     q.bindValue(":is_alcohol_intoxicated", c->isAlcoholIntoxicated());
     q.bindValue(":is_drug_intoxicated", c->isDrugIntoxicated());
     q.bindValue(":legally_owns_weapon", c->legallyOwnsWeapon());
+    q.bindValue(":has_long_conflict_history", c->hasLongConflictHistory());
 
     DataCollector::get()->performQueryWithExpectedSize(q, 1, true);
     q.next();
@@ -159,7 +166,8 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
                                                 "has_precedent_convictions = :has_precedent_convictions, "
                                                 "is_alcohol_intoxicated = :is_alcohol_intoxicated, "
                                                 "is_drug_intoxicated = :is_drug_intoxicated, "
-                                                "legally_owns_weapon = :legally_owns_weapon "
+                                                "legally_owns_weapon = :legally_owns_weapon, "
+                                                "has_long_conflict_history  = :has_long_conflict_history "
                                                 "where id = :id;");
 
     q.bindValue(":id", c->id());
@@ -180,6 +188,7 @@ void CrimeCaseParticipantGateway::update(CrimeCaseParticipantSPtr c)
     q.bindValue(":is_alcohol_intoxicated", c->isAlcoholIntoxicated());
     q.bindValue(":is_drug_intoxicated", c->isDrugIntoxicated());
     q.bindValue(":legally_owns_weapon", c->legallyOwnsWeapon());
+    q.bindValue(":has_long_conflict_history", c->hasLongConflictHistory());
 
     DataCollector::get()->performQuery(q, true);
 }
