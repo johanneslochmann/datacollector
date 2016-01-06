@@ -18,6 +18,7 @@ public slots:
     void databaseAboutToClose();
     void databaseAvailable();
     void databaseUnavailable();
+    void manageSettings();
 
 private:
     void initMenues();

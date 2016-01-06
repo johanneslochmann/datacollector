@@ -8,6 +8,7 @@
 #include "datacollector.hxx"
 #include "databaseconnectionstatuslabel.hxx"
 #include "workbench.hxx"
+#include "settingsdialog.hxx"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(app, &DataCollector::databaseAboutToClose, this, &MainWindow::databaseAboutToClose);
     connect(app, &DataCollector::databaseAvailable, this, &MainWindow::databaseAvailable);
     connect(app, &DataCollector::databaseUnavailable, this, &MainWindow::databaseUnavailable);
+    connect(app, &DataCollector::manageSettings, this, &MainWindow::manageSettings);
 
     QTimer::singleShot(0, app->openDatabaseAction(), &QAction::trigger);
 }
@@ -44,9 +46,17 @@ void MainWindow::databaseUnavailable()
 {
 }
 
+void MainWindow::manageSettings()
+{
+    auto dlg = new SettingsDialog(this);
+    dlg->exec();
+}
+
 void MainWindow::createFileMenu(DataCollector *app)
 {
     m_fileM = new QMenu(tr("&File"), this);
+    m_fileM->addAction(app->settingsAction());
+    m_fileM->addSeparator();
     m_fileM->addAction(app->quitAction());
 }
 

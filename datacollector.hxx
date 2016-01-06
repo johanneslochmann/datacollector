@@ -19,6 +19,7 @@ public:
     explicit DataCollector(int& argc, char** argv);
     virtual ~DataCollector();
 
+    QAction* settingsAction() const { return m_settings; }
     QAction* quitAction() const { return m_quit; }
     QAction* openDatabaseAction() const { return m_openDatabase; }
     QAction* closeDatabaseAction() const { return m_closeDatabase; }
@@ -82,6 +83,7 @@ signals:
     void databaseAvailable();
     void databaseUnavailable();
 
+    void manageSettings();
     void manageChannelsIntoPatient();
     void manageDrugAdministrationMethods();
     void manageMoleculeClasses();
@@ -129,6 +131,7 @@ public slots:
 private:
     void initActions();
 
+    QAction* m_settings;
     QAction* m_quit;
     QAction* m_openDatabase;
     QAction* m_closeDatabase;

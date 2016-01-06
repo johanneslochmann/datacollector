@@ -206,6 +206,9 @@ void DataCollector::initActions()
     m_aboutQt = new QAction(tr("&About Qt..."), this);
     connect(m_aboutQt, &QAction::triggered, this, &DataCollector::aboutQt);
 
+    m_settings = new QAction(tr("&Settings..."), this);
+    connect(m_settings, &QAction::triggered, this, &DataCollector::manageSettings);
+
     m_manageChannelsIntoPatient = new ActionEnabledIfConnectedToDatabase(tr("Channels Into Patient..."), this);
     connect(m_manageChannelsIntoPatient, &QAction::triggered, this, &DataCollector::manageChannelsIntoPatient);
 
