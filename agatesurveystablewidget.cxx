@@ -1,7 +1,6 @@
 #include "agatesurveystablewidget.hxx"
 
 #include <QStringList>
-#include <QDebug>
 #include <QMessageBox>
 
 #include "datacollector.hxx"
@@ -37,11 +36,9 @@ void AgateSurveysTableWidget::reload()
     try {
         // if a campaign filter is set, use it and ignore project filter (campaign already is in current project)
         if (m_campaign && m_campaign->hasId()) {
-            qDebug() << "reloading for campaign: " << m_campaign->name();
             buf = AgateRecordGateway().loadAllInCampaign(m_campaign);
         } else {
             if (m_project && m_project->hasId()) {
-                qDebug() << "reloading for project: " << m_project->name();
                 buf = AgateRecordGateway().loadAllInProject(m_project);
             }
         }

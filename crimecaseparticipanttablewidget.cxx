@@ -1,7 +1,6 @@
 #include "crimecaseparticipanttablewidget.hxx"
 
 #include <QStringList>
-#include <QDebug>
 #include <QMessageBox>
 
 #include "datacollector.hxx"

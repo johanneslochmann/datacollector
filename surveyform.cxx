@@ -2,7 +2,6 @@
 
 #include <QSqlQueryModel>
 #include <QComboBox>
-#include <QDebug>
 #include <QTableView>
 #include <QMessageBox>
 #include <QSqlError>
@@ -255,8 +254,6 @@ void SurveyForm::reloadSurveys()
     ui->surveys->setModel(m_surveysModel);
 
     ui->surveys->setEnabled(true);
-
-    qDebug() << "reloaded surveys for campaign: " << m_currentCampaignId;
 }
 
 void SurveyForm::createSurvey()

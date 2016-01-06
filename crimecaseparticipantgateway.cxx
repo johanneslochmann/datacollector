@@ -1,7 +1,5 @@
 #include "crimecaseparticipantgateway.hxx"
 
-#include <QDebug>
-
 #include "datacollector.hxx"
 
 #include "crimecase.hxx"

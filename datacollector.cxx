@@ -3,7 +3,6 @@
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlError>
-#include <QDebug>
 
 #include "actionenabledifconnectedtodatabase.hxx"
 #include "actionenabledifnotconnectedtodatabase.hxx"
@@ -47,32 +46,26 @@ QSqlQuery DataCollector::prepareQuery(const QString &sql)
 
 void DataCollector::begin()
 {
-    qDebug() << "begin...";
     if (!QSqlDatabase::database(databaseConnectionName).transaction()) {
         throw DatabaseError(QSqlDatabase::database(databaseConnectionName).lastError());
     }
-    qDebug() << "in transaction";
 }
 
 void DataCollector::commit()
 {
-    qDebug() << "commit...";
     if (!QSqlDatabase::database(databaseConnectionName).commit()) {
         throw DatabaseError(QSqlDatabase::database(databaseConnectionName).lastError());
     }
-    qDebug() << "transaction commited";
 }
 
 void DataCollector::rollback()
 {
-    qDebug() << "rollback...";
     if (!QSqlDatabase::database(databaseConnectionName).rollback()) {
         showDatabaseError(DatabaseError(QSqlDatabase::database(databaseConnectionName).lastError()),
                           tr("Failed to rollback database transaction. Program will terminate."),
                           activeWindow());
         quit();
     }
-    qDebug() << "rolled back";
 }
 
 void DataCollector::performQuery(QSqlQuery &qry, bool createTransaction)
@@ -81,20 +74,14 @@ void DataCollector::performQuery(QSqlQuery &qry, bool createTransaction)
         begin();
     }
 
-    qDebug() << "performing query: " << qry.lastQuery();
-
     QMapIterator<QString, QVariant> i(qry.boundValues());
     while (i.hasNext()) {
         i.next();
-        qDebug() << "\t" << i.key() << ": " << i.value().toString();
     }
 
     if (!qry.exec()) {
-        qDebug() << "failed: " << qry.lastError().text();
         throw DatabaseError(qry.lastError());
     }
-
-    qDebug() << "OK";
 }
 
 bool DataCollector::performQueryWithExpectedSize(QSqlQuery &qry, int expectedSize, bool createTransaction)
@@ -115,8 +102,6 @@ QSqlDatabase DataCollector::database()
 
 void DataCollector::showDatabaseError(const DatabaseError &err, const QString &info, QWidget *parent)
 {
-    qDebug() << (info.isEmpty() ? tr("Database Error") : info) << ": " << err.error().text();
-
     QMessageBox::critical((parent ? parent : activeWindow()),
                           (info.isEmpty() ? tr("Database Error") : info),
                           err.error().text());

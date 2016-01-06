@@ -1,7 +1,5 @@
 #include "agaterecordgateway.hxx"
 
-#include <QDebug>
-
 #include "datacollector.hxx"
 
 AgateRecordGateway::AgateRecordGateway()

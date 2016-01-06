@@ -4,7 +4,6 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QSqlError>
-#include <QDebug>
 #include <QLabel>
 #include <QDataWidgetMapper>
 

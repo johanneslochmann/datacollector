@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include <QComboBox>
 #include <QSqlQueryModel>
-#include <QDebug>
 #include <QDateEdit>
 #include <QPlainTextEdit>
 #include <QDoubleValidator>

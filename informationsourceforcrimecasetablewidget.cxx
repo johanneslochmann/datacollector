@@ -1,9 +1,7 @@
 #include "informationsourceforcrimecasetablewidget.hxx"
 
 #include <QStringList>
-#include <QDebug>
 #include <QMessageBox>
-#include <QDebug>
 
 #include "datacollector.hxx"
 

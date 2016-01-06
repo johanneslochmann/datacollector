@@ -1,7 +1,6 @@
 #include "icd10diagnosisdialog.hxx"
 
 #include <QTableView>
-#include <QDebug>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QPlainTextEdit>

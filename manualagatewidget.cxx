@@ -1,7 +1,6 @@
 #include "manualagatewidget.hxx"
 
 #include <QLayout>
-#include <QDebug>
 #include <QFormLayout>
 
 #include "projectcombobox.hxx"
