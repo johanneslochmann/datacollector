@@ -1601,7 +1601,10 @@ CREATE TABLE crime_case_participant (
     consultancy_result_id integer,
     weapon_id integer,
     description text DEFAULT ''::text NOT NULL,
-    job_id integer
+    job_id integer,
+    is_drug_intoxicated boolean DEFAULT false,
+    is_alcohol_intoxicated boolean DEFAULT false,
+    legally_owns_weapon boolean DEFAULT false NOT NULL
 );
 
 
@@ -1931,6 +1934,366 @@ CREATE TABLE city (
 ALTER TABLE city OWNER TO jolo;
 
 --
+-- Name: housing_type; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE housing_type (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT housing_type_name_check CHECK ((length(name) > 1))
+);
+
+
+ALTER TABLE housing_type OWNER TO jolo;
+
+SET search_path = forstat, pg_catalog;
+
+--
+-- Name: all_crime_cases; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW all_crime_cases AS
+ SELECT COALESCE(( SELECT ps.name
+           FROM core.processing_status ps
+          WHERE (ps.id = cc.processing_status_id)), 'NA'::text) AS processing_status,
+    COALESCE(( SELECT cit.name
+           FROM geo.city cit
+          WHERE (cit.id = cc.city_id)), 'NA'::text) AS city,
+    COALESCE(( SELECT ht.name
+           FROM geo.housing_type ht
+          WHERE (cc.housing_type_id = ht.id)), 'NA'::text) AS housing_type,
+    cc.id,
+    cc.name,
+    cc.city_id,
+    cc.housing_type_id,
+    cc.crime_year,
+    cc.crime_date,
+    cc.crime_time,
+    cc.description,
+    cc.processing_status_id
+   FROM forensics.crime_case cc
+  ORDER BY COALESCE(( SELECT ps.name
+           FROM core.processing_status ps
+          WHERE (ps.id = cc.processing_status_id)), 'NA'::text), COALESCE(( SELECT cit.name
+           FROM geo.city cit
+          WHERE (cit.id = cc.city_id)), 'NA'::text), COALESCE(( SELECT ht.name
+           FROM geo.housing_type ht
+          WHERE (cc.housing_type_id = ht.id)), 'NA'::text);
+
+
+ALTER TABLE all_crime_cases OWNER TO jolo;
+
+--
+-- Name: VIEW all_crime_cases; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW all_crime_cases IS 'core data for all crime cases';
+
+
+--
+-- Name: count_crime_case_participants_by_role; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW count_crime_case_participants_by_role AS
+ SELECT ccr.name AS party_role,
+    count(ccp.id) AS count
+   FROM (forensics.crime_case_participant ccp
+     JOIN forensics.crime_case_party_role ccr ON ((ccp.crime_case_party_role_id = ccr.id)))
+  GROUP BY ccr.name
+  ORDER BY ccr.name;
+
+
+ALTER TABLE count_crime_case_participants_by_role OWNER TO jolo;
+
+--
+-- Name: VIEW count_crime_case_participants_by_role; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW count_crime_case_participants_by_role IS 'count how many parties exist per role';
+
+
+--
+-- Name: count_crime_case_participants_by_sex; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW count_crime_case_participants_by_sex AS
+ SELECT s.name AS sex,
+    count(ccp.id) AS count
+   FROM (forensics.crime_case_participant ccp
+     JOIN core.sex s ON ((ccp.sex_id = s.id)))
+  GROUP BY s.name
+  ORDER BY s.name;
+
+
+ALTER TABLE count_crime_case_participants_by_sex OWNER TO jolo;
+
+--
+-- Name: VIEW count_crime_case_participants_by_sex; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW count_crime_case_participants_by_sex IS 'count how many parties exist per sex';
+
+
+--
+-- Name: count_crime_case_participants_by_sex_and_by_role; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW count_crime_case_participants_by_sex_and_by_role AS
+ SELECT ccpr.name AS crime_case_party_role,
+    s.name AS sex,
+    count(ccp.id) AS count
+   FROM ((forensics.crime_case_participant ccp
+     JOIN core.sex s ON ((ccp.sex_id = s.id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  GROUP BY ccpr.name, s.name
+  ORDER BY ccpr.name, s.name;
+
+
+ALTER TABLE count_crime_case_participants_by_sex_and_by_role OWNER TO jolo;
+
+--
+-- Name: VIEW count_crime_case_participants_by_sex_and_by_role; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW count_crime_case_participants_by_sex_and_by_role IS 'count how many parties exist per sex and per role';
+
+
+--
+-- Name: crime_case_count; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_case_count AS
+ SELECT count(1) AS "Anzahl Fälle"
+   FROM forensics.crime_case;
+
+
+ALTER TABLE crime_case_count OWNER TO jolo;
+
+--
+-- Name: VIEW crime_case_count; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW crime_case_count IS 'Anzahl aller cases in der Datenbank';
+
+
+--
+-- Name: crime_case_count_by_city; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_case_count_by_city AS
+ SELECT c.name AS city,
+    count(1) AS count
+   FROM (forensics.crime_case cc
+     JOIN geo.city c ON ((cc.city_id = c.id)))
+  GROUP BY c.name
+  ORDER BY c.name, count(1);
+
+
+ALTER TABLE crime_case_count_by_city OWNER TO jolo;
+
+--
+-- Name: VIEW crime_case_count_by_city; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW crime_case_count_by_city IS 'Anzahl aller cases in der Datenbank gruppiert nach Stadt';
+
+
+SET search_path = geo, pg_catalog;
+
+--
+-- Name: country; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+--
+
+CREATE TABLE country (
+    id integer NOT NULL,
+    name text NOT NULL,
+    symbol text NOT NULL,
+    description text DEFAULT ''::text NOT NULL,
+    CONSTRAINT country_name_check CHECK ((length(name) > 1)),
+    CONSTRAINT country_symbol_check CHECK ((length(symbol) > 1))
+);
+
+
+ALTER TABLE country OWNER TO jolo;
+
+SET search_path = forstat, pg_catalog;
+
+--
+-- Name: crime_case_count_by_country; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_case_count_by_country AS
+ SELECT cn.name AS country,
+    count(1) AS count
+   FROM ((forensics.crime_case cc
+     JOIN geo.city c ON ((cc.city_id = c.id)))
+     JOIN geo.country cn ON ((c.country_id = cn.id)))
+  GROUP BY cn.name
+  ORDER BY cn.name, count(1);
+
+
+ALTER TABLE crime_case_count_by_country OWNER TO jolo;
+
+--
+-- Name: VIEW crime_case_count_by_country; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW crime_case_count_by_country IS 'Anzahl aller cases in der Datenbank gruppiert nach Land';
+
+
+--
+-- Name: crime_case_count_by_processing_status; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_case_count_by_processing_status AS
+ SELECT ps.name AS status,
+    count(1) AS count
+   FROM (forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+  GROUP BY ps.name
+  ORDER BY ps.name, count(1);
+
+
+ALTER TABLE crime_case_count_by_processing_status OWNER TO jolo;
+
+--
+-- Name: VIEW crime_case_count_by_processing_status; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW crime_case_count_by_processing_status IS 'Anzahl aller cases in der Datenbank gruppiert nach Bearbeitungsstatus';
+
+
+--
+-- Name: crime_case_overview; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_case_overview AS
+ SELECT COALESCE(( SELECT ccpr.name
+           FROM forensics.crime_case_party_role ccpr
+          WHERE (ccpr.id = ccp.crime_case_party_role_id)), 'NA'::text) AS party_role,
+    COALESCE(( SELECT s.name
+           FROM core.sex s
+          WHERE (s.id = ccp.sex_id)), 'NA'::text) AS sex,
+    COALESCE(( SELECT ct.name
+           FROM forensics.crime_type ct
+          WHERE (ct.id = ccp.crime_type_id)), 'NA'::text) AS crime_type,
+    COALESCE(( SELECT mo.name
+           FROM forensics.modus_operandi mo
+          WHERE (mo.id = ccp.modus_operandi_id)), 'NA'::text) AS modus_operandi,
+    COALESCE(( SELECT md.name
+           FROM forensics.mental_disease md
+          WHERE (md.id = ccp.mental_disease_id)), 'NA'::text) AS mental_disease,
+    COALESCE(( SELECT cm.name
+           FROM forensics.crime_motive cm
+          WHERE (cm.id = ccp.crime_motive_id)), 'NA'::text) AS crime_motive,
+    COALESCE(( SELECT cr.name
+           FROM forensics.consultancy_result cr
+          WHERE (cr.id = ccp.consultancy_result_id)), 'NA'::text) AS consultancy_result,
+    COALESCE(( SELECT j.name
+           FROM core.job j
+          WHERE (j.id = ccp.job_id)), 'NA'::text) AS job,
+    ccp.id AS crime_case_party_id,
+    ccp.crime_case_party_role_id,
+    ccp.crime_case_id,
+    ccp.name AS crime_case_party_role,
+    ccp.sex_id,
+    ccp.age_in_years,
+    ccp.has_precedent_convictions,
+    ccp.crime_type_id,
+    ccp.modus_operandi_id,
+    ccp.mental_disease_id,
+    ccp.crime_motive_id,
+    ccp.consultancy_result_id,
+    ccp.weapon_id,
+    ccp.description AS crime_case_party_description,
+    ccp.job_id,
+    cc.processing_status,
+    cc.city,
+    cc.housing_type,
+    cc.id,
+    cc.name,
+    cc.city_id,
+    cc.housing_type_id,
+    cc.crime_year,
+    cc.crime_date,
+    cc.crime_time,
+    cc.description,
+    cc.processing_status_id
+   FROM (forensics.crime_case_participant ccp
+     JOIN all_crime_cases cc ON ((ccp.crime_case_id = cc.id)));
+
+
+ALTER TABLE crime_case_overview OWNER TO jolo;
+
+--
+-- Name: VIEW crime_case_overview; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW crime_case_overview IS 'overview of all crime cases and all parties involved in crime cases. CAUTION: There is a row for each party involved in a crime case, therefor each crime case appears as many times in the result as there are parties involved!';
+
+
+--
+-- Name: crime_case_party_overview; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_case_party_overview AS
+ SELECT COALESCE(( SELECT ccpr.name
+           FROM forensics.crime_case_party_role ccpr
+          WHERE (ccpr.id = ccp.crime_case_party_role_id)), 'NA'::text) AS party_role,
+    COALESCE(( SELECT s.name
+           FROM core.sex s
+          WHERE (s.id = ccp.sex_id)), 'NA'::text) AS sex,
+    COALESCE(( SELECT ct.name
+           FROM forensics.crime_type ct
+          WHERE (ct.id = ccp.crime_type_id)), 'NA'::text) AS crime_type,
+    COALESCE(( SELECT mo.name
+           FROM forensics.modus_operandi mo
+          WHERE (mo.id = ccp.modus_operandi_id)), 'NA'::text) AS modus_operandi,
+    COALESCE(( SELECT md.name
+           FROM forensics.mental_disease md
+          WHERE (md.id = ccp.mental_disease_id)), 'NA'::text) AS mental_disease,
+    COALESCE(( SELECT cm.name
+           FROM forensics.crime_motive cm
+          WHERE (cm.id = ccp.crime_motive_id)), 'NA'::text) AS crime_motive,
+    COALESCE(( SELECT cr.name
+           FROM forensics.consultancy_result cr
+          WHERE (cr.id = ccp.consultancy_result_id)), 'NA'::text) AS consultancy_result,
+    COALESCE(( SELECT j.name
+           FROM core.job j
+          WHERE (j.id = ccp.job_id)), 'NA'::text) AS job,
+    ccp.id,
+    ccp.crime_case_party_role_id,
+    ccp.crime_case_id,
+    ccp.name,
+    ccp.sex_id,
+    ccp.age_in_years,
+    ccp.has_precedent_convictions,
+    ccp.crime_type_id,
+    ccp.modus_operandi_id,
+    ccp.mental_disease_id,
+    ccp.crime_motive_id,
+    ccp.consultancy_result_id,
+    ccp.weapon_id,
+    ccp.description,
+    ccp.job_id,
+    ccp.is_drug_intoxicated,
+    ccp.is_alcohol_intoxicated
+   FROM forensics.crime_case_participant ccp;
+
+
+ALTER TABLE crime_case_party_overview OWNER TO jolo;
+
+--
+-- Name: VIEW crime_case_party_overview; Type: COMMENT; Schema: forstat; Owner: jolo
+--
+
+COMMENT ON VIEW crime_case_party_overview IS 'overview of all parties involved in crime cases';
+
+
+SET search_path = geo, pg_catalog;
+
+--
 -- Name: city_id_seq; Type: SEQUENCE; Schema: geo; Owner: jolo
 --
 
@@ -1952,22 +2315,6 @@ ALTER SEQUENCE city_id_seq OWNED BY city.id;
 
 
 --
--- Name: country; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE country (
-    id integer NOT NULL,
-    name text NOT NULL,
-    symbol text NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT country_name_check CHECK ((length(name) > 1)),
-    CONSTRAINT country_symbol_check CHECK ((length(symbol) > 1))
-);
-
-
-ALTER TABLE country OWNER TO jolo;
-
---
 -- Name: country_id_seq; Type: SEQUENCE; Schema: geo; Owner: jolo
 --
 
@@ -1987,20 +2334,6 @@ ALTER TABLE country_id_seq OWNER TO jolo;
 
 ALTER SEQUENCE country_id_seq OWNED BY country.id;
 
-
---
--- Name: housing_type; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
---
-
-CREATE TABLE housing_type (
-    id integer NOT NULL,
-    name text NOT NULL,
-    description text DEFAULT ''::text NOT NULL,
-    CONSTRAINT housing_type_name_check CHECK ((length(name) > 1))
-);
-
-
-ALTER TABLE housing_type OWNER TO jolo;
 
 --
 -- Name: housing_type_id_seq; Type: SEQUENCE; Schema: geo; Owner: jolo
