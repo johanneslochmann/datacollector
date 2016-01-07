@@ -54,9 +54,11 @@ void CrimeCaseDialog::createParticipant()
 
     auto dlg = new CrimeCaseParticipantDialog(this, buf);
 
-    if (QDialog::Accepted == dlg->exec()) {
+    /*if (QDialog::Accepted == dlg->exec()) {
         m_participants->reload();
-    }
+    }*/
+
+    dlg->show();
 }
 
 void CrimeCaseDialog::createInformationSource()

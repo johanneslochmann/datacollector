@@ -88,9 +88,7 @@ void CrimeCaseParticipantTableWidget::editSelected()
 
         auto dlg = new CrimeCaseParticipantDialog(this, b);
 
-        dlg->exec();
-
-        reload();
+        dlg->show();
     }
     catch(DatabaseError e) {
         DataCollector::get()->showDatabaseError(e, QObject::tr("Failed to delete crime case participant record."));
