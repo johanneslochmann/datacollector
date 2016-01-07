@@ -6,22 +6,22 @@
     <message>
         <location filename="aboutdatacollectordialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="aboutdatacollectordialog.ui" line="20"/>
         <source>About this program</source>
-        <translation type="unfinished">Über dieses Programm</translation>
+        <translation>Über dieses Programm</translation>
     </message>
     <message>
         <location filename="aboutdatacollectordialog.ui" line="26"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>nichts</translation>
     </message>
     <message>
         <location filename="aboutdatacollectordialog.cxx" line="12"/>
         <source>&lt;p&gt;&lt;b&gt;This is %1.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;mailto:johannes.lochmann@gmail.com&quot;&gt;johannes.lochmann@gmail.com&lt;/a&gt;&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;&lt;b&gt;%1.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;mailto:johannes.lochmann@gmail.com&quot;&gt;johannes.lochmann@gmail.com&lt;/a&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;b&gt;%1.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;mailto:johannes.lochmann@gmail.com&quot;&gt;johannes.lochmann@gmail.com&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -29,37 +29,37 @@
     <message>
         <location filename="agatedepotdialog.cxx" line="35"/>
         <source>Prescribeable Drug missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschreibbares Medikament fehlt</translation>
     </message>
     <message>
         <location filename="agatedepotdialog.cxx" line="35"/>
         <source>No drug selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Medikament gewählt</translation>
     </message>
     <message>
         <location filename="agatedepotdialog.cxx" line="43"/>
         <source>Failed to load id of prescribeable drug: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ID von Verschreibbarem Medikament konnte nicht geladen werden: %1</translation>
     </message>
     <message>
         <location filename="agatedepotdialog.cxx" line="77"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="agatedepotdialog.cxx" line="84"/>
         <source>Last Injection</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Injektion</translation>
     </message>
     <message>
         <location filename="agatedepotdialog.cxx" line="85"/>
         <source>Dosage in mg</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosis in mg</translation>
     </message>
     <message>
         <location filename="agatedepotdialog.cxx" line="86"/>
         <source>Interval in Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall in Tagen</translation>
     </message>
 </context>
 <context>
@@ -67,22 +67,22 @@
     <message>
         <location filename="agatedepottablewidget.cxx" line="45"/>
         <source>Prescribeable Drug</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschreibbares Medikamt</translation>
     </message>
     <message>
         <location filename="agatedepottablewidget.cxx" line="45"/>
         <source>Last Injection</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Injektion</translation>
     </message>
     <message>
         <location filename="agatedepottablewidget.cxx" line="45"/>
         <source>Dosage in mg</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosis in mg</translation>
     </message>
     <message>
         <location filename="agatedepottablewidget.cxx" line="45"/>
         <source>Interval in days</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall in Tagen</translation>
     </message>
 </context>
 <context>
@@ -90,17 +90,17 @@
     <message>
         <location filename="agatediagnosisdialog.cxx" line="32"/>
         <source>Diagnosis missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagnose fehlt</translation>
     </message>
     <message>
         <location filename="agatediagnosisdialog.cxx" line="32"/>
         <source>No diagnosis selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Diagnose gewählt</translation>
     </message>
     <message>
         <location filename="agatediagnosisdialog.cxx" line="40"/>
         <source>Failed to load id of diagnosis: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ID der Diagnose konnte nicht geladen werden: %1</translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
     <message>
         <location filename="agatediagnosistablewidget.cxx" line="45"/>
         <source>Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagnose</translation>
     </message>
 </context>
 <context>
