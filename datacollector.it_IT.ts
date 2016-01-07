@@ -549,7 +549,7 @@
     <message>
         <location filename="cgidialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="cgidialog.ui" line="20"/>
@@ -662,7 +662,7 @@
     <message>
         <location filename="collateraleffectdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="collateraleffectdialog.ui" line="20"/>
@@ -1195,277 +1195,287 @@
 <context>
     <name>DataCollector</name>
     <message>
-        <location filename="datacollector.cxx" line="70"/>
+        <location filename="datacollector.cxx" line="71"/>
         <source>Failed to rollback database transaction. Program will terminate.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="111"/>
+        <location filename="datacollector.cxx" line="112"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="144"/>
+        <location filename="datacollector.cxx" line="145"/>
         <source>Failed to connect to database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="145"/>
+        <location filename="datacollector.cxx" line="146"/>
         <source>&lt;p&gt;&lt;b&gt;Failed to connect to database:&lt;/b&gt;/&lt;p&gt;&lt;p&gt;%1&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="169"/>
+        <location filename="datacollector.cxx" line="170"/>
         <source>Ping Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="170"/>
+        <location filename="datacollector.cxx" line="171"/>
         <source>Ping failed: no rows returned.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="176"/>
+        <location filename="datacollector.cxx" line="177"/>
         <source>Pink OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="177"/>
+        <location filename="datacollector.cxx" line="178"/>
         <source>&lt;p&gt;Server Timestamp: %1&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="181"/>
+        <location filename="datacollector.cxx" line="182"/>
         <source>Failed to ping database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="182"/>
+        <location filename="datacollector.cxx" line="183"/>
         <source>&lt;p&gt;&lt;b&gt;Failed to ping database:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Server Timestamp: %1&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="195"/>
+        <location filename="datacollector.cxx" line="201"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="199"/>
+        <location filename="datacollector.cxx" line="205"/>
         <source>&amp;Connect...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="202"/>
+        <location filename="datacollector.cxx" line="208"/>
         <source>C&amp;lose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="205"/>
+        <location filename="datacollector.cxx" line="211"/>
         <source>&amp;Ping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="208"/>
+        <location filename="datacollector.cxx" line="214"/>
         <source>&amp;About this program...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="211"/>
+        <location filename="datacollector.cxx" line="217"/>
         <source>&amp;About Qt...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="214"/>
+        <location filename="datacollector.cxx" line="220"/>
         <source>&amp;Settings...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="217"/>
+        <location filename="datacollector.cxx" line="223"/>
         <source>Channels Into Patient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="220"/>
+        <location filename="datacollector.cxx" line="226"/>
         <source>Drug Administration Methods...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="223"/>
+        <location filename="datacollector.cxx" line="229"/>
         <source>Molecule Classes...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="226"/>
+        <location filename="datacollector.cxx" line="232"/>
         <source>Molecules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="229"/>
+        <location filename="datacollector.cxx" line="235"/>
         <source>Sexes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="232"/>
+        <location filename="datacollector.cxx" line="238"/>
         <source>Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="235"/>
+        <location filename="datacollector.cxx" line="241"/>
         <source>Projects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="238"/>
+        <location filename="datacollector.cxx" line="244"/>
         <source>Campaigns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="241"/>
+        <location filename="datacollector.cxx" line="247"/>
         <source>Probands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="244"/>
+        <location filename="datacollector.cxx" line="250"/>
         <source>Drugs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="247"/>
+        <location filename="datacollector.cxx" line="253"/>
         <source>Prescribeable Drugs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="250"/>
+        <location filename="datacollector.cxx" line="256"/>
         <source>Prescribeable Drugs Composition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="253"/>
+        <location filename="datacollector.cxx" line="259"/>
         <source>All Surveys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="256"/>
+        <location filename="datacollector.cxx" line="262"/>
         <source>Organization Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="259"/>
+        <location filename="datacollector.cxx" line="265"/>
         <source>ICD 10 Diagnosis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="262"/>
+        <location filename="datacollector.cxx" line="268"/>
         <source>Age Classes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="265"/>
+        <location filename="datacollector.cxx" line="271"/>
         <source>Smoking Habits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="268"/>
+        <location filename="datacollector.cxx" line="274"/>
         <source>Collateral Effects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="271"/>
+        <location filename="datacollector.cxx" line="277"/>
         <source>Manage Generic Survey Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="274"/>
+        <location filename="datacollector.cxx" line="280"/>
         <source>Manage Agate Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="277"/>
+        <location filename="datacollector.cxx" line="283"/>
         <source>Show All Statistics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="280"/>
+        <location filename="datacollector.cxx" line="286"/>
         <source>Countries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="283"/>
+        <location filename="datacollector.cxx" line="289"/>
         <source>Weapon Types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="286"/>
+        <location filename="datacollector.cxx" line="292"/>
         <source>Housing Types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="289"/>
+        <location filename="datacollector.cxx" line="295"/>
         <source>Modus Operandi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="292"/>
+        <location filename="datacollector.cxx" line="298"/>
         <source>Crime Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="295"/>
+        <location filename="datacollector.cxx" line="301"/>
         <source>Information Source Types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="298"/>
+        <location filename="datacollector.cxx" line="304"/>
         <source>Crime Case Party Roles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="301"/>
+        <location filename="datacollector.cxx" line="307"/>
         <source>Jobs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="304"/>
+        <location filename="datacollector.cxx" line="310"/>
         <source>Crime Motives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="307"/>
+        <location filename="datacollector.cxx" line="313"/>
         <source>Mental Diseases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="310"/>
+        <location filename="datacollector.cxx" line="316"/>
         <source>Consultancy Results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="313"/>
+        <location filename="datacollector.cxx" line="319"/>
         <source>Weapons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="316"/>
+        <location filename="datacollector.cxx" line="322"/>
         <source>Cities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="319"/>
+        <location filename="datacollector.cxx" line="325"/>
         <source>Crime Cases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="322"/>
+        <location filename="datacollector.cxx" line="328"/>
         <source>Processing States</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="340"/>
+        <location filename="datacollector.cxx" line="346"/>
+        <source>Translation file not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datacollector.cxx" line="347"/>
+        <source>Translation file %1 does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="datacollector.cxx" line="353"/>
         <source>Failed to load locale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="340"/>
+        <location filename="datacollector.cxx" line="353"/>
         <source>Failed to load locale file &apos;%1&apos; from &apos;%2&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1475,7 +1485,7 @@
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="20"/>
@@ -1526,7 +1536,7 @@
     <message>
         <location filename="depotdrugdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="depotdrugdialog.ui" line="20"/>
@@ -1608,7 +1618,7 @@
     <message>
         <location filename="fpsdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="fpsdialog.ui" line="20"/>
@@ -1644,7 +1654,7 @@
     <message>
         <location filename="gafdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="gafdialog.ui" line="20"/>
@@ -1688,7 +1698,7 @@
     <message>
         <location filename="icd10diagnosisdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="icd10diagnosisdialog.ui" line="30"/>
@@ -2041,7 +2051,7 @@
     <message>
         <location filename="ondemanddrugdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="ondemanddrugdialog.ui" line="20"/>
@@ -2085,7 +2095,7 @@
     <message>
         <location filename="plasmaticleveldialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="plasmaticleveldialog.ui" line="20"/>
@@ -2166,11 +2176,6 @@
 </context>
 <context>
     <name>ProbandManagementWidget</name>
-    <message>
-        <location filename="probandmanagementwidget.cxx" line="10"/>
-        <source>core.proband</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="18"/>
         <source>External ID</source>
@@ -2333,7 +2338,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="datacollector.hxx" line="79"/>
+        <location filename="datacollector.hxx" line="80"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2468,7 +2473,7 @@
     <message>
         <location filename="regulardrugdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.ui" line="20"/>
@@ -2509,22 +2514,22 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="settingsdialog.cxx" line="18"/>
+        <location filename="settingsdialog.cxx" line="19"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.cxx" line="35"/>
+        <location filename="settingsdialog.cxx" line="36"/>
         <source>&amp;Locale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.cxx" line="48"/>
+        <location filename="settingsdialog.cxx" line="52"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.cxx" line="48"/>
+        <location filename="settingsdialog.cxx" line="52"/>
         <source>You need to restart the application for the changes to have effect.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2573,7 +2578,7 @@
     <message>
         <location filename="surveydialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="20"/>
@@ -3337,7 +3342,7 @@ db:%2&lt;/p&gt;</source>
     <message>
         <location filename="whoqoldialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialogo</translation>
     </message>
     <message>
         <location filename="whoqoldialog.ui" line="20"/>

@@ -34,7 +34,7 @@
     <message>
         <location filename="agatedepotdialog.cxx" line="35"/>
         <source>No drug selected.</source>
-        <translation>Kein Medikament gewählt</translation>
+        <translation>Kein Medikament gewählt.</translation>
     </message>
     <message>
         <location filename="agatedepotdialog.cxx" line="43"/>
@@ -95,7 +95,7 @@
     <message>
         <location filename="agatediagnosisdialog.cxx" line="32"/>
         <source>No diagnosis selected.</source>
-        <translation>Keine Diagnose gewählt</translation>
+        <translation>Keine Diagnose gewählt.</translation>
     </message>
     <message>
         <location filename="agatediagnosisdialog.cxx" line="40"/>
@@ -116,114 +116,114 @@
     <message>
         <location filename="agateform.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="28"/>
         <source>Organizational</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisationelles</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="34"/>
         <source>Pro&amp;ject</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Project</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="47"/>
         <source>Ca&amp;mpaign</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Campagne</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="60"/>
         <source>Organi&amp;zation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Organisation</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="82"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu &amp;Laden</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="102"/>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Neu</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="109"/>
         <source>Save Current</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Speichern</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="129"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Lös&amp;chen</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="140"/>
         <source>Current Survey</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktueller Datensatz</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="150"/>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur Person</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="156"/>
         <source>Na&amp;me</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Name</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="169"/>
         <source>Surname</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nachname</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="182"/>
         <source>Birthday</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Geburtsdatum</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="195"/>
         <source>Se&amp;x</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="209"/>
         <source>Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagnosen</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="233"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="240"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="273"/>
         <source>Depot</source>
-        <translation type="unfinished"></translation>
+        <translation>Depot</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="297"/>
         <location filename="agateform.ui" line="351"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation>+</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="304"/>
         <location filename="agateform.ui" line="358"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="agateform.ui" line="327"/>
         <source>Medication</source>
-        <translation type="unfinished"></translation>
+        <translation>Medikation</translation>
     </message>
 </context>
 <context>
@@ -231,37 +231,37 @@
     <message>
         <location filename="agatemedicationdialog.cxx" line="33"/>
         <source>Molecule missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Molekül fehlt</translation>
     </message>
     <message>
         <location filename="agatemedicationdialog.cxx" line="33"/>
         <source>No molecule selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Molekül gewählt</translation>
     </message>
     <message>
         <location filename="agatemedicationdialog.cxx" line="38"/>
         <source>Dosage missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosis fehlt</translation>
     </message>
     <message>
         <location filename="agatemedicationdialog.cxx" line="38"/>
         <source>Dosage missing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosis fehlt.</translation>
     </message>
     <message>
         <location filename="agatemedicationdialog.cxx" line="46"/>
         <source>Failed to load id of molecule: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ID des Moleküls konnte nicht geladen werden: %1</translation>
     </message>
     <message>
         <location filename="agatemedicationdialog.cxx" line="68"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="agatemedicationdialog.cxx" line="73"/>
         <source>Dosage in mg</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosis in mg</translation>
     </message>
 </context>
 <context>
@@ -269,12 +269,12 @@
     <message>
         <location filename="agatemedicationtablewidget.cxx" line="45"/>
         <source>Molecule</source>
-        <translation type="unfinished"></translation>
+        <translation>Molekül</translation>
     </message>
     <message>
         <location filename="agatemedicationtablewidget.cxx" line="45"/>
         <source>Dosage in mg</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosis in mg</translation>
     </message>
 </context>
 <context>
@@ -282,116 +282,116 @@
     <message>
         <location filename="agaterecorddialog.cxx" line="93"/>
         <source>Failed to save AGATE Record</source>
-        <translation type="unfinished"></translation>
+        <translation>AGETE Datensatz konnte nicht gespeichert werden</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="165"/>
         <source>AGATE Record</source>
-        <translation type="unfinished"></translation>
+        <translation>AGATE Datensatz</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="192"/>
         <source>Survey</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="208"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="209"/>
         <source>Campaign</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagne</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="210"/>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="211"/>
         <source>Survey Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="218"/>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur Person</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="228"/>
         <source>Year Of Birth</source>
-        <translation type="unfinished"></translation>
+        <translation>Geburtsjahr</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="229"/>
         <source>Sex</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="235"/>
         <source>Depot</source>
-        <translation type="unfinished"></translation>
+        <translation>Depot</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="239"/>
         <location filename="agaterecorddialog.cxx" line="260"/>
         <location filename="agaterecorddialog.cxx" line="282"/>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuweisen...</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="240"/>
         <location filename="agaterecorddialog.cxx" line="261"/>
         <location filename="agaterecorddialog.cxx" line="283"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="256"/>
         <source>Medication</source>
-        <translation type="unfinished"></translation>
+        <translation>Medikation</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="278"/>
         <source>Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagnose</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="302"/>
         <source>Campaign is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagne fehlt</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="306"/>
         <source>Organization is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation fehlt</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="310"/>
         <source>Year of birth is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Geburtsjahr fehl</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="314"/>
         <source>Sex is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht fehlt</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="318"/>
         <source>Survey date is missing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum fehlt</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="322"/>
         <source>Data incomplete</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten unvollständig</translation>
     </message>
     <message>
         <location filename="agaterecorddialog.cxx" line="322"/>
         <source>&lt;p&gt;Data is incomplete:&lt;/p&gt;&lt;p&gt;%1&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Daten sind unvollständig:&lt;/p&gt;&lt;p&gt;%1&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -399,73 +399,73 @@
     <message>
         <location filename="agaterecordviewer.cxx" line="31"/>
         <source>Failed to load survey with ID %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ID des Datensatzes konnte nicht geladen werden: %1</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="55"/>
         <source>Survey ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz ID</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="56"/>
         <source>Survey Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="57"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="58"/>
         <source>Campaign</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagne</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="59"/>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="64"/>
         <source>Year Of Birth</source>
-        <translation type="unfinished"></translation>
+        <translation>Geburtsjahr</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="65"/>
         <source>Sex</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="71"/>
         <source>ICD10</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD10</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="78"/>
         <source>Drug</source>
-        <translation type="unfinished"></translation>
+        <translation>Medikament</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="79"/>
         <location filename="agaterecordviewer.cxx" line="96"/>
         <source>Dosage in mg</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosis in mg</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="80"/>
         <source>Last Injection</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Injektion</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="81"/>
         <source>Injection Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall in Tagen</translation>
     </message>
     <message>
         <location filename="agaterecordviewer.cxx" line="95"/>
         <source>Molecule</source>
-        <translation type="unfinished"></translation>
+        <translation>Molekül</translation>
     </message>
 </context>
 <context>
@@ -473,47 +473,47 @@
     <message>
         <location filename="agatesurveystablewidget.cxx" line="12"/>
         <source>Campaign</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagne</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="12"/>
         <source>Proband</source>
-        <translation type="unfinished"></translation>
+        <translation>Proband</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="12"/>
         <source>Survey Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="12"/>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="12"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="47"/>
         <source>Failed to load agate surveys.</source>
-        <translation type="unfinished"></translation>
+        <translation>AGATE Datensätze konnten nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="88"/>
         <source>Delete Survey?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz löschen?</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="89"/>
         <source>&lt;p&gt;Delete Survey %1?&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Datensatz %1 löschen?&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="agatesurveystablewidget.cxx" line="140"/>
         <source>Ext. ID: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Externe ID: %1</translation>
     </message>
 </context>
 <context>
@@ -521,27 +521,27 @@
     <message>
         <location filename="ageclassmanagementwidget.cxx" line="13"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="ageclassmanagementwidget.cxx" line="14"/>
         <source>Min</source>
-        <translation type="unfinished"></translation>
+        <translation>Min</translation>
     </message>
     <message>
         <location filename="ageclassmanagementwidget.cxx" line="15"/>
         <source>Max</source>
-        <translation type="unfinished"></translation>
+        <translation>Max</translation>
     </message>
     <message>
         <location filename="ageclassmanagementwidget.cxx" line="16"/>
         <source>Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall</translation>
     </message>
     <message>
         <location filename="ageclassmanagementwidget.cxx" line="17"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -549,27 +549,27 @@
     <message>
         <location filename="cgidialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="cgidialog.ui" line="20"/>
         <source>Regular Prescription</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguläre Verschreibung</translation>
     </message>
     <message>
         <location filename="cgidialog.ui" line="26"/>
         <source>Se&amp;verity</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwere</translation>
     </message>
     <message>
         <location filename="cgidialog.ui" line="39"/>
         <source>I&amp;mprovement</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbesserung</translation>
     </message>
     <message>
         <location filename="cgidialog.ui" line="54"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
 </context>
 <context>
@@ -577,7 +577,7 @@
     <message>
         <location filename="campaigncombobox.cxx" line="46"/>
         <source>Failed to load campaigns in project</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagnen im Project konnten nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -585,27 +585,27 @@
     <message>
         <location filename="campaignmanagementwidget.cxx" line="20"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="campaignmanagementwidget.cxx" line="21"/>
         <source>Campaign</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagne</translation>
     </message>
     <message>
         <location filename="campaignmanagementwidget.cxx" line="22"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt</translation>
     </message>
     <message>
         <location filename="campaignmanagementwidget.cxx" line="23"/>
         <source>Begin</source>
-        <translation type="unfinished"></translation>
+        <translation>Anfang</translation>
     </message>
     <message>
         <location filename="campaignmanagementwidget.cxx" line="24"/>
         <source>End</source>
-        <translation type="unfinished"></translation>
+        <translation>Ende</translation>
     </message>
 </context>
 <context>
@@ -613,12 +613,12 @@
     <message>
         <location filename="channelintopatientmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="channelintopatientmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -626,7 +626,7 @@
     <message>
         <location filename="citycombobox.cxx" line="45"/>
         <source>Failed to load City list</source>
-        <translation type="unfinished"></translation>
+        <translation>Stadtliste konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -634,27 +634,27 @@
     <message>
         <location filename="citymanagementwidget.cxx" line="11"/>
         <source>Cities</source>
-        <translation type="unfinished"></translation>
+        <translation>Städte</translation>
     </message>
     <message>
         <location filename="citymanagementwidget.cxx" line="18"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="citymanagementwidget.cxx" line="19"/>
         <source># of Inhabitants</source>
-        <translation type="unfinished"></translation>
+        <translation>Einwohne</translation>
     </message>
     <message>
         <location filename="citymanagementwidget.cxx" line="20"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="citymanagementwidget.cxx" line="21"/>
         <source>Country</source>
-        <translation type="unfinished"></translation>
+        <translation>Land</translation>
     </message>
 </context>
 <context>
@@ -662,27 +662,27 @@
     <message>
         <location filename="collateraleffectdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="collateraleffectdialog.ui" line="20"/>
         <source>Depot Prescription</source>
-        <translation type="unfinished"></translation>
+        <translation>Depot Verschreibung</translation>
     </message>
     <message>
         <location filename="collateraleffectdialog.ui" line="33"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="collateraleffectdialog.cxx" line="23"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="collateraleffectdialog.cxx" line="30"/>
         <source>Failed to load Collateral Effects list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste der Nebeneffekte konnte nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -690,12 +690,12 @@
     <message>
         <location filename="collateraleffectmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="collateraleffectmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -703,7 +703,7 @@
     <message>
         <location filename="consultancyresultcombobox.cxx" line="45"/>
         <source>Failed to load Consultancy Result list</source>
-        <translation type="unfinished"></translation>
+        <translation>Begutachtungsergebnisse konnten nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -711,12 +711,12 @@
     <message>
         <location filename="consultancyresultmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="consultancyresultmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -724,39 +724,39 @@
     <message>
         <location filename="corestatisticsform.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="corestatisticsform.ui" line="36"/>
         <location filename="corestatisticsform.ui" line="78"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu &amp;Laden</translation>
     </message>
     <message>
         <location filename="corestatisticsform.ui" line="56"/>
         <location filename="corestatisticsform.ui" line="98"/>
         <source>Export as CSV...</source>
-        <translation type="unfinished"></translation>
+        <translation>Als CSV exportieren...</translation>
     </message>
     <message>
         <location filename="corestatisticsform.cxx" line="42"/>
         <source>Failed to load available statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Verfügbare Statistiken konnten nicht geladen werden</translation>
     </message>
     <message>
         <location filename="corestatisticsform.cxx" line="49"/>
         <source>Usage Hint</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzungshinweis</translation>
     </message>
     <message>
         <location filename="corestatisticsform.cxx" line="49"/>
         <source>No Report selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Bericht gewählt.</translation>
     </message>
     <message>
         <location filename="corestatisticsform.cxx" line="56"/>
         <source>Failed to load statistics: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Statistik konnte nicht geladen werden: %1</translation>
     </message>
 </context>
 <context>
@@ -764,17 +764,17 @@
     <message>
         <location filename="countrymanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="countrymanagementwidget.cxx" line="12"/>
         <source>Symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>Symbol</translation>
     </message>
     <message>
         <location filename="countrymanagementwidget.cxx" line="13"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -782,7 +782,7 @@
     <message>
         <location filename="crimecasecombobox.cxx" line="45"/>
         <source>Failed to load CrimeCase list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste der Kriminalfälle konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -790,86 +790,86 @@
     <message>
         <location filename="crimecasedialog.cxx" line="85"/>
         <source>Crime Case</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfall</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="115"/>
         <source>Core Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Kerninformation</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="128"/>
         <source>&amp;Processing Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Verarbeitungsstatus</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="129"/>
         <source>&amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="130"/>
         <source>&amp;Year</source>
-        <translation type="unfinished"></translation>
+        <translation>Jahr</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="131"/>
         <source>&amp;Date [YYYY-MM-DD]</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Datum [YYYY-MM-DD]</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="132"/>
         <source>&amp;Time [h:m]</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zeit [h:m]</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="133"/>
         <source>&amp;Housing Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebäudeart</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="134"/>
         <source>&amp;City</source>
-        <translation type="unfinished"></translation>
+        <translation>Stadt</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="135"/>
         <source>D&amp;escription</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="166"/>
         <source>&amp;Participants</source>
-        <translation type="unfinished"></translation>
+        <translation>Beteiligte</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="173"/>
         <location filename="crimecasedialog.cxx" line="204"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu &amp;Laden</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="174"/>
         <location filename="crimecasedialog.cxx" line="205"/>
         <source>&amp;Create...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Neu</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="175"/>
         <location filename="crimecasedialog.cxx" line="206"/>
         <source>&amp;Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bearbeiten...</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="176"/>
         <location filename="crimecasedialog.cxx" line="207"/>
         <source>&amp;Delete...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lös&amp;chen</translation>
     </message>
     <message>
         <location filename="crimecasedialog.cxx" line="197"/>
         <source>&amp;Information Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationsquellen</translation>
     </message>
 </context>
 <context>
@@ -877,97 +877,97 @@
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="72"/>
         <source>Owns Weapon &amp;Legally</source>
-        <translation type="unfinished"></translation>
+        <translation>Legaler Waffenbesitz</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="83"/>
         <source>Conflict has &amp;long history</source>
-        <translation type="unfinished"></translation>
+        <translation>Konflikt hat lange Vorgeschichte</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="84"/>
         <source>&amp;Has Previous Convictions</source>
-        <translation type="unfinished"></translation>
+        <translation>Hat Vorverurteilungen</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="86"/>
         <source>Is Alcohol Intoxicated</source>
-        <translation type="unfinished"></translation>
+        <translation>Ist alkoholisiert</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="88"/>
         <source>Is Drug Intoxicated</source>
-        <translation type="unfinished"></translation>
+        <translation>steht unter Drogeneinfluss</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="106"/>
         <source>&amp;Crime Case</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfall</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="107"/>
         <source>&amp;Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Rolle</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="108"/>
         <source>&amp;Sex</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="109"/>
         <source>&amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="110"/>
         <source>&amp;Age in Years</source>
-        <translation type="unfinished"></translation>
+        <translation>Alter in Jahren</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="111"/>
         <source>&amp;Job</source>
-        <translation type="unfinished"></translation>
+        <translation>Beruf</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="112"/>
         <source>Crime &amp;Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Art des Verbrechens</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="113"/>
         <source>&amp;Motive</source>
-        <translation type="unfinished"></translation>
+        <translation>Motiv</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="114"/>
         <source>Modus &amp;Operandi</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorgehensweise</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="116"/>
         <source>&amp;Weapon</source>
-        <translation type="unfinished"></translation>
+        <translation>Waffe</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="117"/>
         <source>Mental Dis&amp;ease</source>
-        <translation type="unfinished"></translation>
+        <translation>Psychische Erkrankung</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="118"/>
         <source>Consultancy &amp;Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Begutachtungsergebnis</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="123"/>
         <source>&amp;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="crimecaseparticipantdialog.cxx" line="160"/>
         <source>Failed to save Crime Case Participant</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfall konnte nicht gespeichert werden</translation>
     </message>
 </context>
 <context>
@@ -975,62 +975,62 @@
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="16"/>
         <source>Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Rolle</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="16"/>
         <source>Crime Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Art des Verbrechens</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="16"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="16"/>
         <source>Sex</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="16"/>
         <source>Age</source>
-        <translation type="unfinished"></translation>
+        <translation>Alter</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="17"/>
         <source>Job</source>
-        <translation type="unfinished"></translation>
+        <translation>Beruf</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="17"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="40"/>
         <source>Failed to load agate surveys.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">AGATE Datensätze konnten nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="80"/>
         <source>Hint</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinweis</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="80"/>
         <source>No Participant selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Beteiligter gewählt</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="115"/>
         <source>Delete Participant?</source>
-        <translation type="unfinished"></translation>
+        <translation>Beteiligten löschen?</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="116"/>
         <source>&lt;p&gt;Delete Participant %1?&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Beteiligten %1 löschen?&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1038,7 +1038,7 @@
     <message>
         <location filename="crimecasepartyrolecombobox.cxx" line="46"/>
         <source>Failed to load Crime Case Party Role list</source>
-        <translation type="unfinished"></translation>
+        <translation>Rollenliste der Fallbeteiligten konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1046,12 +1046,12 @@
     <message>
         <location filename="crimecasepartyrolemanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="crimecasepartyrolemanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -1059,27 +1059,27 @@
     <message>
         <location filename="crimecasewidget.cxx" line="33"/>
         <source>Crime Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfall</translation>
     </message>
     <message>
         <location filename="crimecasewidget.cxx" line="41"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu &amp;Laden</translation>
     </message>
     <message>
         <location filename="crimecasewidget.cxx" line="42"/>
         <source>&amp;Create...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Neu</translation>
     </message>
     <message>
         <location filename="crimecasewidget.cxx" line="43"/>
         <source>&amp;Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bearbeiten...</translation>
     </message>
     <message>
         <location filename="crimecasewidget.cxx" line="44"/>
         <source>&amp;Delete...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lös&amp;chen</translation>
     </message>
 </context>
 <context>
@@ -1087,67 +1087,67 @@
     <message>
         <location filename="crimecasestablewidget.cxx" line="13"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="14"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="15"/>
         <source>City</source>
-        <translation type="unfinished"></translation>
+        <translation>Stadt</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="16"/>
         <source>Housing Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebäudeart</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="17"/>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation>Jahr</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="18"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="19"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="20"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="36"/>
         <source>Failed to load crime cases.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfälle konnten nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="77"/>
         <source>Hint</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinweis</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="77"/>
         <source>No Crime Case selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Kriminalfall gewählt</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="110"/>
         <source>Delete Survey?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz löschen?</translation>
     </message>
     <message>
         <location filename="crimecasestablewidget.cxx" line="111"/>
         <source>&lt;p&gt;Delete Crime Case %1?&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Datensatz %1 löschen?&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1155,7 +1155,7 @@
     <message>
         <location filename="crimemotivecombobox.cxx" line="45"/>
         <source>Failed to load Crime Motive list</source>
-        <translation type="unfinished"></translation>
+        <translation>Motivliste konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1163,12 +1163,12 @@
     <message>
         <location filename="crimemotivemanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="crimemotivemanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -1176,7 +1176,7 @@
     <message>
         <location filename="crimetypecombobox.cxx" line="45"/>
         <source>Failed to load Crime Type list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste der Verbrechensarten konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1184,290 +1184,300 @@
     <message>
         <location filename="crimetypemanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="crimetypemanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
     <name>DataCollector</name>
     <message>
-        <location filename="datacollector.cxx" line="70"/>
+        <location filename="datacollector.cxx" line="71"/>
         <source>Failed to rollback database transaction. Program will terminate.</source>
-        <translation type="unfinished"></translation>
+        <translation>Transaktion konnte nicht zurückgerollt werden.</translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="111"/>
+        <location filename="datacollector.cxx" line="112"/>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="datacollector.cxx" line="144"/>
-        <source>Failed to connect to database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankfehler</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="145"/>
-        <source>&lt;p&gt;&lt;b&gt;Failed to connect to database:&lt;/b&gt;/&lt;p&gt;&lt;p&gt;%1&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Failed to connect to database</source>
+        <translation>Verbindung zur Datenbank fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="169"/>
-        <source>Ping Failed</source>
-        <translation type="unfinished"></translation>
+        <location filename="datacollector.cxx" line="146"/>
+        <source>&lt;p&gt;&lt;b&gt;Failed to connect to database:&lt;/b&gt;/&lt;p&gt;&lt;p&gt;%1&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;b&gt;Verbindung zur Datenbank fehlgeschlagen:&lt;/b&gt;/&lt;p&gt;&lt;p&gt;%1&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="170"/>
-        <source>Ping failed: no rows returned.</source>
-        <translation type="unfinished"></translation>
+        <source>Ping Failed</source>
+        <translation>Ping fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="176"/>
-        <source>Pink OK</source>
-        <translation type="unfinished"></translation>
+        <location filename="datacollector.cxx" line="171"/>
+        <source>Ping failed: no rows returned.</source>
+        <translation>Ping fehlgeschlagen: keine Daten erhalten.</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="177"/>
-        <source>&lt;p&gt;Server Timestamp: %1&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>Pink OK</source>
+        <translation>Pink OK</translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="181"/>
-        <source>Failed to ping database</source>
-        <translation type="unfinished"></translation>
+        <location filename="datacollector.cxx" line="178"/>
+        <source>&lt;p&gt;Server Timestamp: %1&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Server Zeit: %1&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="182"/>
+        <source>Failed to ping database</source>
+        <translation>Datenbankping fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location filename="datacollector.cxx" line="183"/>
         <source>&lt;p&gt;&lt;b&gt;Failed to ping database:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Server Timestamp: %1&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;&lt;b&gt;Datenbankping fehlgeschlagen:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Server Zeit: %1&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="195"/>
+        <location filename="datacollector.cxx" line="201"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="datacollector.cxx" line="199"/>
-        <source>&amp;Connect...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="datacollector.cxx" line="202"/>
-        <source>C&amp;lose</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="205"/>
-        <source>&amp;Ping</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Connect...</source>
+        <translation>&amp;Verbinden</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="208"/>
-        <source>&amp;About this program...</source>
-        <translation type="unfinished"></translation>
+        <source>C&amp;lose</source>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="211"/>
-        <source>&amp;About Qt...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Ping</source>
+        <translation>&amp;Ping</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="214"/>
-        <source>&amp;Settings...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;About this program...</source>
+        <translation>Über dieses Programm...</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="217"/>
-        <source>Channels Into Patient...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;About Qt...</source>
+        <translation>Über Qt...</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="220"/>
-        <source>Drug Administration Methods...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Settings...</source>
+        <translation>&amp;Einstellungen...</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="223"/>
-        <source>Molecule Classes...</source>
-        <translation type="unfinished"></translation>
+        <source>Channels Into Patient...</source>
+        <translation>Wege inden Patienten...</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="226"/>
-        <source>Molecules</source>
-        <translation type="unfinished"></translation>
+        <source>Drug Administration Methods...</source>
+        <translation>Medikationsmethoden...</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="229"/>
-        <source>Sexes</source>
-        <translation type="unfinished"></translation>
+        <source>Molecule Classes...</source>
+        <translation>Molekülklassen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="232"/>
-        <source>Units</source>
-        <translation type="unfinished"></translation>
+        <source>Molecules</source>
+        <translation>Moleküle</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="235"/>
-        <source>Projects</source>
-        <translation type="unfinished"></translation>
+        <source>Sexes</source>
+        <translation>Geschlechter</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="238"/>
-        <source>Campaigns</source>
-        <translation type="unfinished"></translation>
+        <source>Units</source>
+        <translation>Einheiten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="241"/>
-        <source>Probands</source>
-        <translation type="unfinished"></translation>
+        <source>Projects</source>
+        <translation>Projekte</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="244"/>
-        <source>Drugs</source>
-        <translation type="unfinished"></translation>
+        <source>Campaigns</source>
+        <translation>Kampagnen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="247"/>
-        <source>Prescribeable Drugs</source>
-        <translation type="unfinished"></translation>
+        <source>Probands</source>
+        <translation>Probanden</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="250"/>
-        <source>Prescribeable Drugs Composition</source>
-        <translation type="unfinished"></translation>
+        <source>Drugs</source>
+        <translation>Medikamente</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="253"/>
-        <source>All Surveys</source>
-        <translation type="unfinished"></translation>
+        <source>Prescribeable Drugs</source>
+        <translation>Verschreibbare Medikamente</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="256"/>
-        <source>Organization Units</source>
-        <translation type="unfinished"></translation>
+        <source>Prescribeable Drugs Composition</source>
+        <translation>Zusammensetzung von verschreibbaren Medikamenten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="259"/>
-        <source>ICD 10 Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <source>All Surveys</source>
+        <translation>Alle Datensätze</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="262"/>
-        <source>Age Classes</source>
-        <translation type="unfinished"></translation>
+        <source>Organization Units</source>
+        <translation>Organisationseinheiten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="265"/>
-        <source>Smoking Habits</source>
-        <translation type="unfinished"></translation>
+        <source>ICD 10 Diagnosis</source>
+        <translation>ICD 10 Diagnosen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="268"/>
-        <source>Collateral Effects</source>
-        <translation type="unfinished"></translation>
+        <source>Age Classes</source>
+        <translation>Altersklassen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="271"/>
-        <source>Manage Generic Survey Data</source>
-        <translation type="unfinished"></translation>
+        <source>Smoking Habits</source>
+        <translation>Rauchgewohnheiten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="274"/>
-        <source>Manage Agate Data</source>
-        <translation type="unfinished"></translation>
+        <source>Collateral Effects</source>
+        <translation>Unerwünschte Arzneimittelwirkungen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="277"/>
-        <source>Show All Statistics</source>
-        <translation type="unfinished"></translation>
+        <source>Manage Generic Survey Data</source>
+        <translation>Generische Datensatzverwaltung</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="280"/>
-        <source>Countries</source>
-        <translation type="unfinished"></translation>
+        <source>Manage Agate Data</source>
+        <translation>AGATE Daten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="283"/>
-        <source>Weapon Types</source>
-        <translation type="unfinished"></translation>
+        <source>Show All Statistics</source>
+        <translation>Alle Statistiken</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="286"/>
-        <source>Housing Types</source>
-        <translation type="unfinished"></translation>
+        <source>Countries</source>
+        <translation>Länder</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="289"/>
-        <source>Modus Operandi</source>
-        <translation type="unfinished"></translation>
+        <source>Weapon Types</source>
+        <translation>Waffenarten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="292"/>
-        <source>Crime Type</source>
-        <translation type="unfinished"></translation>
+        <source>Housing Types</source>
+        <translation>Gebäudearten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="295"/>
-        <source>Information Source Types</source>
-        <translation type="unfinished"></translation>
+        <source>Modus Operandi</source>
+        <translation>Vorgehensweisen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="298"/>
-        <source>Crime Case Party Roles</source>
-        <translation type="unfinished"></translation>
+        <source>Crime Type</source>
+        <translation>Verbrechensarten</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="301"/>
-        <source>Jobs</source>
-        <translation type="unfinished"></translation>
+        <source>Information Source Types</source>
+        <translation>Arten von Informationsquellen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="304"/>
-        <source>Crime Motives</source>
-        <translation type="unfinished"></translation>
+        <source>Crime Case Party Roles</source>
+        <translation>Rollen von Beteiligten an Kriminalfällen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="307"/>
-        <source>Mental Diseases</source>
-        <translation type="unfinished"></translation>
+        <source>Jobs</source>
+        <translation>Berufe</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="310"/>
-        <source>Consultancy Results</source>
-        <translation type="unfinished"></translation>
+        <source>Crime Motives</source>
+        <translation>Motive</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="313"/>
-        <source>Weapons</source>
-        <translation type="unfinished"></translation>
+        <source>Mental Diseases</source>
+        <translation>Psychische Erkrankungen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="316"/>
-        <source>Cities</source>
-        <translation type="unfinished"></translation>
+        <source>Consultancy Results</source>
+        <translation>Begutachtungsergebnisse</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="319"/>
-        <source>Crime Cases</source>
-        <translation type="unfinished"></translation>
+        <source>Weapons</source>
+        <translation>Waffen</translation>
     </message>
     <message>
         <location filename="datacollector.cxx" line="322"/>
+        <source>Cities</source>
+        <translation>Städte</translation>
+    </message>
+    <message>
+        <location filename="datacollector.cxx" line="325"/>
+        <source>Crime Cases</source>
+        <translation>Kriminalfälle</translation>
+    </message>
+    <message>
+        <location filename="datacollector.cxx" line="328"/>
         <source>Processing States</source>
-        <translation type="unfinished"></translation>
+        <translation>Verarbeitungsstatus</translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="340"/>
+        <location filename="datacollector.cxx" line="346"/>
+        <source>Translation file not found</source>
+        <translation>Übersetzungsdatei nicht gefunden</translation>
+    </message>
+    <message>
+        <location filename="datacollector.cxx" line="347"/>
+        <source>Translation file %1 does not exist.</source>
+        <translation>Übersetzungsdatei %1 existiert nicht.</translation>
+    </message>
+    <message>
+        <location filename="datacollector.cxx" line="353"/>
         <source>Failed to load locale</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzung konnte nicht geladen werden</translation>
     </message>
     <message>
-        <location filename="datacollector.cxx" line="340"/>
+        <location filename="datacollector.cxx" line="353"/>
         <source>Failed to load locale file &apos;%1&apos; from &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzungsdaten in Datei &apos;%1&apos; konnten in &apos;%2&apos; nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -1475,37 +1485,37 @@
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="20"/>
         <source>Database Connection Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankverbindungsdaten</translation>
     </message>
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="26"/>
         <source>&amp;Host</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Server</translation>
     </message>
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="39"/>
         <source>&amp;Port</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Port</translation>
     </message>
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="52"/>
         <source>&amp;Database</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Datenbank</translation>
     </message>
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="65"/>
         <source>&amp;User</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Login</translation>
     </message>
     <message>
         <location filename="databaseconnectiondatadialog.ui" line="78"/>
         <source>P&amp;assword</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;asswort</translation>
     </message>
 </context>
 <context>
@@ -1513,12 +1523,12 @@
     <message>
         <location filename="databaseconnectionstatuslabel.cxx" line="16"/>
         <source>Connected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbunden.</translation>
     </message>
     <message>
         <location filename="databaseconnectionstatuslabel.cxx" line="21"/>
         <source>Not Connected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht Verbunden.</translation>
     </message>
 </context>
 <context>
@@ -1526,37 +1536,37 @@
     <message>
         <location filename="depotdrugdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="depotdrugdialog.ui" line="20"/>
         <source>Depot Prescription</source>
-        <translation type="unfinished"></translation>
+        <translation>Depot Verschreibung</translation>
     </message>
     <message>
         <location filename="depotdrugdialog.ui" line="31"/>
         <source>Last Injection</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Injektion</translation>
     </message>
     <message>
         <location filename="depotdrugdialog.ui" line="41"/>
         <source>Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall</translation>
     </message>
     <message>
         <location filename="depotdrugdialog.ui" line="51"/>
         <source>Dosage</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierung</translation>
     </message>
     <message>
         <location filename="depotdrugdialog.ui" line="63"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="depotdrugdialog.cxx" line="49"/>
         <source>Failed to load Prescribeable Drug list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschreibbare Medikamente konnten nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -1564,7 +1574,7 @@
     <message>
         <location filename="diagnosisinsurveymanagementwidget.cxx" line="17"/>
         <source>ICD10 Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD Diagnosen</translation>
     </message>
 </context>
 <context>
@@ -1572,22 +1582,22 @@
     <message>
         <location filename="drugadministrationmethodmanagementwidget.cxx" line="11"/>
         <source>Drug Administration Methods</source>
-        <translation type="unfinished"></translation>
+        <translation>Verabreichungsmethoden</translation>
     </message>
     <message>
         <location filename="drugadministrationmethodmanagementwidget.cxx" line="18"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="drugadministrationmethodmanagementwidget.cxx" line="19"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="drugadministrationmethodmanagementwidget.cxx" line="20"/>
         <source>Channel Into Patient</source>
-        <translation type="unfinished"></translation>
+        <translation>Weg inden Patienten...</translation>
     </message>
 </context>
 <context>
@@ -1595,12 +1605,12 @@
     <message>
         <location filename="drugmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="drugmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1608,22 +1618,22 @@
     <message>
         <location filename="fpsdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="fpsdialog.ui" line="20"/>
         <source>Regular Prescription</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguläre Verschreibung</translation>
     </message>
     <message>
         <location filename="fpsdialog.ui" line="26"/>
         <source>FPS &amp;Value</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS Wert</translation>
     </message>
     <message>
         <location filename="fpsdialog.ui" line="41"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
 </context>
 <context>
@@ -1631,12 +1641,12 @@
     <message>
         <location filename="filenameselector.cxx" line="15"/>
         <source>&amp;Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücksetzen</translation>
     </message>
     <message>
         <location filename="filenameselector.cxx" line="39"/>
         <source>select translation file</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzungsdatei wählen</translation>
     </message>
 </context>
 <context>
@@ -1644,22 +1654,22 @@
     <message>
         <location filename="gafdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="gafdialog.ui" line="20"/>
         <source>Regular Prescription</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguläre Verschreibung</translation>
     </message>
     <message>
         <location filename="gafdialog.ui" line="26"/>
         <source>GAF &amp;Value</source>
-        <translation type="unfinished"></translation>
+        <translation>GAF Wert</translation>
     </message>
     <message>
         <location filename="gafdialog.ui" line="41"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
 </context>
 <context>
@@ -1667,7 +1677,7 @@
     <message>
         <location filename="housingtypecombobox.cxx" line="45"/>
         <source>Failed to load HousingType list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste der Gebäudearten konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1675,12 +1685,12 @@
     <message>
         <location filename="housingtypemanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="housingtypemanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -1688,27 +1698,27 @@
     <message>
         <location filename="icd10diagnosisdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="icd10diagnosisdialog.ui" line="30"/>
         <source>ICD10 Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD Diagnose</translation>
     </message>
     <message>
         <location filename="icd10diagnosisdialog.ui" line="43"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="icd10diagnosisdialog.cxx" line="24"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="icd10diagnosisdialog.cxx" line="31"/>
         <source>Failed to load ICD10 diagnosis list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste der ICD10 Diagnosen konnten nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -1716,17 +1726,17 @@
     <message>
         <location filename="icd10diagnosismanagementwidget.cxx" line="11"/>
         <source>Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Code</translation>
     </message>
     <message>
         <location filename="icd10diagnosismanagementwidget.cxx" line="12"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="icd10diagnosismanagementwidget.cxx" line="13"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -1734,37 +1744,37 @@
     <message>
         <location filename="informationsourceforcrimecasedialog.cxx" line="24"/>
         <source>Information Source For Crime Case</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationsquelle für Kriminalfall</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasedialog.cxx" line="35"/>
         <source>&amp;Crime Case</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfall</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasedialog.cxx" line="36"/>
         <source>&amp;Information Source Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Arten von Informationsquelle</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasedialog.cxx" line="37"/>
         <source>&amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;URL</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasedialog.cxx" line="38"/>
         <source>&amp;When Added</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wann hinzugefügt</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasedialog.cxx" line="39"/>
         <source>&amp;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasedialog.cxx" line="69"/>
         <source>Failed to save information source for crime case</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationsquelle für Kriminalfall konnte nicht gespeichert werden</translation>
     </message>
 </context>
 <context>
@@ -1772,52 +1782,52 @@
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="17"/>
         <source>Source Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellenart</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="18"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URl</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="19"/>
         <source>When Added</source>
-        <translation type="unfinished"></translation>
+        <translation>Wann hinzugefügt</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="20"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="21"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="38"/>
         <source>Failed to load information sources for crime case.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationsquelle für Kriminalfall konnte nicht geladen werden</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="82"/>
         <source>Hint</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinweis</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="82"/>
         <source>No Crime Case selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Kriminalfall gewählt</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="117"/>
         <source>Delete Survey?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz löschen?</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="118"/>
         <source>&lt;p&gt;Delete Crime Case %1?&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Datensatz %1 löschen?&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -1825,7 +1835,7 @@
     <message>
         <location filename="informationsourcetypecombobox.cxx" line="45"/>
         <source>Failed to load InformationSourceType list</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationsquellenarten konnten nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1833,12 +1843,12 @@
     <message>
         <location filename="informationsourcetypemanagementwidget.cxx" line="11"/>
         <source>Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Code</translation>
     </message>
     <message>
         <location filename="informationsourcetypemanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -1846,7 +1856,7 @@
     <message>
         <location filename="jobcombobox.cxx" line="45"/>
         <source>Failed to load Job list</source>
-        <translation type="unfinished"></translation>
+        <translation>Berufsliste konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1854,12 +1864,12 @@
     <message>
         <location filename="jobmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="jobmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -1867,47 +1877,47 @@
     <message>
         <location filename="mainwindow.cxx" line="57"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Datei</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="65"/>
         <source>&amp;Database</source>
-        <translation type="unfinished"></translation>
+        <translation>D&amp;atenbank</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="74"/>
         <source>&amp;Administration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verwaltung</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="121"/>
         <source>&amp;Projects</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Projekte</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="129"/>
         <source>Ph&amp;armacology</source>
-        <translation type="unfinished"></translation>
+        <translation>Ph&amp;armakologie</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="142"/>
         <source>&amp;AGATE</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;AGATE</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="167"/>
         <source>&amp;Criminology</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kriminologie</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="191"/>
         <source>&amp;Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Statistik</translation>
     </message>
     <message>
         <location filename="mainwindow.cxx" line="197"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hilfe</translation>
     </message>
 </context>
 <context>
@@ -1915,52 +1925,52 @@
     <message>
         <location filename="manualagatewidget.cxx" line="19"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="26"/>
         <source>Show Only Project:</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektfilter:</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="27"/>
         <source>Show Only Campaign:</source>
-        <translation type="unfinished"></translation>
+        <translation>kampagnenfilter:</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="42"/>
         <source>Default Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Voreingestelltes Projekt</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="43"/>
         <source>Default Campaign</source>
-        <translation type="unfinished"></translation>
+        <translation>Voreingestellte Kampagne</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="44"/>
         <source>Default Survey Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Voreingestelltes Umfragedatum</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="45"/>
         <source>Default Organization</source>
-        <translation type="unfinished"></translation>
+        <translation>Voreeingestellte Organisation</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="50"/>
         <source>&amp;Surveys</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Umfragen</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="53"/>
         <source>Create Survey</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Umfrage</translation>
     </message>
     <message>
         <location filename="manualagatewidget.cxx" line="55"/>
         <source>Delete Survey</source>
-        <translation type="unfinished"></translation>
+        <translation>Umfrage löschen</translation>
     </message>
 </context>
 <context>
@@ -1968,7 +1978,7 @@
     <message>
         <location filename="mentaldiseasecombobox.cxx" line="45"/>
         <source>Failed to load MentalDisease list</source>
-        <translation type="unfinished"></translation>
+        <translation>Psychische Erkrankungen konnten nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1976,12 +1986,12 @@
     <message>
         <location filename="mentaldiseasemanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="mentaldiseasemanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -1989,7 +1999,7 @@
     <message>
         <location filename="modusoperandicombobox.cxx" line="45"/>
         <source>Failed to load ModusOperandi list</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorehensweisen konnten nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -1997,12 +2007,12 @@
     <message>
         <location filename="modusoperandimanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="modusoperandimanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2010,12 +2020,12 @@
     <message>
         <location filename="moleculeclassmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="moleculeclassmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2023,17 +2033,17 @@
     <message>
         <location filename="moleculemanagementwidget.cxx" line="17"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="moleculemanagementwidget.cxx" line="18"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <location filename="moleculemanagementwidget.cxx" line="19"/>
         <source>Molecule Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Molekülklasse</translation>
     </message>
 </context>
 <context>
@@ -2041,22 +2051,22 @@
     <message>
         <location filename="ondemanddrugdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="ondemanddrugdialog.ui" line="20"/>
         <source>On Demand Drug</source>
-        <translation type="unfinished"></translation>
+        <translation>Bedarfsmedikation</translation>
     </message>
     <message>
         <location filename="ondemanddrugdialog.ui" line="33"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="ondemanddrugdialog.cxx" line="30"/>
         <source>Failed to load Drug list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Medikamentenliste konnte nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -2064,7 +2074,7 @@
     <message>
         <location filename="organizationcombobox.cxx" line="45"/>
         <source>Failed to load Organization list</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisationen konnten nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -2072,12 +2082,12 @@
     <message>
         <location filename="organizationunitmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="organizationunitmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2085,27 +2095,27 @@
     <message>
         <location filename="plasmaticleveldialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="plasmaticleveldialog.ui" line="20"/>
         <source>Plasmatic Level</source>
-        <translation type="unfinished"></translation>
+        <translation>Plasmaspiegel</translation>
     </message>
     <message>
         <location filename="plasmaticleveldialog.ui" line="31"/>
         <source>Concentration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzentration</translation>
     </message>
     <message>
         <location filename="plasmaticleveldialog.ui" line="50"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="plasmaticleveldialog.cxx" line="46"/>
         <source>Failed to load Prescribeable Drug list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschreibbare Medikamente konnten nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -2113,22 +2123,22 @@
     <message>
         <location filename="prescribeabledrugcompositionmanagementwidget.cxx" line="19"/>
         <source>Prescribeable Drug</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschreibbares Medikamt</translation>
     </message>
     <message>
         <location filename="prescribeabledrugcompositionmanagementwidget.cxx" line="20"/>
         <source>Molecule</source>
-        <translation type="unfinished"></translation>
+        <translation>Molekül</translation>
     </message>
     <message>
         <location filename="prescribeabledrugcompositionmanagementwidget.cxx" line="21"/>
         <source>Amount</source>
-        <translation type="unfinished"></translation>
+        <translation>Menge</translation>
     </message>
     <message>
         <location filename="prescribeabledrugcompositionmanagementwidget.cxx" line="22"/>
         <source>Amount Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Einheit</translation>
     </message>
 </context>
 <context>
@@ -2136,80 +2146,75 @@
     <message>
         <location filename="prescribeabledrugmanagmentwidget.cxx" line="19"/>
         <source>Drug</source>
-        <translation type="unfinished"></translation>
+        <translation>Medikament</translation>
     </message>
     <message>
         <location filename="prescribeabledrugmanagmentwidget.cxx" line="20"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="prescribeabledrugmanagmentwidget.cxx" line="21"/>
         <source>Dosage</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierung</translation>
     </message>
     <message>
         <location filename="prescribeabledrugmanagmentwidget.cxx" line="22"/>
         <source>Dosage Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosierungseinheit</translation>
     </message>
     <message>
         <location filename="prescribeabledrugmanagmentwidget.cxx" line="23"/>
         <source>Administration Method</source>
-        <translation type="unfinished"></translation>
+        <translation>Verabreichungsmethode</translation>
     </message>
     <message>
         <location filename="prescribeabledrugmanagmentwidget.cxx" line="24"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
     <name>ProbandManagementWidget</name>
     <message>
-        <location filename="probandmanagementwidget.cxx" line="10"/>
-        <source>core.proband</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="probandmanagementwidget.cxx" line="18"/>
         <source>External ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Externe ID</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="19"/>
         <source>Birthday</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Geburtsdatum</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="20"/>
         <source>Height [cm]</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe [cm]</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="21"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="22"/>
         <source>First Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="23"/>
         <source>Surname</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nachname</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="24"/>
         <source>Year Of Birth</source>
-        <translation type="unfinished"></translation>
+        <translation>Geburtsjahr</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="25"/>
         <source>Sex</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht</translation>
     </message>
 </context>
 <context>
@@ -2217,7 +2222,7 @@
     <message>
         <location filename="processingstatuscombobox.cxx" line="45"/>
         <source>Failed to load ProcessingStatus list</source>
-        <translation type="unfinished"></translation>
+        <translation>Verabeitungsstatusliste konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -2225,12 +2230,12 @@
     <message>
         <location filename="processingstatusmanagementwidget.cxx" line="13"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="processingstatusmanagementwidget.cxx" line="14"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2238,7 +2243,7 @@
     <message>
         <location filename="projectcombobox.cxx" line="45"/>
         <source>Failed to load project list</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektliste konnte nicht geladen weden</translation>
     </message>
 </context>
 <context>
@@ -2246,12 +2251,12 @@
     <message>
         <location filename="projectmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="projectmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2259,208 +2264,208 @@
     <message>
         <location filename="agaterecordgateway.cxx" line="28"/>
         <source>Failed to save AGATE record.</source>
-        <translation type="unfinished"></translation>
+        <translation>AGETE Datensatz konnte nicht gespeichert werden</translation>
     </message>
     <message>
         <location filename="agaterecordgateway.cxx" line="49"/>
         <source>Failed to delete AGATE record.</source>
-        <translation type="unfinished"></translation>
+        <translation>AGATE Datensatz konnte nicht gelöscht werden.</translation>
     </message>
     <message>
         <location filename="ageclassmanagementwidget.cxx" line="9"/>
         <source>Age Classes</source>
-        <translation type="unfinished"></translation>
+        <translation>Altersklassen</translation>
     </message>
     <message>
         <location filename="campaignmanagementwidget.cxx" line="10"/>
         <source>Campaigns</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagnen</translation>
     </message>
     <message>
         <location filename="channelintopatientmanagementwidget.cxx" line="7"/>
         <source>Channels Into Patient</source>
-        <translation type="unfinished"></translation>
+        <translation>Wege in den Patienten...</translation>
     </message>
     <message>
         <location filename="citymanagementwidget.cxx" line="9"/>
         <source>Cities</source>
-        <translation type="unfinished"></translation>
+        <translation>Städte</translation>
     </message>
     <message>
         <location filename="collateraleffectmanagementwidget.cxx" line="7"/>
         <source>Collateral Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Unerwünschte Arzneimittelwirkungen</translation>
     </message>
     <message>
         <location filename="consultancyresultmanagementwidget.cxx" line="7"/>
         <source>Consultancy Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Begutachtungsergebnis</translation>
     </message>
     <message>
         <location filename="countrymanagementwidget.cxx" line="7"/>
         <source>Country</source>
-        <translation type="unfinished"></translation>
+        <translation>Land</translation>
     </message>
     <message>
         <location filename="crimecasegateway.cxx" line="31"/>
         <source>Failed to save Crime Case record.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfall konnte nicht gespeichert werden</translation>
     </message>
     <message>
         <location filename="crimecasegateway.cxx" line="46"/>
         <location filename="crimecasestablewidget.cxx" line="91"/>
         <source>Failed to delete Crime Case record.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kriminalfall konnte nicht gelöscht werden.</translation>
     </message>
     <message>
         <location filename="crimecaseparticipanttablewidget.cxx" line="96"/>
         <source>Failed to delete crime case participant record.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beteiligter am Kriminalfall konnte nicht gelöscht werden.</translation>
     </message>
     <message>
         <location filename="crimecasepartyrolemanagementwidget.cxx" line="7"/>
         <source>Crime Case Party Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Rolle von Beteiligtem an Kriminalfällen</translation>
     </message>
     <message>
         <location filename="crimemotivemanagementwidget.cxx" line="7"/>
         <source>Crime Motive</source>
-        <translation type="unfinished"></translation>
+        <translation>Motive</translation>
     </message>
     <message>
         <location filename="crimetypemanagementwidget.cxx" line="7"/>
         <source>Crime Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Art des Verbrechens</translation>
     </message>
     <message>
-        <location filename="datacollector.hxx" line="79"/>
+        <location filename="datacollector.hxx" line="80"/>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankfehler</translation>
     </message>
     <message>
         <location filename="diagnosisinsurveymanagementwidget.cxx" line="10"/>
         <source>ICD 10 Diagnosis in Survey</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD 10 Diagnose in Datensatz</translation>
     </message>
     <message>
         <location filename="drugadministrationmethodmanagementwidget.cxx" line="9"/>
         <source>Drug Administration Methods</source>
-        <translation type="unfinished"></translation>
+        <translation>Verabreichungsmethoden</translation>
     </message>
     <message>
         <location filename="drugmanagementwidget.cxx" line="7"/>
         <source>Drugs</source>
-        <translation type="unfinished"></translation>
+        <translation>Medikamente</translation>
     </message>
     <message>
         <location filename="housingtypemanagementwidget.cxx" line="7"/>
         <source>Housing Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebäudeart</translation>
     </message>
     <message>
         <location filename="icd10diagnosismanagementwidget.cxx" line="7"/>
         <source>ICD Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD 10 Diagnosen</translation>
     </message>
     <message>
         <location filename="informationsourceforcrimecasetablewidget.cxx" line="98"/>
         <source>Failed to delete information source record.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationsquelle konnte nicht gelöscht werden.</translation>
     </message>
     <message>
         <location filename="informationsourcetypemanagementwidget.cxx" line="7"/>
         <source>Information Source Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Arten von Informationsquellen</translation>
     </message>
     <message>
         <location filename="jobmanagementwidget.cxx" line="7"/>
         <source>Job</source>
-        <translation type="unfinished"></translation>
+        <translation>Beruf</translation>
     </message>
     <message>
         <location filename="main.cxx" line="10"/>
         <source>%1 V. %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 V. %2</translation>
     </message>
     <message>
         <location filename="mentaldiseasemanagementwidget.cxx" line="7"/>
         <source>Mental Disease</source>
-        <translation type="unfinished"></translation>
+        <translation>Psychische Erkrankung</translation>
     </message>
     <message>
         <location filename="modusoperandimanagementwidget.cxx" line="7"/>
         <source>Modus Operandi</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorgehensweise</translation>
     </message>
     <message>
         <location filename="moleculeclassmanagementwidget.cxx" line="7"/>
         <source>Molecule Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Molekülklasse</translation>
     </message>
     <message>
         <location filename="moleculemanagementwidget.cxx" line="9"/>
         <source>Molecules</source>
-        <translation type="unfinished"></translation>
+        <translation>Moleküle</translation>
     </message>
     <message>
         <location filename="organizationunitmanagementwidget.cxx" line="7"/>
         <source>Organization Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisationseinheiten</translation>
     </message>
     <message>
         <location filename="prescribeabledrugcompositionmanagementwidget.cxx" line="9"/>
         <source>Prescribeable Drug Composition</source>
-        <translation type="unfinished"></translation>
+        <translation>Zusammensetzung von verschreibbaren Medikamenten</translation>
     </message>
     <message>
         <location filename="prescribeabledrugmanagmentwidget.cxx" line="9"/>
         <source>Prescribeable Drug</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschreibbaree Medikamente</translation>
     </message>
     <message>
         <location filename="probandmanagementwidget.cxx" line="10"/>
         <source>Probands</source>
-        <translation type="unfinished"></translation>
+        <translation>Probanden</translation>
     </message>
     <message>
         <location filename="processingstatusmanagementwidget.cxx" line="9"/>
         <source>Processing States</source>
-        <translation type="unfinished"></translation>
+        <translation>Verarbeitungsstatus</translation>
     </message>
     <message>
         <location filename="projectmanagementwidget.cxx" line="7"/>
         <source>Projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekte</translation>
     </message>
     <message>
         <location filename="sexmanagementwidget.cxx" line="7"/>
         <source>Sex</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="smokinghabitsmanagementwidget.cxx" line="7"/>
         <source>Smoking Habits</source>
-        <translation type="unfinished"></translation>
+        <translation>Rauchgewohnheiten</translation>
     </message>
     <message>
         <location filename="surveymanagementwidget.cxx" line="10"/>
         <source>Survey Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Befragungsdaten</translation>
     </message>
     <message>
         <location filename="unitmanagementwidget.cxx" line="7"/>
         <source>Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Einheiten</translation>
     </message>
     <message>
         <location filename="weaponmanagementwidget.cxx" line="9"/>
         <source>Weapons</source>
-        <translation type="unfinished"></translation>
+        <translation>Waffen</translation>
     </message>
     <message>
         <location filename="weapontypemanagementwidget.cxx" line="7"/>
         <source>Weapon Types</source>
-        <translation type="unfinished"></translation>
+        <translation>Waffenarten</translation>
     </message>
 </context>
 <context>
@@ -2468,65 +2473,65 @@
     <message>
         <location filename="regulardrugdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.ui" line="20"/>
         <source>Regular Prescription</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguläre Verschreibung</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.ui" line="31"/>
         <source>Morning</source>
-        <translation type="unfinished"></translation>
+        <translation>Morgen</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.ui" line="38"/>
         <source>Lunch</source>
-        <translation type="unfinished"></translation>
+        <translation>Mittags</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.ui" line="45"/>
         <source>Noon</source>
-        <translation type="unfinished"></translation>
+        <translation>Abend</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.ui" line="52"/>
         <source>Night</source>
-        <translation type="unfinished"></translation>
+        <translation>Nacht</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.ui" line="77"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="regulardrugdialog.cxx" line="47"/>
         <source>Failed to load Prescribeable Drug list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschreibbare Medikamente konnten nicht geladen werden.</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="settingsdialog.cxx" line="18"/>
+        <location filename="settingsdialog.cxx" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cxx" line="35"/>
+        <location filename="settingsdialog.cxx" line="36"/>
         <source>&amp;Locale</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Locale</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cxx" line="48"/>
+        <location filename="settingsdialog.cxx" line="52"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Information</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cxx" line="48"/>
+        <location filename="settingsdialog.cxx" line="52"/>
         <source>You need to restart the application for the changes to have effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Programm neu starten.</translation>
     </message>
 </context>
 <context>
@@ -2534,7 +2539,7 @@
     <message>
         <location filename="sexcombobox.cxx" line="45"/>
         <source>Failed to load Sex list</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschlechterliste konnte nicht geladen werden</translation>
     </message>
 </context>
 <context>
@@ -2542,12 +2547,12 @@
     <message>
         <location filename="sexmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="sexmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2555,17 +2560,17 @@
     <message>
         <location filename="smokinghabitsmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="smokinghabitsmanagementwidget.cxx" line="12"/>
         <source>Max Cigarettes</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. Zigaretten</translation>
     </message>
     <message>
         <location filename="smokinghabitsmanagementwidget.cxx" line="13"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -2573,82 +2578,82 @@
     <message>
         <location filename="surveydialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="20"/>
         <source>Survey</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="26"/>
         <source>Pro&amp;ject</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Project</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="39"/>
         <source>Ca&amp;mpaign</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kampagne</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="52"/>
         <source>P&amp;roband</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;roband</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="65"/>
         <source>Organi&amp;zation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Organisation</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="78"/>
         <source>&amp;Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="91"/>
         <source>Sm&amp;oking</source>
-        <translation type="unfinished"></translation>
+        <translation>Rauchgewohnheiten</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="104"/>
         <source>BMI</source>
-        <translation type="unfinished"></translation>
+        <translation>BMI</translation>
     </message>
     <message>
         <location filename="surveydialog.ui" line="119"/>
         <source>&amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <location filename="surveydialog.cxx" line="89"/>
         <source>Failed to save survey</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten konnten nicht gespeichert werden</translation>
     </message>
     <message>
         <location filename="surveydialog.cxx" line="117"/>
         <source>Failed to load Campaigns in Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagnen im Project konnten nicht geladen werden</translation>
     </message>
     <message>
         <location filename="surveydialog.cxx" line="194"/>
         <source>Failed to load survey for editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz konnte nicht geladen werden</translation>
     </message>
     <message>
         <location filename="surveydialog.cxx" line="213"/>
         <source>Failed to load probands.</source>
-        <translation type="unfinished"></translation>
+        <translation>Probanden konnten nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="surveydialog.cxx" line="231"/>
         <source>Failed to load organizations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisationen konnten nicht geladen werden</translation>
     </message>
     <message>
         <location filename="surveydialog.cxx" line="249"/>
         <source>Failed to load smoking habits.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rauchgewohnheinten konnten nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -2656,27 +2661,27 @@
     <message>
         <location filename="surveyform.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="27"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="33"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="53"/>
         <source>Campaign</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagne</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="66"/>
         <source>Surveys</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensätze</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="84"/>
@@ -2691,23 +2696,23 @@
         <location filename="surveyform.ui" line="545"/>
         <location filename="surveyform.ui" line="593"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Neu &amp;Laden</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="104"/>
         <source>Create...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Neu</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="124"/>
         <source>Delete...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lös&amp;chen</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="150"/>
         <location filename="surveyform.cxx" line="1002"/>
         <source>ICD10 Diagnosis</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD Diagnose</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="181"/>
@@ -2721,7 +2726,7 @@
         <location filename="surveyform.ui" line="565"/>
         <location filename="surveyform.ui" line="613"/>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuweisen...</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="188"/>
@@ -2735,97 +2740,97 @@
         <location filename="surveyform.ui" line="572"/>
         <location filename="surveyform.ui" line="620"/>
         <source>Remove...</source>
-        <translation type="unfinished"></translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="198"/>
         <source>Collateral &amp;Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Unerwünschte Arzneimittelwirkungen</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="246"/>
         <source>CGI</source>
-        <translation type="unfinished"></translation>
+        <translation>CGI</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="294"/>
         <source>GAF</source>
-        <translation type="unfinished"></translation>
+        <translation>GAF</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="342"/>
         <source>FPS</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="390"/>
         <source>On &amp;Demand Drugs</source>
-        <translation type="unfinished"></translation>
+        <translation>Bedarfsmedikation</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="438"/>
         <source>WHOQOL</source>
-        <translation type="unfinished"></translation>
+        <translation>WHOQOL</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="486"/>
         <source>&amp;Regular Drugs</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguläre Medikation</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="534"/>
         <source>Plasmatic &amp;Levels</source>
-        <translation type="unfinished"></translation>
+        <translation>Plasmaspiegel</translation>
     </message>
     <message>
         <location filename="surveyform.ui" line="582"/>
         <source>&amp;Depot</source>
-        <translation type="unfinished"></translation>
+        <translation>Depot</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="146"/>
         <source>Failed to load Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt konnte nicht geladen werden</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="170"/>
         <source>Failed to load campaign with name &apos;%1&apos; in project &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kampagne &apos;%1&apos; in Projekt &apos;%2&apos; konnte nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="282"/>
         <source>Remove Survey?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz löschen?</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="283"/>
         <source>Remove Survey &lt;b&gt;%1&lt;/b&gt; (%2) and all datasets within?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz %1 (%2) löschen?</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="297"/>
         <source>Failed to remove Survey.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datensatz konnte nicht gelöscht werden.</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="327"/>
         <source>Failed to add ICD10 Diagnosis to current survey.</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD 10 Diagnosen konnten nicht geladen werden.</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="344"/>
         <source>Remove ICD10 Diagnosis?</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD 10 Diagnose entfernen?</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="345"/>
         <source>Remove Diagnosis &lt;b&gt;%1&lt;/b&gt; (%2)?</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD 10 Diagnose &lt;b&gt;%1&lt;/b&gt; (%2) entfernen?</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="359"/>
         <source>Failed to remove ICD10 Diagnosis from current survey.</source>
-        <translation type="unfinished"></translation>
+        <translation>ICD 10 Diagnose konnte nicht entfernt werden.</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="389"/>
@@ -2998,17 +3003,17 @@
     <message>
         <location filename="surveyform.cxx" line="985"/>
         <source>Proband</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Proband</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="986"/>
         <source>Survey Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datum</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="987"/>
         <source>Organization</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Organisation</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="988"/>
@@ -3021,12 +3026,12 @@
         <location filename="surveyform.cxx" line="1119"/>
         <location filename="surveyform.cxx" line="1134"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beschreibung</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="989"/>
         <source>Survey ID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datensatz ID</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="990"/>
@@ -3042,7 +3047,7 @@
         <location filename="surveyform.cxx" line="1013"/>
         <location filename="surveyform.cxx" line="1034"/>
         <source>Drug</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Medikament</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1015"/>
@@ -3051,7 +3056,7 @@
         <location filename="surveyform.cxx" line="1120"/>
         <location filename="surveyform.cxx" line="1135"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ID</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1035"/>
@@ -3076,7 +3081,7 @@
     <message>
         <location filename="surveyform.cxx" line="1039"/>
         <source>Administration Method</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verabreichungsmethode</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1040"/>
@@ -3092,7 +3097,7 @@
     <message>
         <location filename="surveyform.cxx" line="1056"/>
         <source>Molecule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Molekül</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1057"/>
@@ -3108,7 +3113,7 @@
         <location filename="surveyform.cxx" line="1059"/>
         <location filename="surveyform.cxx" line="1078"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kommentar</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1060"/>
@@ -3118,17 +3123,17 @@
     <message>
         <location filename="surveyform.cxx" line="1074"/>
         <source>Prescribeable Drug</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verschreibbares Medikamt</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1075"/>
         <source>Last Injection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Letzte Injektion</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1076"/>
         <source>Dosage</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosierung</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1077"/>
@@ -3138,7 +3143,7 @@
     <message>
         <location filename="surveyform.cxx" line="1089"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Name</translation>
     </message>
     <message>
         <location filename="surveyform.cxx" line="1098"/>
@@ -3184,7 +3189,7 @@
         <location filename="surveyform.cxx" line="1218"/>
         <location filename="surveyform.cxx" line="1224"/>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datenbankfehler</translation>
     </message>
 </context>
 <context>
@@ -3192,7 +3197,7 @@
     <message>
         <location filename="surveymanagementwidget.cxx" line="20"/>
         <source>Survey ID</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datensatz ID</translation>
     </message>
     <message>
         <location filename="surveymanagementwidget.cxx" line="21"/>
@@ -3202,17 +3207,17 @@
     <message>
         <location filename="surveymanagementwidget.cxx" line="22"/>
         <source>Campaign</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kampagne</translation>
     </message>
     <message>
         <location filename="surveymanagementwidget.cxx" line="23"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beschreibung</translation>
     </message>
     <message>
         <location filename="surveymanagementwidget.cxx" line="24"/>
         <source>Survey Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datum</translation>
     </message>
     <message>
         <location filename="surveymanagementwidget.cxx" line="25"/>
@@ -3235,7 +3240,7 @@
     <message>
         <location filename="tablemanagementwidget.cxx" line="37"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neu &amp;Laden</translation>
     </message>
     <message>
         <location filename="tablemanagementwidget.cxx" line="38"/>
@@ -3281,7 +3286,7 @@ db:%2&lt;/p&gt;</source>
     <message>
         <location filename="tablemanagementwidget.cxx" line="119"/>
         <source>Usage Hint</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Benutzungshinweis</translation>
     </message>
     <message>
         <location filename="tablemanagementwidget.cxx" line="120"/>
@@ -3324,12 +3329,12 @@ db:%2&lt;/p&gt;</source>
     <message>
         <location filename="unitmanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Name</translation>
     </message>
     <message>
         <location filename="unitmanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beschreibung</translation>
     </message>
 </context>
 <context>
@@ -3337,12 +3342,12 @@ db:%2&lt;/p&gt;</source>
     <message>
         <location filename="whoqoldialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dialog</translation>
     </message>
     <message>
         <location filename="whoqoldialog.ui" line="20"/>
         <source>Regular Prescription</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reguläre Verschreibung</translation>
     </message>
     <message>
         <location filename="whoqoldialog.ui" line="26"/>
@@ -3367,7 +3372,7 @@ db:%2&lt;/p&gt;</source>
     <message>
         <location filename="whoqoldialog.ui" line="80"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kommentar</translation>
     </message>
 </context>
 <context>
@@ -3383,12 +3388,12 @@ db:%2&lt;/p&gt;</source>
     <message>
         <location filename="weaponmanagementwidget.cxx" line="17"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Name</translation>
     </message>
     <message>
         <location filename="weaponmanagementwidget.cxx" line="18"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beschreibung</translation>
     </message>
     <message>
         <location filename="weaponmanagementwidget.cxx" line="19"/>
@@ -3401,12 +3406,12 @@ db:%2&lt;/p&gt;</source>
     <message>
         <location filename="weapontypemanagementwidget.cxx" line="11"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Name</translation>
     </message>
     <message>
         <location filename="weapontypemanagementwidget.cxx" line="12"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beschreibung</translation>
     </message>
 </context>
 </TS>

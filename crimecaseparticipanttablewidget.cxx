@@ -37,7 +37,7 @@ void CrimeCaseParticipantTableWidget::reload()
         CrimeCaseParticipantGateway().loadAllInCrimeCase(m_crimeCase);
     }
     catch(DatabaseError e) {
-        DataCollector::get()->showDatabaseError(e, tr("Failed to load agate surveys."), this);
+        DataCollector::get()->showDatabaseError(e, tr("Failed to load crime case participants."), this);
     }
 
     setRowCount(m_crimeCase->participants().size());

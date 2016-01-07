@@ -7,7 +7,7 @@
 #include "dateeditdelegate.hxx"
 
 ProbandManagementWidget::ProbandManagementWidget(QWidget *p)
-    : TableManagementWidget(p, tr("core.proband"), QObject::tr("Probands"))
+    : TableManagementWidget(p, "core.proband", QObject::tr("Probands"))
 {
     view()->hideColumn(model()->fieldIndex("id")); // hide id column
     model()->setRelation(model()->fieldIndex("sex_id"), QSqlRelation("core.sex", "id", "name"));
