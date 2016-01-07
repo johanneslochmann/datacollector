@@ -3,6 +3,7 @@
 #include <QApplication>
 
 #include <QSqlQuery>
+#include <QTranslator>
 
 #include "databaseerror.hxx"
 
@@ -127,9 +128,11 @@ public slots:
     void closeDatabase();
     void pingDatabase();
     void aboutProgram();
+    void reloadTranslation();
 
 private:
     void initActions();
+    void loadTranslations();
 
     QAction* m_settings;
     QAction* m_quit;
@@ -175,4 +178,6 @@ private:
     QAction* m_manageSurveyData;
     QAction* m_manageAgateData;
     QAction* m_showAllStatistics;
+
+    QTranslator m_translator;
 };

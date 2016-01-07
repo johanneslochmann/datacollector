@@ -9,9 +9,9 @@ public:
     virtual ~Settings();
 
     void save(const DatabaseConnectionData& cd);
-    void save(const QString& translationFileName);
+    void saveLocale(const QString& name);
 
     DatabaseConnectionData loadDatabaseConnectionData();
-    QString translationFileName();
+    QString loadLocale();
 };
 

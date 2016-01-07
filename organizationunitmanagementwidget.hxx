@@ -4,6 +4,7 @@
 
 class OrganizationUnitManagementWidget : public TableManagementWidget
 {
+    Q_OBJECT
 public:
     explicit OrganizationUnitManagementWidget(QWidget* p = nullptr);
 

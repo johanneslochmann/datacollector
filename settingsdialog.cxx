@@ -4,9 +4,12 @@
 #include <QGroupBox>
 #include <QFormLayout>
 #include <QDialogButtonBox>
+#include <QStandardPaths>
 #include <QMessageBox>
+#include <QComboBox>
 
 #include "settings.hxx"
+#include "datacollector.hxx"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -17,9 +20,20 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     auto m_l = new QFormLayout(m_gb);
     m_gb->setLayout(m_l);
 
-    m_translationFile = new FileNameSelector(Settings().translationFileName(), m_gb);
-    m_l->addRow(tr("&Translation File"), m_translationFile);
+    m_locales = new QComboBox(m_gb);
+    QStringList locales;
+    locales << "de_DE" << "it_IT" << "";
+    m_locales->addItems(locales);
+    m_locales->setCurrentText("");
+    auto currLocal = Settings().loadLocale();
 
+    if (locales.contains(currLocal)) {
+        m_locales->setCurrentText(currLocal);
+    } else {
+        m_locales->setCurrentText("");
+    }
+
+    m_l->addRow(tr("&Locale"), m_locales);
     m_b = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel, Qt::Horizontal, this);
 
     layout()->addWidget(m_gb);
@@ -31,7 +45,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
 void SettingsDialog::accept()
 {
-    Settings().save(m_translationFile->value());
+    Settings().saveLocale(m_locales->currentText());
+
+    DataCollector::get()->reloadTranslation();
 
     QMessageBox::information(this, tr("Information"), tr("You need to restart the application for the changes to have effect."));
 

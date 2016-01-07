@@ -8,6 +8,7 @@ class QPushButton;
 class QLineEdit;
 class QGroupBox;
 class QGridLayout;
+class QComboBox;
 
 #include "filenameselector.hxx"
 
@@ -25,6 +26,5 @@ public slots:
 private:
     QGroupBox* m_gb;
     QDialogButtonBox* m_b;
-
-    FileNameSelector* m_translationFile;
+    QComboBox* m_locales;
 };

@@ -4,6 +4,7 @@
 
 class DrugManagementWidget : public TableManagementWidget
 {
+    Q_OBJECT
 public:
     explicit DrugManagementWidget(QWidget* p);
 

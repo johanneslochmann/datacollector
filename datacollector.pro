@@ -276,7 +276,7 @@ HEADERS  += mainwindow.hxx \
     housingtypegateway.hxx \
     city.hxx \
     citygateway.hxx \
-    citygateway.cxx \#
+    citygateway.cxx \
     citycombobox.hxx \
     informationsourceforcrimecase.hxx \
     informationsourcetype.hxx \
@@ -340,5 +340,12 @@ FORMS += \
     agateform.ui \
     aboutdatacollectordialog.ui
 
+ TRANSLATIONS = \
+    datacollector.de_DE.ts \
+    datacollector.it_IT.ts
+
+RESOURCES += \
+    resources.qrc
+
 DISTFILES += \
-    database/forschung.backup
+    crebas.sql

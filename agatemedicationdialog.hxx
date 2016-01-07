@@ -12,6 +12,7 @@
 
 class AgateMedicationDialog : public QDialog
 {
+    Q_OBJECT
 public:
     explicit AgateMedicationDialog(QWidget* p);
     explicit AgateMedicationDialog(QWidget* p, AgateMedicationSPtr d);

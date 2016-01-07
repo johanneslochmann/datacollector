@@ -12,6 +12,7 @@
 
 class AgateDepotDialog : public QDialog
 {
+    Q_OBJECT
 public:
     explicit AgateDepotDialog(QWidget* p);
     explicit AgateDepotDialog(QWidget* p, AgateDepotSPtr d);

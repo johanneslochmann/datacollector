@@ -5,8 +5,8 @@
 #include <QPushButton>
 #include <QFileDialog>
 
-FileNameSelector::FileNameSelector(const QString& fn, QWidget* p)
-    : QWidget(p)
+FileNameSelector::FileNameSelector(const QString& fn, const QString &browserFilter, const QString &path, QWidget* p)
+    : QWidget(p), m_browserFilter(browserFilter), m_path(path)
 {
     setLayout(new QHBoxLayout(this));
     layout()->setContentsMargins(0, 0, 0, 0);
@@ -36,7 +36,7 @@ void FileNameSelector::setValue(const QString &v)
 
 void FileNameSelector::browse()
 {
-    auto fn = QFileDialog::getOpenFileName(this, tr("select translation file"), QDir::currentPath(), tr("Translation Files (*.ts)"));
+    auto fn = QFileDialog::getOpenFileName(this, tr("select translation file"), m_path, m_browserFilter);
 
     if (fn.isEmpty()) {
         return;

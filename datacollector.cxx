@@ -3,12 +3,17 @@
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlError>
+#include <QTranslator>
+#include <QLocale>
+#include <QDebug>
+#include <QFile>
 
 #include "actionenabledifconnectedtodatabase.hxx"
 #include "actionenabledifnotconnectedtodatabase.hxx"
 #include "databaseconnectiondatadialog.hxx"
 #include "databaseerror.hxx"
 #include "aboutdatacollectordialog.hxx"
+#include "settings.hxx"
 
 DataCollector *DataCollector::get()
 {
@@ -19,6 +24,7 @@ DataCollector::DataCollector(int &argc, char **argv)
     : QApplication(argc, argv)
 {
     initActions();
+    loadTranslations();
 }
 
 DataCollector::~DataCollector()
@@ -185,6 +191,11 @@ void DataCollector::aboutProgram()
     dlg->exec();
 }
 
+void DataCollector::reloadTranslation()
+{
+    loadTranslations();
+}
+
 void DataCollector::initActions()
 {
     m_quit = new QAction(tr("&Quit"), this);
@@ -316,4 +327,34 @@ void DataCollector::initActions()
 
     m_manageProcessingStates = new ActionEnabledIfConnectedToDatabase(tr("Processing States"), this);
     connect(m_manageProcessingStates, &QAction::triggered, this, &DataCollector::manageProcessingStates);
+}
+
+void DataCollector::loadTranslations()
+{
+    auto currentLocale = Settings().loadLocale();
+
+    if (currentLocale.isEmpty()) {
+        return;
+    }
+
+    QString path(":/translations");
+    auto qmFileName = QString("%1.%2.qm").arg(applicationName()).arg(currentLocale);
+
+    QFile qmF(path + "/" + qmFileName);
+
+    if (!qmF.exists()) {
+        QMessageBox::critical(activeWindow(), tr("Translation file not found"),
+                              tr("Translation file %1 does not exist.").arg(qmF.fileName()));
+        return;
+    }
+
+    if (!m_translator.load(qmFileName, path)) {
+        QMessageBox::critical(activeWindow(),
+                              tr("Failed to load locale"), tr("Failed to load locale file '%1' from '%2'.")
+                              .arg(qmFileName)
+                              .arg(path));
+        return;
+    }
+
+    installTranslator(&m_translator);
 }

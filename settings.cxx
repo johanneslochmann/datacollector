@@ -20,10 +20,10 @@ void Settings::save(const DatabaseConnectionData &cd)
     s.setValue("UserName", cd.userName());
 }
 
-void Settings::save(const QString &translationFileName)
+void Settings::saveLocale(const QString &name)
 {
     QSettings s;
-    s.setValue("TranslationFileName", translationFileName);
+    s.setValue("Locale", name);
 }
 
 DatabaseConnectionData Settings::loadDatabaseConnectionData()
@@ -41,9 +41,9 @@ DatabaseConnectionData Settings::loadDatabaseConnectionData()
     return cd;
 }
 
-QString Settings::translationFileName()
+QString Settings::loadLocale()
 {
     QSettings s;
-    return s.value("TranslationFileName").toString();
+    return s.value("Locale", "").toString();
 }
 

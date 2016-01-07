@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/translations">
+        <file>datacollector.de_DE.qm</file>
+        <file>datacollector.it_IT.qm</file>
+    </qresource>
+    <qresource prefix="/db">
+        <file>crebas.sql</file>
+    </qresource>
+</RCC>

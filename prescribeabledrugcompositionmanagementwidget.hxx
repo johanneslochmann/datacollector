@@ -4,6 +4,7 @@
 
 class PrescribeableDrugCompositionManagementWidget : public TableManagementWidget
 {
+    Q_OBJECT
 public:
     explicit PrescribeableDrugCompositionManagementWidget(QWidget* p);
 

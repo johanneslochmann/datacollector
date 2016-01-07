@@ -14,6 +14,7 @@ class InformationSourceTypeComboBox;
 
 class InformationSourceForCrimeCaseDialog : public QDialog
 {
+    Q_OBJECT
 public:
     InformationSourceForCrimeCaseDialog(QWidget* p, InformationSourceForCrimeCaseSPtr data);
 

@@ -9,7 +9,7 @@ class FileNameSelector: public QWidget
 {
     Q_OBJECT
 public:
-    explicit FileNameSelector(const QString& defaultValue, QWidget* p);
+    explicit FileNameSelector(const QString& defaultValue, const QString& browserFilter, const QString& path, QWidget* p);
 
     QString value() const;
 
@@ -26,5 +26,8 @@ private:
     QLineEdit* m_display;
     QPushButton* m_browse;
     QPushButton* m_clear;
+
+    QString m_browserFilter;
+    QString m_path;
 };
 

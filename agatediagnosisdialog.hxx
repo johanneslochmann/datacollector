@@ -12,6 +12,7 @@
 
 class AgateDiagnosisDialog : public QDialog
 {
+    Q_OBJECT
 public:
     explicit AgateDiagnosisDialog(QWidget* p);
     explicit AgateDiagnosisDialog(QWidget* p, AgateDiagnosisSPtr d);
@@ -22,7 +23,6 @@ signals:
 
 public slots:
     void accept();
-    void onDosisChanged(const QString& s);
 
 protected:
     void configureUi();
