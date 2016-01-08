@@ -1930,24 +1930,18 @@ CREATE VIEW alcohol_and_drug_intoxications_by_role AS
             ELSE ccpr.name
         END AS crime_case_party_role_name,
     count(1) AS intoxication_count
-   FROM ((((forensics.crime_case_party_role ccpr
+   FROM (((forensics.crime_case_party_role ccpr
      JOIN forensics.crime_case_participant ccp ON ((ccpr.id = ccp.crime_case_party_role_id)))
      JOIN forensics.crime_case cc ON ((ccp.crime_case_id = cc.id)))
      JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
-     JOIN forensics.mental_disease md ON ((ccp.mental_disease_id = md.id)))
-  WHERE ((ccpr.name = 'Opfer'::text) OR ((((ccpr.name = 'Täter'::text) AND (ccp.is_alcohol_intoxicated = true)) AND (ccp.is_drug_intoxicated = true)) AND (ps.name <> 'ausgeschlossen'::text)))
+  WHERE (((ccp.is_alcohol_intoxicated = true) AND (ccp.is_drug_intoxicated = true)) AND (ps.name <> 'ausgeschlossen'::text))
   GROUP BY
         CASE
             WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
             WHEN (ccpr.name = 'Opfer'::text) THEN 'Vittima'::text
             ELSE ccpr.name
         END
-  ORDER BY
-        CASE
-            WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
-            WHEN (ccpr.name = 'Opfer'::text) THEN 'Vittima'::text
-            ELSE ccpr.name
-        END DESC;
+  ORDER BY count(1) DESC;
 
 
 ALTER TABLE alcohol_and_drug_intoxications_by_role OWNER TO jolo;
@@ -1964,12 +1958,11 @@ CREATE VIEW alcohol_intoxications_by_role AS
             ELSE ccpr.name
         END AS crime_case_party_role_name,
     count(ccp.is_alcohol_intoxicated) AS is_alcohol_intoxicated_count
-   FROM ((((forensics.crime_case_party_role ccpr
+   FROM (((forensics.crime_case_party_role ccpr
      JOIN forensics.crime_case_participant ccp ON ((ccpr.id = ccp.crime_case_party_role_id)))
      JOIN forensics.crime_case cc ON ((ccp.crime_case_id = cc.id)))
      JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
-     JOIN forensics.mental_disease md ON ((ccp.mental_disease_id = md.id)))
-  WHERE ((ccpr.name = 'Opfer'::text) OR (((ccpr.name = 'Täter'::text) AND (ccp.is_alcohol_intoxicated = true)) AND (ps.name <> 'ausgeschlossen'::text)))
+  WHERE ((ccp.is_alcohol_intoxicated = true) AND (ps.name <> 'ausgeschlossen'::text))
   GROUP BY
         CASE
             WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
@@ -1998,11 +1991,10 @@ CREATE VIEW alcohol_or_drug_intoxications_by_role AS
             ELSE ccpr.name
         END AS crime_case_party_role_name,
     count(1) AS intoxication_count
-   FROM ((((forensics.crime_case_party_role ccpr
+   FROM (((forensics.crime_case_party_role ccpr
      JOIN forensics.crime_case_participant ccp ON ((ccpr.id = ccp.crime_case_party_role_id)))
      JOIN forensics.crime_case cc ON ((ccp.crime_case_id = cc.id)))
      JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
-     JOIN forensics.mental_disease md ON ((ccp.mental_disease_id = md.id)))
   WHERE (((ccpr.name = 'Opfer'::text) OR ((ccpr.name = 'Täter'::text) AND (ccp.is_alcohol_intoxicated = true))) OR ((ccp.is_drug_intoxicated = true) AND (ps.name <> 'ausgeschlossen'::text)))
   GROUP BY
         CASE
@@ -2095,6 +2087,142 @@ ALTER TABLE all_crime_cases OWNER TO jolo;
 
 COMMENT ON VIEW all_crime_cases IS 'core data for all crime cases';
 
+
+--
+-- Name: altersklassen_opfer; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW altersklassen_opfer AS
+ SELECT
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END AS age_class,
+    count(1) AS opfer_count
+   FROM (((forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  WHERE ((ps.name <> 'ausgeschlossen'::text) AND (ccpr.name = 'Opfer'::text))
+  GROUP BY
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END
+  ORDER BY
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END DESC;
+
+
+ALTER TABLE altersklassen_opfer OWNER TO jolo;
+
+--
+-- Name: altersklassen_opfer_und_taeter; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW altersklassen_opfer_und_taeter AS
+ SELECT
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END AS age_class,
+        CASE
+            WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
+            WHEN (ccpr.name = 'Opfer'::text) THEN 'Vittima'::text
+            ELSE ccpr.name
+        END AS role,
+    count(1) AS party_count
+   FROM (((forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  WHERE (ps.name <> 'ausgeschlossen'::text)
+  GROUP BY
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END,
+        CASE
+            WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
+            WHEN (ccpr.name = 'Opfer'::text) THEN 'Vittima'::text
+            ELSE ccpr.name
+        END
+  ORDER BY
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END DESC;
+
+
+ALTER TABLE altersklassen_opfer_und_taeter OWNER TO jolo;
+
+--
+-- Name: altersklassen_taeter; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW altersklassen_taeter AS
+ SELECT
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END AS age_class,
+    count(1) AS taeter_count
+   FROM (((forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  WHERE ((ps.name <> 'ausgeschlossen'::text) AND (ccpr.name = 'Täter'::text))
+  GROUP BY
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END
+  ORDER BY
+        CASE
+            WHEN ((ccp.age_in_years >= 0) AND (ccp.age_in_years <= 20)) THEN '0-20'::text
+            WHEN ((ccp.age_in_years >= 20) AND (ccp.age_in_years <= 40)) THEN '20-40'::text
+            WHEN ((ccp.age_in_years >= 40) AND (ccp.age_in_years <= 60)) THEN '40-60'::text
+            WHEN ((ccp.age_in_years >= 60) AND (ccp.age_in_years <= 80)) THEN '60-80'::text
+            WHEN (ccp.age_in_years > 80) THEN '> 80'::text
+            ELSE 'Non Determinato'::text
+        END DESC;
+
+
+ALTER TABLE altersklassen_taeter OWNER TO jolo;
 
 --
 -- Name: anzahl_opfer_pro_fall; Type: VIEW; Schema: forstat; Owner: jolo
@@ -2218,12 +2346,11 @@ CREATE VIEW conflict_history_by_role AS
             ELSE ccpr.name
         END AS crime_case_party_role_name,
     count(ccp.has_long_conflict_history) AS has_long_conflict_history_count
-   FROM ((((forensics.crime_case_party_role ccpr
+   FROM (((forensics.crime_case_party_role ccpr
      JOIN forensics.crime_case_participant ccp ON ((ccpr.id = ccp.crime_case_party_role_id)))
      JOIN forensics.crime_case cc ON ((ccp.crime_case_id = cc.id)))
      JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
-     JOIN forensics.mental_disease md ON ((ccp.mental_disease_id = md.id)))
-  WHERE ((ccpr.name = 'Opfer'::text) OR (((ccpr.name = 'Täter'::text) AND (ccp.has_long_conflict_history = true)) AND (ps.name <> 'ausgeschlossen'::text)))
+  WHERE ((ccp.has_long_conflict_history = true) AND (ps.name <> 'ausgeschlossen'::text))
   GROUP BY
         CASE
             WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
@@ -2541,6 +2668,65 @@ COMMENT ON VIEW crime_case_party_overview IS 'overview of all parties involved i
 
 
 --
+-- Name: crime_cases_by_city_size; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_cases_by_city_size AS
+ SELECT
+        CASE
+            WHEN ((c.people_count >= 0) AND (c.people_count <= 20000)) THEN 'Paese'::text
+            WHEN ((c.people_count >= 20000) AND (c.people_count <= 50000)) THEN 'Cittadina'::text
+            WHEN (c.people_count > 50000) THEN 'Cittá'::text
+            ELSE 'Non Determinato'::text
+        END AS city_class,
+    count(1) AS crime_count
+   FROM ((forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+     JOIN geo.city c ON ((cc.city_id = c.id)))
+  WHERE (ps.name <> 'ausgeschlossen'::text)
+  GROUP BY
+        CASE
+            WHEN ((c.people_count >= 0) AND (c.people_count <= 20000)) THEN 'Paese'::text
+            WHEN ((c.people_count >= 20000) AND (c.people_count <= 50000)) THEN 'Cittadina'::text
+            WHEN (c.people_count > 50000) THEN 'Cittá'::text
+            ELSE 'Non Determinato'::text
+        END
+  ORDER BY count(1) DESC;
+
+
+ALTER TABLE crime_cases_by_city_size OWNER TO jolo;
+
+--
+-- Name: crime_cases_by_time_of_day; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW crime_cases_by_time_of_day AS
+ SELECT
+        CASE
+            WHEN ((cc.crime_time >= '06:00:00'::time without time zone) AND (cc.crime_time <= '12:00:00'::time without time zone)) THEN 'Mattino'::text
+            WHEN ((cc.crime_time >= '12:00:00'::time without time zone) AND (cc.crime_time <= '18:00:00'::time without time zone)) THEN 'Pomeriggio'::text
+            WHEN ((cc.crime_time >= '18:00:00'::time without time zone) AND (cc.crime_time <= '00:00:00'::time without time zone)) THEN 'Sera'::text
+            WHEN ((cc.crime_time >= '00:00:00'::time without time zone) AND (cc.crime_time <= '06:00:00'::time without time zone)) THEN 'Notte'::text
+            ELSE 'Non Determinato'::text
+        END AS crime_time,
+    count(1) AS crime_count
+   FROM (forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+  WHERE (ps.name <> 'ausgeschlossen'::text)
+  GROUP BY
+        CASE
+            WHEN ((cc.crime_time >= '06:00:00'::time without time zone) AND (cc.crime_time <= '12:00:00'::time without time zone)) THEN 'Mattino'::text
+            WHEN ((cc.crime_time >= '12:00:00'::time without time zone) AND (cc.crime_time <= '18:00:00'::time without time zone)) THEN 'Pomeriggio'::text
+            WHEN ((cc.crime_time >= '18:00:00'::time without time zone) AND (cc.crime_time <= '00:00:00'::time without time zone)) THEN 'Sera'::text
+            WHEN ((cc.crime_time >= '00:00:00'::time without time zone) AND (cc.crime_time <= '06:00:00'::time without time zone)) THEN 'Notte'::text
+            ELSE 'Non Determinato'::text
+        END
+  ORDER BY count(1) DESC;
+
+
+ALTER TABLE crime_cases_by_time_of_day OWNER TO jolo;
+
+--
 -- Name: drug_intoxications_by_role; Type: VIEW; Schema: forstat; Owner: jolo
 --
 
@@ -2552,12 +2738,11 @@ CREATE VIEW drug_intoxications_by_role AS
             ELSE ccpr.name
         END AS crime_case_party_role_name,
     count(ccp.is_drug_intoxicated) AS is_drug_intoxicated_count
-   FROM ((((forensics.crime_case_party_role ccpr
+   FROM (((forensics.crime_case_party_role ccpr
      JOIN forensics.crime_case_participant ccp ON ((ccpr.id = ccp.crime_case_party_role_id)))
      JOIN forensics.crime_case cc ON ((ccp.crime_case_id = cc.id)))
      JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
-     JOIN forensics.mental_disease md ON ((ccp.mental_disease_id = md.id)))
-  WHERE ((ccpr.name = 'Opfer'::text) OR (((ccpr.name = 'Täter'::text) AND (ccp.is_drug_intoxicated = true)) AND (ps.name <> 'ausgeschlossen'::text)))
+  WHERE ((ccp.is_drug_intoxicated = true) AND (ps.name <> 'ausgeschlossen'::text))
   GROUP BY
         CASE
             WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
@@ -2956,12 +3141,11 @@ CREATE VIEW vorbestehende_verurteilungen AS
             ELSE ccpr.name
         END AS crime_case_party_role_name,
     count(ccp.has_precedent_convictions) AS precedent_conviction_count
-   FROM ((((forensics.crime_case_party_role ccpr
+   FROM (((forensics.crime_case_party_role ccpr
      JOIN forensics.crime_case_participant ccp ON ((ccpr.id = ccp.crime_case_party_role_id)))
      JOIN forensics.crime_case cc ON ((ccp.crime_case_id = cc.id)))
      JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
-     JOIN forensics.mental_disease md ON ((ccp.mental_disease_id = md.id)))
-  WHERE ((ccpr.name = 'Opfer'::text) OR (((ccpr.name = 'Täter'::text) AND (ccp.has_precedent_convictions = true)) AND (ps.name <> 'ausgeschlossen'::text)))
+  WHERE ((ccp.has_precedent_convictions = true) AND (ps.name <> 'ausgeschlossen'::text))
   GROUP BY ccpr.name
   ORDER BY count(ccp.has_precedent_convictions) DESC;
 
