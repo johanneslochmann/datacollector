@@ -2089,6 +2089,26 @@ COMMENT ON VIEW all_crime_cases IS 'core data for all crime cases';
 
 
 --
+-- Name: alle_kommentare_im_fall; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW alle_kommentare_im_fall AS
+ SELECT cc.id AS "Fall ID",
+    cc.name AS "Fall Name",
+    cc.description AS "Fallkommentar",
+    ccpr.name AS "Rolle",
+    ccp.name AS "Beteiligter Name",
+    ccp.id AS "Beteiligter ID",
+    ccp.description AS "Beteiligter Kommentar"
+   FROM ((forensics.crime_case cc
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  ORDER BY cc.id, ccpr.name;
+
+
+ALTER TABLE alle_kommentare_im_fall OWNER TO jolo;
+
+--
 -- Name: altersklassen_opfer; Type: VIEW; Schema: forstat; Owner: jolo
 --
 
@@ -2826,6 +2846,39 @@ CREATE VIEW geschlechter_der_taeter AS
 
 
 ALTER TABLE geschlechter_der_taeter OWNER TO jolo;
+
+--
+-- Name: legal_weapon_owners_by_role; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW legal_weapon_owners_by_role AS
+ SELECT
+        CASE
+            WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
+            WHEN (ccpr.name = 'Opfer'::text) THEN 'Vittima'::text
+            ELSE ccpr.name
+        END AS crime_case_party_role_name,
+    count(ccp.legally_owns_weapon) AS legally_owns_weapon_count
+   FROM (((forensics.crime_case_party_role ccpr
+     JOIN forensics.crime_case_participant ccp ON ((ccpr.id = ccp.crime_case_party_role_id)))
+     JOIN forensics.crime_case cc ON ((ccp.crime_case_id = cc.id)))
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+  WHERE ((ccp.is_alcohol_intoxicated = true) AND (ps.name <> 'ausgeschlossen'::text))
+  GROUP BY
+        CASE
+            WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
+            WHEN (ccpr.name = 'Opfer'::text) THEN 'Vittima'::text
+            ELSE ccpr.name
+        END
+  ORDER BY
+        CASE
+            WHEN (ccpr.name = 'Täter'::text) THEN 'Attore'::text
+            WHEN (ccpr.name = 'Opfer'::text) THEN 'Vittima'::text
+            ELSE ccpr.name
+        END, count(ccp.legally_owns_weapon) DESC;
+
+
+ALTER TABLE legal_weapon_owners_by_role OWNER TO jolo;
 
 --
 -- Name: modus_operandi_der_opfer; Type: VIEW; Schema: forstat; Owner: jolo
