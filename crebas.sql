@@ -3033,6 +3033,24 @@ CREATE VIEW geschlechter_der_taeter AS
 ALTER TABLE geschlechter_der_taeter OWNER TO jolo;
 
 --
+-- Name: juengste_und_aelteste_beteiligte; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW juengste_und_aelteste_beteiligte AS
+ SELECT min(ccp.age_in_years) AS min,
+    max(ccp.age_in_years) AS max,
+    ccpr.name
+   FROM (((forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+  WHERE (ps.name <> 'ausgeschlossen'::text)
+  GROUP BY ccpr.name;
+
+
+ALTER TABLE juengste_und_aelteste_beteiligte OWNER TO jolo;
+
+--
 -- Name: legal_weapon_owners_by_role; Type: VIEW; Schema: forstat; Owner: jolo
 --
 
@@ -3394,6 +3412,42 @@ CREATE VIEW staedte_der_faelle AS
 
 
 ALTER TABLE staedte_der_faelle OWNER TO jolo;
+
+--
+-- Name: suizidierte_taeter; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW suizidierte_taeter AS
+ SELECT count(cc.id) AS count,
+    ccpr.name
+   FROM (((forensics.crime_case cc
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+     JOIN core.processing_status ps ON ((ps.id = cc.processing_status_id)))
+  WHERE (((ccp.description ~~ '%uizid%'::text) AND (ccpr.name = 'Täter'::text)) AND (ps.name <> 'ausgeschlossen'::text))
+  GROUP BY ccpr.name;
+
+
+ALTER TABLE suizidierte_taeter OWNER TO jolo;
+
+--
+-- Name: taeter_mit_legalen_schusswaffen_und_deren_einsatz; Type: VIEW; Schema: forstat; Owner: jolo
+--
+
+CREATE VIEW taeter_mit_legalen_schusswaffen_und_deren_einsatz AS
+ SELECT ccpr.name,
+    count(ccp.legally_owns_weapon) AS count
+   FROM (((((forensics.crime_case cc
+     JOIN core.processing_status ps ON ((cc.processing_status_id = ps.id)))
+     JOIN forensics.crime_case_participant ccp ON ((cc.id = ccp.crime_case_id)))
+     JOIN forensics.crime_case_party_role ccpr ON ((ccp.crime_case_party_role_id = ccpr.id)))
+     JOIN forensics.weapon w ON ((ccp.weapon_id = w.id)))
+     JOIN forensics.weapon_type wt ON ((w.weapon_type_id = wt.id)))
+  WHERE ((((ps.name <> 'ausgeschlossen'::text) AND (wt.name = 'Schusswaffe'::text)) AND (ccpr.name = 'Täter'::text)) AND (ccp.legally_owns_weapon = true))
+  GROUP BY ccpr.name;
+
+
+ALTER TABLE taeter_mit_legalen_schusswaffen_und_deren_einsatz OWNER TO jolo;
 
 --
 -- Name: taeter_per_crime_case_count; Type: VIEW; Schema: forstat; Owner: jolo
