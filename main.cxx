@@ -4,7 +4,7 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationName("datacollector");
-    QCoreApplication::setApplicationVersion("0.1");
+    QCoreApplication::setApplicationVersion("2.5");
     QCoreApplication::setOrganizationName("jolodev");
     QCoreApplication::setOrganizationDomain("johanneslochmann.blogspot.com");
     QApplication::setApplicationDisplayName(QObject::tr("%1 V. %2")
