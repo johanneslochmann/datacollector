@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.4.5
+-- Dumped by pg_dump version 9.5.0
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: agate; Type: SCHEMA; Schema: -; Owner: jolo
@@ -64,6 +68,33 @@ CREATE SCHEMA geo;
 ALTER SCHEMA geo OWNER TO jolo;
 
 --
+-- Name: pdca; Type: SCHEMA; Schema: -; Owner: jolo
+--
+
+CREATE SCHEMA pdca;
+
+
+ALTER SCHEMA pdca OWNER TO jolo;
+
+--
+-- Name: pdcastat; Type: SCHEMA; Schema: -; Owner: jolo
+--
+
+CREATE SCHEMA pdcastat;
+
+
+ALTER SCHEMA pdcastat OWNER TO jolo;
+
+--
+-- Name: raw; Type: SCHEMA; Schema: -; Owner: jolo
+--
+
+CREATE SCHEMA raw;
+
+
+ALTER SCHEMA raw OWNER TO jolo;
+
+--
 -- Name: stat; Type: SCHEMA; Schema: -; Owner: jolo
 --
 
@@ -107,7 +138,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: campaign; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: campaign; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE campaign (
@@ -139,7 +170,7 @@ CREATE SEQUENCE seq_prescriptions
 ALTER TABLE seq_prescriptions OWNER TO jolo;
 
 --
--- Name: depot_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: depot_prescription; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE depot_prescription (
@@ -159,7 +190,7 @@ CREATE TABLE depot_prescription (
 ALTER TABLE depot_prescription OWNER TO jolo;
 
 --
--- Name: drug; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: drug; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE drug (
@@ -173,7 +204,7 @@ CREATE TABLE drug (
 ALTER TABLE drug OWNER TO jolo;
 
 --
--- Name: prescribeable_drug; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: prescribeable_drug; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE prescribeable_drug (
@@ -191,7 +222,7 @@ CREATE TABLE prescribeable_drug (
 ALTER TABLE prescribeable_drug OWNER TO jolo;
 
 --
--- Name: project; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: project; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE project (
@@ -205,7 +236,7 @@ CREATE TABLE project (
 ALTER TABLE project OWNER TO jolo;
 
 --
--- Name: survey; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: survey; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE survey (
@@ -251,7 +282,7 @@ ALTER TABLE all_depot_prescriptions OWNER TO jolo;
 SET search_path = core, pg_catalog;
 
 --
--- Name: icd10_diagnosis; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: icd10_diagnosis; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE icd10_diagnosis (
@@ -265,7 +296,7 @@ CREATE TABLE icd10_diagnosis (
 ALTER TABLE icd10_diagnosis OWNER TO jolo;
 
 --
--- Name: icd10_survey; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: icd10_survey; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE icd10_survey (
@@ -299,7 +330,7 @@ ALTER TABLE all_diagnosis OWNER TO jolo;
 SET search_path = core, pg_catalog;
 
 --
--- Name: molecule; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE molecule (
@@ -314,7 +345,7 @@ CREATE TABLE molecule (
 ALTER TABLE molecule OWNER TO jolo;
 
 --
--- Name: molecule_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_prescription; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE molecule_prescription (
@@ -352,7 +383,7 @@ ALTER TABLE all_molecule_prescriptions OWNER TO jolo;
 SET search_path = core, pg_catalog;
 
 --
--- Name: proband; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: proband; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE proband (
@@ -371,7 +402,7 @@ CREATE TABLE proband (
 ALTER TABLE proband OWNER TO jolo;
 
 --
--- Name: sex; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: sex; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE sex (
@@ -452,7 +483,7 @@ ALTER TABLE diagnosis_count_per_campaign OWNER TO jolo;
 SET search_path = core, pg_catalog;
 
 --
--- Name: molecule_class; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_class; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE molecule_class (
@@ -554,7 +585,7 @@ ALTER TABLE molecule_prescription_per_campaign_count OWNER TO jolo;
 SET search_path = core, pg_catalog;
 
 --
--- Name: administration_method; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: administration_method; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE administration_method (
@@ -590,7 +621,7 @@ ALTER SEQUENCE administration_method_id_seq OWNED BY administration_method.id;
 
 
 --
--- Name: age_class; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: age_class; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE age_class (
@@ -645,7 +676,7 @@ ALTER SEQUENCE campaign_id_seq OWNED BY campaign.id;
 
 
 --
--- Name: cgi; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: cgi; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE cgi (
@@ -681,7 +712,7 @@ ALTER SEQUENCE cgi_id_seq OWNED BY cgi.id;
 
 
 --
--- Name: channel_into_patient; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: channel_into_patient; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE channel_into_patient (
@@ -716,7 +747,7 @@ ALTER SEQUENCE channel_into_patient_id_seq OWNED BY channel_into_patient.id;
 
 
 --
--- Name: collateral_effect; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: collateral_effect; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE collateral_effect (
@@ -771,7 +802,7 @@ ALTER SEQUENCE drug_id_seq OWNED BY drug.id;
 
 
 --
--- Name: fps; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: fps; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE fps (
@@ -806,7 +837,7 @@ ALTER SEQUENCE fps_id_seq OWNED BY fps.id;
 
 
 --
--- Name: gaf; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: gaf; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE gaf (
@@ -883,7 +914,7 @@ ALTER SEQUENCE icd10_survey_id_seq OWNED BY icd10_survey.id;
 
 
 --
--- Name: information_source_type; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: information_source_type; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE information_source_type (
@@ -918,7 +949,7 @@ ALTER SEQUENCE information_source_type_id_seq OWNED BY information_source_type.i
 
 
 --
--- Name: job; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: job; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE job (
@@ -1016,7 +1047,7 @@ ALTER SEQUENCE molecule_prescription_id_seq OWNED BY molecule_prescription.id;
 
 
 --
--- Name: optional_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: optional_prescription; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE optional_prescription (
@@ -1031,7 +1062,7 @@ CREATE TABLE optional_prescription (
 ALTER TABLE optional_prescription OWNER TO jolo;
 
 --
--- Name: organization_unit; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: organization_unit; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE organization_unit (
@@ -1065,7 +1096,7 @@ ALTER SEQUENCE organization_unit_id_seq OWNED BY organization_unit.id;
 
 
 --
--- Name: plasmatic_level; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: plasmatic_level; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE plasmatic_level (
@@ -1102,7 +1133,7 @@ ALTER SEQUENCE plasmatic_level_id_seq OWNED BY plasmatic_level.id;
 
 
 --
--- Name: prescribeable_drug_composition; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: prescribeable_drug_composition; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE prescribeable_drug_composition (
@@ -1181,7 +1212,7 @@ ALTER SEQUENCE proband_id_seq OWNED BY proband.id;
 
 
 --
--- Name: processing_status; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: processing_status; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE processing_status (
@@ -1237,7 +1268,7 @@ ALTER SEQUENCE project_id_seq OWNED BY project.id;
 
 
 --
--- Name: regular_prescription; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: regular_prescription; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE regular_prescription (
@@ -1277,7 +1308,7 @@ ALTER SEQUENCE sex_id_seq OWNED BY sex.id;
 
 
 --
--- Name: smoking_habit; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: smoking_habit; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE smoking_habit (
@@ -1311,7 +1342,7 @@ ALTER SEQUENCE smoking_habit_id_seq OWNED BY smoking_habit.id;
 
 
 --
--- Name: survey_collateral_effect; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: survey_collateral_effect; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE survey_collateral_effect (
@@ -1367,7 +1398,7 @@ ALTER SEQUENCE survey_id_seq OWNED BY survey.id;
 
 
 --
--- Name: survey_info; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: survey_info; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE survey_info (
@@ -1409,7 +1440,7 @@ ALTER SEQUENCE survey_info_id_seq OWNED BY survey_info.id;
 
 
 --
--- Name: unit; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: unit; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE unit (
@@ -1444,7 +1475,7 @@ ALTER SEQUENCE unit_id_seq OWNED BY unit.id;
 
 
 --
--- Name: who_qol; Type: TABLE; Schema: core; Owner: jolo; Tablespace: 
+-- Name: who_qol; Type: TABLE; Schema: core; Owner: jolo
 --
 
 CREATE TABLE who_qol (
@@ -1507,7 +1538,7 @@ ALTER TABLE available_reports OWNER TO jolo;
 SET search_path = forensics, pg_catalog;
 
 --
--- Name: consultancy_result; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: consultancy_result; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE consultancy_result (
@@ -1542,7 +1573,7 @@ ALTER SEQUENCE consultancy_result_id_seq OWNED BY consultancy_result.id;
 
 
 --
--- Name: crime_case; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE crime_case (
@@ -1583,7 +1614,7 @@ ALTER SEQUENCE crime_case_id_seq OWNED BY crime_case.id;
 
 
 --
--- Name: crime_case_participant; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case_participant; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE crime_case_participant (
@@ -1633,7 +1664,7 @@ ALTER SEQUENCE crime_case_participant_id_seq OWNED BY crime_case_participant.id;
 
 
 --
--- Name: crime_case_party_role; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case_party_role; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE crime_case_party_role (
@@ -1668,7 +1699,7 @@ ALTER SEQUENCE crime_case_party_role_id_seq OWNED BY crime_case_party_role.id;
 
 
 --
--- Name: crime_motive; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_motive; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE crime_motive (
@@ -1703,7 +1734,7 @@ ALTER SEQUENCE crime_motive_id_seq OWNED BY crime_motive.id;
 
 
 --
--- Name: crime_type; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_type; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE crime_type (
@@ -1738,7 +1769,7 @@ ALTER SEQUENCE crime_type_id_seq OWNED BY crime_type.id;
 
 
 --
--- Name: information_source_for_crime_case; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: information_source_for_crime_case; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE information_source_for_crime_case (
@@ -1776,7 +1807,7 @@ ALTER SEQUENCE information_source_for_crime_case_id_seq OWNED BY information_sou
 
 
 --
--- Name: mental_disease; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: mental_disease; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE mental_disease (
@@ -1811,7 +1842,7 @@ ALTER SEQUENCE mental_disease_id_seq OWNED BY mental_disease.id;
 
 
 --
--- Name: modus_operandi; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: modus_operandi; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE modus_operandi (
@@ -1864,7 +1895,7 @@ CREATE VIEW rollen_der_fallbeteiligten AS
 ALTER TABLE rollen_der_fallbeteiligten OWNER TO jolo;
 
 --
--- Name: weapon; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: weapon; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE weapon (
@@ -1900,7 +1931,7 @@ ALTER SEQUENCE weapon_id_seq OWNED BY weapon.id;
 
 
 --
--- Name: weapon_type; Type: TABLE; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: weapon_type; Type: TABLE; Schema: forensics; Owner: jolo
 --
 
 CREATE TABLE weapon_type (
@@ -2038,7 +2069,7 @@ ALTER TABLE alcohol_or_drug_intoxications_by_role OWNER TO jolo;
 SET search_path = geo, pg_catalog;
 
 --
--- Name: city; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: city; Type: TABLE; Schema: geo; Owner: jolo
 --
 
 CREATE TABLE city (
@@ -2054,7 +2085,7 @@ CREATE TABLE city (
 ALTER TABLE city OWNER TO jolo;
 
 --
--- Name: housing_type; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: housing_type; Type: TABLE; Schema: geo; Owner: jolo
 --
 
 CREATE TABLE housing_type (
@@ -2650,7 +2681,7 @@ COMMENT ON VIEW crime_case_count_by_city IS 'Anzahl aller cases in der Datenbank
 SET search_path = geo, pg_catalog;
 
 --
--- Name: country; Type: TABLE; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: country; Type: TABLE; Schema: geo; Owner: jolo
 --
 
 CREATE TABLE country (
@@ -3686,6 +3717,1031 @@ ALTER TABLE housing_type_id_seq OWNER TO jolo;
 
 ALTER SEQUENCE housing_type_id_seq OWNED BY housing_type.id;
 
+
+SET search_path = pdca, pg_catalog;
+
+--
+-- Name: collateral_effect; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE collateral_effect (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE collateral_effect OWNER TO jolo;
+
+--
+-- Name: collateral_effect_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE collateral_effect_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE collateral_effect_id_seq OWNER TO jolo;
+
+--
+-- Name: collateral_effect_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE collateral_effect_id_seq OWNED BY collateral_effect.id;
+
+
+--
+-- Name: data; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE data (
+    id integer NOT NULL,
+    icd10_id integer NOT NULL,
+    smoker_type_id integer NOT NULL,
+    molecule_id integer NOT NULL,
+    equipe_id integer NOT NULL,
+    dosage_in_mg numeric NOT NULL,
+    frequency_in_days integer NOT NULL,
+    sample_date date,
+    bmi numeric,
+    cgi_s integer,
+    cgi_i integer,
+    gaf integer,
+    fps integer,
+    vas integer,
+    who_qol_a integer,
+    who_qol_b integer,
+    who_qol_c integer,
+    who_qol_d integer,
+    plasmatic_concentration_in_ng_per_ml numeric,
+    comment text DEFAULT ''::text NOT NULL
+);
+
+
+ALTER TABLE data OWNER TO jolo;
+
+--
+-- Name: data_collateral_effect; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE data_collateral_effect (
+    data_id integer NOT NULL,
+    collateral_effect_id integer NOT NULL
+);
+
+
+ALTER TABLE data_collateral_effect OWNER TO jolo;
+
+--
+-- Name: data_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE data_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE data_id_seq OWNER TO jolo;
+
+--
+-- Name: data_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE data_id_seq OWNED BY data.id;
+
+
+--
+-- Name: equipe; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE equipe (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE equipe OWNER TO jolo;
+
+--
+-- Name: icd10; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE icd10 (
+    id integer NOT NULL,
+    code text NOT NULL
+);
+
+
+ALTER TABLE icd10 OWNER TO jolo;
+
+--
+-- Name: icd10_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE icd10_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE icd10_id_seq OWNER TO jolo;
+
+--
+-- Name: icd10_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE icd10_id_seq OWNED BY icd10.id;
+
+
+--
+-- Name: molecule; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE molecule (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE molecule OWNER TO jolo;
+
+--
+-- Name: molecule_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE molecule_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE molecule_id_seq OWNER TO jolo;
+
+--
+-- Name: molecule_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE molecule_id_seq OWNED BY molecule.id;
+
+
+--
+-- Name: proband; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE proband (
+    id integer NOT NULL,
+    name text NOT NULL,
+    code text NOT NULL,
+    birthday date NOT NULL,
+    sex_id integer NOT NULL,
+    CONSTRAINT proband_birthday_check CHECK ((birthday < ('now'::text)::date))
+);
+
+
+ALTER TABLE proband OWNER TO jolo;
+
+--
+-- Name: proband_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE proband_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE proband_id_seq OWNER TO jolo;
+
+--
+-- Name: proband_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE proband_id_seq OWNED BY proband.id;
+
+
+--
+-- Name: raw_data; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE raw_data (
+    id integer,
+    research_year integer,
+    equipe text,
+    sample_denied boolean,
+    pz text,
+    cod_paz text,
+    sex text,
+    birthday date,
+    height_in_cm numeric,
+    weight_in_kg numeric,
+    cigarettes_per_day integer,
+    is_smoker boolean,
+    icd_10 text,
+    molecule text,
+    dosage_in_mg numeric,
+    depot_frequency_in_days integer,
+    last_injection_date date,
+    sample_date date,
+    plasmatic_concentration numeric,
+    cotherapy text,
+    bmi numeric,
+    cgi_s text,
+    cgi_i text,
+    gaf text,
+    fps text,
+    vas text,
+    who_qol text,
+    collateral_effects text,
+    comment text
+);
+
+
+ALTER TABLE raw_data OWNER TO jolo;
+
+--
+-- Name: research_intervals; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE research_intervals (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE research_intervals OWNER TO jolo;
+
+--
+-- Name: research_intervals_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE research_intervals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE research_intervals_id_seq OWNER TO jolo;
+
+--
+-- Name: research_intervals_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE research_intervals_id_seq OWNED BY research_intervals.id;
+
+
+--
+-- Name: seq_cases; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE seq_cases
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE seq_cases OWNER TO jolo;
+
+--
+-- Name: SEQUENCE seq_cases; Type: COMMENT; Schema: pdca; Owner: jolo
+--
+
+COMMENT ON SEQUENCE seq_cases IS 'the sequence used to create case numbers for the pdca research topic';
+
+
+--
+-- Name: sex; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE sex (
+    id integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE sex OWNER TO jolo;
+
+--
+-- Name: sex_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE sex_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sex_id_seq OWNER TO jolo;
+
+--
+-- Name: sex_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE sex_id_seq OWNED BY sex.id;
+
+
+--
+-- Name: smoker_type; Type: TABLE; Schema: pdca; Owner: jolo
+--
+
+CREATE TABLE smoker_type (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text DEFAULT ''::text NOT NULL
+);
+
+
+ALTER TABLE smoker_type OWNER TO jolo;
+
+--
+-- Name: smoker_type_id_seq; Type: SEQUENCE; Schema: pdca; Owner: jolo
+--
+
+CREATE SEQUENCE smoker_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE smoker_type_id_seq OWNER TO jolo;
+
+--
+-- Name: smoker_type_id_seq; Type: SEQUENCE OWNED BY; Schema: pdca; Owner: jolo
+--
+
+ALTER SEQUENCE smoker_type_id_seq OWNED BY smoker_type.id;
+
+
+SET search_path = pdcastat, pg_catalog;
+
+--
+-- Name: alle_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW alle_mit_plasmaspiegel AS
+ SELECT raw_data.id,
+    raw_data.research_year,
+    raw_data.equipe,
+    raw_data.sample_denied,
+    raw_data.pz,
+    raw_data.cod_paz,
+    raw_data.sex,
+    raw_data.birthday,
+    raw_data.height_in_cm,
+    raw_data.weight_in_kg,
+    raw_data.cigarettes_per_day,
+    raw_data.is_smoker,
+    raw_data.icd_10,
+    raw_data.molecule,
+    raw_data.dosage_in_mg,
+    raw_data.depot_frequency_in_days,
+    raw_data.last_injection_date,
+    raw_data.sample_date,
+    raw_data.plasmatic_concentration,
+    raw_data.cotherapy,
+    raw_data.bmi,
+    raw_data.cgi_s,
+    raw_data.cgi_i,
+    raw_data.gaf,
+    raw_data.fps,
+    raw_data.vas,
+    raw_data.who_qol,
+    raw_data.collateral_effects,
+    raw_data.comment
+   FROM pdca.raw_data
+  WHERE (raw_data.plasmatic_concentration IS NOT NULL);
+
+
+ALTER TABLE alle_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: all_molecules_dosages_plasmatic_concentrations; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW all_molecules_dosages_plasmatic_concentrations AS
+ SELECT alle_mit_plasmaspiegel.molecule,
+    alle_mit_plasmaspiegel.dosage_in_mg,
+    alle_mit_plasmaspiegel.plasmatic_concentration,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  GROUP BY alle_mit_plasmaspiegel.molecule, alle_mit_plasmaspiegel.dosage_in_mg, alle_mit_plasmaspiegel.plasmatic_concentration
+  ORDER BY alle_mit_plasmaspiegel.molecule, alle_mit_plasmaspiegel.dosage_in_mg, alle_mit_plasmaspiegel.plasmatic_concentration, count(1);
+
+
+ALTER TABLE all_molecules_dosages_plasmatic_concentrations OWNER TO jolo;
+
+--
+-- Name: alle_molekuele_dosierung_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW alle_molekuele_dosierung_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.molecule,
+    alle_mit_plasmaspiegel.dosage_in_mg,
+    alle_mit_plasmaspiegel.plasmatic_concentration,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  GROUP BY alle_mit_plasmaspiegel.molecule, alle_mit_plasmaspiegel.dosage_in_mg, alle_mit_plasmaspiegel.plasmatic_concentration
+  ORDER BY alle_mit_plasmaspiegel.molecule, alle_mit_plasmaspiegel.dosage_in_mg, alle_mit_plasmaspiegel.plasmatic_concentration, count(1);
+
+
+ALTER TABLE alle_molekuele_dosierung_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: aloperidolo_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW aloperidolo_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Aloperidolo'::text)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE aloperidolo_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr AS
+ SELECT ((alle_mit_plasmaspiegel.research_year)::double precision - date_part('year'::text, alle_mit_plasmaspiegel.birthday)) AS age
+   FROM alle_mit_plasmaspiegel
+  ORDER BY ((alle_mit_plasmaspiegel.research_year)::double precision - date_part('year'::text, alle_mit_plasmaspiegel.birthday));
+
+
+ALTER TABLE alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr OWNER TO jolo;
+
+--
+-- Name: alter_probanden_10_jahresklassen_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW alter_probanden_10_jahresklassen_mit_plasmaspiegel AS
+ SELECT '<=20'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (20)::double precision)
+  GROUP BY '<=20'::text
+UNION
+ SELECT '>20 - <=30'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE ((alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (20)::double precision) AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (30)::double precision))
+  GROUP BY '>20 - <=30'::text
+UNION
+ SELECT '>30 - <=40'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE ((alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (30)::double precision) AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (40)::double precision))
+  GROUP BY '>30 - <=40'::text
+UNION
+ SELECT '>40 - <=50'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE ((alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (40)::double precision) AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (50)::double precision))
+  GROUP BY '>40 - <=50'::text
+UNION
+ SELECT '>50 - <=60'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE ((alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (50)::double precision) AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (60)::double precision))
+  GROUP BY '>50 - <=60'::text
+UNION
+ SELECT '>60 - <=70'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE ((alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (60)::double precision) AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (70)::double precision))
+  GROUP BY '>60 - <=70'::text
+UNION
+ SELECT '>70 - <=80'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE ((alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (70)::double precision) AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (80)::double precision))
+  GROUP BY '>70 - <=80'::text
+UNION
+ SELECT '>80 - <=90'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE ((alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (80)::double precision) AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age <= (90)::double precision))
+  GROUP BY '>80 - <=90'::text
+UNION
+ SELECT '>90'::text AS altersgruppe,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  WHERE (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age > (90)::double precision)
+  GROUP BY '>90'::text
+  ORDER BY 1;
+
+
+ALTER TABLE alter_probanden_10_jahresklassen_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: alter_probanden_1_jahresklassen_mit_plasmaspiegel_im_forschungs; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW alter_probanden_1_jahresklassen_mit_plasmaspiegel_im_forschungs AS
+ SELECT alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age,
+    count(1) AS anzahl
+   FROM alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  GROUP BY alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age
+  ORDER BY alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age;
+
+
+ALTER TABLE alter_probanden_1_jahresklassen_mit_plasmaspiegel_im_forschungs OWNER TO jolo;
+
+--
+-- Name: anzahl_verschreibungen_pro_molekuel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW anzahl_verschreibungen_pro_molekuel AS
+ SELECT raw_data.molecule AS molekuel,
+    count(1) AS anzahl
+   FROM pdca.raw_data
+  GROUP BY raw_data.molecule;
+
+
+ALTER TABLE anzahl_verschreibungen_pro_molekuel OWNER TO jolo;
+
+--
+-- Name: anzahl_verschreibungen_pro_molekuel_mit_dosis; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW anzahl_verschreibungen_pro_molekuel_mit_dosis AS
+ SELECT raw_data.molecule AS molekuel,
+    raw_data.dosage_in_mg AS dosis_in_mg,
+    count(1) AS anzahl
+   FROM pdca.raw_data
+  GROUP BY raw_data.molecule, raw_data.dosage_in_mg
+  ORDER BY raw_data.molecule, raw_data.dosage_in_mg, count(1);
+
+
+ALTER TABLE anzahl_verschreibungen_pro_molekuel_mit_dosis OWNER TO jolo;
+
+--
+-- Name: anzahl_zigaretten_pro_tag_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW anzahl_zigaretten_pro_tag_mit_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.cigarettes_per_day AS zigaretten_pro_tag,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  GROUP BY alle_mit_plasmaspiegel.cigarettes_per_day
+  ORDER BY alle_mit_plasmaspiegel.cigarettes_per_day;
+
+
+ALTER TABLE anzahl_zigaretten_pro_tag_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: aripiprazolo_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW aripiprazolo_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Aripiprazolo'::text)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE aripiprazolo_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: bmi_klassen_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW bmi_klassen_mit_plasmaspiegel AS
+ SELECT '<18.5'::text AS bmi_klasse,
+    count(1) AS anzahl,
+    1 AS sortierung
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.bmi < 18.5)
+UNION
+ SELECT '>=18.5-<25'::text AS bmi_klasse,
+    count(1) AS anzahl,
+    2 AS sortierung
+   FROM alle_mit_plasmaspiegel
+  WHERE ((alle_mit_plasmaspiegel.bmi >= 18.5) AND (alle_mit_plasmaspiegel.bmi < (25)::numeric))
+UNION
+ SELECT '>=25-<30'::text AS bmi_klasse,
+    count(1) AS anzahl,
+    3 AS sortierung
+   FROM alle_mit_plasmaspiegel
+  WHERE ((alle_mit_plasmaspiegel.bmi >= (25)::numeric) AND (alle_mit_plasmaspiegel.bmi < (30)::numeric))
+UNION
+ SELECT '>=30'::text AS bmi_klasse,
+    count(1) AS anzahl,
+    4 AS sortierung
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.bmi >= (30)::numeric)
+  ORDER BY 3;
+
+
+ALTER TABLE bmi_klassen_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: flufenazina_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW flufenazina_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Flufenazina'::text)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE flufenazina_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: geschlechterverteilung_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW geschlechterverteilung_mit_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.sex AS geschlecht,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  GROUP BY alle_mit_plasmaspiegel.sex
+  ORDER BY alle_mit_plasmaspiegel.sex;
+
+
+ALTER TABLE geschlechterverteilung_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: molekuele_dosierung_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW molekuele_dosierung_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.molecule AS molekuel,
+    alle_mit_plasmaspiegel.dosage_in_mg AS dosis_in_mg,
+    alle_mit_plasmaspiegel.plasmatic_concentration AS plasmaspiegel_in_ng_pro_ml
+   FROM alle_mit_plasmaspiegel
+  ORDER BY alle_mit_plasmaspiegel.molecule, alle_mit_plasmaspiegel.dosage_in_mg, alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE molekuele_dosierung_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: molekuele_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW molekuele_mit_plasmaspiegel AS
+ SELECT COALESCE(alle_mit_plasmaspiegel.molecule, 'NA'::text) AS molekuel,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  GROUP BY COALESCE(alle_mit_plasmaspiegel.molecule, 'NA'::text)
+  ORDER BY COALESCE(alle_mit_plasmaspiegel.molecule, 'NA'::text);
+
+
+ALTER TABLE molekuele_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: ohne_molekuel_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW ohne_molekuel_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule IS NULL)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE ohne_molekuel_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: olanzapina_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW olanzapina_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Olanzapina'::text)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE olanzapina_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: paliperidone_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW paliperidone_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Paliperidone'::text)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE paliperidone_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: raucher_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW raucher_mit_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.is_smoker AS raucht,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  GROUP BY alle_mit_plasmaspiegel.is_smoker
+  ORDER BY alle_mit_plasmaspiegel.is_smoker;
+
+
+ALTER TABLE raucher_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: risperidone_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW risperidone_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Risperidone'::text)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE risperidone_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: wirkstoffgenerationen_mit_molekuelen_wo_ps_vorhanden; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW wirkstoffgenerationen_mit_molekuelen_wo_ps_vorhanden AS
+ SELECT '1. Generation'::text AS molecule_group,
+    alle_mit_plasmaspiegel.molecule AS molekuel,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = ANY (ARRAY['Zuclopentixolo'::text, 'Aloperidolo'::text, 'Flufenazina'::text, 'Fluanxol'::text]))
+  GROUP BY '1. Generation'::text, alle_mit_plasmaspiegel.molecule
+UNION
+ SELECT '2. Generation'::text AS molecule_group,
+    alle_mit_plasmaspiegel.molecule AS molekuel,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = ANY (ARRAY['Risperidone'::text, 'Paliperidone'::text, 'Olanzapina'::text]))
+  GROUP BY '2. Generation'::text, alle_mit_plasmaspiegel.molecule
+UNION
+ SELECT '3. Generation'::text AS molecule_group,
+    alle_mit_plasmaspiegel.molecule AS molekuel,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Aripiprazolo'::text)
+  GROUP BY '3. Generation'::text, alle_mit_plasmaspiegel.molecule
+  ORDER BY 1, 2, 3;
+
+
+ALTER TABLE wirkstoffgenerationen_mit_molekuelen_wo_ps_vorhanden OWNER TO jolo;
+
+--
+-- Name: zehn_zigaretten_pro_tag_mit_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW zehn_zigaretten_pro_tag_mit_plasmaspiegel AS
+ SELECT '<=10'::text AS zigaretten_pro_tag,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.cigarettes_per_day <= 10)
+  GROUP BY '<=10'::text
+UNION
+ SELECT '>10'::text AS zigaretten_pro_tag,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.cigarettes_per_day > 10)
+  GROUP BY '>10'::text
+UNION
+ SELECT 'NA'::text AS zigaretten_pro_tag,
+    count(1) AS anzahl
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.cigarettes_per_day IS NULL)
+  GROUP BY 'NA'::text
+  ORDER BY 1;
+
+
+ALTER TABLE zehn_zigaretten_pro_tag_mit_plasmaspiegel OWNER TO jolo;
+
+--
+-- Name: zuclopentixolo_plasmaspiegel; Type: VIEW; Schema: pdcastat; Owner: jolo
+--
+
+CREATE VIEW zuclopentixolo_plasmaspiegel AS
+ SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   FROM alle_mit_plasmaspiegel
+  WHERE (alle_mit_plasmaspiegel.molecule = 'Zuclopentixolo'::text)
+  ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;
+
+
+ALTER TABLE zuclopentixolo_plasmaspiegel OWNER TO jolo;
+
+SET search_path = raw, pg_catalog;
+
+--
+-- Name: raw_id_seq; Type: SEQUENCE; Schema: raw; Owner: jolo
+--
+
+CREATE SEQUENCE raw_id_seq
+    START WITH 484
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE raw_id_seq OWNER TO jolo;
+
+--
+-- Name: all; Type: TABLE; Schema: raw; Owner: jolo
+--
+
+CREATE TABLE "all" (
+    pz text,
+    cod_paz text,
+    sex text,
+    birthday text,
+    icd_10 text,
+    is_smoker text,
+    smokes_less_than_10 text,
+    smokes_more_than_10 text,
+    molecule text,
+    dosage_in_mg text,
+    frequency_in_days text,
+    cotherapy text,
+    last_depot_injection_date text,
+    sample_date text,
+    collateral_effects text,
+    height_in_cm text,
+    weight_in_kg text,
+    bmi text,
+    cgi_s text,
+    cgi_i text,
+    gaf text,
+    fps text,
+    vas text,
+    who_qol text,
+    plasmatic_concentration text,
+    comment text,
+    equipe text,
+    research_year integer,
+    id integer DEFAULT nextval('raw_id_seq'::regclass) NOT NULL,
+    d_birthday date,
+    d_cigarettes_per_day integer,
+    d_is_smoker boolean,
+    d_molecule text,
+    d_dosage_in_mg numeric,
+    d_frequency_in_days integer,
+    d_last_injection_date date,
+    d_sample_date date,
+    d_sample_denied boolean,
+    d_height_in_cm numeric,
+    d_weight_in_kg numeric,
+    d_bmi numeric,
+    d_plasmatic_concentration numeric,
+    d_equipe text
+);
+
+
+ALTER TABLE "all" OWNER TO jolo;
+
+--
+-- Name: d2013; Type: TABLE; Schema: raw; Owner: jolo
+--
+
+CREATE TABLE d2013 (
+    pz text,
+    cod_paz text,
+    sex text,
+    birthday text,
+    icd_10 text,
+    is_smoker text,
+    smokes_less_than_10 text,
+    smokes_more_than_10 text,
+    molecule text,
+    dosage_in_mg text,
+    frequency_in_days text,
+    sample_date text,
+    collateral_effects text,
+    bmi text,
+    cgi_s text,
+    cgi_i text,
+    gaf text,
+    fps text,
+    vas text,
+    who_qol text,
+    plasmatic_concentration text,
+    comment text,
+    equipe text,
+    cotherapy text
+);
+
+
+ALTER TABLE d2013 OWNER TO jolo;
+
+--
+-- Name: d2014; Type: TABLE; Schema: raw; Owner: jolo
+--
+
+CREATE TABLE d2014 (
+    pz text,
+    cod_paz text,
+    sex text,
+    birthday text,
+    icd_10 text,
+    is_smoker text,
+    smokes_less_than_10 text,
+    smokes_more_than_10 text,
+    molecule text,
+    dosage_in_mg text,
+    frequency_in_days text,
+    sample_date text,
+    collateral_effects text,
+    bmi text,
+    cgi_s text,
+    cgi_i text,
+    gaf text,
+    fps text,
+    vas text,
+    who_qol text,
+    plasmatic_concentration text,
+    comment text,
+    equipe text,
+    cotherapy text
+);
+
+
+ALTER TABLE d2014 OWNER TO jolo;
+
+--
+-- Name: d2015; Type: TABLE; Schema: raw; Owner: jolo
+--
+
+CREATE TABLE d2015 (
+    pz text,
+    cod_paz text,
+    sex text,
+    birthday text,
+    icd_10 text,
+    is_smoker text,
+    smokes_less_than_10 text,
+    smokes_more_than_10 text,
+    molecule text,
+    dosage_in_mg text,
+    frequency_in_days text,
+    cotherapy text,
+    last_depot_injection_date text,
+    sample_date text,
+    collateral_effects text,
+    height_in_cm text,
+    weight_in_kg text,
+    bmi text,
+    cgi_s text,
+    cgi_i text,
+    gaf text,
+    fps text,
+    vas text,
+    who_qol text,
+    plasmatic_concentration text,
+    comment text,
+    equipe text
+);
+
+
+ALTER TABLE d2015 OWNER TO jolo;
+
+--
+-- Name: retour_von_vanda; Type: TABLE; Schema: raw; Owner: jolo
+--
+
+CREATE TABLE retour_von_vanda (
+    id integer,
+    pazient text,
+    cod_paz text,
+    geschlecht text,
+    geburtsdatum text,
+    molekuel text,
+    dosis_in_mg text,
+    injektionsintervall text,
+    letzte_injektion text,
+    sample_date text,
+    plasmatic_concentration text,
+    research_year text,
+    comment text
+);
+
+
+ALTER TABLE retour_von_vanda OWNER TO jolo;
 
 SET search_path = stat, pg_catalog;
 
@@ -4785,10 +5841,68 @@ ALTER TABLE ONLY country ALTER COLUMN id SET DEFAULT nextval('country_id_seq'::r
 ALTER TABLE ONLY housing_type ALTER COLUMN id SET DEFAULT nextval('housing_type_id_seq'::regclass);
 
 
+SET search_path = pdca, pg_catalog;
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY collateral_effect ALTER COLUMN id SET DEFAULT nextval('collateral_effect_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data ALTER COLUMN id SET DEFAULT nextval('data_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY icd10 ALTER COLUMN id SET DEFAULT nextval('icd10_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY molecule ALTER COLUMN id SET DEFAULT nextval('molecule_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY proband ALTER COLUMN id SET DEFAULT nextval('proband_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY research_intervals ALTER COLUMN id SET DEFAULT nextval('research_intervals_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY sex ALTER COLUMN id SET DEFAULT nextval('sex_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY smoker_type ALTER COLUMN id SET DEFAULT nextval('smoker_type_id_seq'::regclass);
+
+
 SET search_path = core, pg_catalog;
 
 --
--- Name: administration_method_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: administration_method_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY administration_method
@@ -4796,7 +5910,7 @@ ALTER TABLE ONLY administration_method
 
 
 --
--- Name: administration_method_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: administration_method_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY administration_method
@@ -4804,7 +5918,7 @@ ALTER TABLE ONLY administration_method
 
 
 --
--- Name: age_class_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: age_class_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY age_class
@@ -4812,7 +5926,7 @@ ALTER TABLE ONLY age_class
 
 
 --
--- Name: age_class_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: age_class_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY age_class
@@ -4820,7 +5934,7 @@ ALTER TABLE ONLY age_class
 
 
 --
--- Name: campaign_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: campaign_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY campaign
@@ -4828,7 +5942,7 @@ ALTER TABLE ONLY campaign
 
 
 --
--- Name: campaign_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: campaign_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY campaign
@@ -4836,7 +5950,7 @@ ALTER TABLE ONLY campaign
 
 
 --
--- Name: campaign_project_id_start_date_end_date_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: campaign_project_id_start_date_end_date_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY campaign
@@ -4844,7 +5958,7 @@ ALTER TABLE ONLY campaign
 
 
 --
--- Name: cgi_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: cgi_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY cgi
@@ -4852,7 +5966,7 @@ ALTER TABLE ONLY cgi
 
 
 --
--- Name: cgi_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: cgi_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY cgi
@@ -4860,7 +5974,7 @@ ALTER TABLE ONLY cgi
 
 
 --
--- Name: channel_into_patient_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: channel_into_patient_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY channel_into_patient
@@ -4868,7 +5982,7 @@ ALTER TABLE ONLY channel_into_patient
 
 
 --
--- Name: channel_into_patient_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: channel_into_patient_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY channel_into_patient
@@ -4876,7 +5990,7 @@ ALTER TABLE ONLY channel_into_patient
 
 
 --
--- Name: collateral_effect_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: collateral_effect_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY collateral_effect
@@ -4884,7 +5998,7 @@ ALTER TABLE ONLY collateral_effect
 
 
 --
--- Name: collateral_effect_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: collateral_effect_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY collateral_effect
@@ -4892,7 +6006,7 @@ ALTER TABLE ONLY collateral_effect
 
 
 --
--- Name: depot_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: depot_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY depot_prescription
@@ -4900,7 +6014,7 @@ ALTER TABLE ONLY depot_prescription
 
 
 --
--- Name: depot_prescription_survey_id_prescribeable_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: depot_prescription_survey_id_prescribeable_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY depot_prescription
@@ -4908,7 +6022,7 @@ ALTER TABLE ONLY depot_prescription
 
 
 --
--- Name: drug_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: drug_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY drug
@@ -4916,7 +6030,7 @@ ALTER TABLE ONLY drug
 
 
 --
--- Name: drug_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: drug_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY drug
@@ -4924,7 +6038,7 @@ ALTER TABLE ONLY drug
 
 
 --
--- Name: fps_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: fps_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY fps
@@ -4932,7 +6046,7 @@ ALTER TABLE ONLY fps
 
 
 --
--- Name: fps_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: fps_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY fps
@@ -4940,7 +6054,7 @@ ALTER TABLE ONLY fps
 
 
 --
--- Name: gaf_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: gaf_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY gaf
@@ -4948,7 +6062,7 @@ ALTER TABLE ONLY gaf
 
 
 --
--- Name: gaf_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: gaf_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY gaf
@@ -4956,7 +6070,7 @@ ALTER TABLE ONLY gaf
 
 
 --
--- Name: icd10_diagnosis_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: icd10_diagnosis_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY icd10_diagnosis
@@ -4964,7 +6078,7 @@ ALTER TABLE ONLY icd10_diagnosis
 
 
 --
--- Name: icd10_diagnosis_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: icd10_diagnosis_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY icd10_diagnosis
@@ -4972,7 +6086,7 @@ ALTER TABLE ONLY icd10_diagnosis
 
 
 --
--- Name: icd10_survey_icd10_diagnosis_id_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: icd10_survey_icd10_diagnosis_id_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY icd10_survey
@@ -4980,7 +6094,7 @@ ALTER TABLE ONLY icd10_survey
 
 
 --
--- Name: information_source_type_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: information_source_type_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY information_source_type
@@ -4988,7 +6102,7 @@ ALTER TABLE ONLY information_source_type
 
 
 --
--- Name: information_source_type_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: information_source_type_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY information_source_type
@@ -4996,7 +6110,7 @@ ALTER TABLE ONLY information_source_type
 
 
 --
--- Name: job_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: job_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY job
@@ -5004,7 +6118,7 @@ ALTER TABLE ONLY job
 
 
 --
--- Name: job_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: job_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY job
@@ -5012,7 +6126,7 @@ ALTER TABLE ONLY job
 
 
 --
--- Name: molecule_class_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_class_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY molecule_class
@@ -5020,7 +6134,7 @@ ALTER TABLE ONLY molecule_class
 
 
 --
--- Name: molecule_class_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_class_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY molecule_class
@@ -5028,7 +6142,7 @@ ALTER TABLE ONLY molecule_class
 
 
 --
--- Name: molecule_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY molecule
@@ -5036,7 +6150,7 @@ ALTER TABLE ONLY molecule
 
 
 --
--- Name: molecule_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY molecule
@@ -5044,7 +6158,7 @@ ALTER TABLE ONLY molecule
 
 
 --
--- Name: molecule_prescription_molecule_id_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_prescription_molecule_id_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY molecule_prescription
@@ -5052,7 +6166,7 @@ ALTER TABLE ONLY molecule_prescription
 
 
 --
--- Name: molecule_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: molecule_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY molecule_prescription
@@ -5060,7 +6174,7 @@ ALTER TABLE ONLY molecule_prescription
 
 
 --
--- Name: optional_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: optional_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY optional_prescription
@@ -5068,7 +6182,7 @@ ALTER TABLE ONLY optional_prescription
 
 
 --
--- Name: optional_prescription_survey_id_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: optional_prescription_survey_id_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY optional_prescription
@@ -5076,7 +6190,7 @@ ALTER TABLE ONLY optional_prescription
 
 
 --
--- Name: organization_unit_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: organization_unit_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY organization_unit
@@ -5084,7 +6198,7 @@ ALTER TABLE ONLY organization_unit
 
 
 --
--- Name: organization_unit_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: organization_unit_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY organization_unit
@@ -5092,7 +6206,7 @@ ALTER TABLE ONLY organization_unit
 
 
 --
--- Name: pk_icd10_survey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: pk_icd10_survey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY icd10_survey
@@ -5100,7 +6214,7 @@ ALTER TABLE ONLY icd10_survey
 
 
 --
--- Name: plasmatic_level_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: plasmatic_level_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY plasmatic_level
@@ -5108,7 +6222,7 @@ ALTER TABLE ONLY plasmatic_level
 
 
 --
--- Name: prescribeable_drug_compositio_prescribeable_drug_id_molecul_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: prescribeable_drug_compositio_prescribeable_drug_id_molecul_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY prescribeable_drug_composition
@@ -5116,7 +6230,7 @@ ALTER TABLE ONLY prescribeable_drug_composition
 
 
 --
--- Name: prescribeable_drug_composition_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: prescribeable_drug_composition_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY prescribeable_drug_composition
@@ -5124,7 +6238,7 @@ ALTER TABLE ONLY prescribeable_drug_composition
 
 
 --
--- Name: prescribeable_drug_dosage_dosage_unit_id_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: prescribeable_drug_dosage_dosage_unit_id_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY prescribeable_drug
@@ -5132,7 +6246,7 @@ ALTER TABLE ONLY prescribeable_drug
 
 
 --
--- Name: prescribeable_drug_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: prescribeable_drug_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY prescribeable_drug
@@ -5140,7 +6254,7 @@ ALTER TABLE ONLY prescribeable_drug
 
 
 --
--- Name: prescribeable_drug_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: prescribeable_drug_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY prescribeable_drug
@@ -5148,7 +6262,7 @@ ALTER TABLE ONLY prescribeable_drug
 
 
 --
--- Name: proband_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: proband_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY proband
@@ -5156,7 +6270,7 @@ ALTER TABLE ONLY proband
 
 
 --
--- Name: processing_status_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: processing_status_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY processing_status
@@ -5164,7 +6278,7 @@ ALTER TABLE ONLY processing_status
 
 
 --
--- Name: processing_status_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: processing_status_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY processing_status
@@ -5172,7 +6286,7 @@ ALTER TABLE ONLY processing_status
 
 
 --
--- Name: project_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: project_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY project
@@ -5180,7 +6294,7 @@ ALTER TABLE ONLY project
 
 
 --
--- Name: project_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: project_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY project
@@ -5188,7 +6302,7 @@ ALTER TABLE ONLY project
 
 
 --
--- Name: regular_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: regular_prescription_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY regular_prescription
@@ -5196,7 +6310,7 @@ ALTER TABLE ONLY regular_prescription
 
 
 --
--- Name: regular_prescription_survey_id_prescribeable_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: regular_prescription_survey_id_prescribeable_drug_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY regular_prescription
@@ -5204,7 +6318,7 @@ ALTER TABLE ONLY regular_prescription
 
 
 --
--- Name: sex_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: sex_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY sex
@@ -5212,7 +6326,7 @@ ALTER TABLE ONLY sex
 
 
 --
--- Name: sex_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: sex_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY sex
@@ -5220,7 +6334,7 @@ ALTER TABLE ONLY sex
 
 
 --
--- Name: smoking_habit_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: smoking_habit_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY smoking_habit
@@ -5228,7 +6342,7 @@ ALTER TABLE ONLY smoking_habit
 
 
 --
--- Name: smoking_habit_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: smoking_habit_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY smoking_habit
@@ -5236,7 +6350,7 @@ ALTER TABLE ONLY smoking_habit
 
 
 --
--- Name: survey_collateral_effect_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: survey_collateral_effect_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY survey_collateral_effect
@@ -5244,7 +6358,7 @@ ALTER TABLE ONLY survey_collateral_effect
 
 
 --
--- Name: survey_info_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: survey_info_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY survey_info
@@ -5252,7 +6366,7 @@ ALTER TABLE ONLY survey_info
 
 
 --
--- Name: survey_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: survey_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY survey
@@ -5260,7 +6374,7 @@ ALTER TABLE ONLY survey
 
 
 --
--- Name: survey_proband_id_campaign_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: survey_proband_id_campaign_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY survey
@@ -5268,7 +6382,7 @@ ALTER TABLE ONLY survey
 
 
 --
--- Name: unit_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: unit_name_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY unit
@@ -5276,7 +6390,7 @@ ALTER TABLE ONLY unit
 
 
 --
--- Name: unit_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: unit_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY unit
@@ -5284,7 +6398,7 @@ ALTER TABLE ONLY unit
 
 
 --
--- Name: who_qol_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: who_qol_pkey; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY who_qol
@@ -5292,7 +6406,7 @@ ALTER TABLE ONLY who_qol
 
 
 --
--- Name: who_qol_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo; Tablespace: 
+-- Name: who_qol_survey_id_key; Type: CONSTRAINT; Schema: core; Owner: jolo
 --
 
 ALTER TABLE ONLY who_qol
@@ -5302,7 +6416,7 @@ ALTER TABLE ONLY who_qol
 SET search_path = forensics, pg_catalog;
 
 --
--- Name: consultancy_result_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: consultancy_result_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY consultancy_result
@@ -5310,7 +6424,7 @@ ALTER TABLE ONLY consultancy_result
 
 
 --
--- Name: consultancy_result_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: consultancy_result_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY consultancy_result
@@ -5318,7 +6432,7 @@ ALTER TABLE ONLY consultancy_result
 
 
 --
--- Name: crime_case_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_case
@@ -5326,7 +6440,7 @@ ALTER TABLE ONLY crime_case
 
 
 --
--- Name: crime_case_participant_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case_participant_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_case_participant
@@ -5334,7 +6448,7 @@ ALTER TABLE ONLY crime_case_participant
 
 
 --
--- Name: crime_case_party_role_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case_party_role_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_case_party_role
@@ -5342,7 +6456,7 @@ ALTER TABLE ONLY crime_case_party_role
 
 
 --
--- Name: crime_case_party_role_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case_party_role_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_case_party_role
@@ -5350,7 +6464,7 @@ ALTER TABLE ONLY crime_case_party_role
 
 
 --
--- Name: crime_case_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_case_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_case
@@ -5358,7 +6472,7 @@ ALTER TABLE ONLY crime_case
 
 
 --
--- Name: crime_motive_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_motive_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_motive
@@ -5366,7 +6480,7 @@ ALTER TABLE ONLY crime_motive
 
 
 --
--- Name: crime_motive_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_motive_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_motive
@@ -5374,7 +6488,7 @@ ALTER TABLE ONLY crime_motive
 
 
 --
--- Name: crime_type_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_type_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_type
@@ -5382,7 +6496,7 @@ ALTER TABLE ONLY crime_type
 
 
 --
--- Name: crime_type_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: crime_type_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY crime_type
@@ -5390,7 +6504,7 @@ ALTER TABLE ONLY crime_type
 
 
 --
--- Name: information_source_for_crime_case_crime_case_id_url_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: information_source_for_crime_case_crime_case_id_url_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY information_source_for_crime_case
@@ -5398,7 +6512,7 @@ ALTER TABLE ONLY information_source_for_crime_case
 
 
 --
--- Name: information_source_for_crime_case_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: information_source_for_crime_case_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY information_source_for_crime_case
@@ -5406,7 +6520,7 @@ ALTER TABLE ONLY information_source_for_crime_case
 
 
 --
--- Name: mental_disease_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: mental_disease_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY mental_disease
@@ -5414,7 +6528,7 @@ ALTER TABLE ONLY mental_disease
 
 
 --
--- Name: mental_disease_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: mental_disease_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY mental_disease
@@ -5422,7 +6536,7 @@ ALTER TABLE ONLY mental_disease
 
 
 --
--- Name: modus_operandi_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: modus_operandi_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY modus_operandi
@@ -5430,7 +6544,7 @@ ALTER TABLE ONLY modus_operandi
 
 
 --
--- Name: modus_operandi_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: modus_operandi_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY modus_operandi
@@ -5438,7 +6552,7 @@ ALTER TABLE ONLY modus_operandi
 
 
 --
--- Name: weapon_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: weapon_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY weapon
@@ -5446,7 +6560,7 @@ ALTER TABLE ONLY weapon
 
 
 --
--- Name: weapon_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: weapon_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY weapon
@@ -5454,7 +6568,7 @@ ALTER TABLE ONLY weapon
 
 
 --
--- Name: weapon_type_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: weapon_type_name_key; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY weapon_type
@@ -5462,7 +6576,7 @@ ALTER TABLE ONLY weapon_type
 
 
 --
--- Name: weapon_type_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo; Tablespace: 
+-- Name: weapon_type_pkey; Type: CONSTRAINT; Schema: forensics; Owner: jolo
 --
 
 ALTER TABLE ONLY weapon_type
@@ -5472,7 +6586,7 @@ ALTER TABLE ONLY weapon_type
 SET search_path = geo, pg_catalog;
 
 --
--- Name: city_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: city_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo
 --
 
 ALTER TABLE ONLY city
@@ -5480,7 +6594,7 @@ ALTER TABLE ONLY city
 
 
 --
--- Name: city_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: city_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo
 --
 
 ALTER TABLE ONLY city
@@ -5488,7 +6602,7 @@ ALTER TABLE ONLY city
 
 
 --
--- Name: country_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: country_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo
 --
 
 ALTER TABLE ONLY country
@@ -5496,7 +6610,7 @@ ALTER TABLE ONLY country
 
 
 --
--- Name: country_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: country_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo
 --
 
 ALTER TABLE ONLY country
@@ -5504,7 +6618,7 @@ ALTER TABLE ONLY country
 
 
 --
--- Name: country_symbol_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: country_symbol_key; Type: CONSTRAINT; Schema: geo; Owner: jolo
 --
 
 ALTER TABLE ONLY country
@@ -5512,7 +6626,7 @@ ALTER TABLE ONLY country
 
 
 --
--- Name: housing_type_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: housing_type_name_key; Type: CONSTRAINT; Schema: geo; Owner: jolo
 --
 
 ALTER TABLE ONLY housing_type
@@ -5520,11 +6634,175 @@ ALTER TABLE ONLY housing_type
 
 
 --
--- Name: housing_type_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo; Tablespace: 
+-- Name: housing_type_pkey; Type: CONSTRAINT; Schema: geo; Owner: jolo
 --
 
 ALTER TABLE ONLY housing_type
     ADD CONSTRAINT housing_type_pkey PRIMARY KEY (id);
+
+
+SET search_path = pdca, pg_catalog;
+
+--
+-- Name: collateral_effect_name_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY collateral_effect
+    ADD CONSTRAINT collateral_effect_name_key UNIQUE (name);
+
+
+--
+-- Name: collateral_effect_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY collateral_effect
+    ADD CONSTRAINT collateral_effect_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: data_collateral_effect_data_id_collateral_effect_id_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data_collateral_effect
+    ADD CONSTRAINT data_collateral_effect_data_id_collateral_effect_id_key UNIQUE (data_id, collateral_effect_id);
+
+
+--
+-- Name: data_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data
+    ADD CONSTRAINT data_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: equipe_name_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY equipe
+    ADD CONSTRAINT equipe_name_key UNIQUE (name);
+
+
+--
+-- Name: equipe_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY equipe
+    ADD CONSTRAINT equipe_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: icd10_code_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY icd10
+    ADD CONSTRAINT icd10_code_key UNIQUE (code);
+
+
+--
+-- Name: icd10_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY icd10
+    ADD CONSTRAINT icd10_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: molecule_name_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY molecule
+    ADD CONSTRAINT molecule_name_key UNIQUE (name);
+
+
+--
+-- Name: molecule_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY molecule
+    ADD CONSTRAINT molecule_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: proband_code_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY proband
+    ADD CONSTRAINT proband_code_key UNIQUE (code);
+
+
+--
+-- Name: proband_name_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY proband
+    ADD CONSTRAINT proband_name_key UNIQUE (name);
+
+
+--
+-- Name: proband_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY proband
+    ADD CONSTRAINT proband_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: research_intervals_name_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY research_intervals
+    ADD CONSTRAINT research_intervals_name_key UNIQUE (name);
+
+
+--
+-- Name: research_intervals_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY research_intervals
+    ADD CONSTRAINT research_intervals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sex_name_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY sex
+    ADD CONSTRAINT sex_name_key UNIQUE (name);
+
+
+--
+-- Name: sex_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY sex
+    ADD CONSTRAINT sex_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: smoker_type_name_key; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY smoker_type
+    ADD CONSTRAINT smoker_type_name_key UNIQUE (name);
+
+
+--
+-- Name: smoker_type_pkey; Type: CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY smoker_type
+    ADD CONSTRAINT smoker_type_pkey PRIMARY KEY (id);
+
+
+SET search_path = raw, pg_catalog;
+
+--
+-- Name: pk_all; Type: CONSTRAINT; Schema: raw; Owner: jolo
+--
+
+ALTER TABLE ONLY "all"
+    ADD CONSTRAINT pk_all PRIMARY KEY (id);
 
 
 SET search_path = core, pg_catalog;
@@ -5923,6 +7201,64 @@ SET search_path = geo, pg_catalog;
 
 ALTER TABLE ONLY city
     ADD CONSTRAINT city_country_id_fkey FOREIGN KEY (country_id) REFERENCES country(id);
+
+
+SET search_path = pdca, pg_catalog;
+
+--
+-- Name: data_collateral_effect_collateral_effect_id_fkey; Type: FK CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data_collateral_effect
+    ADD CONSTRAINT data_collateral_effect_collateral_effect_id_fkey FOREIGN KEY (collateral_effect_id) REFERENCES collateral_effect(id);
+
+
+--
+-- Name: data_collateral_effect_data_id_fkey; Type: FK CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data_collateral_effect
+    ADD CONSTRAINT data_collateral_effect_data_id_fkey FOREIGN KEY (data_id) REFERENCES data(id);
+
+
+--
+-- Name: data_equipe_id_fkey; Type: FK CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data
+    ADD CONSTRAINT data_equipe_id_fkey FOREIGN KEY (equipe_id) REFERENCES equipe(id);
+
+
+--
+-- Name: data_icd10_id_fkey; Type: FK CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data
+    ADD CONSTRAINT data_icd10_id_fkey FOREIGN KEY (icd10_id) REFERENCES icd10(id);
+
+
+--
+-- Name: data_molecule_id_fkey; Type: FK CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data
+    ADD CONSTRAINT data_molecule_id_fkey FOREIGN KEY (molecule_id) REFERENCES molecule(id);
+
+
+--
+-- Name: data_smoker_type_id_fkey; Type: FK CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY data
+    ADD CONSTRAINT data_smoker_type_id_fkey FOREIGN KEY (smoker_type_id) REFERENCES smoker_type(id);
+
+
+--
+-- Name: proband_sex_id_fkey; Type: FK CONSTRAINT; Schema: pdca; Owner: jolo
+--
+
+ALTER TABLE ONLY proband
+    ADD CONSTRAINT proband_sex_id_fkey FOREIGN KEY (sex_id) REFERENCES sex(id);
 
 
 --

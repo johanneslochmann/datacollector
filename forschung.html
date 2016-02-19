@@ -112,7 +112,7 @@
   <body>
 
     <!-- Primary Index -->
-	<p><br><br>Dumped on 2016-01-10</p>
+	<p><br><br>Dumped on 2016-02-19</p>
 <h1><a name="index">Index of database - forschung</a></h1>
 <ul>
     
@@ -146,8 +146,23 @@
   	
     </ul>
     
+    <li><a name="pdca.schema">pdca</a></li><ul>
+    	<li><a href="#pdca.table.collateral-effect">collateral_effect</a></li><li><a href="#pdca.table.data">data</a></li><li><a href="#pdca.table.data-collateral-effect">data_collateral_effect</a></li><li><a href="#pdca.table.equipe">equipe</a></li><li><a href="#pdca.table.icd10">icd10</a></li><li><a href="#pdca.table.molecule">molecule</a></li><li><a href="#pdca.table.proband">proband</a></li><li><a href="#pdca.table.raw-data">raw_data</a></li><li><a href="#pdca.table.research-intervals">research_intervals</a></li><li><a href="#pdca.table.sex">sex</a></li><li><a href="#pdca.table.smoker-type">smoker_type</a></li>
+  	
+    </ul>
+    
+    <li><a name="pdcastat.schema">pdcastat</a></li><ul>
+    	<li><a href="#pdcastat.view.all-molecules-dosages-plasmatic-concentrations">all_molecules_dosages_plasmatic_concentrations</a></li><li><a href="#pdcastat.view.alle-mit-plasmaspiegel">alle_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.alle-molekuele-dosierung-plasmaspiegel">alle_molekuele_dosierung_plasmaspiegel</a></li><li><a href="#pdcastat.view.aloperidolo-plasmaspiegel">aloperidolo_plasmaspiegel</a></li><li><a href="#pdcastat.view.alter-fuer-probanden-mit-plasmaspiegel-im-forschungsjahr">alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr</a></li><li><a href="#pdcastat.view.alter-probanden-10-jahresklassen-mit-plasmaspiegel">alter_probanden_10_jahresklassen_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.alter-probanden-1-jahresklassen-mit-plasmaspiegel-im-forschungs">alter_probanden_1_jahresklassen_mit_plasmaspiegel_im_forschungs</a></li><li><a href="#pdcastat.view.anzahl-verschreibungen-pro-molekuel">anzahl_verschreibungen_pro_molekuel</a></li><li><a href="#pdcastat.view.anzahl-verschreibungen-pro-molekuel-mit-dosis">anzahl_verschreibungen_pro_molekuel_mit_dosis</a></li><li><a href="#pdcastat.view.anzahl-zigaretten-pro-tag-mit-plasmaspiegel">anzahl_zigaretten_pro_tag_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.aripiprazolo-plasmaspiegel">aripiprazolo_plasmaspiegel</a></li><li><a href="#pdcastat.view.bmi-klassen-mit-plasmaspiegel">bmi_klassen_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.flufenazina-plasmaspiegel">flufenazina_plasmaspiegel</a></li><li><a href="#pdcastat.view.geschlechterverteilung-mit-plasmaspiegel">geschlechterverteilung_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.molekuele-dosierung-plasmaspiegel">molekuele_dosierung_plasmaspiegel</a></li><li><a href="#pdcastat.view.molekuele-mit-plasmaspiegel">molekuele_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.ohne-molekuel-plasmaspiegel">ohne_molekuel_plasmaspiegel</a></li><li><a href="#pdcastat.view.olanzapina-plasmaspiegel">olanzapina_plasmaspiegel</a></li><li><a href="#pdcastat.view.paliperidone-plasmaspiegel">paliperidone_plasmaspiegel</a></li><li><a href="#pdcastat.view.raucher-mit-plasmaspiegel">raucher_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.risperidone-plasmaspiegel">risperidone_plasmaspiegel</a></li><li><a href="#pdcastat.view.wirkstoffgenerationen-mit-molekuelen-wo-ps-vorhanden">wirkstoffgenerationen_mit_molekuelen_wo_ps_vorhanden</a></li><li><a href="#pdcastat.view.zehn-zigaretten-pro-tag-mit-plasmaspiegel">zehn_zigaretten_pro_tag_mit_plasmaspiegel</a></li><li><a href="#pdcastat.view.zuclopentixolo-plasmaspiegel">zuclopentixolo_plasmaspiegel</a></li>
+  	
+    </ul>
+    
     <li><a name="public.schema">public</a></li><ul>
     	
+  	
+    </ul>
+    
+    <li><a name="raw.schema">raw</a></li><ul>
+    	<li><a href="#raw.table.all">all</a></li><li><a href="#raw.table.d2013">d2013</a></li><li><a href="#raw.table.d2014">d2014</a></li><li><a href="#raw.table.d2015">d2015</a></li><li><a href="#raw.table.retour-von-vanda">retour_von_vanda</a></li>
   	
     </ul>
     
@@ -18446,6 +18461,4828 @@ ORDER BY count
 	<!-- We've gone through the table structure, now lets take a look at user functions -->
 	
 
+<!-- pdcapdca -->
+
+		
+		<hr>
+		<h1>Schema pdca</h1>
+		
+
+		
+		
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.collateral-effect">collateral_effect</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.collateral_effect Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+			<p>Tables referencing this one via Foreign Key Constraints:</p>
+		
+			<ul>
+				<li><a href="#pdca.table.data-collateral-effect">pdca.data_collateral_effect</a></li>
+			</ul>
+		
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.data">data</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.data Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                  <a href="#pdca.table.icd10">pdca.icd10.id</a>
+                  
+                
+                </td>
+            	<td>icd10_id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					
+
+					
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                  <a href="#pdca.table.smoker-type">pdca.smoker_type.id</a>
+                  
+                
+                </td>
+            	<td>smoker_type_id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					
+
+					
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                  <a href="#pdca.table.molecule">pdca.molecule.id</a>
+                  
+                
+                </td>
+            	<td>molecule_id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					
+
+					
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                  <a href="#pdca.table.equipe">pdca.equipe.id</a>
+                  
+                
+                </td>
+            	<td>equipe_id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					
+
+					
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>frequency_in_days</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>bmi</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cgi_s</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cgi_i</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>gaf</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>fps</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>vas</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>who_qol_a</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>who_qol_b</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>who_qol_c</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>who_qol_d</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration_in_ng_per_ml</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				NOT NULL
+				DEFAULT &#39;&#39;::text
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+			<p>Tables referencing this one via Foreign Key Constraints:</p>
+		
+			<ul>
+				<li><a href="#pdca.table.data-collateral-effect">pdca.data_collateral_effect</a></li>
+			</ul>
+		
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.data-collateral-effect">data_collateral_effect</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.data_collateral_effect Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                  
+                  <a href="#pdca.table.data">pdca.data.id</a>
+                  
+                
+                </td>
+            	<td>data_id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE#1
+                    
+				
+					
+
+					
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                  <a href="#pdca.table.collateral-effect">pdca.collateral_effect.id</a>
+                  
+                
+                  
+                
+                </td>
+            	<td>collateral_effect_id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					
+
+					
+				
+					
+
+					
+                       UNIQUE#1
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.equipe">equipe</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.equipe Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+			<p>Tables referencing this one via Foreign Key Constraints:</p>
+		
+			<ul>
+				<li><a href="#pdca.table.data">pdca.data</a></li>
+			</ul>
+		
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.icd10">icd10</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.icd10 Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>code</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+			<p>Tables referencing this one via Foreign Key Constraints:</p>
+		
+			<ul>
+				<li><a href="#pdca.table.data">pdca.data</a></li>
+			</ul>
+		
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.molecule">molecule</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.molecule Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+			<p>Tables referencing this one via Foreign Key Constraints:</p>
+		
+			<ul>
+				<li><a href="#pdca.table.data">pdca.data</a></li>
+			</ul>
+		
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.proband">proband</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.proband Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>code</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>birthday</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                  <a href="#pdca.table.sex">pdca.sex.id</a>
+                  
+                
+                </td>
+            	<td>sex_id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					
+
+					
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+        <p>&nbsp;</p>
+		<table width="100%" cellspacing="0" cellpadding="3">
+            <caption>pdca.proband Constraints</caption>
+            <tr>
+            	<th>Name</th>
+            	<th>Constraint</th>
+            </tr>
+			
+            <tr class="tr0">
+				<td>proband_birthday_check</td>
+                <td>CHECK ((birthday &lt; (&#39;now&#39;::text)::date))</td>
+            </tr>
+			
+		</table>
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.raw-data">raw_data</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.raw_data Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>id</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>research_year</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>equipe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_denied</td>
+            	<td>boolean</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>pz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cod_paz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>sex</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>birthday</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>height_in_cm</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>weight_in_kg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cigarettes_per_day</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>is_smoker</td>
+            	<td>boolean</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>icd_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>depot_frequency_in_days</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>last_injection_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cotherapy</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>bmi</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cgi_s</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cgi_i</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>gaf</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>fps</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>vas</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>who_qol</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>collateral_effects</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.research-intervals">research_intervals</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.research_intervals Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.sex">sex</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.sex Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+			<p>Tables referencing this one via Foreign Key Constraints:</p>
+		
+			<ul>
+				<li><a href="#pdca.table.proband">pdca.proband</a></li>
+			</ul>
+		
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#pdca.schema">pdca</a>.<a name="pdca.table.smoker-type">smoker_type</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdca.smoker_type Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>serial</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>name</td>
+            	<td>text</td>
+                <td><i>
+				
+					
+
+					
+                       UNIQUE
+                    
+				
+
+				NOT NULL
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>description</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				NOT NULL
+				DEFAULT &#39;&#39;::text
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+			<p>Tables referencing this one via Foreign Key Constraints:</p>
+		
+			<ul>
+				<li><a href="#pdca.table.data">pdca.data</a></li>
+			</ul>
+		
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdca.schema">Schema pdca</a>
+    </p>
+	
+
+	<!-- We've gone through the table structure, now lets take a look at user functions -->
+	
+
+<!-- pdcastatpdcastat -->
+
+		
+		<hr>
+		<h1>Schema pdcastat</h1>
+		
+
+		
+		
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.all-molecules-dosages-plasmatic-concentrations">all_molecules_dosages_plasmatic_concentrations</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.all_molecules_dosages_plasmatic_concentrations Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.molecule
+,
+    alle_mit_plasmaspiegel.dosage_in_mg
+,
+    alle_mit_plasmaspiegel.plasmatic_concentration
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+GROUP BY alle_mit_plasmaspiegel.molecule
+, alle_mit_plasmaspiegel.dosage_in_mg
+, alle_mit_plasmaspiegel.plasmatic_concentration
+  
+ORDER BY alle_mit_plasmaspiegel.molecule
+, alle_mit_plasmaspiegel.dosage_in_mg
+, alle_mit_plasmaspiegel.plasmatic_concentration
+, count
+(1);</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.alle-mit-plasmaspiegel">alle_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.alle_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>id</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>research_year</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>equipe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_denied</td>
+            	<td>boolean</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>pz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cod_paz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>sex</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>birthday</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>height_in_cm</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>weight_in_kg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cigarettes_per_day</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>is_smoker</td>
+            	<td>boolean</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>icd_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>depot_frequency_in_days</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>last_injection_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cotherapy</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>bmi</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cgi_s</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cgi_i</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>gaf</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>fps</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>vas</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>who_qol</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>collateral_effects</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT raw_data.id
+,
+    raw_data.research_year
+,
+    raw_data.equipe
+,
+    raw_data.sample_denied
+,
+    raw_data.pz
+,
+    raw_data.cod_paz
+,
+    raw_data.sex
+,
+    raw_data.birthday
+,
+    raw_data.height_in_cm
+,
+    raw_data.weight_in_kg
+,
+    raw_data.cigarettes_per_day
+,
+    raw_data.is_smoker
+,
+    raw_data.icd_10
+,
+    raw_data.molecule
+,
+    raw_data.dosage_in_mg
+,
+    raw_data.depot_frequency_in_days
+,
+    raw_data.last_injection_date
+,
+    raw_data.sample_date
+,
+    raw_data.plasmatic_concentration
+,
+    raw_data.cotherapy
+,
+    raw_data.bmi
+,
+    raw_data.cgi_s
+,
+    raw_data.cgi_i
+,
+    raw_data.gaf
+,
+    raw_data.fps
+,
+    raw_data.vas
+,
+    raw_data.who_qol
+,
+    raw_data.collateral_effects
+,
+    raw_data.comment
+   
+FROM pdca.raw_data
+  
+WHERE (raw_data.plasmatic_concentration IS NOT NULL);</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.alle-molekuele-dosierung-plasmaspiegel">alle_molekuele_dosierung_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.alle_molekuele_dosierung_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.molecule
+,
+    alle_mit_plasmaspiegel.dosage_in_mg
+,
+    alle_mit_plasmaspiegel.plasmatic_concentration
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+GROUP BY alle_mit_plasmaspiegel.molecule
+, alle_mit_plasmaspiegel.dosage_in_mg
+, alle_mit_plasmaspiegel.plasmatic_concentration
+  
+ORDER BY alle_mit_plasmaspiegel.molecule
+, alle_mit_plasmaspiegel.dosage_in_mg
+, alle_mit_plasmaspiegel.plasmatic_concentration
+, count
+(1);</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.aloperidolo-plasmaspiegel">aloperidolo_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.aloperidolo_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Aloperidolo&#39;::text)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.alter-fuer-probanden-mit-plasmaspiegel-im-forschungsjahr">alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>age</td>
+            	<td>double precision</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT (
+     (alle_mit_plasmaspiegel.research_year)::double precision - date_part
+     (&#39;year&#39;::text
+           , alle_mit_plasmaspiegel.birthday
+     )
+) AS age
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+ORDER BY (
+     (alle_mit_plasmaspiegel.research_year)::double precision - date_part
+     (&#39;year&#39;::text
+           , alle_mit_plasmaspiegel.birthday
+     )
+);</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.alter-probanden-10-jahresklassen-mit-plasmaspiegel">alter_probanden_10_jahresklassen_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.alter_probanden_10_jahresklassen_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>altersgruppe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT&#39;&lt;=20&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+     (20)::double precision
+)
+  
+GROUP BY&#39;&lt;=20&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;20 - &lt;=30&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (
+     (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+           (20)::double precision
+     )
+   AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+           (30)::double precision
+     )
+)
+  
+GROUP BY&#39;&gt;20 - &lt;=30&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;30 - &lt;=40&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (
+     (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+           (30)::double precision
+     )
+   AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+           (40)::double precision
+     )
+)
+  
+GROUP BY&#39;&gt;30 - &lt;=40&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;40 - &lt;=50&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (
+     (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+           (40)::double precision
+     )
+   AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+           (50)::double precision
+     )
+)
+  
+GROUP BY&#39;&gt;40 - &lt;=50&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;50 - &lt;=60&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (
+     (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+           (50)::double precision
+     )
+   AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+           (60)::double precision
+     )
+)
+  
+GROUP BY&#39;&gt;50 - &lt;=60&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;60 - &lt;=70&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (
+     (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+           (60)::double precision
+     )
+   AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+           (70)::double precision
+     )
+)
+  
+GROUP BY&#39;&gt;60 - &lt;=70&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;70 - &lt;=80&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (
+     (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+           (70)::double precision
+     )
+   AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+           (80)::double precision
+     )
+)
+  
+GROUP BY&#39;&gt;70 - &lt;=80&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;80 - &lt;=90&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (
+     (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+           (80)::double precision
+     )
+   AND (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &lt;= 
+           (90)::double precision
+     )
+)
+  
+GROUP BY&#39;&gt;80 - &lt;=90&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;90&#39;::text AS altersgruppe
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+WHERE (alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age &gt; 
+     (90)::double precision
+)
+  
+GROUP BY&#39;&gt;90&#39;::text
+  
+ORDER BY 1;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.alter-probanden-1-jahresklassen-mit-plasmaspiegel-im-forschungs">alter_probanden_1_jahresklassen_mit_plasmaspiegel_im_forschungs</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.alter_probanden_1_jahresklassen_mit_plasmaspiegel_im_forschungs Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>age</td>
+            	<td>double precision</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr
+  
+GROUP BY alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age
+  
+ORDER BY alter_fuer_probanden_mit_plasmaspiegel_im_forschungsjahr.age;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.anzahl-verschreibungen-pro-molekuel">anzahl_verschreibungen_pro_molekuel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.anzahl_verschreibungen_pro_molekuel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molekuel</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT raw_data.molecule AS molekuel
+,
+    count
+(1) AS anzahl
+   
+FROM pdca.raw_data
+  
+GROUP BY raw_data.molecule;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.anzahl-verschreibungen-pro-molekuel-mit-dosis">anzahl_verschreibungen_pro_molekuel_mit_dosis</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.anzahl_verschreibungen_pro_molekuel_mit_dosis Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molekuel</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosis_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT raw_data.molecule AS molekuel
+,
+    raw_data.dosage_in_mg AS dosis_in_mg
+,
+    count
+(1) AS anzahl
+   
+FROM pdca.raw_data
+  
+GROUP BY raw_data.molecule
+, raw_data.dosage_in_mg
+  
+ORDER BY raw_data.molecule
+, raw_data.dosage_in_mg
+, count
+(1);</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.anzahl-zigaretten-pro-tag-mit-plasmaspiegel">anzahl_zigaretten_pro_tag_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.anzahl_zigaretten_pro_tag_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>zigaretten_pro_tag</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.cigarettes_per_day AS zigaretten_pro_tag
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+GROUP BY alle_mit_plasmaspiegel.cigarettes_per_day
+  
+ORDER BY alle_mit_plasmaspiegel.cigarettes_per_day;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.aripiprazolo-plasmaspiegel">aripiprazolo_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.aripiprazolo_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Aripiprazolo&#39;::text)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.bmi-klassen-mit-plasmaspiegel">bmi_klassen_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.bmi_klassen_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>bmi_klasse</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>sortierung</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT&#39;&lt;18.5&#39;::text AS bmi_klasse
+,
+    count
+(1) AS anzahl
+,
+    1 AS sortierung
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.bmi &lt; 18.5)
+UNION
+ 
+SELECT&#39;&gt;=18.5-&lt;25&#39;::text AS bmi_klasse
+,
+    count
+(1) AS anzahl
+,
+    2 AS sortierung
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (
+     (alle_mit_plasmaspiegel.bmi &gt;= 18.5)
+   AND (alle_mit_plasmaspiegel.bmi &lt; 
+           (25)::numeric
+     )
+)
+UNION
+ 
+SELECT&#39;&gt;=25-&lt;30&#39;::text AS bmi_klasse
+,
+    count
+(1) AS anzahl
+,
+    3 AS sortierung
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (
+     (alle_mit_plasmaspiegel.bmi &gt;= 
+           (25)::numeric
+     )
+   AND (alle_mit_plasmaspiegel.bmi &lt; 
+           (30)::numeric
+     )
+)
+UNION
+ 
+SELECT&#39;&gt;=30&#39;::text AS bmi_klasse
+,
+    count
+(1) AS anzahl
+,
+    4 AS sortierung
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.bmi &gt;= 
+     (30)::numeric
+)
+  
+ORDER BY 3;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.flufenazina-plasmaspiegel">flufenazina_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.flufenazina_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Flufenazina&#39;::text)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.geschlechterverteilung-mit-plasmaspiegel">geschlechterverteilung_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.geschlechterverteilung_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>geschlecht</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.sex AS geschlecht
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+GROUP BY alle_mit_plasmaspiegel.sex
+  
+ORDER BY alle_mit_plasmaspiegel.sex;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.molekuele-dosierung-plasmaspiegel">molekuele_dosierung_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.molekuele_dosierung_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molekuel</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosis_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmaspiegel_in_ng_pro_ml</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.molecule AS molekuel
+,
+    alle_mit_plasmaspiegel.dosage_in_mg AS dosis_in_mg
+,
+    alle_mit_plasmaspiegel.plasmatic_concentration AS plasmaspiegel_in_ng_pro_ml
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+ORDER BY alle_mit_plasmaspiegel.molecule
+, alle_mit_plasmaspiegel.dosage_in_mg
+, alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.molekuele-mit-plasmaspiegel">molekuele_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.molekuele_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molekuel</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT COALESCE
+(alle_mit_plasmaspiegel.molecule
+     ,&#39;NA&#39;::text
+) AS molekuel
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+GROUP BY COALESCE
+(alle_mit_plasmaspiegel.molecule
+     ,&#39;NA&#39;::text
+)
+  
+ORDER BY COALESCE
+(alle_mit_plasmaspiegel.molecule
+     ,&#39;NA&#39;::text
+);</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.ohne-molekuel-plasmaspiegel">ohne_molekuel_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.ohne_molekuel_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule IS NULL)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.olanzapina-plasmaspiegel">olanzapina_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.olanzapina_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Olanzapina&#39;::text)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.paliperidone-plasmaspiegel">paliperidone_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.paliperidone_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Paliperidone&#39;::text)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.raucher-mit-plasmaspiegel">raucher_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.raucher_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>raucht</td>
+            	<td>boolean</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.is_smoker AS raucht
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+GROUP BY alle_mit_plasmaspiegel.is_smoker
+  
+ORDER BY alle_mit_plasmaspiegel.is_smoker;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.risperidone-plasmaspiegel">risperidone_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.risperidone_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Risperidone&#39;::text)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.wirkstoffgenerationen-mit-molekuelen-wo-ps-vorhanden">wirkstoffgenerationen_mit_molekuelen_wo_ps_vorhanden</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.wirkstoffgenerationen_mit_molekuelen_wo_ps_vorhanden Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molecule_group</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>molekuel</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT&#39;1. Generation&#39;::text AS molecule_group
+,
+    alle_mit_plasmaspiegel.molecule AS molekuel
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = ANY 
+     (ARRAY[&#39;Zuclopentixolo&#39;::text
+           ,&#39;Aloperidolo&#39;::text
+           ,&#39;Flufenazina&#39;::text
+           ,&#39;Fluanxol&#39;::text]
+     )
+)
+  
+GROUP BY&#39;1. Generation&#39;::text
+, alle_mit_plasmaspiegel.molecule
+
+UNION
+ 
+SELECT&#39;2. Generation&#39;::text AS molecule_group
+,
+    alle_mit_plasmaspiegel.molecule AS molekuel
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = ANY 
+     (ARRAY[&#39;Risperidone&#39;::text
+           ,&#39;Paliperidone&#39;::text
+           ,&#39;Olanzapina&#39;::text]
+     )
+)
+  
+GROUP BY&#39;2. Generation&#39;::text
+, alle_mit_plasmaspiegel.molecule
+
+UNION
+ 
+SELECT&#39;3. Generation&#39;::text AS molecule_group
+,
+    alle_mit_plasmaspiegel.molecule AS molekuel
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Aripiprazolo&#39;::text)
+  
+GROUP BY&#39;3. Generation&#39;::text
+, alle_mit_plasmaspiegel.molecule
+  
+ORDER BY 1
+, 2
+, 3;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.zehn-zigaretten-pro-tag-mit-plasmaspiegel">zehn_zigaretten_pro_tag_mit_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.zehn_zigaretten_pro_tag_mit_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>zigaretten_pro_tag</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>anzahl</td>
+            	<td>bigint</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT&#39;&lt;=10&#39;::text AS zigaretten_pro_tag
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.cigarettes_per_day &lt;= 10)
+  
+GROUP BY&#39;&lt;=10&#39;::text
+
+UNION
+ 
+SELECT&#39;&gt;10&#39;::text AS zigaretten_pro_tag
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.cigarettes_per_day &gt; 10)
+  
+GROUP BY&#39;&gt;10&#39;::text
+
+UNION
+ 
+SELECT&#39;NA&#39;::text AS zigaretten_pro_tag
+,
+    count
+(1) AS anzahl
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.cigarettes_per_day IS NULL)
+  
+GROUP BY&#39;NA&#39;::text
+  
+ORDER BY 1;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+        <hr>
+		<h2>View:
+			
+			<a href="#pdcastat.schema">pdcastat</a>.<a name="pdcastat.view.zuclopentixolo-plasmaspiegel">zuclopentixolo_plasmaspiegel</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>pdcastat.zuclopentixolo_plasmaspiegel Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+	<pre>
+SELECT alle_mit_plasmaspiegel.plasmatic_concentration
+   
+FROM pdcastat.alle_mit_plasmaspiegel
+  
+WHERE (alle_mit_plasmaspiegel.molecule = &#39;Zuclopentixolo&#39;::text)
+  
+ORDER BY alle_mit_plasmaspiegel.plasmatic_concentration;</pre>
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#pdcastat.schema">Schema pdcastat</a>
+    </p>
+	
+
+	<!-- We've gone through the table structure, now lets take a look at user functions -->
+	
+
 <!-- publicpublic -->
 
 		
@@ -18457,6 +23294,2352 @@ ORDER BY count
 
 		
 		
+
+	<!-- We've gone through the table structure, now lets take a look at user functions -->
+	
+
+<!-- rawraw -->
+
+		
+		<hr>
+		<h1>Schema raw</h1>
+		
+
+		
+		
+        <hr>
+		<h2>Table:
+			
+			<a href="#raw.schema">raw</a>.<a name="raw.table.all">all</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>raw.all Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>pz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cod_paz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>sex</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>birthday</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>icd_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>is_smoker</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>smokes_less_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>smokes_more_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>frequency_in_days</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cotherapy</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>last_depot_injection_date</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>collateral_effects</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>height_in_cm</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>weight_in_kg</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>bmi</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cgi_s</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cgi_i</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>gaf</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>fps</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>vas</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>who_qol</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>equipe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>research_year</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                  
+                
+                </td>
+            	<td>id</td>
+            	<td>integer</td>
+                <td><i>
+				
+					PRIMARY KEY
+					
+
+					
+				
+
+				
+				DEFAULT nextval(&#39;raw.raw_id_seq&#39;::regclass)
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>d_birthday</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>d_cigarettes_per_day</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>d_is_smoker</td>
+            	<td>boolean</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>d_molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>d_dosage_in_mg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>d_frequency_in_days</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>d_last_injection_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>d_sample_date</td>
+            	<td>date</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>d_sample_denied</td>
+            	<td>boolean</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>d_height_in_cm</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>d_weight_in_kg</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>d_bmi</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>d_plasmatic_concentration</td>
+            	<td>numeric</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>d_equipe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#raw.schema">Schema raw</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#raw.schema">raw</a>.<a name="raw.table.d2013">d2013</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>raw.d2013 Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>pz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cod_paz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>sex</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>birthday</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>icd_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>is_smoker</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>smokes_less_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>smokes_more_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>frequency_in_days</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>collateral_effects</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>bmi</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cgi_s</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cgi_i</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>gaf</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>fps</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>vas</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>who_qol</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>equipe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cotherapy</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#raw.schema">Schema raw</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#raw.schema">raw</a>.<a name="raw.table.d2014">d2014</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>raw.d2014 Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>pz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cod_paz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>sex</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>birthday</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>icd_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>is_smoker</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>smokes_less_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>smokes_more_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>frequency_in_days</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>collateral_effects</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>bmi</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cgi_s</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cgi_i</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>gaf</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>fps</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>vas</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>who_qol</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>equipe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cotherapy</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#raw.schema">Schema raw</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#raw.schema">raw</a>.<a name="raw.table.d2015">d2015</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>raw.d2015 Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>pz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cod_paz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>sex</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>birthday</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>icd_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>is_smoker</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>smokes_less_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>smokes_more_than_10</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>molecule</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>dosage_in_mg</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>frequency_in_days</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cotherapy</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>last_depot_injection_date</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>collateral_effects</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>height_in_cm</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>weight_in_kg</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>bmi</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cgi_s</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>cgi_i</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>gaf</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>fps</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>vas</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>who_qol</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>equipe</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#raw.schema">Schema raw</a>
+    </p>
+	
+        <hr>
+		<h2>Table:
+			
+			<a href="#raw.schema">raw</a>.<a name="raw.table.retour-von-vanda">retour_von_vanda</a>
+		</h2>
+        
+
+
+        <table width="100%" cellspacing="0" cellpadding="3">
+                <caption>raw.retour_von_vanda Structure</caption>
+                <tr>
+                <th>F-Key</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>id</td>
+            	<td>integer</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>pazient</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>cod_paz</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>geschlecht</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>geburtsdatum</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>molekuel</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>dosis_in_mg</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>injektionsintervall</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>letzte_injektion</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>sample_date</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>plasmatic_concentration</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr1">
+				<td>
+                
+                </td>
+            	<td>research_year</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+            <tr class="tr0">
+				<td>
+                
+                </td>
+            	<td>comment</td>
+            	<td>text</td>
+                <td><i>
+				
+
+				
+				
+				</i>
+				
+				</td>
+			 </tr>
+            
+        </table>
+
+        <!-- Inherits -->
+		
+
+		
+		
+		
+
+        <!-- Constraint List -->
+		
+
+        <!-- Foreign Key Discovery -->
+		
+
+    <!-- Indexes -->
+    
+
+	<!-- View Definition -->
+	
+
+	<!-- List off permissions -->
+	
+
+	<p>
+		<a href="#index">Index</a> -
+		<a href="#raw.schema">Schema raw</a>
+    </p>
+	
 
 	<!-- We've gone through the table structure, now lets take a look at user functions -->
 	
